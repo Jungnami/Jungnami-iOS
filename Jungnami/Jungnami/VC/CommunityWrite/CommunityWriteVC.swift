@@ -25,13 +25,15 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         setKeyboardSetting()
         profileImgView.makeImageRound()
+        contentTxtView.text = "생각을 공유해 보세요"
+        contentTxtView.textColor = UIColor.lightGray
+        
         self.contentTxtView.delegate = self
     }
     
-    
+    //TODO - 스페이스만 입력 됐을 때 처리
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.count > 0 {
-            print(textView.text)
             doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_blue_button"), for: .normal)
             doneBtn.isUserInteractionEnabled = true
         } else {
@@ -41,6 +43,24 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     }
 
 }
+
+//TF delegate
+extension CommunityWriteVC {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Placeholder"
+            textView.textColor = UIColor.lightGray
+        }
+    }
+}
+
 
 //키보드 대응
 extension CommunityWriteVC {
@@ -86,4 +106,6 @@ extension CommunityWriteVC {
         self.view.endEditing(true)
     }
 }
+
+
 
