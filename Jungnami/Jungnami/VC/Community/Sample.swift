@@ -8,6 +8,7 @@
 
 import UIKit
 
+////////////////////데이터 추가 위한 샘플 스트럭쳐////////////////////////////////
 struct Sample {
     var profileUrl : UIImage
     var name : String

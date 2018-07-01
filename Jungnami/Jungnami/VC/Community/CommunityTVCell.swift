@@ -22,6 +22,8 @@ class CommunityTVCell: UITableViewCell {
     @IBOutlet weak var shareBtn : UIButton!
     @IBOutlet weak var scrapBtn : UIButton!
     
+    
+    /////////////////////샘플설정///////////////////////////////
     func configure(data : Sample){
         profileImgView.image = data.profileUrl
         nameLabel.text = data.name
@@ -47,6 +49,7 @@ class CommunityTVCell: UITableViewCell {
             self.contentView.viewWithTag(1)?.removeFromSuperview()
         }
     }
+    ////////////////////////////////////////////////////
     
     
     override func awakeFromNib() {

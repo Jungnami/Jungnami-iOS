@@ -28,12 +28,16 @@ class CommunityTVC: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTxtField.delegate = self
+    
+        //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
          addChildView(containerView: containerView, asChildViewController: needLoginVC)
         let a = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "다비 최고야,, 형윤 최고야,, 디자인 세상에서 제일 예뻐요 선생님들,, ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
          let b = Sample(profileUrl: #imageLiteral(resourceName: "community_character"), name: "제리", time: "4시간 전", content: "픽미픽미픽미업", like: 73, comment: 6020, contentImg: #imageLiteral(resourceName: "inni"), heart: false, scrap: true)
         
         sampleData.append(a)
         sampleData.append(b)
+        ////////////////////////////////////////////////////
         
     }
 
@@ -43,13 +47,13 @@ class CommunityTVC: UITableViewController, UISearchBarDelegate {
     
     private lazy var needLoginVC: NeedLoginVC = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        var viewController = storyboard.instantiateViewController(withIdentifier: "NeedLoginVC") as! NeedLoginVC
+        var viewController = storyboard.instantiateViewController(withIdentifier: NeedLoginVC.reuseIdentifier) as! NeedLoginVC
         return viewController
     }()
     
     private lazy var writeVC: WriteVC = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        var viewController = storyboard.instantiateViewController(withIdentifier: "WriteVC") as! WriteVC
+        var viewController = storyboard.instantiateViewController(withIdentifier: WriteVC.reuseIdentifier) as! WriteVC
         return viewController
     }()
 
@@ -74,3 +78,17 @@ extension CommunityTVC {
     }
     
 }
+
+//키보드 엔터 버튼 눌렀을 때
+extension CommunityTVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        //TODO - 확인 누르면 데이터 로드하는 통신 코드
+        return true
+    }
+}
+
+
+
+
