@@ -54,8 +54,8 @@ class CommunityTVCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImgView.layer.cornerRadius = profileImgView.layer.frame.width/2
-        profileImgView.layer.masksToBounds = true
+        profileImgView.makeImageRound()
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

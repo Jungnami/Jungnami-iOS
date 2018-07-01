@@ -396,7 +396,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="community_character" translatesAutoresizingMaskIntoConstraints="NO" id="0Yl-9F-Wsg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dabi" translatesAutoresizingMaskIntoConstraints="NO" id="0Yl-9F-Wsg">
                                 <rect key="frame" x="11" y="14.5" width="38" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="bl1-W4-0bb"/>
@@ -404,7 +404,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3X2-Pt-6v5">
-                                <rect key="frame" x="61" y="18.5" width="125" height="30"/>
+                                <rect key="frame" x="61" y="5" width="302" height="56"/>
                                 <state key="normal" title="생각을 공유해 보세요">
                                     <color key="titleColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -414,12 +414,18 @@
                         <constraints>
                             <constraint firstItem="0Yl-9F-Wsg" firstAttribute="centerY" secondItem="6Yk-Po-Qde" secondAttribute="centerY" id="2cQ-wA-FzJ"/>
                             <constraint firstItem="0Yl-9F-Wsg" firstAttribute="leading" secondItem="6Yk-Po-Qde" secondAttribute="leading" constant="11" id="7bR-Jg-8Nt"/>
+                            <constraint firstItem="3X2-Pt-6v5" firstAttribute="top" secondItem="6Yk-Po-Qde" secondAttribute="top" constant="5" id="BDF-dZ-iH2"/>
+                            <constraint firstItem="6Yk-Po-Qde" firstAttribute="bottom" secondItem="3X2-Pt-6v5" secondAttribute="bottom" constant="6" id="JaK-Cf-dlX"/>
                             <constraint firstItem="3X2-Pt-6v5" firstAttribute="centerY" secondItem="0Yl-9F-Wsg" secondAttribute="centerY" id="Rj3-92-8Zx"/>
+                            <constraint firstItem="6Yk-Po-Qde" firstAttribute="trailing" secondItem="3X2-Pt-6v5" secondAttribute="trailing" constant="12" id="ZON-CC-N33"/>
                             <constraint firstItem="3X2-Pt-6v5" firstAttribute="leading" secondItem="0Yl-9F-Wsg" secondAttribute="trailing" constant="12" id="qjK-Xu-Wa1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Yk-Po-Qde"/>
                     </view>
                     <size key="freeformSize" width="375" height="67"/>
+                    <connections>
+                        <outlet property="userImgView" destination="0Yl-9F-Wsg" id="GEJ-hB-EQP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvk-3u-0m7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -440,5 +446,6 @@
         <image name="community_share" width="24" height="24"/>
         <image name="community_small_chat" width="15" height="15"/>
         <image name="community_small_heart" width="14" height="14"/>
+        <image name="dabi" width="176" height="176"/>
     </resources>
 </document>

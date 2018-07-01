@@ -56,5 +56,12 @@ extension UIApplication {
     
 }
 
+extension UIImageView {
+    func makeImageRound(){
+        self.layer.cornerRadius = self.layer.frame.width/2
+        self.layer.masksToBounds = true
+    }
+    }
+
 
 

@@ -39,7 +39,7 @@ class CommunityTVC: UITableViewController, UISearchBarDelegate {
         searchTxtField.delegate = self
         self.view.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-         addChildView(containerView: containerView, asChildViewController: needLoginVC)
+         addChildView(containerView: containerView, asChildViewController: writeVC)
         let a = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "다비 최고야,, 형윤 최고야,, 디자인 세상에서 제일 예뻐요 선생님들,, ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
          let b = Sample(profileUrl: #imageLiteral(resourceName: "community_character"), name: "제리", time: "4시간 전", content: "픽미픽미픽미업", like: 73, comment: 6020, contentImg: #imageLiteral(resourceName: "inni"), heart: false, scrap: true)
         
