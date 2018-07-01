@@ -9,10 +9,13 @@
 import UIKit
 
 class WriteVC: UIViewController {
-
+    
+    @IBOutlet weak var userImgView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        userImgView.makeImageRound()
         // Do any additional setup after loading the view.
     }
 

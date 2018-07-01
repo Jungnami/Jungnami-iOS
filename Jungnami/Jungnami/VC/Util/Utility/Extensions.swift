@@ -21,7 +21,11 @@ extension UIBarButtonItem {
     }
 }
 
-
+extension NSObject {
+    static var reuseIdentifier:String {
+        return String(describing:self)
+    }
+}
 
 extension UIViewController {
     
@@ -43,3 +47,21 @@ extension UIViewController {
         viewController.removeFromParentViewController()
     }
 }
+
+extension UIApplication {
+    
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
+    
+}
+
+extension UIImageView {
+    func makeImageRound(){
+        self.layer.cornerRadius = self.layer.frame.width/2
+        self.layer.masksToBounds = true
+    }
+    }
+
+
+

@@ -16,6 +16,8 @@
 		3B297F9020E8D0D100B82B0B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B297F8F20E8D0D100B82B0B /* Extensions.swift */; };
 		3B297F9220E8E65900B82B0B /* NeedLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B297F9120E8E65900B82B0B /* NeedLoginVC.swift */; };
 		3B297F9420E8E67D00B82B0B /* WriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B297F9320E8E67D00B82B0B /* WriteVC.swift */; };
+		3B297F9620E92BCD00B82B0B /* CommunityTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B297F9520E92BCD00B82B0B /* CommunityTVCell.swift */; };
+		3B297F9820E9365C00B82B0B /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B297F9720E9365C00B82B0B /* Sample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		3B297F8F20E8D0D100B82B0B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3B297F9120E8E65900B82B0B /* NeedLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedLoginVC.swift; sourceTree = "<group>"; };
 		3B297F9320E8E67D00B82B0B /* WriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteVC.swift; sourceTree = "<group>"; };
+		3B297F9520E92BCD00B82B0B /* CommunityTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTVCell.swift; sourceTree = "<group>"; };
+		3B297F9720E9365C00B82B0B /* Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				3B297F8D20E8CD9000B82B0B /* CommunityTVC.swift */,
+				3B297F9520E92BCD00B82B0B /* CommunityTVCell.swift */,
 				3B297F9120E8E65900B82B0B /* NeedLoginVC.swift */,
 				3B297F9320E8E67D00B82B0B /* WriteVC.swift */,
+				3B297F9720E9365C00B82B0B /* Sample.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -209,7 +215,9 @@
 				3B297F9420E8E67D00B82B0B /* WriteVC.swift in Sources */,
 				3B297F8E20E8CD9000B82B0B /* CommunityTVC.swift in Sources */,
 				3B297F7120E8A74100B82B0B /* AppDelegate.swift in Sources */,
+				3B297F9620E92BCD00B82B0B /* CommunityTVCell.swift in Sources */,
 				3B297F9220E8E65900B82B0B /* NeedLoginVC.swift in Sources */,
+				3B297F9820E9365C00B82B0B /* Sample.swift in Sources */,
 				3B297F9020E8D0D100B82B0B /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +356,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kangsujin.Jungnami;
@@ -362,6 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kangsujin.Jungnami;
