@@ -59,9 +59,9 @@
 				3B297F7020E8A74100B82B0B /* AppDelegate.swift */,
 				3B297F8620E8BE3500B82B0B /* Storyboard */,
 				3B297F8220E8BE0F00B82B0B /* VC */,
-				3B297F8320E8BE1A00B82B0B /* Community */,
-				3B297F7720E8A74100B82B0B /* Assets.xcassets */,
+				3B297F8920E8BE9200B82B0B /* Util */,
 				3B297F7C20E8A74100B82B0B /* Info.plist */,
+				3B297F7720E8A74100B82B0B /* Assets.xcassets */,
 			);
 			path = Jungnami;
 			sourceTree = "<group>";
@@ -69,7 +69,7 @@
 		3B297F8220E8BE0F00B82B0B /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				3B297F8920E8BE9200B82B0B /* Util */,
+				3B297F8320E8BE1A00B82B0B /* Community */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -99,7 +99,8 @@
 				3B297F8B20E8BEB900B82B0B /* Data */,
 				3B297F8A20E8BEAE00B82B0B /* Utility */,
 			);
-			path = Util;
+			name = Util;
+			path = VC/Util;
 			sourceTree = "<group>";
 		};
 		3B297F8A20E8BEAE00B82B0B /* Utility */ = {
