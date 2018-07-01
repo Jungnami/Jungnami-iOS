@@ -21,7 +21,11 @@ extension UIBarButtonItem {
     }
 }
 
-
+extension NSObject {
+    static var reuseIdentifier:String {
+        return String(describing:self)
+    }
+}
 
 extension UIViewController {
     
