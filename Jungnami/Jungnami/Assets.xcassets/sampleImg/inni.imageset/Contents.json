@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "inni.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "스크린샷 2018-07-02 오전 2.00.04.png",
       "scale" : "2x"
     },
     {
