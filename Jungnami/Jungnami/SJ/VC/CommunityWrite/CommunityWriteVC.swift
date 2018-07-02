@@ -20,7 +20,6 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var contentTxtView: UITextView!
      @IBOutlet weak var scrollView: UIScrollView!
-    
     var contentImgView: UIImageView = UIImageView()
     lazy var deleteImgBtn : UIButton = {
         let button = UIButton()
@@ -32,13 +31,13 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     }()
     
     
-    
-    var imageData : Data? = nil {
+    var imageData : Data? {
         didSet {
             if imageData == nil {
-                contentImgView.image = UIImage()
+                removeImgView()
             } else {
                 if let imageData_ = imageData {
+                    makeImgView()
                     contentImgView.image =  UIImage(data: imageData_)
                 }
             }
@@ -54,9 +53,28 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         setToolbar()
         contentTxtView.delegate = self
         profileImgView.makeImageRound()
+        imageData = nil
+        contentTxtView.text = "생각을 공유해 보세요"
+        contentTxtView.textColor = UIColor.lightGray
+    }
+    
+    @objc func clickGif(){
+        
+    }
+    @objc func clickImg(){
+        openGallery()
+    }
+    @objc public func deleteImg (_sender: UIButton) {
+        removeImgView()
+    }
+
+}
+
+//이미지뷰에 대한 추가 및 삭제
+extension CommunityWriteVC {
+    func makeImgView(){
         self.view.addSubview(contentImgView)
         self.view.addSubview(deleteImgBtn)
-        
         contentImgView.snp.makeConstraints { (make) in
             make.height.equalTo(199)
             make.top.equalTo(contentTxtView.snp.bottom).offset(22.5)
@@ -69,17 +87,11 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
             make.leading.equalTo(contentImgView.snp.leading).offset(16)
             make.top.equalTo(contentImgView.snp.top).offset(16)
         }
-        
     }
     
-    @objc func clickGif(){
-        
-    }
-    @objc func clickImg(){
-        openGallery()
-    }
-    @objc public func deleteImg (_sender: UIButton) {
-        
+    func removeImgView(){
+        self.contentImgView.removeFromSuperview()
+        self.deleteImgBtn.removeFromSuperview()
     }
     
 }
@@ -108,9 +120,23 @@ extension CommunityWriteVC {
     }
 }
 
-//TF delegate
+//TextView delegate
 extension CommunityWriteVC {
     
+    //텍스트뷰 플레이스 홀더처럼
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "생각을 공유해 보세요"
+            textView.textColor = UIColor.lightGray
+        }
+    }
     
     func textViewDidChange(_ textView: UITextView) {
         //TODO - 스페이스만 입력 됐을 때 처리
