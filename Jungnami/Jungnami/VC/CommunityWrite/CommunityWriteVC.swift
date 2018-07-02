@@ -28,14 +28,6 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         profileImgView.makeImageRound()
         contentTxtView.text = "생각을 공유해 보세요"
         contentTxtView.textColor = UIColor.lightGray
-        
-        func cancelNumberPad() {
-            //Cancel with number pad
-        }
-        func doneWithNumberPad() {
-            //Done with number pad
-        }
-        
         self.contentTxtView.delegate = self
     }
     
@@ -46,17 +38,6 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         
     }
     
-    //TODO - 스페이스만 입력 됐을 때 처리
-    func textViewDidChange(_ textView: UITextView) {
-        if textView.text.count > 0 {
-            doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_blue_button"), for: .normal)
-            doneBtn.isUserInteractionEnabled = true
-        } else {
-             doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
-            doneBtn.isUserInteractionEnabled = false
-        }
-    }
-
 }
 
 //custom toolbar
@@ -96,6 +77,17 @@ extension CommunityWriteVC {
         if textView.text.isEmpty {
             textView.text = "Placeholder"
             textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    //TODO - 스페이스만 입력 됐을 때 처리
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.count > 0 {
+            doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_blue_button"), for: .normal)
+            doneBtn.isUserInteractionEnabled = true
+        } else {
+            doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
+            doneBtn.isUserInteractionEnabled = false
         }
     }
 }
