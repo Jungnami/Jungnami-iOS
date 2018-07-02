@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vnt-hg-dzm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bdd-R8-IfB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,6 +16,7 @@
         <scene sceneID="8lC-k4-MVr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="AJh-0J-KwN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_community_blue" id="LRX-MA-Wme"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lfM-OT-VIJ">
                         <autoresizingMask key="autoresizingMask"/>
@@ -27,7 +28,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EIg-bi-fAW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-599" y="33"/>
+            <point key="canvasLocation" x="-764" y="-167"/>
         </scene>
         <!--CommunityTVC-->
         <scene sceneID="UEB-02-osm">
@@ -348,7 +349,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebX-A9-mYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="209" y="33"/>
+            <point key="canvasLocation" x="44" y="-167"/>
         </scene>
         <!--Party List Page MenuVC-->
         <scene sceneID="m3v-b3-W7T">
@@ -364,7 +365,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jGe-AB-OyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="209" y="1197"/>
+            <point key="canvasLocation" x="-18" y="1098"/>
         </scene>
         <!--Party ListTVC-->
         <scene sceneID="bUh-XA-apn">
@@ -509,7 +510,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROX-u9-8z5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1090" y="753"/>
+            <point key="canvasLocation" x="834" y="839"/>
         </scene>
         <!--RegionVC-->
         <scene sceneID="yOI-0K-oOJ">
@@ -536,7 +537,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKg-SW-LYJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089" y="1513"/>
+            <point key="canvasLocation" x="834" y="1587"/>
         </scene>
         <!--Community WriteVC-->
         <scene sceneID="DGd-yi-RMs">
@@ -653,7 +654,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ap2-QL-h1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="-85"/>
+            <point key="canvasLocation" x="836" y="-286"/>
         </scene>
         <!--Need LoginVC-->
         <scene sceneID="kg2-sV-Zen">
@@ -691,7 +692,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p19-YL-Dd8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="209" y="-471"/>
+            <point key="canvasLocation" x="44" y="-672"/>
         </scene>
         <!--WriteVC-->
         <scene sceneID="t22-Kq-u7V">
@@ -737,12 +738,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvk-3u-0m7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="209" y="-354"/>
+            <point key="canvasLocation" x="44" y="-555"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--국회목록-->
         <scene sceneID="sgf-ok-fgC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vnt-hg-dzm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="국회목록" image="tab_list_blue" id="teo-6b-yfH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rdu-Si-rPf">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -756,7 +758,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="atD-ae-WY1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-599" y="1197"/>
+            <point key="canvasLocation" x="-718" y="1098"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="1rR-YC-SWW">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Bdd-R8-IfB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZAn-2i-iL4">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vnt-hg-dzm" kind="relationship" relationship="viewControllers" id="H0Q-54-vCw"/>
+                        <segue destination="AJh-0J-KwN" kind="relationship" relationship="viewControllers" id="eIE-Zr-eq8"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ag1-cp-TlB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1665" y="493"/>
         </scene>
     </scenes>
     <resources>
@@ -779,6 +799,8 @@
         <image name="partylist_orangebox" width="364" height="100"/>
         <image name="partylist_redbox" width="364" height="100"/>
         <image name="partylist_yellowbox" width="364" height="100"/>
+        <image name="tab_community_blue" width="36" height="36"/>
+        <image name="tab_list_blue" width="36" height="37"/>
         <image name="writepage_complete_gray_button" width="48" height="31"/>
         <image name="writepage_x" width="18" height="18"/>
     </resources>
