@@ -19,54 +19,67 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var contentTxtView: UITextView!
+     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var contentImgView: UIImageView!
+    var contentImgView: UIImageView = UIImageView()
+    lazy var deleteImgBtn : UIButton = {
+        let button = UIButton()
+        button.isEnabled = true
+        button.isUserInteractionEnabled = true
+        button.setImage(#imageLiteral(resourceName: "writepage_x"), for: .normal)
+        button.addTarget(self, action: #selector(CommunityWriteVC.deleteImg(_sender:)), for: .touchUpInside)
+        return button
+    }()
+    
+    
     
     var imageData : Data? = nil {
         didSet {
-            if let imageData_ = imageData {
-                
-                contentImgView.snp.makeConstraints { (make) in
-                   // make.top.equalTo(contentImgView)
-                make.height.equalTo(199)
-                make.top.equalTo(contentTxtView.snp.bottom).offset(22.5)
-                make.leading.trailing.equalTo(contentTxtView)
-                    if #available(iOS 11.0, *){
-                        make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(22.5)
-                    } else {
-                        make.bottom.equalTo(self.topLayoutGuide.snp.bottom).offset(22.5)
-                    }
-                
+            if imageData == nil {
+                contentImgView.image = UIImage()
+            } else {
+                if let imageData_ = imageData {
+                    contentImgView.image =  UIImage(data: imageData_)
                 }
-                contentImgView.image =  UIImage(data: imageData_)
-                contentImgView.isHidden = false
             }
         }
     }
     
     var keyboardDismissGesture: UITapGestureRecognizer?
     let imagePicker : UIImagePickerController = UIImagePickerController()
-    //Photos
     
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboardSetting()
         setToolbar()
+        contentTxtView.delegate = self
         profileImgView.makeImageRound()
-        contentTxtView.text = "생각을 공유해 보세요"
-        contentTxtView.textColor = UIColor.lightGray
-       // self.view.viewWithTag(1)?.removeFromSuperview()
-        self.contentImgView.removeConstraints(contentImgView.constraints)
-        self.contentImgView.isHidden = true
-        self.contentTxtView.delegate = self
+        self.view.addSubview(contentImgView)
+        self.view.addSubview(deleteImgBtn)
+        
+        contentImgView.snp.makeConstraints { (make) in
+            make.height.equalTo(199)
+            make.top.equalTo(contentTxtView.snp.bottom).offset(22.5)
+            make.leading.trailing.equalTo(contentTxtView)
+        }
+        
+        deleteImgBtn.snp.makeConstraints { (make) in
+            make.height.equalTo(17)
+            make.height.equalTo(17)
+            make.leading.equalTo(contentImgView.snp.leading).offset(16)
+            make.top.equalTo(contentImgView.snp.top).offset(16)
+        }
+        
     }
     
     @objc func clickGif(){
-    
+        
     }
     @objc func clickImg(){
         openGallery()
+    }
+    @objc public func deleteImg (_sender: UIButton) {
+        
     }
     
 }
@@ -97,32 +110,26 @@ extension CommunityWriteVC {
 
 //TF delegate
 extension CommunityWriteVC {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Placeholder"
-            textView.textColor = UIColor.lightGray
-        }
-       
-        
-    }
     
-    //TODO - 스페이스만 입력 됐을 때 처리
     func textViewDidChange(_ textView: UITextView) {
-        if textView.text.count > 0 {
-            doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_blue_button"), for: .normal)
-            doneBtn.isUserInteractionEnabled = true
-        } else {
+        //TODO - 스페이스만 입력 됐을 때 처리
+        if contentTxtView.text?.count == 0 {
             doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
             doneBtn.isUserInteractionEnabled = false
+        } else if ((contentTxtView.text?.count)! < 150){
+            doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_blue_button"), for: .normal)
+            doneBtn.isUserInteractionEnabled = true
+            
+        } else {
+            guard let contentTxt = contentTxtView.text else {return}
+            simpleAlert(title: "오류", message: "150글자 초과")
+            contentTxtView.text = String(describing: contentTxt.prefix(149))
+            doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_blue_button"), for: .normal)
+            doneBtn.isUserInteractionEnabled = true
         }
     }
+    
 }
 
 
@@ -137,20 +144,22 @@ extension CommunityWriteVC {
         adjustKeyboardDismissGesture(isKeyboardVisible: true)
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-           
-           // let keyboardEndframe = self.view.convert(keyboardSize, to : view.window)
-           // contentTxtView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardEndframe.height, right: 0)
-             contentTxtView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
-           // contentTxtView.scrollIndicatorInsets = contentTxtView.contentInset
-
-            self.view.layoutIfNeeded()
+           let keyboardEndframe = self.view.convert(keyboardSize, from: nil)
+            
+            var contentInset:UIEdgeInsets = self.scrollView.contentInset
+           // contentInset.bottom = keyboardEndframe.size.height
+             contentInset.bottom = 50
+            scrollView.contentInset = contentInset
+            self.scrollView.layoutIfNeeded()
         }
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
         adjustKeyboardDismissGesture(isKeyboardVisible: false)
-            contentTxtView.contentInset = UIEdgeInsets.zero
-            self.view.layoutIfNeeded()
+  
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
+        self.view.layoutIfNeeded()
     }
     
     func adjustKeyboardDismissGesture(isKeyboardVisible: Bool) {
@@ -197,12 +206,12 @@ UINavigationControllerDelegate  {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    
+        
         //크롭한 이미지
         if let editedImage: UIImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             imageData = UIImageJPEGRepresentation(editedImage, 0.1)
         } else if let originalImage: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
-           imageData = UIImageJPEGRepresentation(originalImage, 0.1)
+            imageData = UIImageJPEGRepresentation(originalImage, 0.1)
         }
         
         self.dismiss(animated: true)
