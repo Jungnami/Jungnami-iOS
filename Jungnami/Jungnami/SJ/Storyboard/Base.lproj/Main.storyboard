@@ -389,9 +389,9 @@
                                 <state key="normal" title="Button" image="writepage_complete_gray_button"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="n8d-qS-S2Z">
-                                <rect key="frame" x="62" y="89.5" width="301" height="492.5"/>
+                                <rect key="frame" x="62" y="90" width="301" height="333"/>
                                 <color key="backgroundColor" red="0.69346560930000001" green="0.91074432930000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dabi" translatesAutoresizingMaskIntoConstraints="NO" id="wxW-Vk-oJ4">
@@ -402,20 +402,28 @@
                                     <constraint firstAttribute="width" secondItem="wxW-Vk-oJ4" secondAttribute="height" multiplier="1:1" id="fkT-cs-NKl"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u5B-ts-svb">
+                                <rect key="frame" x="62" y="445.5" width="301" height="199"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="199" id="xCX-WY-E9d"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="e8w-X8-D3t" firstAttribute="width" secondItem="iFi-So-lOU" secondAttribute="width" multiplier="48:375" id="652-9K-ypW"/>
+                            <constraint firstItem="u5B-ts-svb" firstAttribute="leading" secondItem="n8d-qS-S2Z" secondAttribute="leading" id="9IE-2C-6YB"/>
                             <constraint firstItem="zj8-Un-2A2" firstAttribute="leading" secondItem="ias-6D-hkx" secondAttribute="leading" id="CAI-30-dhr"/>
                             <constraint firstItem="n8d-qS-S2Z" firstAttribute="top" secondItem="zj8-Un-2A2" secondAttribute="bottom" constant="22.5" id="D7B-fb-oAU"/>
                             <constraint firstItem="e8w-X8-D3t" firstAttribute="centerY" secondItem="6un-t5-Jpn" secondAttribute="centerY" id="EBn-TM-D8g"/>
+                            <constraint firstItem="ias-6D-hkx" firstAttribute="bottom" secondItem="n8d-qS-S2Z" secondAttribute="bottom" priority="1" constant="22.5" id="Gkh-Hu-AKQ"/>
+                            <constraint firstItem="u5B-ts-svb" firstAttribute="trailing" secondItem="n8d-qS-S2Z" secondAttribute="trailing" id="HrG-C8-7vd"/>
                             <constraint firstItem="ias-6D-hkx" firstAttribute="trailing" secondItem="e8w-X8-D3t" secondAttribute="trailing" constant="12" id="IfL-kg-4SG"/>
                             <constraint firstItem="6un-t5-Jpn" firstAttribute="centerY" secondItem="9Gg-Mi-2WP" secondAttribute="centerY" id="JPO-Mm-B0m"/>
                             <constraint firstItem="zj8-Un-2A2" firstAttribute="top" secondItem="6un-t5-Jpn" secondAttribute="bottom" constant="13.5" id="NRZ-p8-RuA"/>
                             <constraint firstItem="9Gg-Mi-2WP" firstAttribute="width" secondItem="iFi-So-lOU" secondAttribute="width" multiplier="18:375" id="PTY-2Q-79m"/>
                             <constraint firstItem="9Gg-Mi-2WP" firstAttribute="leading" secondItem="ias-6D-hkx" secondAttribute="leading" constant="12" id="QQy-16-39m"/>
                             <constraint firstItem="ias-6D-hkx" firstAttribute="trailing" secondItem="n8d-qS-S2Z" secondAttribute="trailing" constant="12" id="TPk-tG-Z8V"/>
-                            <constraint firstItem="ias-6D-hkx" firstAttribute="bottom" secondItem="n8d-qS-S2Z" secondAttribute="bottom" constant="85" id="WWd-wP-49p"/>
                             <constraint firstItem="n8d-qS-S2Z" firstAttribute="leading" secondItem="wxW-Vk-oJ4" secondAttribute="trailing" constant="12" id="ZkE-E6-2Y3"/>
                             <constraint firstItem="wxW-Vk-oJ4" firstAttribute="top" secondItem="zj8-Un-2A2" secondAttribute="bottom" constant="12.5" id="aaF-iG-duo"/>
                             <constraint firstItem="wxW-Vk-oJ4" firstAttribute="leading" secondItem="ias-6D-hkx" secondAttribute="leading" constant="12" id="avL-Vm-Vrx"/>
@@ -423,10 +431,13 @@
                             <constraint firstItem="ias-6D-hkx" firstAttribute="trailing" secondItem="zj8-Un-2A2" secondAttribute="trailing" id="hbK-Am-c7k"/>
                             <constraint firstItem="wxW-Vk-oJ4" firstAttribute="width" secondItem="iFi-So-lOU" secondAttribute="width" multiplier="38:375" id="lLA-jy-kJ0"/>
                             <constraint firstItem="6un-t5-Jpn" firstAttribute="centerX" secondItem="ias-6D-hkx" secondAttribute="centerX" id="oDI-6t-7Vv"/>
+                            <constraint firstItem="u5B-ts-svb" firstAttribute="top" secondItem="n8d-qS-S2Z" secondAttribute="bottom" constant="22.5" id="p0S-6r-Pk5"/>
+                            <constraint firstItem="ias-6D-hkx" firstAttribute="bottom" secondItem="u5B-ts-svb" secondAttribute="bottom" constant="22.5" id="x8x-E7-7c9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ias-6D-hkx"/>
                     </view>
                     <connections>
+                        <outlet property="contentImgView" destination="u5B-ts-svb" id="KAN-y0-e7d"/>
                         <outlet property="contentTxtView" destination="n8d-qS-S2Z" id="gsb-YH-OEu"/>
                         <outlet property="doneBtn" destination="e8w-X8-D3t" id="xhS-iP-u0G"/>
                         <outlet property="profileImgView" destination="wxW-Vk-oJ4" id="JNg-y7-edj"/>
@@ -434,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bfh-jl-oaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="994" y="-85"/>
+            <point key="canvasLocation" x="992.79999999999995" y="-85.007496251874073"/>
         </scene>
         <!--Need LoginVC-->
         <scene sceneID="kg2-sV-Zen">

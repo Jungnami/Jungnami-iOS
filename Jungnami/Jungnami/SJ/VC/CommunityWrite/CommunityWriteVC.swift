@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CommunityWriteVC: UIViewController, UITextViewDelegate {
     
@@ -18,11 +19,36 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var contentTxtView: UITextView!
-
-    var imageData : Data? = nil
+    
+    @IBOutlet weak var contentImgView: UIImageView!
+    
+    var imageData : Data? = nil {
+        didSet {
+            if let imageData_ = imageData {
+                
+                contentImgView.snp.makeConstraints { (make) in
+                   // make.top.equalTo(contentImgView)
+                make.height.equalTo(199)
+                make.top.equalTo(contentTxtView.snp.bottom).offset(22.5)
+                make.leading.trailing.equalTo(contentTxtView)
+                    if #available(iOS 11.0, *){
+                        make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(22.5)
+                    } else {
+                        make.bottom.equalTo(self.topLayoutGuide.snp.bottom).offset(22.5)
+                    }
+                
+                }
+                contentImgView.image =  UIImage(data: imageData_)
+                contentImgView.isHidden = false
+            }
+        }
+    }
+    
     var keyboardDismissGesture: UITapGestureRecognizer?
     let imagePicker : UIImagePickerController = UIImagePickerController()
+    //Photos
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboardSetting()
@@ -30,6 +56,9 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         profileImgView.makeImageRound()
         contentTxtView.text = "생각을 공유해 보세요"
         contentTxtView.textColor = UIColor.lightGray
+       // self.view.viewWithTag(1)?.removeFromSuperview()
+        self.contentImgView.removeConstraints(contentImgView.constraints)
+        self.contentImgView.isHidden = true
         self.contentTxtView.delegate = self
     }
     
@@ -80,6 +109,8 @@ extension CommunityWriteVC {
             textView.text = "Placeholder"
             textView.textColor = UIColor.lightGray
         }
+       
+        
     }
     
     //TODO - 스페이스만 입력 됐을 때 처리
@@ -107,9 +138,10 @@ extension CommunityWriteVC {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
            
-            let keyboardEndframe = self.view.convert(keyboardSize, to : view.window)
-            contentTxtView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardEndframe.height, right: 0)
-            contentTxtView.scrollIndicatorInsets = contentTxtView.contentInset
+           // let keyboardEndframe = self.view.convert(keyboardSize, to : view.window)
+           // contentTxtView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardEndframe.height, right: 0)
+             contentTxtView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+           // contentTxtView.scrollIndicatorInsets = contentTxtView.contentInset
 
             self.view.layoutIfNeeded()
         }
@@ -141,9 +173,10 @@ extension CommunityWriteVC {
 }
 
 
-
 //앨범 열기 위함
-extension CommunityWriteVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension CommunityWriteVC : UIImagePickerControllerDelegate,
+UINavigationControllerDelegate  {
+    
     
     // Method
     func openGallery() {
@@ -153,16 +186,14 @@ extension CommunityWriteVC: UIImagePickerControllerDelegate, UINavigationControl
             //false 로 되어있으면 이미지 자르지 않고 오리지널로 들어감
             //이거 true로 하면 crop 가능
             self.imagePicker.allowsEditing = true
-            self.present(self.imagePicker, animated: true, completion: { print("이미지 피커 나옴") })
+            self.present(self.imagePicker, animated: true, completion: nil)
         }
     }
     
     // imagePickerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("사용자가 취소함")
-        self.dismiss(animated: true) {
-            print("이미지 피커 사라짐")
-        }
+        //사용자 취소
+        self.dismiss(animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -174,9 +205,7 @@ extension CommunityWriteVC: UIImagePickerControllerDelegate, UINavigationControl
            imageData = UIImageJPEGRepresentation(originalImage, 0.1)
         }
         
-        self.dismiss(animated: true) {
-            print("이미지 피커 사라짐")
-        }
+        self.dismiss(animated: true)
     }
 }
 
