@@ -99,13 +99,13 @@
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bJ-sv-cJv">
                                     <rect key="frame" x="0.0" y="44.5" width="375" height="0.5"/>
-                                    <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="DXc-7b-gfz"/>
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.99215686270000003" green="0.71372549019999998" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="q1B-rs-Dou" firstAttribute="centerY" secondItem="lkQ-Xa-qPW" secondAttribute="centerY" id="1Zk-b0-aM7"/>
                                 <constraint firstItem="q1B-rs-Dou" firstAttribute="width" secondItem="lkQ-Xa-qPW" secondAttribute="width" id="86u-uJ-p86"/>
@@ -350,6 +350,92 @@
             </objects>
             <point key="canvasLocation" x="209" y="33"/>
         </scene>
+        <!--Community WriteVC-->
+        <scene sceneID="lok-ep-ZnQ">
+            <objects>
+                <viewController storyboardIdentifier="CommunityWriteVC" id="iED-0m-x39" customClass="CommunityWriteVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iFi-So-lOU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zj8-Un-2A2">
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="0.5"/>
+                                <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="APS-Cy-Xk1"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Gg-Mi-2WP">
+                                <rect key="frame" x="12" y="34" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9Gg-Mi-2WP" secondAttribute="height" multiplier="1:1" id="Bqr-xl-as9"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="writepage_x"/>
+                                <connections>
+                                    <action selector="dismissBtn:" destination="iED-0m-x39" eventType="touchUpInside" id="wvy-P1-aO0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="게시글 작성하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6un-t5-Jpn">
+                                <rect key="frame" x="137" y="33.5" width="101.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8w-X8-D3t">
+                                <rect key="frame" x="315" y="27.5" width="48" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="e8w-X8-D3t" secondAttribute="height" multiplier="48:31" id="l4x-2m-JM4"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="writepage_complete_gray_button"/>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="n8d-qS-S2Z">
+                                <rect key="frame" x="62" y="89.5" width="301" height="492.5"/>
+                                <color key="backgroundColor" red="0.69346560930000001" green="0.91074432930000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dabi" translatesAutoresizingMaskIntoConstraints="NO" id="wxW-Vk-oJ4">
+                                <rect key="frame" x="12" y="79.5" width="38" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="8m3-mS-qLz"/>
+                                    <constraint firstAttribute="width" secondItem="wxW-Vk-oJ4" secondAttribute="height" multiplier="1:1" id="ej8-HT-KQb"/>
+                                    <constraint firstAttribute="width" secondItem="wxW-Vk-oJ4" secondAttribute="height" multiplier="1:1" id="fkT-cs-NKl"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="e8w-X8-D3t" firstAttribute="width" secondItem="iFi-So-lOU" secondAttribute="width" multiplier="48:375" id="652-9K-ypW"/>
+                            <constraint firstItem="zj8-Un-2A2" firstAttribute="leading" secondItem="ias-6D-hkx" secondAttribute="leading" id="CAI-30-dhr"/>
+                            <constraint firstItem="n8d-qS-S2Z" firstAttribute="top" secondItem="zj8-Un-2A2" secondAttribute="bottom" constant="22.5" id="D7B-fb-oAU"/>
+                            <constraint firstItem="e8w-X8-D3t" firstAttribute="centerY" secondItem="6un-t5-Jpn" secondAttribute="centerY" id="EBn-TM-D8g"/>
+                            <constraint firstItem="ias-6D-hkx" firstAttribute="trailing" secondItem="e8w-X8-D3t" secondAttribute="trailing" constant="12" id="IfL-kg-4SG"/>
+                            <constraint firstItem="6un-t5-Jpn" firstAttribute="centerY" secondItem="9Gg-Mi-2WP" secondAttribute="centerY" id="JPO-Mm-B0m"/>
+                            <constraint firstItem="zj8-Un-2A2" firstAttribute="top" secondItem="6un-t5-Jpn" secondAttribute="bottom" constant="13.5" id="NRZ-p8-RuA"/>
+                            <constraint firstItem="9Gg-Mi-2WP" firstAttribute="width" secondItem="iFi-So-lOU" secondAttribute="width" multiplier="18:375" id="PTY-2Q-79m"/>
+                            <constraint firstItem="9Gg-Mi-2WP" firstAttribute="leading" secondItem="ias-6D-hkx" secondAttribute="leading" constant="12" id="QQy-16-39m"/>
+                            <constraint firstItem="ias-6D-hkx" firstAttribute="trailing" secondItem="n8d-qS-S2Z" secondAttribute="trailing" constant="12" id="TPk-tG-Z8V"/>
+                            <constraint firstItem="ias-6D-hkx" firstAttribute="bottom" secondItem="n8d-qS-S2Z" secondAttribute="bottom" constant="85" id="WWd-wP-49p"/>
+                            <constraint firstItem="n8d-qS-S2Z" firstAttribute="leading" secondItem="wxW-Vk-oJ4" secondAttribute="trailing" constant="12" id="ZkE-E6-2Y3"/>
+                            <constraint firstItem="wxW-Vk-oJ4" firstAttribute="top" secondItem="zj8-Un-2A2" secondAttribute="bottom" constant="12.5" id="aaF-iG-duo"/>
+                            <constraint firstItem="wxW-Vk-oJ4" firstAttribute="leading" secondItem="ias-6D-hkx" secondAttribute="leading" constant="12" id="avL-Vm-Vrx"/>
+                            <constraint firstItem="9Gg-Mi-2WP" firstAttribute="top" secondItem="ias-6D-hkx" secondAttribute="top" constant="14" id="hFL-25-sMx"/>
+                            <constraint firstItem="ias-6D-hkx" firstAttribute="trailing" secondItem="zj8-Un-2A2" secondAttribute="trailing" id="hbK-Am-c7k"/>
+                            <constraint firstItem="wxW-Vk-oJ4" firstAttribute="width" secondItem="iFi-So-lOU" secondAttribute="width" multiplier="38:375" id="lLA-jy-kJ0"/>
+                            <constraint firstItem="6un-t5-Jpn" firstAttribute="centerX" secondItem="ias-6D-hkx" secondAttribute="centerX" id="oDI-6t-7Vv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ias-6D-hkx"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentTxtView" destination="n8d-qS-S2Z" id="gsb-YH-OEu"/>
+                        <outlet property="doneBtn" destination="e8w-X8-D3t" id="xhS-iP-u0G"/>
+                        <outlet property="profileImgView" destination="wxW-Vk-oJ4" id="JNg-y7-edj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bfh-jl-oaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="-85"/>
+        </scene>
         <!--Need LoginVC-->
         <scene sceneID="kg2-sV-Zen">
             <objects>
@@ -386,7 +472,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p19-YL-Dd8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1045.5999999999999" y="-177.66116941529236"/>
+            <point key="canvasLocation" x="209" y="-471"/>
         </scene>
         <!--WriteVC-->
         <scene sceneID="t22-Kq-u7V">
@@ -408,6 +494,9 @@
                                 <state key="normal" title="생각을 공유해 보세요">
                                     <color key="titleColor" red="0.80784313725490198" green="0.80784313725490198" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="iED-0m-x39" kind="presentation" id="1qs-wg-24O"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -429,7 +518,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvk-3u-0m7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1045.5999999999999" y="-20.239880059970016"/>
+            <point key="canvasLocation" x="209" y="-354"/>
         </scene>
     </scenes>
     <resources>
@@ -446,6 +535,8 @@
         <image name="community_share" width="24" height="24"/>
         <image name="community_small_chat" width="15" height="15"/>
         <image name="community_small_heart" width="14" height="14"/>
-        <image name="dabi" width="176" height="176"/>
+        <image name="dabi" width="352" height="352"/>
+        <image name="writepage_complete_gray_button" width="48" height="31"/>
+        <image name="writepage_x" width="18" height="18"/>
     </resources>
 </document>
