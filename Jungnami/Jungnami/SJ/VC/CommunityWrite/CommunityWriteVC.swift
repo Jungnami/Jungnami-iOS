@@ -19,7 +19,9 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var contentTxtView: UITextView!
 
+    var imageData : Data? = nil
     var keyboardDismissGesture: UITapGestureRecognizer?
+    let imagePicker : UIImagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +37,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     
     }
     @objc func clickImg(){
-        
+        openGallery()
     }
     
 }
@@ -138,5 +140,44 @@ extension CommunityWriteVC {
     }
 }
 
+
+
+//앨범 열기 위함
+extension CommunityWriteVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // Method
+    func openGallery() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            self.imagePicker.sourceType = .photoLibrary
+            self.imagePicker.delegate = self
+            //false 로 되어있으면 이미지 자르지 않고 오리지널로 들어감
+            //이거 true로 하면 crop 가능
+            self.imagePicker.allowsEditing = true
+            self.present(self.imagePicker, animated: true, completion: { print("이미지 피커 나옴") })
+        }
+    }
+    
+    // imagePickerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("사용자가 취소함")
+        self.dismiss(animated: true) {
+            print("이미지 피커 사라짐")
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    
+        //크롭한 이미지
+        if let editedImage: UIImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imageData = UIImageJPEGRepresentation(editedImage, 0.1)
+        } else if let originalImage: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+           imageData = UIImageJPEGRepresentation(originalImage, 0.1)
+        }
+        
+        self.dismiss(animated: true) {
+            print("이미지 피커 사라짐")
+        }
+    }
+}
 
 
