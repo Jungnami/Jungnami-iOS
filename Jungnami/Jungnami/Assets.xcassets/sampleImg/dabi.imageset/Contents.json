@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "dabi.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "스크린샷 2018-07-02 오전 2.03.32.png",
       "scale" : "2x"
     },
     {
