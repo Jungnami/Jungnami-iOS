@@ -21,9 +21,7 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
         setupRightNavItem()
         
     }
-    
 }
-
 
 //페이지 메뉴
 extension PartyListPageMenuVC {
@@ -84,6 +82,7 @@ extension PartyListPageMenuVC {
     func setupLeftNavItem(){
         let myPageBtn = UIButton(type: .system)
         myPageBtn.setImage(#imageLiteral(resourceName: "partylist_mypage").withRenderingMode(.alwaysOriginal), for: .normal)
+        myPageBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.toMyPage(_sender:)), for: .touchUpInside)
         myPageBtn.snp.makeConstraints { (make) in
             make.height.equalTo(24)
             make.width.equalTo(24)
@@ -98,7 +97,21 @@ extension PartyListPageMenuVC {
             make.height.equalTo(24)
             make.width.equalTo(24)
         }
+        searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.search(_sender:)), for: .touchUpInside)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
+    }
+}
+
+//네비게이션 바 버튼 눌렀을 때 각각
+extension PartyListPageMenuVC {
+    @objc public func toMyPage(_sender: UIButton) {
+        //1. 나중에 goFirst 했던 것처럼 해당 뷰로 exit 바로 할수 있도록 하기
+    }
+    
+    @objc public func search(_sender: UIButton) {
+        //1. 네이게이션 바 다시 커스텀 해서 텍스트필드랑, 확인 버튼 나오도록
+        //2. 키보드 나오도록 -> 키보드에 대한 이벤트도 추가
+        //3. 검정 화면 나오도록
     }
 }
