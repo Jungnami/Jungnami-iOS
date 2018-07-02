@@ -19,9 +19,11 @@
 		3B297F9820E9365C00B82B0B /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B297F9720E9365C00B82B0B /* Sample.swift */; };
 		3B297F9B20E96CB800B82B0B /* CommunityWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B297F9A20E96CB800B82B0B /* CommunityWriteVC.swift */; };
 		3BC02C4220EA303C008CA19F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC02C4120EA303C008CA19F /* Extension.swift */; };
+		B0FAAE4A343BF869C79BD42B /* Pods_Jungnami.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27490797B81CB45F1E881443 /* Pods-Jungnami.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jungnami.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami.release.xcconfig"; sourceTree = "<group>"; };
 		3B297F6D20E8A74100B82B0B /* Jungnami.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jungnami.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B297F7020E8A74100B82B0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B297F7520E8A74100B82B0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -36,6 +38,8 @@
 		3B297F9720E9365C00B82B0B /* Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		3B297F9A20E96CB800B82B0B /* CommunityWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteVC.swift; sourceTree = "<group>"; };
 		3BC02C4120EA303C008CA19F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jungnami.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D460A20ABACB58096DFE5D7A /* Pods-Jungnami.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jungnami.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0FAAE4A343BF869C79BD42B /* Pods_Jungnami.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +59,8 @@
 			children = (
 				3B297F6F20E8A74100B82B0B /* Jungnami */,
 				3B297F6E20E8A74100B82B0B /* Products */,
+				DD766978F81EEEB6DE8D5083 /* Pods */,
+				DBF1C7D4E75F34E568FC6E76 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +164,23 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		DBF1C7D4E75F34E568FC6E76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD766978F81EEEB6DE8D5083 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D460A20ABACB58096DFE5D7A /* Pods-Jungnami.debug.xcconfig */,
+				27490797B81CB45F1E881443 /* Pods-Jungnami.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B297F7F20E8A74100B82B0B /* Build configuration list for PBXNativeTarget "Jungnami" */;
 			buildPhases = (
+				49E682A9FF80B08F2DFEEA79 /* [CP] Check Pods Manifest.lock */,
 				3B297F6920E8A74100B82B0B /* Sources */,
 				3B297F6A20E8A74100B82B0B /* Frameworks */,
 				3B297F6B20E8A74100B82B0B /* Resources */,
+				741849F3DB2807022804D46C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -224,6 +250,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49E682A9FF80B08F2DFEEA79 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Jungnami-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		741849F3DB2807022804D46C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3B297F6920E8A74100B82B0B /* Sources */ = {
@@ -372,6 +437,7 @@
 		};
 		3B297F8020E8A74100B82B0B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D460A20ABACB58096DFE5D7A /* Pods-Jungnami.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -387,6 +453,7 @@
 		};
 		3B297F8120E8A74100B82B0B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27490797B81CB45F1E881443 /* Pods-Jungnami.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
