@@ -24,11 +24,26 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboardSetting()
+        setToolbar()
         profileImgView.makeImageRound()
         contentTxtView.text = "생각을 공유해 보세요"
         contentTxtView.textColor = UIColor.lightGray
         
+        func cancelNumberPad() {
+            //Cancel with number pad
+        }
+        func doneWithNumberPad() {
+            //Done with number pad
+        }
+        
         self.contentTxtView.delegate = self
+    }
+    
+    @objc func clickGif(){
+    
+    }
+    @objc func clickImg(){
+        
     }
     
     //TODO - 스페이스만 입력 됐을 때 처리
@@ -42,6 +57,30 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         }
     }
 
+}
+
+//custom toolbar
+extension CommunityWriteVC {
+    func setToolbar(){
+        let toolbar = UIToolbar(frame:CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        toolbar.barStyle = .default
+        let pictureImg = UIImage(named: "writepage_picture")?.withRenderingMode(.alwaysOriginal)
+        let gifImg = UIImage(named: "writepage_gif")?.withRenderingMode(.alwaysOriginal)
+        let pictureBtn = UIBarButtonItem(image: pictureImg, style: .plain, target: self, action: #selector(clickImg))
+        let gifBtn = UIBarButtonItem(image: gifImg, style: .plain, target: self, action: #selector(clickGif))
+        let fixedSpace = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonSystemItem.fixedSpace,
+            target: nil,
+            action: nil
+        )
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        fixedSpace.width = 20
+        
+        toolbar.items = [pictureBtn, fixedSpace, gifBtn, flexibleSpace]
+        toolbar.barTintColor = .white
+        toolbar.sizeToFit()
+        contentTxtView.inputAccessoryView = toolbar
+    }
 }
 
 //TF delegate
