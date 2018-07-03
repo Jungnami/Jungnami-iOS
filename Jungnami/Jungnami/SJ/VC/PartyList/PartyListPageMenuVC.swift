@@ -10,7 +10,7 @@ import UIKit
 import PageMenu
 import SnapKit
 
-class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate, UITextFieldDelegate {
+class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
     
     var pageMenu: CAPSPageMenu?
     
@@ -38,7 +38,6 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate, UITextFieldDe
    
     override func viewDidLoad() {
         super.viewDidLoad()
-       // setKeyboardSetting()
         setupPageMenu()
         setupTitleNavImg()
         setupLeftNavItem()
@@ -90,7 +89,7 @@ extension PartyListPageMenuVC {
     }
 }
 
-//네비게이션 바 커스텀
+//네비게이션 기본바 커스텀
 extension PartyListPageMenuVC {
     func setupTitleNavImg(){
         let titleImageView = UIImageView(image: #imageLiteral(resourceName: "partylist_logo"))
@@ -128,7 +127,7 @@ extension PartyListPageMenuVC {
     }
 }
 
-//네비게이션 바 버튼 눌렀을 때 각각
+//기본 네비게이션 바에서 오른쪽/왼쪽 아이템에 대한 행동
 extension PartyListPageMenuVC {
     @objc public func toMyPage(_sender: UIButton) {
         //1. 나중에 goFirst 했던 것처럼 해당 뷰로 exit 바로 할수 있도록 하기

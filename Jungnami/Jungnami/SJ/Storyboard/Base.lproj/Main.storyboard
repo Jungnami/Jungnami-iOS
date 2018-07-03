@@ -12,11 +12,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--커뮤니티-->
         <scene sceneID="8lC-k4-MVr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="AJh-0J-KwN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tab_community" id="LRX-MA-Wme"/>
+                    <tabBarItem key="tabBarItem" title="커뮤니티" image="tab_community" id="LRX-MA-Wme"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lfM-OT-VIJ">
                         <autoresizingMask key="autoresizingMask"/>
@@ -740,11 +740,11 @@
             </objects>
             <point key="canvasLocation" x="44" y="-555"/>
         </scene>
-        <!--국회목록-->
+        <!--의원 목록-->
         <scene sceneID="sgf-ok-fgC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vnt-hg-dzm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="국회목록" image="tab_list" id="teo-6b-yfH"/>
+                    <tabBarItem key="tabBarItem" title="의원 목록" image="tab_list" id="teo-6b-yfH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rdu-Si-rPf">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
