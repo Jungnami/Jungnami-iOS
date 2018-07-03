@@ -10,7 +10,7 @@ import UIKit
 import PageMenu
 import SnapKit
 
-class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
+class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate, UITextFieldDelegate {
     
     var pageMenu: CAPSPageMenu?
     
@@ -35,8 +35,10 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
         return txtField
     }()
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+       // setKeyboardSetting()
         setupPageMenu()
         setupTitleNavImg()
         setupLeftNavItem()
@@ -45,7 +47,7 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
     }
 }
 
-//페이지 메뉴
+//페이지 메뉴 라이브러리 커스텀
 extension PartyListPageMenuVC {
     func setupPageMenu(){
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -120,6 +122,7 @@ extension PartyListPageMenuVC {
             make.width.equalTo(24)
         }
         searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.search(_sender:)), for: .touchUpInside)
+        //searchBtn.becomeFirstResponder()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
     }
@@ -132,30 +135,15 @@ extension PartyListPageMenuVC {
     }
     
     @objc public func search(_sender: UIButton) {
-        //1. 네이게이션 바 다시 커스텀 해서 텍스트필드 나오도록
         makeSearchBarView()
-        
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.rightBarButtonItem = nil
-        
-        //2. 키보드 나오도록 -> 키보드에 대한 이벤트도 추가
-        //3. 검정 화면 나오도록
     }
-    
-    
-    
-    @objc func cancleSearch(){
-        print("취소")
-    }
-    
-    
 }
 
+//네비게이션 서치바 커스텀
 extension PartyListPageMenuVC{
-    //1. 텍스트필드 커스텀
     func makeSearchBarView() {
-        
-        
         searchGrayView.contentMode = .scaleAspectFit
         
         navSearchView.snp.makeConstraints { (make) in
@@ -177,7 +165,9 @@ extension PartyListPageMenuVC{
         navigationItem.titleView = navSearchView
         navigationController?.navigationBar.isTranslucent = false
     }
-    
+
 }
+
+
 
 
