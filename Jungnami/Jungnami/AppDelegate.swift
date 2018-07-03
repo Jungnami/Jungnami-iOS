@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+       
+        UITabBar.appearance().tintColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(197/255.0), blue: CGFloat(241/255.0), alpha: CGFloat(1.0) )
+    
          UIApplication.shared.statusBarView?.backgroundColor = .white
         return true
     }

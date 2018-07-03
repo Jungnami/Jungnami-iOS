@@ -35,8 +35,10 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
         return txtField
     }()
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupPageMenu()
         setupTitleNavImg()
         setupLeftNavItem()
@@ -45,7 +47,7 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
     }
 }
 
-//페이지 메뉴
+//페이지 메뉴 라이브러리 커스텀
 extension PartyListPageMenuVC {
     func setupPageMenu(){
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -54,7 +56,10 @@ extension PartyListPageMenuVC {
         
         let partyListTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC
         partyListTVC.title = "정당"
+    
         controllerArray.append(partyListTVC)
+        
+        
         
         
         let regionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: RegionVC.reuseIdentifier) as! RegionVC
@@ -88,7 +93,7 @@ extension PartyListPageMenuVC {
     }
 }
 
-//네비게이션 바 커스텀
+//네비게이션 기본바 커스텀
 extension PartyListPageMenuVC {
     func setupTitleNavImg(){
         let titleImageView = UIImageView(image: #imageLiteral(resourceName: "partylist_logo"))
@@ -120,42 +125,28 @@ extension PartyListPageMenuVC {
             make.width.equalTo(24)
         }
         searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.search(_sender:)), for: .touchUpInside)
+        //searchBtn.becomeFirstResponder()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
     }
 }
 
-//네비게이션 바 버튼 눌렀을 때 각각
+//기본 네비게이션 바에서 오른쪽/왼쪽 아이템에 대한 행동
 extension PartyListPageMenuVC {
     @objc public func toMyPage(_sender: UIButton) {
         //1. 나중에 goFirst 했던 것처럼 해당 뷰로 exit 바로 할수 있도록 하기
     }
     
     @objc public func search(_sender: UIButton) {
-        //1. 네이게이션 바 다시 커스텀 해서 텍스트필드 나오도록
         makeSearchBarView()
-        
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.rightBarButtonItem = nil
-        
-        //2. 키보드 나오도록 -> 키보드에 대한 이벤트도 추가
-        //3. 검정 화면 나오도록
     }
-    
-    
-    
-    @objc func cancleSearch(){
-        print("취소")
-    }
-    
-    
 }
 
+//네비게이션 서치바 커스텀
 extension PartyListPageMenuVC{
-    //1. 텍스트필드 커스텀
     func makeSearchBarView() {
-        
-        
         searchGrayView.contentMode = .scaleAspectFit
         
         navSearchView.snp.makeConstraints { (make) in
@@ -177,7 +168,9 @@ extension PartyListPageMenuVC{
         navigationItem.titleView = navSearchView
         navigationController?.navigationBar.isTranslucent = false
     }
-    
+
 }
+
+
 
 

@@ -39,6 +39,9 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
                 if let imageData_ = imageData {
                     makeImgView()
                     contentImgView.image =  UIImage(data: imageData_)
+                    doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_blue_button"), for: .normal)
+                    doneBtn.isUserInteractionEnabled = true
+                    
                 }
             }
         }
