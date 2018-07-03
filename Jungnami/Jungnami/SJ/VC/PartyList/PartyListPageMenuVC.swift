@@ -38,6 +38,7 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupPageMenu()
         setupTitleNavImg()
         setupLeftNavItem()
@@ -55,7 +56,10 @@ extension PartyListPageMenuVC {
         
         let partyListTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC
         partyListTVC.title = "정당"
+    
         controllerArray.append(partyListTVC)
+        
+        
         
         
         let regionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: RegionVC.reuseIdentifier) as! RegionVC

@@ -15,9 +15,11 @@ class PartyListTVC: UITableViewController {
         super.viewDidLoad()
         
        // setKeyboardSetting()
-        if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-        }
+//        if #available(iOS 11.0, *) {
+//            tableView.contentInsetAdjustmentBehavior = .never
+//        }
+        tableView.contentInset.bottom = self.tabBarController?.tabBar.frame.height ?? 49.0
+        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
