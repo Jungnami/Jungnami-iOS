@@ -13,7 +13,7 @@ import SnapKit
 class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
     
     var pageMenu: CAPSPageMenu?
-    
+    var keyboardDismissGesture: UITapGestureRecognizer?
     lazy var navSearchView : UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -35,66 +35,108 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
         return txtField
     }()
     
-   
+    lazy var blackView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0.4
+        return view
+    }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setKeyboardSetting()
+    }
+    
+    func willMoveToPage(_ controller: UIViewController, index: Int) {
+        print("movemove")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        searchTxtField.delegate = self
         setupPageMenu()
-        setupTitleNavImg()
-        setupLeftNavItem()
-        setupRightNavItem()
+        setDefaultNav()
+        blackView.isHidden = true
+        self.view.addSubview(blackView)
+        blackView.snp.makeConstraints { (make) in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
+        
+    }
+    
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func searchLegislator(){
+         if let searchLegislatorResultTVC = self.storyboard?.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
+             self.navSearchView.endEditing(true)
+            //searchLegislatorResultTVC = self.selectedCategory
+            self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
+        }
         
     }
 }
 
 //페이지 메뉴 라이브러리 커스텀
 extension PartyListPageMenuVC {
-    func setupPageMenu(){
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        
-        var controllerArray : [UIViewController] = []
-        
-        let partyListTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC
-        partyListTVC.title = "정당"
-    
-        controllerArray.append(partyListTVC)
-        
-        
-        
-        
-        let regionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: RegionVC.reuseIdentifier) as! RegionVC
-        regionVC.title = "지역"
-        controllerArray.append(regionVC)
-        
-        
-        let parameters: [CAPSPageMenuOption] = [
-            .menuItemSeparatorWidth(0),
-            .scrollMenuBackgroundColor(.white),
-            .viewBackgroundColor(#colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9843137255, alpha: 1)),
-            .bottomMenuHairlineColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)),
-            .selectionIndicatorColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
-            .menuHeight(42.0),
-            .selectedMenuItemLabelColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
-            .unselectedMenuItemLabelColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)),
-            .useMenuLikeSegmentedControl(true),
-            .menuItemSeparatorRoundEdges(true),
-            .selectionIndicatorHeight(3.0),
-            .menuItemSeparatorPercentageHeight(0.1)
-        ]
-        
-        pageMenu = CAPSPageMenu(viewControllers: controllerArray,
-                                frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height),
-                                pageMenuOptions: parameters)
-        
-        
-        pageMenu!.delegate = self
-        
-        self.view.addSubview(pageMenu!.view)
-    }
+      func setupPageMenu(){
+     self.navigationController?.navigationBar.shadowImage = UIImage()
+     
+     var controllerArray : [UIViewController] = []
+     
+     let partyListTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC
+     partyListTVC.title = "정당"
+     
+     controllerArray.append(partyListTVC)
+     
+     
+     
+     
+     let regionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: RegionVC.reuseIdentifier) as! RegionVC
+     regionVC.title = "지역"
+     controllerArray.append(regionVC)
+     
+     
+     let parameters: [CAPSPageMenuOption] = [
+     .menuItemSeparatorWidth(0),
+     .scrollMenuBackgroundColor(.white),
+     .viewBackgroundColor(#colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9843137255, alpha: 1)),
+     .bottomMenuHairlineColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)),
+     .selectionIndicatorColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
+     .menuHeight(42.0),
+     .selectedMenuItemLabelColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
+     .unselectedMenuItemLabelColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)),
+     .useMenuLikeSegmentedControl(true),
+     .menuItemSeparatorRoundEdges(true),
+     .selectionIndicatorHeight(3.0),
+     .menuItemSeparatorPercentageHeight(0.1)
+     ]
+     
+     pageMenu = CAPSPageMenu(viewControllers: controllerArray,
+     frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height),
+     pageMenuOptions: parameters)
+     
+     
+     pageMenu!.delegate = self
+     
+     self.view.addSubview(pageMenu!.view)
+     
+     }
 }
 
 //네비게이션 기본바 커스텀
 extension PartyListPageMenuVC {
+    
+    func setDefaultNav(){
+        setupTitleNavImg()
+        setupLeftNavItem()
+        setupRightNavItem()
+    }
     func setupTitleNavImg(){
         let titleImageView = UIImageView(image: #imageLiteral(resourceName: "partylist_logo"))
         titleImageView.contentMode = .scaleAspectFit
@@ -125,7 +167,7 @@ extension PartyListPageMenuVC {
             make.width.equalTo(24)
         }
         searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.search(_sender:)), for: .touchUpInside)
-        //searchBtn.becomeFirstResponder()
+
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
     }
@@ -165,12 +207,59 @@ extension PartyListPageMenuVC{
             make.leading.equalTo(searchGrayView).offset(30)
         }
         
+        searchTxtField.delegate = self
         navigationItem.titleView = navSearchView
         navigationController?.navigationBar.isTranslucent = false
     }
-
+    
 }
 
+//txtField Delegate (엔터버튼 클릭시)
+extension PartyListPageMenuVC : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchLegislator()
+        return true
+    }
+}
+
+//키보드 대응
+extension PartyListPageMenuVC{
+    func setKeyboardSetting() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        blackView.isHidden = false
+        adjustKeyboardDismissGesture(isKeyboardVisible: true)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        blackView.isHidden = true
+        setDefaultNav()
+        adjustKeyboardDismissGesture(isKeyboardVisible: false)
+    
+    }
+    
+    //화면 바깥 터치했을때 키보드 없어지는 코드
+    func adjustKeyboardDismissGesture(isKeyboardVisible: Bool) {
+        if isKeyboardVisible {
+            if keyboardDismissGesture == nil {
+                keyboardDismissGesture = UITapGestureRecognizer(target: self, action: #selector(tapBackground))
+                view.addGestureRecognizer(keyboardDismissGesture!)
+            }
+        } else {
+            if keyboardDismissGesture != nil {
+                view.removeGestureRecognizer(keyboardDismissGesture!)
+                keyboardDismissGesture = nil
+            }
+        }
+    }
+    
+    @objc func tapBackground() {
+       self.navSearchView.endEditing(true)
+    }
+}
 
 
 
