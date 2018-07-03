@@ -23,7 +23,7 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
     lazy var searchGrayView : UIImageView = {
         let imgView = UIImageView()
         
-        imgView.image = #imageLiteral(resourceName: "community_search_field")
+        imgView.image = #imageLiteral(resourceName: "partylist_search_field")
         return imgView
     }()
     

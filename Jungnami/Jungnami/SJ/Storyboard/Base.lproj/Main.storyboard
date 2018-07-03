@@ -16,7 +16,7 @@
         <scene sceneID="8lC-k4-MVr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="AJh-0J-KwN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tab_community_blue" id="LRX-MA-Wme"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_community" id="LRX-MA-Wme"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lfM-OT-VIJ">
                         <autoresizingMask key="autoresizingMask"/>
@@ -759,7 +759,7 @@
         <scene sceneID="sgf-ok-fgC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vnt-hg-dzm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="국회목록" image="tab_list_blue" id="teo-6b-yfH"/>
+                    <tabBarItem key="tabBarItem" title="국회목록" image="tab_list" id="teo-6b-yfH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rdu-Si-rPf">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -815,8 +815,8 @@
         <image name="partylist_orangebox" width="364" height="100"/>
         <image name="partylist_redbox" width="364" height="100"/>
         <image name="partylist_yellowbox" width="364" height="100"/>
-        <image name="tab_community_blue" width="36" height="36"/>
-        <image name="tab_list_blue" width="36" height="37"/>
+        <image name="tab_community" width="17" height="17"/>
+        <image name="tab_list" width="17" height="17"/>
         <image name="writepage_complete_gray_button" width="48" height="31"/>
         <image name="writepage_x" width="18" height="18"/>
     </resources>
