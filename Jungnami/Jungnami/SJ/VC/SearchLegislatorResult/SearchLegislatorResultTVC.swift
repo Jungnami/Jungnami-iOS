@@ -15,8 +15,8 @@ class SearchLegislatorResultTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-       let a = SampleLegislator(profile: #imageLiteral(resourceName: "community_mypage"), name: "김성태", likeCount: 12, dislikeCount: 45, region: "서울 강서구 을")
-        let b = SampleLegislator(profile: #imageLiteral(resourceName: "community_mypage"), name: "김성태", likeCount: 12, dislikeCount: 45, region: "당대표, 서울 광진구 을")
+        let a = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "김성태", likeCount: 12, dislikeCount: 45, region: "서울 강서구 을", party : "민주당")
+        let b = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", likeCount: 12, dislikeCount: 45, region: "당대표, 서울 광진구 을", party : "자한당")
         
         sampleData.append(a)
         sampleData.append(b)
