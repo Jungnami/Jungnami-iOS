@@ -72,4 +72,17 @@ extension UIViewController {
 }
 
 
+extension UIViewController {
+    func customBarbuttonItem(title : String, red : Double, green : Double, blue : Double, fontSize : Int, selector : Selector?)->UIBarButtonItem{
+        let customBarbuttonItem = UIBarButtonItem(title: "title", style: .plain, target: self, action: selector)
+        let fontSize = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        customBarbuttonItem.setTitleTextAttributes([
+            NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): fontSize,
+            NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue) : UIColor(red: CGFloat(red/255.0), green: CGFloat(green/255.0), blue: CGFloat(blue/255.0), alpha: CGFloat(1.0) )
+            ], for: UIControlState.normal)
+        return customBarbuttonItem
+    }
+}
+
+
 

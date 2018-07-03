@@ -11,7 +11,29 @@ import PageMenu
 import SnapKit
 
 class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
+    
     var pageMenu: CAPSPageMenu?
+    
+    lazy var navSearchView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    lazy var searchGrayView : UIImageView = {
+        let imgView = UIImageView()
+        
+        imgView.image = #imageLiteral(resourceName: "community_search_field")
+        return imgView
+    }()
+    
+    
+    lazy var searchTxtField : UITextField = {
+        let txtField = UITextField()
+        txtField.placeholder = "찾고 싶은 국회의원을 검색해보세요"
+        txtField.font = UIFont.systemFont(ofSize: 14.0)
+        return txtField
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,8 +132,52 @@ extension PartyListPageMenuVC {
     }
     
     @objc public func search(_sender: UIButton) {
-        //1. 네이게이션 바 다시 커스텀 해서 텍스트필드랑, 확인 버튼 나오도록
+        //1. 네이게이션 바 다시 커스텀 해서 텍스트필드 나오도록
+        makeSearchBarView()
+        
+        self.navigationItem.leftBarButtonItem = nil
+        self.navigationItem.rightBarButtonItem = nil
+        
         //2. 키보드 나오도록 -> 키보드에 대한 이벤트도 추가
         //3. 검정 화면 나오도록
     }
+    
+    
+    
+    @objc func cancleSearch(){
+        print("취소")
+    }
+    
+    
 }
+
+extension PartyListPageMenuVC{
+    //1. 텍스트필드 커스텀
+    func makeSearchBarView() {
+        
+        
+        searchGrayView.contentMode = .scaleAspectFit
+        
+        navSearchView.snp.makeConstraints { (make) in
+            make.width.equalTo(316)
+            make.height.equalTo(31)
+        }
+        navSearchView.addSubview(searchGrayView)
+        navSearchView.addSubview(searchTxtField)
+        
+        searchGrayView.snp.makeConstraints { (make) in
+            make.top.bottom.leading.trailing.equalTo(navSearchView)
+        }
+        
+        searchTxtField.snp.makeConstraints { (make) in
+            make.top.bottom.trailing.equalTo(searchGrayView)
+            make.leading.equalTo(searchGrayView).offset(30)
+        }
+        
+        navigationItem.titleView = navSearchView
+        navigationController?.navigationBar.isTranslucent = false
+    }
+    
+}
+
+
