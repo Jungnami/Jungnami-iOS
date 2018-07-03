@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9hm-Mn-pBJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7WF-8y-X3q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -504,6 +504,7 @@
                                             <outlet property="commentLikeLbl" destination="Gh8-6N-DUY" id="bru-tR-1Sh"/>
                                             <outlet property="commentProfileImg" destination="BZb-Mg-Acb" id="njo-0M-VdU"/>
                                             <outlet property="commentUserLbl" destination="Nck-lp-V7J" id="giZ-DO-okR"/>
+                                            <outlet property="recommentBtn" destination="DAc-Ym-MRf" id="t8O-5V-BhS"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -524,6 +525,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7gB-Yi-kkx"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GYG-Xc-Tze"/>
                     <connections>
                         <outlet property="CommentTableView" destination="bMT-t7-Tdx" id="sdi-UF-DYh"/>
                         <outlet property="commentCountLbl" destination="Ktv-NC-Nzb" id="Jh2-Mo-4op"/>
@@ -535,7 +537,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3LU-JT-KCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528.79999999999995" y="1025.9370314842579"/>
+            <point key="canvasLocation" x="1468" y="1025.9370314842579"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zo3-oJ-jeV">
@@ -626,9 +628,6 @@
                                         <state key="normal" image="content_chat_rightarrow">
                                             <color key="titleColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="sendCommentBar:" destination="Krx-Kh-jYN" eventType="touchUpInside" id="fkL-zb-LT9"/>
-                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="답글을 남겨보세요.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GkX-pW-V7P">
                                         <rect key="frame" x="24" y="19.5" width="279" height="17"/>
@@ -711,12 +710,12 @@
                                                     <rect key="frame" x="106" y="11" width="29" height="13"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqW-lu-wWm">
-                                                    <rect key="frame" x="348" y="23" width="15" height="22"/>
+                                                    <rect key="frame" x="348" y="23" width="15" height="14"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="GCh-MG-UUs"/>
+                                                        <constraint firstAttribute="height" constant="14" id="GCh-MG-UUs"/>
                                                         <constraint firstAttribute="width" constant="15" id="QBh-pW-8AA"/>
                                                     </constraints>
-                                                    <state key="normal" title="heart">
+                                                    <state key="normal" image="content_smallheart_whitebackground">
                                                         <color key="titleColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
@@ -737,6 +736,7 @@
                                                 <constraint firstItem="8cG-jt-Xmk" firstAttribute="leading" secondItem="JT2-aT-PON" secondAttribute="trailing" constant="4" id="wQz-eX-xv9"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="commentBestImg" destination="8cG-jt-Xmk" id="k5g-GH-tvf"/>
                                             <outlet property="commentContentLbl" destination="mYQ-de-Uvf" id="Y7S-MI-rGb"/>
@@ -774,26 +774,25 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bvh-5p-v7E">
-                                                    <rect key="frame" x="57" y="63" width="155.5" height="13.5"/>
+                                                    <rect key="frame" x="57" y="50.5" width="156" height="26"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKp-YR-bko">
-                                                            <rect key="frame" x="0.0" y="0.0" width="26.5" height="13.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="26.5" height="26"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <color key="textColor" red="0.81568627449999997" green="0.81568627449999997" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="좋아요 451개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxt-bF-66J">
-                                                            <rect key="frame" x="41.5" y="0.0" width="60.5" height="13.5"/>
+                                                            <rect key="frame" x="41.5" y="0.0" width="60.5" height="26"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <color key="textColor" red="0.81568627449999997" green="0.81568627449999997" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="답글달기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTE-lx-Lc5">
-                                                            <rect key="frame" x="117" y="0.0" width="38.5" height="13.5"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWg-kk-rdQ">
+                                                            <rect key="frame" x="117" y="0.0" width="39" height="26"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                            <color key="textColor" red="0.81568627449999997" green="0.81568627449999997" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <state key="normal" title="답글달기"/>
+                                                        </button>
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbf-vR-RTc">
@@ -802,7 +801,7 @@
                                                         <constraint firstAttribute="width" constant="15" id="9tU-Cl-fjh"/>
                                                         <constraint firstAttribute="height" constant="14" id="BOI-ew-9O5"/>
                                                     </constraints>
-                                                    <state key="normal" title="heart">
+                                                    <state key="normal" title="heart" image="content_smallheart_whitebackground">
                                                         <color key="titleColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
@@ -821,6 +820,15 @@
                                                 <constraint firstItem="uYA-e4-jFK" firstAttribute="leading" secondItem="eZS-jG-gkT" secondAttribute="trailing" constant="7" id="mjg-9E-kfT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="recommentContentLbl" destination="29d-Qn-Kcw" id="ydA-G2-knl"/>
+                                            <outlet property="recommentDateLbl" destination="CKp-YR-bko" id="4G7-3Y-0Hn"/>
+                                            <outlet property="recommentLikeCountLbl" destination="Zxt-bF-66J" id="rW7-AU-To2"/>
+                                            <outlet property="recommentProfilImg" destination="eZS-jG-gkT" id="5ur-mo-nSw"/>
+                                            <outlet property="recommentRecommentBtn" destination="YWg-kk-rdQ" id="Khn-5N-2ww"/>
+                                            <outlet property="recommentUserLbl" destination="uYA-e4-jFK" id="n2F-gP-8gr"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -842,13 +850,31 @@
                     </view>
                     <connections>
                         <outlet property="RecommentTableView" destination="blM-pQ-TTF" id="NVc-Dq-jGE"/>
-                        <outlet property="writeCommentField" destination="YCk-tJ-dE3" id="7yT-aR-xnr"/>
+                        <outlet property="sendRecommentBtn" destination="9bI-gt-NZP" id="cQx-Pj-h8s"/>
+                        <outlet property="wirteRecommentField" destination="GkX-pW-V7P" id="mre-TM-18m"/>
                         <outlet property="writeRecommentBar" destination="XTA-9q-ngp" id="8cM-mN-mpM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ene-Xz-YHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1256.8" y="1025.9370314842579"/>
+            <point key="canvasLocation" x="2196" y="1025.9370314842579"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aHO-cy-8gu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7WF-8y-X3q" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xjm-37-stg">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9hm-Mn-pBJ" kind="relationship" relationship="rootViewController" id="yow-6G-mmW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I6L-OQ-MLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="528.79999999999995" y="1025.9370314842579"/>
         </scene>
     </scenes>
     <resources>

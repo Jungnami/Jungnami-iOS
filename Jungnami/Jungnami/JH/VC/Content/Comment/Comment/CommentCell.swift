@@ -16,13 +16,20 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var commentContentLbl: UILabel!
     @IBOutlet weak var commentDateLbl: UILabel!
     @IBOutlet weak var commentLikeLbl: UILabel!
-    
-    
+   
+     @IBOutlet weak var recommentBtn: UIButton!
+ 
     @IBOutlet weak var commentBestImg: UIImageView!
     //댓글 좋아요 Btn
     @IBOutlet weak var commentLikeBtn: UIButton!
     
-    
+    func configure(data : CommentSample){
+        commentProfileImg.image = data.profile
+        commentUserLbl.text = data.userId
+        commentContentLbl.text = data.commentContent
+        commentDateLbl.text = data.date
+        commentLikeLbl.text = data.likeCount
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

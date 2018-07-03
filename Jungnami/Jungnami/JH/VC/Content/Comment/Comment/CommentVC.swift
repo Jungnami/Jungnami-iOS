@@ -10,9 +10,10 @@ import UIKit
 
 class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-     //상단 좋아요, 댓글 LBL
-     @IBOutlet weak var likeCountLbl: UILabel!
+    //상단 좋아요, 댓글 LBL
+    @IBOutlet weak var likeCountLbl: UILabel!
     @IBOutlet weak var commentCountLbl: UILabel!
+    
     
     
     //tableView
@@ -28,7 +29,19 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //댓글 저장Btn
     @IBOutlet weak var commentSendBtn: UIButton!
     
-    /////keyboard///
+//    var clicked: Bool = false
+//   @objc func isClicked(_ sender: UIButton) {
+//        if clicked == false { //
+//            commentLikeBtn.setImage(#imageLiteral(resourceName: "content_smallheart_blackbackground"), for: .normal)
+//            //cell에 있는 likeCount늘어나야함
+//        }else {
+//            clicked = true
+//            commentLikeBtn.setImage(#imageLiteral(resourceName: "content_smallheart_whitebackground"), for: .normal)
+//        }
+//    }
+    
+    
+    /////statusBar///
     private var hideStatusBar: Bool = false
     
     override var prefersStatusBarHidden: Bool {
@@ -39,7 +52,7 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var keyboardDismissGesture: UITapGestureRecognizer?
     ////////////////샘플데이터//////////////////////
-    var comments: [CommentSample] = []
+    var data = CommentData.sharedInstance.comments
     
     ////////////////////////////////////
     //---------------------------------------
@@ -55,12 +68,8 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         hideStatusBar = true
         setNeedsStatusBarAppearanceUpdate()
         
-        //////////sampleData/////////
-        let a = CommentSample(profile: #imageLiteral(resourceName: "dabi"), userId: "daBee", commentContent: "다비야 디팟장해쥬라~!", date: "1시간 전", likeCount: "555", commentCount: "12")
-        let b = CommentSample(profile: #imageLiteral(resourceName: "inni"), userId: "dP", commentContent: "12", date: "6시간 전", likeCount: "12", commentCount: "13")
-        comments.append(b)
-        comments.append(a)
-
+        
+        
         
     }
     //comment댓글 글자 수 제한
@@ -85,7 +94,7 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             commentSendBtn.isEnabled = true
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -93,21 +102,45 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //----------------tableView---------------
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //다시!!!!!!!!!!!!!!!!!!!!!1
-        return comments.count
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
-        //다시
-        cell.commentProfileImg.image = comments[indexPath.row].profile
-        cell.commentUserLbl.text = comments[indexPath.row].userId
-        cell.commentContentLbl.text = comments[indexPath.row].commentContent
-        cell.commentDateLbl.text = comments[indexPath.row].date
-        cell.commentLikeLbl.text = comments[indexPath.row].likeCount
-//        cell.recommentCountLbl.text = comments[indexPath.row].commentCount
+        cell.configure(data: data[indexPath.row])
+        //cell.commentLikeBtn.setImage(#imageLiteral(resourceName: "content_smallheart_blackbackground"), for: .normal)
+        cell.commentLikeBtn.addTarget(self, action: #selector(self.likeBtnClicked(sender:)), for: .touchUpInside)
+        cell.recommentBtn.tag = indexPath.row;
+        cell.recommentBtn.isUserInteractionEnabled = true
+        cell.recommentBtn.isEnabled = true
+        cell.recommentBtn.tintColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        cell.recommentBtn.addTarget(self, action: #selector(self.goRecomment(sender:)), for: .touchUpInside)
+        //        cell.recommentCountLbl.text = comments[indexPath.row].commentCount
         return cell
     }
-   
+    
+    //var clicked: Bool = false
+    var beforeClickHeart: UIImage = UIImage(named: "content_smallheart_whitebackground")!
+    //content_smallheart_whitebackground
+    var afterClickHeart: UIImage = UIImage(named: "content_smallheart_blackbackground")!
+    //content_smallheart_blackbackground
+    @objc func likeBtnClicked(sender: UIButton) {
+        //하트이미지 바뀌고
+        
+        //likeCountLbl +1 그리고 해당commentIdx의 likeCount 수 올려야 됨->
+        
+    }
+    
+    @objc func goRecomment(sender : UIButton){
+        
+        // Your code here
+        let userId = data[sender.tag].userId
+        let recommentVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: "RecommentVC") as! RecommentVC
+        self.navigationController?.pushViewController(recommentVC, animated: false)
+        //다른 뷰로 넘길때 userId 같이 넘기면 (나중에는 댓글에 대한 고유 인덱스가 됨) 그거 가지고 다시 통신
+        print(userId)
+    }
+    
 }
 
 extension CommentVC {
