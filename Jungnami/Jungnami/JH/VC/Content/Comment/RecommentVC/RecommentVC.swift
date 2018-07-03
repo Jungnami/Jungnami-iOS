@@ -40,7 +40,7 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         hideStatusBar = true
         setNeedsStatusBarAppearanceUpdate()
         
-        canCommentSend()
+        wirteRecommentField.addTarget(self, action: #selector(canCommentSend), for: .editingChanged)
         
         ///////////샘플데이터/////////////////
         

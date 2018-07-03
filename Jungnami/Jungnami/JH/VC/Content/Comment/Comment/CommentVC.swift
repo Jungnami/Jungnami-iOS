@@ -74,9 +74,11 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     //comment댓글 글자 수 제한
     @objc func canCommentSend() {
-        if commentWriteField.text?.count == 0 { //입력안됐을때
+        if commentWriteField.text == "" { //입력안됐을때
             //버튼 활성화 안되고 유저 인터렉션 불가
             commentSendBtn.isUserInteractionEnabled = false
+            simpleAlert(title: "오류", message: "댓글을 입력해주세요")
+            //commentSendBtn.isEnabled = false// 아님//
         } else if ((commentWriteField.text?.count)! < 100){
             //버튼 활성화 되고 유저 인터렉션 가능
             commentSendBtn.isUserInteractionEnabled = true
