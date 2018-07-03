@@ -182,11 +182,11 @@
 		439D812B20EB2FE5007DAD57 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				439D812C20EB2FE5007DAD57 /* WriteVC.swift */,
-				439D812D20EB2FE5007DAD57 /* NeedLoginVC.swift */,
 				439D812E20EB2FE5007DAD57 /* CommunityTVC.swift */,
-				439D812F20EB2FE5007DAD57 /* Sample.swift */,
 				439D813020EB2FE5007DAD57 /* CommunityTVCell.swift */,
+				439D812D20EB2FE5007DAD57 /* NeedLoginVC.swift */,
+				439D812C20EB2FE5007DAD57 /* WriteVC.swift */,
+				439D812F20EB2FE5007DAD57 /* Sample.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";

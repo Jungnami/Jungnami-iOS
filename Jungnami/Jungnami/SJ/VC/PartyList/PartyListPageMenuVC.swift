@@ -236,6 +236,7 @@ extension PartyListPageMenuVC{
     
     @objc func keyboardWillHide(_ notification: Notification) {
         blackView.isHidden = true
+        searchTxtField.text = ""
         setDefaultNav()
         adjustKeyboardDismissGesture(isKeyboardVisible: false)
     
