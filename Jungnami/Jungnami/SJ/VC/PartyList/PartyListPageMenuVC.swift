@@ -46,11 +46,7 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
         super.viewWillAppear(animated)
         setKeyboardSetting()
     }
-    
-    func willMoveToPage(_ controller: UIViewController, index: Int) {
-        print("movemove")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTxtField.delegate = self
