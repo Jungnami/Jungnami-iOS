@@ -23,6 +23,10 @@
 		3BD0E4D920EAA69D000ECB39 /* PartyListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0E4D820EAA69D000ECB39 /* PartyListTVC.swift */; };
 		3BD0E4DB20EAA6C1000ECB39 /* RegionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD0E4DA20EAA6C1000ECB39 /* RegionVC.swift */; };
 		B0FAAE4A343BF869C79BD42B /* Pods_Jungnami.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */; };
+		439D80F420EA36CC007DAD57 /* ContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D80F320EA36CC007DAD57 /* ContentVC.swift */; };
+		439D80F820EA49A1007DAD57 /* ContentFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D80F720EA49A1007DAD57 /* ContentFirstCell.swift */; };
+		439D80FA20EA49B1007DAD57 /* ContentSecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D80F920EA49B1007DAD57 /* ContentSecondCell.swift */; };
+		439D810220EA509C007DAD57 /* FirstCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D810120EA509C007DAD57 /* FirstCVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		3BD0E4DA20EAA6C1000ECB39 /* RegionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionVC.swift; sourceTree = "<group>"; };
 		744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jungnami.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D460A20ABACB58096DFE5D7A /* Pods-Jungnami.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jungnami.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami.debug.xcconfig"; sourceTree = "<group>"; };
+		439D80F320EA36CC007DAD57 /* ContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentVC.swift; sourceTree = "<group>"; };
+		439D80F720EA49A1007DAD57 /* ContentFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFirstCell.swift; sourceTree = "<group>"; };
+		439D80F920EA49B1007DAD57 /* ContentSecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSecondCell.swift; sourceTree = "<group>"; };
+		439D810120EA509C007DAD57 /* FirstCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +140,7 @@
 		3BC02C3C20EA048E008CA19F /* JH */ = {
 			isa = PBXGroup;
 			children = (
+				439D80F120EA358E007DAD57 /* VC */,
 				3BC02C3E20EA049E008CA19F /* Storyboard */,
 			);
 			path = JH;
@@ -196,6 +205,32 @@
 				27490797B81CB45F1E881443 /* Pods-Jungnami.release.xcconfig */,
 			);
 			name = Pods;
+		439D80F120EA358E007DAD57 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				439D80F220EA3594007DAD57 /* Content */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		439D80F220EA3594007DAD57 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				439D80F320EA36CC007DAD57 /* ContentVC.swift */,
+				439D810120EA509C007DAD57 /* FirstCVC.swift */,
+				439D80F520EA495E007DAD57 /* ContentCell */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		439D80F520EA495E007DAD57 /* ContentCell */ = {
+			isa = PBXGroup;
+			children = (
+				439D80F720EA49A1007DAD57 /* ContentFirstCell.swift */,
+				439D80F920EA49B1007DAD57 /* ContentSecondCell.swift */,
+			);
+			name = ContentCell;
+			path = collectionCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,9 +353,13 @@
 				3B297F8E20E8CD9000B82B0B /* CommunityTVC.swift in Sources */,
 				3B297F9B20E96CB800B82B0B /* CommunityWriteVC.swift in Sources */,
 				3BD0E4D520EAA50C000ECB39 /* PartyListPageMenuVC.swift in Sources */,
+				439D80FA20EA49B1007DAD57 /* ContentSecondCell.swift in Sources */,
 				3B297F7120E8A74100B82B0B /* AppDelegate.swift in Sources */,
+				439D810220EA509C007DAD57 /* FirstCVC.swift in Sources */,
+				439D80F820EA49A1007DAD57 /* ContentFirstCell.swift in Sources */,
 				3B297F9620E92BCD00B82B0B /* CommunityTVCell.swift in Sources */,
 				3BD0E4DB20EAA6C1000ECB39 /* RegionVC.swift in Sources */,
+				439D80F420EA36CC007DAD57 /* ContentVC.swift in Sources */,
 				3B297F9220E8E65900B82B0B /* NeedLoginVC.swift in Sources */,
 				3B297F9820E9365C00B82B0B /* Sample.swift in Sources */,
 				3BD0E4D920EAA69D000ECB39 /* PartyListTVC.swift in Sources */,
