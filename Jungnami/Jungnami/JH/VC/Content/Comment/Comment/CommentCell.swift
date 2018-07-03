@@ -16,7 +16,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var commentContentLbl: UILabel!
     @IBOutlet weak var commentDateLbl: UILabel!
     @IBOutlet weak var commentLikeLbl: UILabel!
-    @IBOutlet weak var recommentCountLbl: UILabel!
+    
     
     @IBOutlet weak var commentBestImg: UIImageView!
     //댓글 좋아요 Btn

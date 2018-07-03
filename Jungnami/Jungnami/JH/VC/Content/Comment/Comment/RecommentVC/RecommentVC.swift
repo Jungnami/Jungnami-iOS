@@ -55,7 +55,7 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: "CommentCell") as! CommentCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
             //cell정보들에 연결하기
             /*
              cell.commentProfileImg.image =
@@ -66,7 +66,7 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
              */
             return cell
         }else {
-            let cell = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: "RecommentCell") as! RecommentCell
+            let cell =  tableView.dequeueReusableCell(withIdentifier: "RecommentCell", for: indexPath) as! RecommentCell
             //cell에 연결된 정보 연결하기
             return cell
         }
