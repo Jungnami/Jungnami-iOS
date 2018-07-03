@@ -75,15 +75,17 @@ extension CommunityWriteVC {
     func makeImgView(){
         self.view.addSubview(contentImgView)
         self.view.addSubview(deleteImgBtn)
+        deleteImgBtn.contentMode = .scaleAspectFit
         contentImgView.snp.makeConstraints { (make) in
-            make.height.equalTo(199)
+            make.height.equalTo(302)
             make.top.equalTo(contentTxtView.snp.bottom).offset(22.5)
             make.leading.trailing.equalTo(contentTxtView)
+            
         }
         
         deleteImgBtn.snp.makeConstraints { (make) in
             make.height.equalTo(17)
-            make.height.equalTo(17)
+            make.width.equalTo(17)
             make.leading.equalTo(contentImgView.snp.leading).offset(16)
             make.top.equalTo(contentImgView.snp.top).offset(16)
         }
@@ -174,7 +176,8 @@ extension CommunityWriteVC {
             
             var contentInset:UIEdgeInsets = self.scrollView.contentInset
            // contentInset.bottom = keyboardEndframe.size.height
-             contentInset.bottom = 50
+
+             contentInset.bottom = 170
             scrollView.contentInset = contentInset
             self.scrollView.layoutIfNeeded()
         }
