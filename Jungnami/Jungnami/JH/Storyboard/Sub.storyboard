@@ -1609,6 +1609,88 @@
             </objects>
             <point key="canvasLocation" x="965.60000000000002" y="1993.4032983508248"/>
         </scene>
+        <!--ScrapCVC-->
+        <scene sceneID="W8e-bn-5Im">
+            <objects>
+                <collectionViewController storyboardIdentifier="ScrapCVC" id="PmF-u8-9Sb" customClass="ScrapCVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="XZS-98-E22">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ke9-YB-BRM">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScrapCell" id="WD1-Hi-vSB" customClass="ScrapCell" customModule="Jungnami" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="179" height="187"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="179" height="187"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c6Z-KQ-yzB">
+                                            <rect key="frame" x="0.0" y="0.0" width="179" height="117"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="117" id="PPB-I8-dRx"/>
+                                                <constraint firstAttribute="width" constant="179" id="X5Q-4q-2qu"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="labelalwkefjl;awkej;flajwe;lfijw;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Q8-Ie-wdY">
+                                            <rect key="frame" x="0.0" y="130" width="179" height="33.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="179" id="QBg-Vq-kA3"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TMI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmA-Yq-2b7">
+                                            <rect key="frame" x="0.0" y="172" width="22" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2시간 전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYP-DQ-kRf">
+                                            <rect key="frame" x="29" y="172" width="42" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="3Q8-Ie-wdY" firstAttribute="leading" secondItem="WD1-Hi-vSB" secondAttribute="leading" id="1JT-20-7pW"/>
+                                    <constraint firstItem="kYP-DQ-kRf" firstAttribute="bottom" secondItem="PmA-Yq-2b7" secondAttribute="bottom" id="3Zp-t0-4IN"/>
+                                    <constraint firstItem="c6Z-KQ-yzB" firstAttribute="leading" secondItem="WD1-Hi-vSB" secondAttribute="leading" id="EYd-T7-Spg"/>
+                                    <constraint firstItem="kYP-DQ-kRf" firstAttribute="leading" secondItem="PmA-Yq-2b7" secondAttribute="trailing" constant="7" id="Sry-FO-wbo"/>
+                                    <constraint firstAttribute="trailing" secondItem="c6Z-KQ-yzB" secondAttribute="trailing" id="fgr-g6-zpw"/>
+                                    <constraint firstItem="3Q8-Ie-wdY" firstAttribute="top" secondItem="c6Z-KQ-yzB" secondAttribute="bottom" constant="13" id="hlF-Ez-W5P"/>
+                                    <constraint firstItem="PmA-Yq-2b7" firstAttribute="leading" secondItem="WD1-Hi-vSB" secondAttribute="leading" id="iVa-aJ-XXJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="PmA-Yq-2b7" secondAttribute="bottom" id="mtH-We-Aea"/>
+                                    <constraint firstItem="c6Z-KQ-yzB" firstAttribute="top" secondItem="WD1-Hi-vSB" secondAttribute="top" id="t4V-7A-MSi"/>
+                                </constraints>
+                                <size key="customSize" width="179" height="187"/>
+                                <connections>
+                                    <outlet property="scarpImgView" destination="c6Z-KQ-yzB" id="2rf-PP-rZ9"/>
+                                    <outlet property="scrapCategoryLbl" destination="PmA-Yq-2b7" id="0xM-CR-dwI"/>
+                                    <outlet property="scrapDateLbl" destination="kYP-DQ-kRf" id="Wng-ix-ytz"/>
+                                    <outlet property="scrapTitleLbl" destination="3Q8-Ie-wdY" id="X39-TF-M7H"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="PmF-u8-9Sb" id="BHm-Nu-a7S"/>
+                            <outlet property="delegate" destination="PmF-u8-9Sb" id="scC-lN-XHN"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7nk-Ko-oGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="160.80000000000001" y="2036.1319340329837"/>
+        </scene>
     </scenes>
     <resources>
         <image name="community_bell_blue_circle" width="16" height="16"/>
