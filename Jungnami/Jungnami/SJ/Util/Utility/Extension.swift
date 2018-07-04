@@ -69,12 +69,21 @@ extension UIViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
+    
+    func simpleAlertwithHandler(title: String, message: String, okHandler : ((UIAlertAction) -> Void)?){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인",style: .default, handler: okHandler)
+        let cancelAction = UIAlertAction(title: "취소",style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 
 extension UIViewController {
     func customBarbuttonItem(title : String, red : Double, green : Double, blue : Double, fontSize : Int, selector : Selector?)->UIBarButtonItem{
-        let customBarbuttonItem = UIBarButtonItem(title: "title", style: .plain, target: self, action: selector)
+        let customBarbuttonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: selector)
         let fontSize = UIFont.systemFont(ofSize: CGFloat(fontSize))
         customBarbuttonItem.setTitleTextAttributes([
             NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): fontSize,

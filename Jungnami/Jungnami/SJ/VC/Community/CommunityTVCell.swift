@@ -19,12 +19,12 @@ class CommunityTVCell: UITableViewCell {
     @IBOutlet weak var contentImgView : UIImageView!
     @IBOutlet weak var heartBtn : UIButton!
     @IBOutlet weak var commentBtn : UIButton!
-    @IBOutlet weak var shareBtn : UIButton!
     @IBOutlet weak var scrapBtn : UIButton!
     
     
     /////////////////////샘플설정///////////////////////////////
     func configure(data : Sample){
+      
         profileImgView.image = data.profileUrl
         nameLabel.text = data.name
         timeLabel.text = data.time
@@ -42,11 +42,12 @@ class CommunityTVCell: UITableViewCell {
         } else {
             scrapBtn.setImage(#imageLiteral(resourceName: "community_scrap_blue"), for: .normal)
         }
+
+       
         if data.contentImg != nil {
             contentImgView.image = data.contentImg
         } else {
-        
-            self.contentView.viewWithTag(1)?.removeFromSuperview()
+            self.contentView.viewWithTag(-1)?.removeFromSuperview()
         }
     }
     ////////////////////////////////////////////////////
