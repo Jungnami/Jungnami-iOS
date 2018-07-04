@@ -39,12 +39,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="RS7-j9-1bq">
+                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="RS7-j9-1bq">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="113.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-qx-6bR">
-                                    <rect key="frame" x="0.0" y="46.5" width="375" height="67"/>
+                                    <rect key="frame" x="0.0" y="46.5" width="375" height="18"/>
                                 </containerView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bJ-sv-cJv">
                                     <rect key="frame" x="0.0" y="46" width="375" height="0.5"/>
