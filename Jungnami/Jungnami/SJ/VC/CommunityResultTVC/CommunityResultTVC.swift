@@ -1,21 +1,20 @@
 //
-//  SearchLegislatorResultTVC.swift
+//  CommunityResultTVC.swift
 //  Jungnami
 //
-//  Created by 강수진 on 2018. 7. 3..
-//  Copyright © 2018년 강수진. All rights reserved.
+//  Created by 강수진 on 2018. 7. 4..
 //
 
 import UIKit
 
-class SearchLegislatorResultTVC: UITableViewController {
-
-    var sampleData : [SampleLegislator] = []
-    @IBOutlet weak var separateView: UIView!
+class CommunityResultTVC: UITableViewController {
+    
     @IBOutlet weak var searchTxtfield: UITextField!
+    @IBOutlet weak var separateView: UIView!
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
     
     
     lazy var blackView : UIView = {
@@ -27,9 +26,9 @@ class SearchLegislatorResultTVC: UITableViewController {
     
     var keyboardDismissGesture: UITapGestureRecognizer?
     
+    var sampleData : [Sample] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchTxtfield.delegate = self
         setKeyboardSetting()
         
@@ -41,21 +40,22 @@ class SearchLegislatorResultTVC: UITableViewController {
             
         }
         blackView.isHidden = true
-        self.navigationController?.navigationBar.isHidden = true
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-        let a = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "김성태", likeCount: 12, dislikeCount: 45, region: "서울 강서구 을", party : "민주당")
-        let b = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", likeCount: 12, dislikeCount: 45, region: "당대표, 서울 광진구 을", party : "자한당")
+        
+        let a = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "다비 최고야,, 형윤 최고야,, 디자인 세상에서 제일 예뻐요 선생님들,, ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
+        let b = Sample(profileUrl: #imageLiteral(resourceName: "community_character"), name: "제리", time: "4시간 전", content: "픽미픽미픽미업", like: 73, comment: 6020, contentImg: #imageLiteral(resourceName: "inni"), heart: false, scrap: true)
         
         sampleData.append(a)
         sampleData.append(b)
         ////////////////////////////////////////////////////
         
     }
-
+    
+    
 }
 
-//tableview delegate, datasource
-extension SearchLegislatorResultTVC {
+extension CommunityResultTVC {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return sampleData.count
@@ -63,17 +63,32 @@ extension SearchLegislatorResultTVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchLegislatorResultTVCell.reuseIdentifier) as! SearchLegislatorResultTVCell
-        let rank = indexPath.row+1
-        cell.configure(rank: rank, data: sampleData[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
+        
+        cell.configure(data: sampleData[indexPath.row])
+        
+        cell.scrapBtn.tag = indexPath.row
+        cell.scrapBtn.isUserInteractionEnabled = true
+        cell.scrapBtn.addTarget(self, action: #selector(scrap(sender:)), for: .touchUpInside)
+        
         return cell
         
     }
+    
+    @objc func scrap(sender : UIButton){
+        print("touch!")
+        //다른 뷰로 넘길때 userId 같이 넘기면 (나중에는 댓글에 대한 고유 인덱스가 됨) 그거 가지고 다시 통신
+        //let userName = sampleData[sender.tag].name
+        simpleAlertwithHandler(title: "스크랩", message: "스크랩하시겠습니까?") { (_) in
+            // print(userName)
+        }
+    }
+    
 }
 
 
 //키보드 엔터 버튼 눌렀을 때
-extension SearchLegislatorResultTVC : UITextFieldDelegate {
+extension CommunityResultTVC : UITextFieldDelegate {
     
     //텍필 비어잇으면 막기
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -100,7 +115,7 @@ extension SearchLegislatorResultTVC : UITextFieldDelegate {
 
 
 //키보드 대응
-extension SearchLegislatorResultTVC{
+extension CommunityResultTVC{
     func setKeyboardSetting() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)

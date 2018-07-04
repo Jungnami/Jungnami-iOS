@@ -23,10 +23,16 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
     lazy var searchGrayView : UIImageView = {
         let imgView = UIImageView()
         
-        imgView.image = #imageLiteral(resourceName: "partylist_search_field")
+        imgView.image = #imageLiteral(resourceName: "community_search_field")
         return imgView
     }()
     
+    lazy var searchView : UIImageView = {
+        let imgView = UIImageView()
+        
+        imgView.image = #imageLiteral(resourceName: "community_search")
+        return imgView
+    }()
     
     lazy var searchTxtField : UITextField = {
         let txtField = UITextField()
@@ -44,6 +50,7 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
         setKeyboardSetting()
     }
 
@@ -74,7 +81,6 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
             //searchLegislatorResultTVC = self.selectedCategory
             self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
         }
-        
     }
 }
 
@@ -128,23 +134,18 @@ extension PartyListPageMenuVC {
 //네비게이션 기본바 커스텀
 extension PartyListPageMenuVC {
     
-    func setDefaultNav(){
-        setupTitleNavImg()
-        setupLeftNavItem()
-        setupRightNavItem()
-    }
-    func setupTitleNavImg(){
+    @objc func setDefaultNav(){
+        //setupTitleNavImg
         let titleImageView = UIImageView(image: #imageLiteral(resourceName: "partylist_logo"))
         titleImageView.contentMode = .scaleAspectFit
         titleImageView.snp.makeConstraints { (make) in
             make.height.equalTo(21)
             make.width.equalTo(52)
         }
-        
         navigationItem.titleView = titleImageView
         navigationController?.navigationBar.isTranslucent = false
-    }
-    func setupLeftNavItem(){
+        
+        //setupLeftNavItem
         let myPageBtn = UIButton(type: .system)
         myPageBtn.setImage(#imageLiteral(resourceName: "partylist_mypage").withRenderingMode(.alwaysOriginal), for: .normal)
         myPageBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.toMyPage(_sender:)), for: .touchUpInside)
@@ -152,20 +153,19 @@ extension PartyListPageMenuVC {
             make.height.equalTo(24)
             make.width.equalTo(24)
         }
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: myPageBtn)
-    }
-    func setupRightNavItem(){
-        let searchBtn = UIButton(type: .system)
+        
+        //setupRightNavItem
+       let searchBtn = UIButton(type: .system)
         searchBtn.setImage(#imageLiteral(resourceName: "partylist_search").withRenderingMode(.alwaysOriginal), for: .normal)
         searchBtn.snp.makeConstraints { (make) in
             make.height.equalTo(24)
             make.width.equalTo(24)
         }
         searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.search(_sender:)), for: .touchUpInside)
-
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
+        
+        
     }
 }
 
@@ -178,41 +178,65 @@ extension PartyListPageMenuVC {
     @objc public func search(_sender: UIButton) {
         makeSearchBarView()
         self.navigationItem.leftBarButtonItem = nil
-        self.navigationItem.rightBarButtonItem = nil
+        
     }
 }
 
 //네비게이션 서치바 커스텀
 extension PartyListPageMenuVC{
     func makeSearchBarView() {
-        searchGrayView.contentMode = .scaleAspectFit
-        
+       
         navSearchView.snp.makeConstraints { (make) in
-            make.width.equalTo(316)
+            make.width.equalTo(311)
             make.height.equalTo(31)
+           // make.leading.equalTo(self.)
         }
         navSearchView.addSubview(searchGrayView)
+        navSearchView.addSubview(searchView)
         navSearchView.addSubview(searchTxtField)
         
         searchGrayView.snp.makeConstraints { (make) in
             make.top.bottom.leading.trailing.equalTo(navSearchView)
         }
         
+        searchView.snp.makeConstraints { (make) in
+            make.leading.equalTo(searchGrayView).offset(10)
+            make.width.height.equalTo(15)
+            make.centerY.equalTo(searchGrayView)
+        }
+
         searchTxtField.snp.makeConstraints { (make) in
             make.top.bottom.trailing.equalTo(searchGrayView)
-            make.leading.equalTo(searchGrayView).offset(30)
+            make.leading.equalTo(searchView.snp.trailing).offset(8)
         }
         
         searchTxtField.delegate = self
         navigationItem.titleView = navSearchView
         navigationController?.navigationBar.isTranslucent = false
+
+        //rightBarBtn
+        let rightBarButton = customBarbuttonItem(title: "취소", red: 112, green: 112, blue: 112, fontSize: 14, selector: #selector(setDefaultNav))
+        
+        navigationItem.rightBarButtonItem = rightBarButton
     }
-    
 }
 
 //txtField Delegate (엔터버튼 클릭시)
 extension PartyListPageMenuVC : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text == "" {
+            simpleAlert(title: "오류", message: "검색어 입력")
+            return false
+        }
+        
+        if let myString = textField.text {
+            let emptySpacesCount = myString.components(separatedBy: " ").count-1
+            
+            if emptySpacesCount == myString.count {
+                simpleAlert(title: "오류", message: "검색어 입력")
+                return false
+            }
+        }
         searchLegislator()
         return true
     }
@@ -233,7 +257,7 @@ extension PartyListPageMenuVC{
     @objc func keyboardWillHide(_ notification: Notification) {
         blackView.isHidden = true
         searchTxtField.text = ""
-        setDefaultNav()
+       // setDefaultNav()
         adjustKeyboardDismissGesture(isKeyboardVisible: false)
     
     }
