@@ -12,6 +12,12 @@ class WriteVC: UIViewController {
     
     @IBOutlet weak var userImgView: UIImageView!
     
+    @IBAction func toNextPage(_ sender: Any) {
+        if let communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC {
+            self.present(communityWriteVC, animated: true, completion: nil)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
