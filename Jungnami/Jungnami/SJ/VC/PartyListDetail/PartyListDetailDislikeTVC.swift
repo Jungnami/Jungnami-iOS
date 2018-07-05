@@ -9,7 +9,7 @@ import UIKit
 
 class PartyListDetailDislikeTVC: UITableViewController {
 
-    var selectedParty : Int?
+    var selectedParty : PartyList?
     override func viewDidLoad() {
         super.viewDidLoad()
         print(selectedParty ?? 6)

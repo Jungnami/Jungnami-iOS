@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3B6B030A20EE09F700034C9B /* PartyListDetailTVcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030920EE09F700034C9B /* PartyListDetailTVcell.swift */; };
 		3B6B030C20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030B20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift */; };
+		3B6B030E20EE109600034C9B /* SampleLegislator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030D20EE109600034C9B /* SampleLegislator2.swift */; };
+		3B6B031020EE12E600034C9B /* PartyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030F20EE12E600034C9B /* PartyList.swift */; };
 		3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */; };
 		3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */; };
 		3BB1A5C320EB9EC000D4929A /* SampleLegislator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5C220EB9EC000D4929A /* SampleLegislator.swift */; };
@@ -55,6 +57,8 @@
 		3B297F6D20E8A74100B82B0B /* Jungnami.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jungnami.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B6B030920EE09F700034C9B /* PartyListDetailTVcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailTVcell.swift; sourceTree = "<group>"; };
 		3B6B030B20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailFirstSectionTVCell.swift; sourceTree = "<group>"; };
+		3B6B030D20EE109600034C9B /* SampleLegislator2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleLegislator2.swift; sourceTree = "<group>"; };
+		3B6B030F20EE12E600034C9B /* PartyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyList.swift; sourceTree = "<group>"; };
 		3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVC.swift; sourceTree = "<group>"; };
 		3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVCell.swift; sourceTree = "<group>"; };
 		3BB1A5C220EB9EC000D4929A /* SampleLegislator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleLegislator.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				3BB4309020ECE951002980D9 /* PartyListDetailDislikeTVC.swift */,
 				3B6B030B20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift */,
 				3B6B030920EE09F700034C9B /* PartyListDetailTVcell.swift */,
+				3B6B030D20EE109600034C9B /* SampleLegislator2.swift */,
+				3B6B030F20EE12E600034C9B /* PartyList.swift */,
 			);
 			path = PartyListDetail;
 			sourceTree = "<group>";
@@ -504,6 +510,7 @@
 				3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */,
 				439D814420EB2FE5007DAD57 /* RegionVC.swift in Sources */,
 				439D814120EB2FE5007DAD57 /* CommunityWriteVC.swift in Sources */,
+				3B6B030E20EE109600034C9B /* SampleLegislator2.swift in Sources */,
 				3BB4309120ECE952002980D9 /* PartyListDetailDislikeTVC.swift in Sources */,
 				3BB1A5C320EB9EC000D4929A /* SampleLegislator.swift in Sources */,
 				3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */,
@@ -528,6 +535,7 @@
 				3BB4308D20ECE8BF002980D9 /* PartyListDetailPageMenuVC.swift in Sources */,
 				43D1DAC920EB9A4E00B752D1 /* CommentData.swift in Sources */,
 				43D1DAC720EB989B00B752D1 /* RecommentSample.swift in Sources */,
+				3B6B031020EE12E600034C9B /* PartyList.swift in Sources */,
 				43C5138020ECD9F70017BDD8 /* ScrapCell.swift in Sources */,
 				439D814A20EB2FE5007DAD57 /* CommunityTVCell.swift in Sources */,
 				3BB4308F20ECE914002980D9 /* PartyListDetailLikeTVC.swift in Sources */,

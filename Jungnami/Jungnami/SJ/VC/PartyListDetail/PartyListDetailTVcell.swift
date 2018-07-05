@@ -18,6 +18,8 @@ class PartyListDetailTVcell: UITableViewCell {
     @IBOutlet weak var rankLbl: UILabel!
     
     @IBOutlet weak var regionLbl: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
