@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import PageMenu
 
-class PartyListDetailPageMenuVC : UIViewController, CAPSPageMenuDelegate{
+class PartyListDetailPageMenuVC : UIViewController{
     
-    var pageMenu: CAPSPageMenu?
+    @IBOutlet weak var containerView: UIView!
+   
     var keyboardDismissGesture: UITapGestureRecognizer?
     lazy var navSearchView : UIView = {
         let view = UIView()
@@ -46,6 +46,37 @@ class PartyListDetailPageMenuVC : UIViewController, CAPSPageMenuDelegate{
         return view
     }()
     
+    private lazy var partyListDetailLikeTVC: PartyListDetailLikeTVC = {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+      
+        var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailLikeTVC.reuseIdentifier) as! PartyListDetailLikeTVC
+        
+         viewController.selectedParty = selectedParty
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private lazy var partyListDetailDislikeTVC: PartyListDetailDislikeTVC = {
+       
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+       
+        var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailDislikeTVC.reuseIdentifier) as! PartyListDetailDislikeTVC
+        viewController.selectedParty = selectedParty
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+
+    lazy var menuBar: PartyListDetailPageMenuBar = {
+        let mb = PartyListDetailPageMenuBar()
+        mb.homeController = self
+        return mb
+    }()
+    
+    
     var selectedParty : PartyList?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,13 +88,15 @@ class PartyListDetailPageMenuVC : UIViewController, CAPSPageMenuDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTxtField.delegate = self
-        setupPageMenu()
+      
         setDefaultNav()
         blackView.isHidden = true
         self.view.addSubview(blackView)
         blackView.snp.makeConstraints { (make) in
             make.leading.trailing.top.bottom.equalToSuperview()
         }
+        setupMenuBar()
+        setupView()
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -79,52 +112,14 @@ class PartyListDetailPageMenuVC : UIViewController, CAPSPageMenuDelegate{
             self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
         }
     }
-}
-
-extension PartyListDetailPageMenuVC {
-    func setupPageMenu(){
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        
-        var controllerArray : [UIViewController] = []
-        
-        let partyListDetailLikeTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListDetailLikeTVC.reuseIdentifier) as! PartyListDetailLikeTVC
-        
-        partyListDetailLikeTVC.title = "호감"
-        partyListDetailLikeTVC.selectedParty = selectedParty
-        controllerArray.append(partyListDetailLikeTVC)
-        
-        let partyListDetailDislikeTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListDetailDislikeTVC.reuseIdentifier) as! PartyListDetailDislikeTVC
-        partyListDetailDislikeTVC.title = "비호감"
-        partyListDetailDislikeTVC.selectedParty = selectedParty
-        controllerArray.append(partyListDetailDislikeTVC)
-        
-        
-        let parameters: [CAPSPageMenuOption] = [
-            .menuItemSeparatorWidth(0),
-            .scrollMenuBackgroundColor(.white),
-            .viewBackgroundColor(#colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9843137255, alpha: 1)),
-            .bottomMenuHairlineColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)),
-            .selectionIndicatorColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
-            .menuHeight(42.0),
-            .selectedMenuItemLabelColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
-            .unselectedMenuItemLabelColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)),
-            .useMenuLikeSegmentedControl(true),
-            .menuItemSeparatorRoundEdges(true),
-            .selectionIndicatorHeight(3.0),
-            .menuItemSeparatorPercentageHeight(0.1)
-        ]
-        
-        pageMenu = CAPSPageMenu(viewControllers: controllerArray,
-                                frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height),
-                                pageMenuOptions: parameters)
-        
-        
-        pageMenu!.delegate = self
-        
-        self.view.addSubview(pageMenu!.view)
+    
+    
+    func scrollToMenuIndex(menuIndex: Int) {
+        updateView(selected: menuIndex)
         
     }
 }
+
 
 
 //네비게이션 기본바 커스텀
@@ -275,5 +270,81 @@ extension PartyListDetailPageMenuVC{
     
     @objc func tapBackground() {
         self.navSearchView.endEditing(true)
+    }
+}
+
+
+
+//메뉴바랑 그 안 컨테이너뷰
+extension PartyListDetailPageMenuVC{
+  
+    
+    static func viewController() -> PartyListDetailPageMenuVC {
+        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListDetailPageMenuVC.reuseIdentifier) as! PartyListDetailPageMenuVC
+    }
+    
+    
+  
+    private func add(asChildViewController viewController: UIViewController) {
+        
+        // Add Child View Controller
+        addChildViewController(viewController)
+        
+        // Add Child View as Subview
+        containerView.addSubview(viewController.view)
+        
+        // Configure Child View
+        viewController.view.frame = containerView.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Notify Child View Controller
+        viewController.didMove(toParentViewController: self)
+    }
+    
+    //----------------------------------------------------------------
+    
+    private func remove(asChildViewController viewController: UIViewController) {
+        // Notify Child View Controller
+        viewController.willMove(toParentViewController: nil)
+        
+        // Remove Child View From Superview
+        viewController.view.removeFromSuperview()
+        
+        // Notify Child View Controller
+        viewController.removeFromParentViewController()
+    }
+    
+    //----------------------------------------------------------------
+    
+    private func updateView(selected : Int) {
+        if selected == 0 {
+            remove(asChildViewController: partyListDetailDislikeTVC)
+            add(asChildViewController: partyListDetailLikeTVC)
+        } else {
+            remove(asChildViewController: partyListDetailLikeTVC)
+            add(asChildViewController: partyListDetailDislikeTVC)
+        }
+    }
+    
+    //----------------------------------------------------------------
+    
+    func setupView() {
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.topAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
+        updateView(selected: 0)
+    }
+    
+    private func setupMenuBar() {
+        
+        //메뉴바 삽입
+        view.addSubview(menuBar)
+        
+        menuBar.translatesAutoresizingMaskIntoConstraints = false
+        menuBar.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
+        menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        menuBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        
+        
     }
 }

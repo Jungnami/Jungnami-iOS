@@ -56,7 +56,13 @@ class PartyListTVC: UITableViewController {
         default:
             return
         }
-        delegate?.pushAction(selectedParty: selectedParty)
+        print("aaa")
+        if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
+            partyListDetailPageMenuVC.selectedParty = selectedParty
+            self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
+        }
+        
+       // delegate?.pushAction(selectedParty: selectedParty)
     }
     
 }
