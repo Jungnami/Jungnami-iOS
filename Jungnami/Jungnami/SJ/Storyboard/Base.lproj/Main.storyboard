@@ -821,16 +821,22 @@
                                     <constraint firstAttribute="width" constant="41" id="f3f-T3-Nis"/>
                                 </constraints>
                                 <state key="normal" title="k"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="UtF-GE-5JZ"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Wj-sj-egK">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Wj-sj-egK">
                                 <rect key="frame" x="144" y="223" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Es5-Sh-ABF"/>
                                     <constraint firstAttribute="width" constant="41" id="FW0-S6-xl4"/>
                                 </constraints>
                                 <state key="normal" title="k"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="M0U-jA-PNI"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qec-EW-IW0">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qec-EW-IW0">
                                 <rect key="frame" x="211" y="216" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Id2-ta-gG9"/>
@@ -838,15 +844,18 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2k-dF-zME">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2k-dF-zME">
                                 <rect key="frame" x="155" y="260" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="FVk-ZX-1eG"/>
                                     <constraint firstAttribute="width" constant="41" id="tHC-ay-OUL"/>
                                 </constraints>
                                 <state key="normal" title="k"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="4dB-h8-2uw"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ql-8Q-Fna">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ql-8Q-Fna">
                                 <rect key="frame" x="99" y="294" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="BWr-Tl-RYd"/>
@@ -854,7 +863,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwH-rV-BTF">
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwH-rV-BTF">
                                 <rect key="frame" x="148" y="303" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="41" id="I1F-Ff-ers"/>
@@ -862,7 +871,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebr-cs-DbD">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebr-cs-DbD">
                                 <rect key="frame" x="199" y="280" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Ae0-Ru-MNi"/>
@@ -870,7 +879,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaK-Co-R2V">
+                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaK-Co-R2V">
                                 <rect key="frame" x="243" y="323" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="LEq-cx-88o"/>
@@ -878,7 +887,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPk-kD-qgH">
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPk-kD-qgH">
                                 <rect key="frame" x="161" y="332" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="m3x-Sh-qb5"/>
@@ -886,7 +895,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dcf-Eu-Iiw">
+                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dcf-Eu-Iiw">
                                 <rect key="frame" x="230" y="362" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ZwV-7Z-aWw"/>
@@ -894,7 +903,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ony-2L-GQO">
+                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ony-2L-GQO">
                                 <rect key="frame" x="275" y="387" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="9iE-tu-iCd"/>
@@ -902,7 +911,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTS-PJ-XSP">
+                            <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTS-PJ-XSP">
                                 <rect key="frame" x="246" y="424" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="9vq-Le-qgF"/>
@@ -910,7 +919,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2T-gA-f9n">
+                            <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2T-gA-f9n">
                                 <rect key="frame" x="189" y="415" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="67R-R2-tiD"/>
@@ -918,7 +927,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAS-Lb-q0I">
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAS-Lb-q0I">
                                 <rect key="frame" x="132" y="383" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="41" id="MrW-d3-crX"/>
@@ -926,7 +935,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fdc-JS-bxe">
+                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fdc-JS-bxe">
                                 <rect key="frame" x="120" y="419" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="41" id="Eel-bB-cHn"/>
@@ -934,7 +943,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laS-lB-0js">
+                            <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laS-lB-0js">
                                 <rect key="frame" x="104" y="469" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="41" id="Tqn-C8-PE3"/>
@@ -942,7 +951,7 @@
                                 </constraints>
                                 <state key="normal" title="k"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STR-Cx-Z8g">
+                            <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STR-Cx-Z8g">
                                 <rect key="frame" x="78" y="538" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ZYP-GT-4Tk"/>

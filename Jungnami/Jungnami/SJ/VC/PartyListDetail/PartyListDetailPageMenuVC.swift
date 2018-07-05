@@ -12,6 +12,8 @@ class PartyListDetailPageMenuVC : UIViewController{
     @IBOutlet weak var containerView: UIView!
    
     var keyboardDismissGesture: UITapGestureRecognizer?
+    var selectedRegion : Region?
+    var selectedParty : PartyList?
     lazy var navSearchView : UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -53,6 +55,7 @@ class PartyListDetailPageMenuVC : UIViewController{
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailLikeTVC.reuseIdentifier) as! PartyListDetailLikeTVC
         
          viewController.selectedParty = selectedParty
+         viewController.selectedRegion = selectedRegion
         self.add(asChildViewController: viewController)
         
         return viewController
@@ -64,6 +67,7 @@ class PartyListDetailPageMenuVC : UIViewController{
        
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailDislikeTVC.reuseIdentifier) as! PartyListDetailDislikeTVC
         viewController.selectedParty = selectedParty
+        viewController.selectedRegion = selectedRegion
         self.add(asChildViewController: viewController)
         
         return viewController
@@ -77,7 +81,7 @@ class PartyListDetailPageMenuVC : UIViewController{
     }()
     
     
-    var selectedParty : PartyList?
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
