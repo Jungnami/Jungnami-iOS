@@ -10,7 +10,7 @@ import UIKit
 class PartyListDetailPageMenuVC : UIViewController{
     
     @IBOutlet weak var containerView: UIView!
-   
+    
     var keyboardDismissGesture: UITapGestureRecognizer?
     var selectedRegion : Region?
     var selectedParty : PartyList?
@@ -51,20 +51,20 @@ class PartyListDetailPageMenuVC : UIViewController{
     private lazy var partyListDetailLikeTVC: PartyListDetailLikeTVC = {
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-      
+        
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailLikeTVC.reuseIdentifier) as! PartyListDetailLikeTVC
         
-         viewController.selectedParty = selectedParty
-         viewController.selectedRegion = selectedRegion
+        viewController.selectedParty = selectedParty
+        viewController.selectedRegion = selectedRegion
         self.add(asChildViewController: viewController)
         
         return viewController
     }()
     
     private lazy var partyListDetailDislikeTVC: PartyListDetailDislikeTVC = {
-       
+        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-       
+        
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailDislikeTVC.reuseIdentifier) as! PartyListDetailDislikeTVC
         viewController.selectedParty = selectedParty
         viewController.selectedRegion = selectedRegion
@@ -73,7 +73,7 @@ class PartyListDetailPageMenuVC : UIViewController{
         return viewController
     }()
     
-
+    
     lazy var menuBar: PartyListDetailPageMenuBar = {
         let mb = PartyListDetailPageMenuBar()
         mb.homeController = self
@@ -281,14 +281,14 @@ extension PartyListDetailPageMenuVC{
 
 //메뉴바랑 그 안 컨테이너뷰
 extension PartyListDetailPageMenuVC{
-  
+    
     
     static func viewController() -> PartyListDetailPageMenuVC {
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListDetailPageMenuVC.reuseIdentifier) as! PartyListDetailPageMenuVC
     }
     
     
-  
+    
     private func add(asChildViewController viewController: UIViewController) {
         
         // Add Child View Controller

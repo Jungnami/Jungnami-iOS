@@ -538,7 +538,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XIu-Np-fac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1456.8" y="425.93703148425789"/>
+            <point key="canvasLocation" x="1470" y="835"/>
         </scene>
         <!--Party List Detail LikeTVC-->
         <scene sceneID="B4d-Jt-QW9">
@@ -655,7 +655,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9vc-OR-9rt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2245.5999999999999" y="124.58770614692655"/>
+            <point key="canvasLocation" x="2174" y="427"/>
         </scene>
         <!--Search Legislator ResultTVC-->
         <scene sceneID="OJG-jJ-Cgf">
@@ -801,23 +801,92 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acp-sD-06y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3004" y="475"/>
+            <point key="canvasLocation" x="3023" y="834"/>
         </scene>
-        <!--View Controller-->
+        <!--Main Page MenuVC-->
         <scene sceneID="CDR-qm-Fcg">
             <objects>
-                <viewController id="vP5-SK-Bul" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainPageMenuVC" id="vP5-SK-Bul" customClass="MainPageMenuVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BbY-oN-QU5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4c-w4-oXg">
+                                <rect key="frame" x="0.0" y="125" width="375" height="493"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7bX-61-pMV" firstAttribute="bottom" secondItem="g4c-w4-oXg" secondAttribute="bottom" id="IAP-0b-Fhz"/>
+                            <constraint firstItem="7bX-61-pMV" firstAttribute="trailing" secondItem="g4c-w4-oXg" secondAttribute="trailing" id="J2u-h3-cWN"/>
+                            <constraint firstItem="g4c-w4-oXg" firstAttribute="leading" secondItem="7bX-61-pMV" secondAttribute="leading" id="WJd-LG-7Mt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7bX-61-pMV"/>
                     </view>
                     <navigationItem key="navigationItem" id="e05-Ft-nIb"/>
+                    <connections>
+                        <outlet property="containerView" destination="g4c-w4-oXg" id="hRx-Qt-3nm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9F-GU-d6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="25" y="1496"/>
+            <point key="canvasLocation" x="20" y="2402"/>
+        </scene>
+        <!--Main LikeTVC-->
+        <scene sceneID="w1t-el-kC8">
+            <objects>
+                <tableViewController storyboardIdentifier="MainLikeTVC" id="ZEb-rs-CGc" customClass="MainLikeTVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JFX-dZ-f7Q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ear-r1-FuV">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ear-r1-FuV" id="DV6-Cu-Sjf">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ZEb-rs-CGc" id="aGg-Ir-tZp"/>
+                            <outlet property="delegate" destination="ZEb-rs-CGc" id="kFH-vR-xPV"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="soN-nC-Ko3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="905" y="2215"/>
+        </scene>
+        <!--Main DislikeTVC-->
+        <scene sceneID="LBq-aq-K0r">
+            <objects>
+                <tableViewController storyboardIdentifier="MainDislikeTVC" id="68f-tp-rX6" customClass="MainDislikeTVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5ex-iG-cyu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zJV-WS-2Q3">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zJV-WS-2Q3" id="jZe-eK-Znr">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="68f-tp-rX6" id="YZG-qf-vJl"/>
+                            <outlet property="delegate" destination="68f-tp-rX6" id="YMt-D8-PBJ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z5i-x1-Xfu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="905" y="2909"/>
         </scene>
         <!--RegionVC-->
         <scene sceneID="yOI-0K-oOJ">
@@ -1022,7 +1091,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKg-SW-LYJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="1151.8740629685158"/>
+            <point key="canvasLocation" x="737" y="1172"/>
         </scene>
         <!--Community WriteVC-->
         <scene sceneID="DGd-yi-RMs">
@@ -1646,7 +1715,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3rt-FU-zDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2246" y="836"/>
+            <point key="canvasLocation" x="2174" y="1172"/>
         </scene>
         <!--순위-->
         <scene sceneID="cCG-wt-JkB">
@@ -1665,7 +1734,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nvj-az-3mI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-850" y="1496"/>
+            <point key="canvasLocation" x="-855" y="2401"/>
         </scene>
     </scenes>
     <resources>
