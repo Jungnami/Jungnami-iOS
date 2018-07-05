@@ -77,11 +77,10 @@ class RegionVC: UIViewController {
         }
         
         print("hihi")
-        /* if let searchLegislatorResultTVC = self.storyboard?.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
-         self.navSearchView.endEditing(true)
-         //searchLegislatorResultTVC = self.selectedCategory
-         self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
-         }*/
+        if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
+            partyListDetailPageMenuVC.selectedRegion = selectedRegion
+    self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
+        }
     }
     
 }

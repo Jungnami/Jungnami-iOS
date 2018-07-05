@@ -10,8 +10,10 @@ import UIKit
 class PartyListDetailPageMenuVC : UIViewController{
     
     @IBOutlet weak var containerView: UIView!
-   
+    
     var keyboardDismissGesture: UITapGestureRecognizer?
+    var selectedRegion : Region?
+    var selectedParty : PartyList?
     lazy var navSearchView : UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -49,27 +51,29 @@ class PartyListDetailPageMenuVC : UIViewController{
     private lazy var partyListDetailLikeTVC: PartyListDetailLikeTVC = {
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-      
+        
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailLikeTVC.reuseIdentifier) as! PartyListDetailLikeTVC
         
-         viewController.selectedParty = selectedParty
+        viewController.selectedParty = selectedParty
+        viewController.selectedRegion = selectedRegion
         self.add(asChildViewController: viewController)
         
         return viewController
     }()
     
     private lazy var partyListDetailDislikeTVC: PartyListDetailDislikeTVC = {
-       
+        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-       
+        
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailDislikeTVC.reuseIdentifier) as! PartyListDetailDislikeTVC
         viewController.selectedParty = selectedParty
+        viewController.selectedRegion = selectedRegion
         self.add(asChildViewController: viewController)
         
         return viewController
     }()
     
-
+    
     lazy var menuBar: PartyListDetailPageMenuBar = {
         let mb = PartyListDetailPageMenuBar()
         mb.homeController = self
@@ -77,7 +81,7 @@ class PartyListDetailPageMenuVC : UIViewController{
     }()
     
     
-    var selectedParty : PartyList?
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,7 +92,6 @@ class PartyListDetailPageMenuVC : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTxtField.delegate = self
-      
         setDefaultNav()
         blackView.isHidden = true
         self.view.addSubview(blackView)
@@ -97,6 +100,7 @@ class PartyListDetailPageMenuVC : UIViewController{
         }
         setupMenuBar()
         setupView()
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -277,14 +281,14 @@ extension PartyListDetailPageMenuVC{
 
 //메뉴바랑 그 안 컨테이너뷰
 extension PartyListDetailPageMenuVC{
-  
+    
     
     static func viewController() -> PartyListDetailPageMenuVC {
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListDetailPageMenuVC.reuseIdentifier) as! PartyListDetailPageMenuVC
     }
     
     
-  
+    
     private func add(asChildViewController viewController: UIViewController) {
         
         // Add Child View Controller

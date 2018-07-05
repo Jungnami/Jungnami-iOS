@@ -10,6 +10,7 @@ import UIKit
 class PartyListDetailDislikeTVC: UITableViewController {
 
     var selectedParty : PartyList?
+    var selectedRegion : Region?
     var sampleData : [SampleLegislator2] = []
     
     override func viewDidLoad() {
@@ -47,8 +48,13 @@ class PartyListDetailDislikeTVC: UITableViewController {
         if indexPath.section == 0 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: PartyListDetailFirstSectionTVCell.reuseIdentifier) as! PartyListDetailFirstSectionTVCell
+            
             if let selectedParty_ = selectedParty {
                 cell.configure(selectedParty: selectedParty_)
+            }
+            
+            if let selectedRegion_ = selectedRegion {
+                cell.configure2(selectedRegion: selectedRegion_)
             }
             
             return cell

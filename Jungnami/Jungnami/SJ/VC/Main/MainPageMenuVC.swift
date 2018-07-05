@@ -1,15 +1,13 @@
 //
-//  PartyListPageMenuVC.swift
+//  MainPageMenuVC.swift
 //  Jungnami
 //
-//  Created by 강수진 on 2018. 7. 3..
-//  Copyright © 2018년 강수진. All rights reserved.
+//  Created by 강수진 on 2018. 7. 6..
 //
 
 import UIKit
-import SnapKit
 
-class PartyListPageMenuVC: UIViewController, PushVCProtocol {
+class MainPageMenuVC: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
     var keyboardDismissGesture: UITapGestureRecognizer?
@@ -47,33 +45,36 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
         return view
     }()
     
-    lazy var menuBar: PartyListMenuBar = {
-        let mb = PartyListMenuBar()
+    
+    
+    private lazy var mainLikeTVC: MainLikeTVC = {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        var viewController = storyboard.instantiateViewController(withIdentifier: MainLikeTVC.reuseIdentifier) as! MainLikeTVC
+        
+        
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private lazy var mainDislikeTVC: MainDislikeTVC = {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        var viewController = storyboard.instantiateViewController(withIdentifier: MainDislikeTVC.reuseIdentifier) as! MainDislikeTVC
+        
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    
+    lazy var menuBar: MainMenuBar = {
+        let mb = MainMenuBar()
         mb.homeController = self
         return mb
-    }()
-    
-    
-    private lazy var partyListTVC: PartyListTVC = {
-        // Load Storyboard
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
-        var viewController = storyboard.instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC
-       
-        self.add(asChildViewController: viewController)
-        
-        return viewController
-    }()
-    
-    private lazy var regionVC: RegionVC = {
-       
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-      
-        var viewController = storyboard.instantiateViewController(withIdentifier: RegionVC.reuseIdentifier) as! RegionVC
-      
-        self.add(asChildViewController: viewController)
-        
-        return viewController
     }()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,11 +97,15 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
     }
- 
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+    func scrollToMenuIndex(menuIndex: Int) {
+        updateView(selected: menuIndex)
+        
     }
     
     func searchLegislator(){
@@ -111,23 +116,85 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
         }
     }
     
-    func pushAction(selectedParty: PartyList) {
-        print("aaa")
-        if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
-            partyListDetailPageMenuVC.selectedParty = selectedParty
-            self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
-        }
-    }
-    func scrollToMenuIndex(menuIndex: Int) {
-        updateView(selected: menuIndex)
-        
+    
+    
+}
+//메뉴바랑 그 안 컨테이너뷰
+extension MainPageMenuVC{
+    
+    
+    static func viewController() -> PartyListDetailPageMenuVC {
+        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListDetailPageMenuVC.reuseIdentifier) as! PartyListDetailPageMenuVC
     }
     
-   
+    
+    
+    private func add(asChildViewController viewController: UIViewController) {
+        
+        // Add Child View Controller
+        addChildViewController(viewController)
+        
+        // Add Child View as Subview
+        containerView.addSubview(viewController.view)
+        
+        // Configure Child View
+        viewController.view.frame = containerView.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Notify Child View Controller
+        viewController.didMove(toParentViewController: self)
+    }
+    
+    //----------------------------------------------------------------
+    
+    private func remove(asChildViewController viewController: UIViewController) {
+        // Notify Child View Controller
+        viewController.willMove(toParentViewController: nil)
+        
+        // Remove Child View From Superview
+        viewController.view.removeFromSuperview()
+        
+        // Notify Child View Controller
+        viewController.removeFromParentViewController()
+    }
+    
+    //----------------------------------------------------------------
+    
+    private func updateView(selected : Int) {
+        if selected == 0 {
+            remove(asChildViewController: mainDislikeTVC)
+            add(asChildViewController: mainLikeTVC)
+        } else {
+            remove(asChildViewController: mainLikeTVC)
+            add(asChildViewController: mainDislikeTVC)
+        }
+    }
+    
+    //----------------------------------------------------------------
+    
+    func setupView() {
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.topAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
+        updateView(selected: 0)
+    }
+    
+    private func setupMenuBar() {
+        
+        //메뉴바 삽입
+        view.addSubview(menuBar)
+        
+        menuBar.translatesAutoresizingMaskIntoConstraints = false
+        menuBar.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
+        menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        menuBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        
+        
+    }
 }
 
 //네비게이션 기본바 커스텀
-extension PartyListPageMenuVC {
+extension MainPageMenuVC {
     
     @objc func setDefaultNav(){
         //setupTitleNavImg
@@ -143,7 +210,7 @@ extension PartyListPageMenuVC {
         //setupLeftNavItem
         let myPageBtn = UIButton(type: .system)
         myPageBtn.setImage(#imageLiteral(resourceName: "partylist_mypage").withRenderingMode(.alwaysOriginal), for: .normal)
-        myPageBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.toMyPage(_sender:)), for: .touchUpInside)
+        myPageBtn.addTarget(self, action:  #selector(MainPageMenuVC.toMyPage(_sender:)), for: .touchUpInside)
         myPageBtn.snp.makeConstraints { (make) in
             make.height.equalTo(24)
             make.width.equalTo(24)
@@ -157,17 +224,17 @@ extension PartyListPageMenuVC {
             make.height.equalTo(24)
             make.width.equalTo(24)
         }
-        searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.search(_sender:)), for: .touchUpInside)
+        searchBtn.addTarget(self, action:  #selector(MainPageMenuVC.search(_sender:)), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
-
+        
     }
     
-
-   
+    
+    
 }
 
 //기본 네비게이션 바에서 오른쪽/왼쪽 아이템에 대한 행동
-extension PartyListPageMenuVC {
+extension MainPageMenuVC {
     @objc public func toMyPage(_sender: UIButton) {
         //1. 나중에 goFirst 했던 것처럼 해당 뷰로 exit 바로 할수 있도록 하기
     }
@@ -182,7 +249,7 @@ extension PartyListPageMenuVC {
 }
 
 //네비게이션 서치바 커스텀
-extension PartyListPageMenuVC{
+extension MainPageMenuVC{
     func makeSearchBarView() {
         navSearchView.snp.makeConstraints { (make) in
             make.width.equalTo(311)
@@ -220,7 +287,7 @@ extension PartyListPageMenuVC{
 }
 
 //txtField Delegate (엔터버튼 클릭시)
-extension PartyListPageMenuVC : UITextFieldDelegate{
+extension MainPageMenuVC : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.text == "" {
             simpleAlert(title: "오류", message: "검색어 입력")
@@ -241,7 +308,7 @@ extension PartyListPageMenuVC : UITextFieldDelegate{
 }
 
 //키보드 대응
-extension PartyListPageMenuVC{
+extension MainPageMenuVC{
     func setKeyboardSetting() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -278,87 +345,10 @@ extension PartyListPageMenuVC{
     @objc func tapBackground() {
         self.navSearchView.endEditing(true)
     }
-
     
     
     
-
+    
+    
     
 }
-
-//메뉴바랑 그 안 컨테이너뷰
-extension PartyListPageMenuVC{
-
-    
-    static func viewController() -> PartyListPageMenuVC {
-        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListPageMenuVC.reuseIdentifier) as! PartyListPageMenuVC
-    }
-    
-    
-
-    private func add(asChildViewController viewController: UIViewController) {
-        
-        // Add Child View Controller
-        addChildViewController(viewController)
-        
-        // Add Child View as Subview
-        containerView.addSubview(viewController.view)
-        
-        // Configure Child View
-        viewController.view.frame = containerView.bounds
-        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        // Notify Child View Controller
-        viewController.didMove(toParentViewController: self)
-    }
-    
-    //----------------------------------------------------------------
-    
-    private func remove(asChildViewController viewController: UIViewController) {
-        // Notify Child View Controller
-        viewController.willMove(toParentViewController: nil)
-        
-        // Remove Child View From Superview
-        viewController.view.removeFromSuperview()
-        
-        // Notify Child View Controller
-        viewController.removeFromParentViewController()
-    }
-    
-    //----------------------------------------------------------------
-    
-    private func updateView(selected : Int) {
-        if selected == 0 {
-            remove(asChildViewController: regionVC)
-            add(asChildViewController: partyListTVC)
-        } else {
-            remove(asChildViewController: partyListTVC)
-            add(asChildViewController: regionVC)
-        }
-    }
-    
-    //----------------------------------------------------------------
-    
-    func setupView() {
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
-        updateView(selected: 0)
-    }
-    
-    private func setupMenuBar() {
-        
-        //메뉴바 삽입
-        view.addSubview(menuBar)
-        
-        menuBar.translatesAutoresizingMaskIntoConstraints = false
-        menuBar.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-        menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        menuBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        
-        
-    }
-}
-
-
-
