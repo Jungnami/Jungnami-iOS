@@ -10,7 +10,7 @@ import UIKit
 import PageMenu
 import SnapKit
 
-class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
+class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate, PushVCProtocol {
     
     var pageMenu: CAPSPageMenu?
     var keyboardDismissGesture: UITapGestureRecognizer?
@@ -82,6 +82,13 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
             self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
         }
     }
+    
+    func pushAction(selectedParty: PartyList) {
+        if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
+            partyListDetailPageMenuVC.selectedParty = selectedParty
+            self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
+        }
+    }
 }
 
 //페이지 메뉴 라이브러리 커스텀
@@ -92,6 +99,9 @@ extension PartyListPageMenuVC {
         var controllerArray : [UIViewController] = []
         
         let partyListTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC
+        
+        partyListTVC.delegate = self
+        
         partyListTVC.title = "정당"
         
         controllerArray.append(partyListTVC)
@@ -162,21 +172,13 @@ extension PartyListPageMenuVC {
             make.height.equalTo(24)
             make.width.equalTo(24)
         }
-        searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.goNextPage2(_sender:)), for: .touchUpInside)
+        searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.search(_sender:)), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
 
     }
     
+
    
-    
-    @objc func goNextPage2(_sender: UIButton){
-        print("here2")
-        if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
-            print("here3")
-            self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
-        }
-        
-    }
 }
 
 //기본 네비게이션 바에서 오른쪽/왼쪽 아이템에 대한 행동

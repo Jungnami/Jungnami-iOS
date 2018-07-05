@@ -46,7 +46,7 @@ class PartyListDetailPageMenuVC : UIViewController, CAPSPageMenuDelegate{
         return view
     }()
     
-     var selectedParty : Int?
+     var selectedParty : PartyList?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
