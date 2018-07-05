@@ -43,7 +43,7 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     /////statusBar///
     private var hideStatusBar: Bool = false
-    
+
     override var prefersStatusBarHidden: Bool {
         return hideStatusBar
     }
@@ -65,8 +65,8 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         commentWriteField.addTarget(self, action: #selector(canCommentSend), for: .editingChanged)
         setKeyboardSetting()
         //상태바 없애
-        hideStatusBar = true
-        setNeedsStatusBarAppearanceUpdate()
+//        hideStatusBar = true
+//        setNeedsStatusBarAppearanceUpdate()
         
         
         
