@@ -31,6 +31,10 @@ class PartyListTVC: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 5
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+    }
 
 }
 

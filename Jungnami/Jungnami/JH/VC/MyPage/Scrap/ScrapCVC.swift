@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class ScrapCVC: UICollectionViewController {
 
     override func viewDidLoad() {

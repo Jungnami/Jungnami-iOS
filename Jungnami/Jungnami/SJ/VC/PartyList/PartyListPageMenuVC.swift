@@ -53,7 +53,7 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
         self.navigationController?.navigationBar.isHidden = false
         setKeyboardSetting()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTxtField.delegate = self
@@ -76,8 +76,8 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
     }
     
     func searchLegislator(){
-         if let searchLegislatorResultTVC = self.storyboard?.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
-             self.navSearchView.endEditing(true)
+        if let searchLegislatorResultTVC = self.storyboard?.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
+            self.navSearchView.endEditing(true)
             //searchLegislatorResultTVC = self.selectedCategory
             self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
         }
@@ -86,49 +86,49 @@ class PartyListPageMenuVC: UIViewController, CAPSPageMenuDelegate {
 
 //페이지 메뉴 라이브러리 커스텀
 extension PartyListPageMenuVC {
-      func setupPageMenu(){
-     self.navigationController?.navigationBar.shadowImage = UIImage()
-     
-     var controllerArray : [UIViewController] = []
-     
-     let partyListTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC
-     partyListTVC.title = "정당"
-     
-     controllerArray.append(partyListTVC)
-     
-     
-     
-     
-     let regionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: RegionVC.reuseIdentifier) as! RegionVC
-     regionVC.title = "지역"
-     controllerArray.append(regionVC)
-     
-     
-     let parameters: [CAPSPageMenuOption] = [
-     .menuItemSeparatorWidth(0),
-     .scrollMenuBackgroundColor(.white),
-     .viewBackgroundColor(#colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9843137255, alpha: 1)),
-     .bottomMenuHairlineColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)),
-     .selectionIndicatorColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
-     .menuHeight(42.0),
-     .selectedMenuItemLabelColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
-     .unselectedMenuItemLabelColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)),
-     .useMenuLikeSegmentedControl(true),
-     .menuItemSeparatorRoundEdges(true),
-     .selectionIndicatorHeight(3.0),
-     .menuItemSeparatorPercentageHeight(0.1)
-     ]
-     
-     pageMenu = CAPSPageMenu(viewControllers: controllerArray,
-     frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height),
-     pageMenuOptions: parameters)
-     
-     
-     pageMenu!.delegate = self
-     
-     self.view.addSubview(pageMenu!.view)
-     
-     }
+    func setupPageMenu(){
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        var controllerArray : [UIViewController] = []
+        
+        let partyListTVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC
+        partyListTVC.title = "정당"
+        
+        controllerArray.append(partyListTVC)
+        
+        
+        
+        
+        let regionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: RegionVC.reuseIdentifier) as! RegionVC
+        regionVC.title = "지역"
+        controllerArray.append(regionVC)
+        
+        
+        let parameters: [CAPSPageMenuOption] = [
+            .menuItemSeparatorWidth(0),
+            .scrollMenuBackgroundColor(.white),
+            .viewBackgroundColor(#colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9843137255, alpha: 1)),
+            .bottomMenuHairlineColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)),
+            .selectionIndicatorColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
+            .menuHeight(42.0),
+            .selectedMenuItemLabelColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)),
+            .unselectedMenuItemLabelColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)),
+            .useMenuLikeSegmentedControl(true),
+            .menuItemSeparatorRoundEdges(true),
+            .selectionIndicatorHeight(3.0),
+            .menuItemSeparatorPercentageHeight(0.1)
+        ]
+        
+        pageMenu = CAPSPageMenu(viewControllers: controllerArray,
+                                frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height),
+                                pageMenuOptions: parameters)
+        
+        
+        pageMenu!.delegate = self
+        
+        self.view.addSubview(pageMenu!.view)
+        
+    }
 }
 
 //네비게이션 기본바 커스텀
@@ -156,15 +156,25 @@ extension PartyListPageMenuVC {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: myPageBtn)
         
         //setupRightNavItem
-       let searchBtn = UIButton(type: .system)
+        let searchBtn = UIButton(type: .system)
         searchBtn.setImage(#imageLiteral(resourceName: "partylist_search").withRenderingMode(.alwaysOriginal), for: .normal)
         searchBtn.snp.makeConstraints { (make) in
             make.height.equalTo(24)
             make.width.equalTo(24)
         }
-        searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.search(_sender:)), for: .touchUpInside)
+        searchBtn.addTarget(self, action:  #selector(PartyListPageMenuVC.goNextPage2(_sender:)), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
-        
+
+    }
+    
+   
+    
+    @objc func goNextPage2(_sender: UIButton){
+        print("here2")
+        if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
+            print("here3")
+            self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
+        }
         
     }
 }
@@ -180,16 +190,18 @@ extension PartyListPageMenuVC {
         self.navigationItem.leftBarButtonItem = nil
         
     }
+    
+    
 }
 
 //네비게이션 서치바 커스텀
 extension PartyListPageMenuVC{
     func makeSearchBarView() {
-       
+        
         navSearchView.snp.makeConstraints { (make) in
             make.width.equalTo(311)
             make.height.equalTo(31)
-           // make.leading.equalTo(self.)
+            // make.leading.equalTo(self.)
         }
         navSearchView.addSubview(searchGrayView)
         navSearchView.addSubview(searchView)
@@ -204,7 +216,7 @@ extension PartyListPageMenuVC{
             make.width.height.equalTo(15)
             make.centerY.equalTo(searchGrayView)
         }
-
+        
         searchTxtField.snp.makeConstraints { (make) in
             make.top.bottom.trailing.equalTo(searchGrayView)
             make.leading.equalTo(searchView.snp.trailing).offset(8)
@@ -213,7 +225,7 @@ extension PartyListPageMenuVC{
         searchTxtField.delegate = self
         navigationItem.titleView = navSearchView
         navigationController?.navigationBar.isTranslucent = false
-
+        
         //rightBarBtn
         let rightBarButton = customBarbuttonItem(title: "취소", red: 112, green: 112, blue: 112, fontSize: 14, selector: #selector(setDefaultNav))
         
@@ -257,9 +269,9 @@ extension PartyListPageMenuVC{
     @objc func keyboardWillHide(_ notification: Notification) {
         blackView.isHidden = true
         searchTxtField.text = ""
-       // setDefaultNav()
+        // setDefaultNav()
         adjustKeyboardDismissGesture(isKeyboardVisible: false)
-    
+        
     }
     
     //화면 바깥 터치했을때 키보드 없어지는 코드
@@ -278,7 +290,7 @@ extension PartyListPageMenuVC{
     }
     
     @objc func tapBackground() {
-       self.navSearchView.endEditing(true)
+        self.navSearchView.endEditing(true)
     }
 }
 
