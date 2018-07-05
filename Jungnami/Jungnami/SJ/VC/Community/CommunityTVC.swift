@@ -113,14 +113,14 @@ extension CommunityTVC {
         cell.configure(data: sampleData[indexPath.row])
         
         cell.scrapBtn.tag = indexPath.row
-        cell.scrapBtn.isUserInteractionEnabled = true
-        cell.scrapBtn.addTarget(self, action: #selector(scrap(sender:)), for: .touchUpInside)
+//        cell.scrapBtn.isUserInteractionEnabled = true
+        cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
         
         return cell
         
     }
     
-    @objc func scrap(sender : UIButton){
+    @objc func scrap(_ sender : UIButton){
         print("touch!")
         //다른 뷰로 넘길때 userId 같이 넘기면 (나중에는 댓글에 대한 고유 인덱스가 됨) 그거 가지고 다시 통신
         //let userName = sampleData[sender.tag].name

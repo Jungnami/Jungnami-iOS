@@ -56,7 +56,7 @@ class CommunityTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImgView.makeImageRound()
-    
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
