@@ -21,16 +21,19 @@ class PartyListDetailLikeTVC: UITableViewController {
         sampleData.append(a)
         sampleData.append(b)
         /////////////////////////////////////////////////
-        print(selectedParty ?? 6)
-        
-      
+
     }
 
+
+}
+
+
+extension PartyListDetailLikeTVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
@@ -38,7 +41,7 @@ class PartyListDetailLikeTVC: UITableViewController {
             return sampleData.count
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
@@ -53,8 +56,8 @@ class PartyListDetailLikeTVC: UITableViewController {
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PartyListDetailTVcell.reuseIdentifier, for: indexPath) as! PartyListDetailTVcell
+            cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
             return cell
         }
     }
-
 }
