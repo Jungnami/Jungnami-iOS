@@ -68,7 +68,7 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 170*self.view.frame.width/375, height: 187*self.view.frame.height/667) //iphone7,8기준
+        return CGSize(width: 170, height: 187)
         
     }
     //section내의
@@ -82,7 +82,7 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(11, 12, 12, 11)
+        return UIEdgeInsetsMake(10, 10, 10, 10)
     }
     
 

@@ -53,6 +53,10 @@
 		43D1DAC920EB9A4E00B752D1 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D1DAC820EB9A4E00B752D1 /* CommentData.swift */; };
 		43E84BF620EDF811007C6C97 /* ScrapSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BF520EDF811007C6C97 /* ScrapSample.swift */; };
 		43E84BF820EDF854007C6C97 /* ScrapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BF720EDF854007C6C97 /* ScrapData.swift */; };
+		43E84BFB20EE2E42007C6C97 /* ContentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BFA20EE2E42007C6C97 /* ContentDetailVC.swift */; };
+		43E84BFD20EE2F07007C6C97 /* ContentDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BFC20EE2F07007C6C97 /* ContentDetailCell.swift */; };
+		43E84BFF20EE3EAE007C6C97 /* ContentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BFE20EE3EAE007C6C97 /* ContentSample.swift */; };
+		43E84C0420EE3FCD007C6C97 /* ContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84C0320EE3FCD007C6C97 /* ContentData.swift */; };
 		B0FAAE4A343BF869C79BD42B /* Pods_Jungnami.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +109,10 @@
 		43D1DAC820EB9A4E00B752D1 /* CommentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
 		43E84BF520EDF811007C6C97 /* ScrapSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapSample.swift; sourceTree = "<group>"; };
 		43E84BF720EDF854007C6C97 /* ScrapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapData.swift; sourceTree = "<group>"; };
+		43E84BFA20EE2E42007C6C97 /* ContentDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailVC.swift; sourceTree = "<group>"; };
+		43E84BFC20EE2F07007C6C97 /* ContentDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailCell.swift; sourceTree = "<group>"; };
+		43E84BFE20EE3EAE007C6C97 /* ContentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSample.swift; sourceTree = "<group>"; };
+		43E84C0320EE3FCD007C6C97 /* ContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentData.swift; sourceTree = "<group>"; };
 		744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jungnami.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D460A20ABACB58096DFE5D7A /* Pods-Jungnami.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jungnami.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -290,6 +298,7 @@
 			children = (
 				439D813220EB2FE5007DAD57 /* Storyboard */,
 				439D813420EB2FE5007DAD57 /* VC */,
+				43D1DAC120EB708800B752D1 /* Sample */,
 			);
 			path = JH;
 			sourceTree = "<group>";
@@ -306,7 +315,6 @@
 			isa = PBXGroup;
 			children = (
 				43C5137920ECD7E90017BDD8 /* MyPage */,
-				43D1DAC120EB708800B752D1 /* Sample */,
 				439D813520EB2FE5007DAD57 /* Content */,
 			);
 			path = VC;
@@ -316,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				439D813920EB2FE5007DAD57 /* ContentVC.swift */,
+				43E84BF920EE1DBD007C6C97 /* ContentDetail */,
 				439D813620EB2FE5007DAD57 /* ContentCollectionView */,
 				43D1DAB520EB4F2C00B752D1 /* Comment */,
 			);
@@ -380,11 +389,9 @@
 		43D1DAC120EB708800B752D1 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				43D1DAC220EB709700B752D1 /* CommentSample.swift */,
-				43D1DAC620EB989B00B752D1 /* RecommentSample.swift */,
-				43D1DAC820EB9A4E00B752D1 /* CommentData.swift */,
-				43E84BF520EDF811007C6C97 /* ScrapSample.swift */,
-				43E84BF720EDF854007C6C97 /* ScrapData.swift */,
+				43E84C0020EE3EB1007C6C97 /* comment */,
+				43E84C0120EE3EBB007C6C97 /* scrap */,
+				43E84C0220EE3ECB007C6C97 /* contentDetail */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -394,6 +401,43 @@
 			children = (
 			);
 			path = MyFeed;
+			sourceTree = "<group>";
+		};
+		43E84BF920EE1DBD007C6C97 /* ContentDetail */ = {
+			isa = PBXGroup;
+			children = (
+				43E84BFA20EE2E42007C6C97 /* ContentDetailVC.swift */,
+				43E84BFC20EE2F07007C6C97 /* ContentDetailCell.swift */,
+			);
+			path = ContentDetail;
+			sourceTree = "<group>";
+		};
+		43E84C0020EE3EB1007C6C97 /* comment */ = {
+			isa = PBXGroup;
+			children = (
+				43D1DAC220EB709700B752D1 /* CommentSample.swift */,
+				43D1DAC820EB9A4E00B752D1 /* CommentData.swift */,
+				43D1DAC620EB989B00B752D1 /* RecommentSample.swift */,
+			);
+			path = comment;
+			sourceTree = "<group>";
+		};
+		43E84C0120EE3EBB007C6C97 /* scrap */ = {
+			isa = PBXGroup;
+			children = (
+				43E84BF520EDF811007C6C97 /* ScrapSample.swift */,
+				43E84BF720EDF854007C6C97 /* ScrapData.swift */,
+			);
+			path = scrap;
+			sourceTree = "<group>";
+		};
+		43E84C0220EE3ECB007C6C97 /* contentDetail */ = {
+			isa = PBXGroup;
+			children = (
+				43E84BFE20EE3EAE007C6C97 /* ContentSample.swift */,
+				43E84C0320EE3FCD007C6C97 /* ContentData.swift */,
+			);
+			path = contentDetail;
 			sourceTree = "<group>";
 		};
 		DBF1C7D4E75F34E568FC6E76 /* Frameworks */ = {
@@ -534,9 +578,12 @@
 				43C5137E20ECD9D00017BDD8 /* ScrapCVC.swift in Sources */,
 				3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */,
 				439D814420EB2FE5007DAD57 /* RegionVC.swift in Sources */,
+				43E84BFF20EE3EAE007C6C97 /* ContentSample.swift in Sources */,
+				43E84BFB20EE2E42007C6C97 /* ContentDetailVC.swift in Sources */,
 				439D814120EB2FE5007DAD57 /* CommunityWriteVC.swift in Sources */,
 				3B6B030E20EE109600034C9B /* SampleLegislator2.swift in Sources */,
 				3BB4309120ECE952002980D9 /* PartyListDetailDislikeTVC.swift in Sources */,
+				43E84BFD20EE2F07007C6C97 /* ContentDetailCell.swift in Sources */,
 				3BB1A5C320EB9EC000D4929A /* SampleLegislator.swift in Sources */,
 				3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */,
 				43E84BF620EDF811007C6C97 /* ScrapSample.swift in Sources */,
@@ -561,6 +608,8 @@
 				3BB4308D20ECE8BF002980D9 /* PartyListDetailPageMenuVC.swift in Sources */,
 				43D1DAC920EB9A4E00B752D1 /* CommentData.swift in Sources */,
 				43D1DAC720EB989B00B752D1 /* RecommentSample.swift in Sources */,
+				43E84C0420EE3FCD007C6C97 /* ContentData.swift in Sources */,
+				3B6B031020EE12E600034C9B /* PartyList.swift in Sources */,
 				43C5138020ECD9F70017BDD8 /* ScrapCell.swift in Sources */,
 				439D814A20EB2FE5007DAD57 /* CommunityTVCell.swift in Sources */,
 				3BB4308F20ECE914002980D9 /* PartyListDetailLikeTVC.swift in Sources */,
@@ -644,7 +693,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -695,7 +744,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -709,10 +758,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y4XABUQ539;
+				DEVELOPMENT_TEAM = 4PDAEX33Y3;
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kangsujin.Jungnami;
+				PRODUCT_BUNDLE_IDENTIFIER = Jungnami;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -725,10 +774,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y4XABUQ539;
+				DEVELOPMENT_TEAM = 4PDAEX33Y3;
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kangsujin.Jungnami;
+				PRODUCT_BUNDLE_IDENTIFIER = Jungnami;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
