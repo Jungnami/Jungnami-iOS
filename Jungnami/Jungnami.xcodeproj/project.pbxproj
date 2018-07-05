@@ -43,6 +43,8 @@
 		43D1DAC320EB709700B752D1 /* CommentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D1DAC220EB709700B752D1 /* CommentSample.swift */; };
 		43D1DAC720EB989B00B752D1 /* RecommentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D1DAC620EB989B00B752D1 /* RecommentSample.swift */; };
 		43D1DAC920EB9A4E00B752D1 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D1DAC820EB9A4E00B752D1 /* CommentData.swift */; };
+		43E84BF620EDF811007C6C97 /* ScrapSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BF520EDF811007C6C97 /* ScrapSample.swift */; };
+		43E84BF820EDF854007C6C97 /* ScrapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BF720EDF854007C6C97 /* ScrapData.swift */; };
 		B0FAAE4A343BF869C79BD42B /* Pods_Jungnami.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +87,8 @@
 		43D1DAC220EB709700B752D1 /* CommentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSample.swift; sourceTree = "<group>"; };
 		43D1DAC620EB989B00B752D1 /* RecommentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommentSample.swift; sourceTree = "<group>"; };
 		43D1DAC820EB9A4E00B752D1 /* CommentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
+		43E84BF520EDF811007C6C97 /* ScrapSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapSample.swift; sourceTree = "<group>"; };
+		43E84BF720EDF854007C6C97 /* ScrapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapData.swift; sourceTree = "<group>"; };
 		744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jungnami.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D460A20ABACB58096DFE5D7A /* Pods-Jungnami.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jungnami.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -335,6 +339,8 @@
 				43D1DAC220EB709700B752D1 /* CommentSample.swift */,
 				43D1DAC620EB989B00B752D1 /* RecommentSample.swift */,
 				43D1DAC820EB9A4E00B752D1 /* CommentData.swift */,
+				43E84BF520EDF811007C6C97 /* ScrapSample.swift */,
+				43E84BF720EDF854007C6C97 /* ScrapData.swift */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -487,6 +493,8 @@
 				3BB4309120ECE952002980D9 /* PartyListDetailDislikeTVC.swift in Sources */,
 				3BB1A5C320EB9EC000D4929A /* SampleLegislator.swift in Sources */,
 				3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */,
+				43E84BF620EDF811007C6C97 /* ScrapSample.swift in Sources */,
+				43E84BF820EDF854007C6C97 /* ScrapData.swift in Sources */,
 				439D814720EB2FE5007DAD57 /* NeedLoginVC.swift in Sources */,
 				439D814D20EB2FE5007DAD57 /* ContentSecondCell.swift in Sources */,
 				43D1DAC320EB709700B752D1 /* CommentSample.swift in Sources */,

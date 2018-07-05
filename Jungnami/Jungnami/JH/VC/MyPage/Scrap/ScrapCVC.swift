@@ -38,24 +38,31 @@ class ScrapCVC: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
+    
+    var data = ScrapData.sharedInstance.scraps
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        print(data.count)
+        return data.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScrapCell.reuseIdentifier, for: indexPath) as! ScrapCell
     
-        // Configure the cell
-    
+        //configure로
+        cell.configure(data: data[indexPath.row])
         return cell
     }
+
+
+    //layout
 
     // MARK: UICollectionViewDelegate
 
@@ -64,7 +71,7 @@ class ScrapCVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return true
     }
-    */
+    /*
 
     /*
     // Uncomment this method to specify if the specified item should be selected
