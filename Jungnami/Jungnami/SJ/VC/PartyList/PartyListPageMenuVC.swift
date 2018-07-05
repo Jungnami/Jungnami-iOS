@@ -197,7 +197,6 @@ extension PartyListPageMenuVC {
 //네비게이션 서치바 커스텀
 extension PartyListPageMenuVC{
     func makeSearchBarView() {
-        
         navSearchView.snp.makeConstraints { (make) in
             make.width.equalTo(311)
             make.height.equalTo(31)
