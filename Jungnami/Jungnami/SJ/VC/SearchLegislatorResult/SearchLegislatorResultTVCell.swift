@@ -28,6 +28,10 @@ class SearchLegislatorResultTVCell: UITableViewCell {
         } else {
             profileImg.layer.borderColor = ColorChip.shared().partyRed.cgColor
         }
+        
+        if rank % 2 == 0 {
+            self.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
+        }
     }
     
     override func awakeFromNib() {
