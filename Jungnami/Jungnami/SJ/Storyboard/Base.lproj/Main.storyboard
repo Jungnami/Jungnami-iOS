@@ -587,7 +587,7 @@
                                                 <constraint firstAttribute="width" secondItem="JTU-It-cIq" secondAttribute="height" multiplier="1:1" id="SBk-vF-7bk"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y6u-ik-dCg">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="partylist_vote_blue" translatesAutoresizingMaskIntoConstraints="NO" id="Y6u-ik-dCg">
                                             <rect key="frame" x="342" y="23" width="18" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Y6u-ik-dCg" secondAttribute="height" multiplier="1:1" id="jBj-1U-IZb"/>
@@ -1049,7 +1049,7 @@
         <scene sceneID="gCr-dw-Odf">
             <objects>
                 <tableViewController storyboardIdentifier="CommunityResultTVC" id="Wzh-KU-xbZ" customClass="CommunityResultTVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cSk-bP-WZW">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cSk-bP-WZW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1114,7 +1114,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityTVCell" rowHeight="430" id="BRk-u1-pkw" customClass="CommunityTVCell" customModule="Jungnami" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityTVCell" rowHeight="430" id="BRk-u1-pkw" customClass="CommunityTVCell" customModule="Jungnami" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="74.5" width="375" height="430"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BRk-u1-pkw" id="2hL-Oq-UI3">
@@ -1311,14 +1311,17 @@
             <point key="canvasLocation" x="738" y="-331"/>
         </scene>
         <!--Party List Detail DislikeTVC-->
+
         <scene sceneID="gPs-hl-UvQ">
             <objects>
                 <tableViewController storyboardIdentifier="PartyListDetailDislikeTVC" id="Ppl-n3-1c9" customClass="PartyListDetailDislikeTVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Ex-m3-4wH">
+
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
+
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PartyListDetailFirstSectionTVCell" rowHeight="68" id="AFu-tf-R16" customClass="PartyListDetailFirstSectionTVCell" customModule="Jungnami" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="68"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -1327,10 +1330,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ca2-VL-ic6">
+
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
+
                                         <constraint firstAttribute="bottom" secondItem="Ca2-VL-ic6" secondAttribute="bottom" id="FZ4-w7-1Ik"/>
                                         <constraint firstAttribute="trailing" secondItem="Ca2-VL-ic6" secondAttribute="trailing" id="HFM-sb-SJE"/>
                                         <constraint firstItem="Ca2-VL-ic6" firstAttribute="top" secondItem="Bos-Gh-rmD" secondAttribute="top" id="Nke-jU-s9J"/>
@@ -1349,33 +1354,41 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="강병원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wj9-7U-Fow">
+
                                             <rect key="frame" x="97" y="14.5" width="37" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Z3-Ub-Lfj">
                                             <rect key="frame" x="12" y="25.5" width="20" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="FpC-bd-WeL"/>
                                                 <constraint firstAttribute="height" constant="13" id="mXf-nf-8Vr"/>
+
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.21176470589999999" green="0.7725490196" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12위" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XND-KC-MRN">
+
                                             <rect key="frame" x="97" y="36.5" width="23.5" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.21176470589999999" green="0.7725490196" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서울 은평구 을" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mT-EZ-I00">
+
                                             <rect key="frame" x="123.5" y="36.5" width="69" height="15"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                             <color key="textColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cmf-J5-He0">
                                             <rect key="frame" x="45" y="12.5" width="39" height="39"/>
                                             <constraints>
@@ -1386,10 +1399,12 @@
                                             <rect key="frame" x="342" y="23" width="18" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="emm-qT-AwZ" secondAttribute="height" multiplier="1:1" id="FA5-fs-GKr"/>
+
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
+
                                         <constraint firstItem="Cmf-J5-He0" firstAttribute="width" secondItem="STS-9d-PJz" secondAttribute="width" multiplier="39:375" id="7Wq-cS-CLt"/>
                                         <constraint firstAttribute="trailing" secondItem="emm-qT-AwZ" secondAttribute="trailing" constant="15" id="8rr-lV-bNV"/>
                                         <constraint firstItem="9mT-EZ-I00" firstAttribute="centerY" secondItem="XND-KC-MRN" secondAttribute="centerY" id="AgI-sm-Y6c"/>
@@ -1414,10 +1429,12 @@
                                     <outlet property="profileImgView" destination="Cmf-J5-He0" id="6Vn-nw-cSl"/>
                                     <outlet property="rankLbl" destination="XND-KC-MRN" id="L12-02-ikK"/>
                                     <outlet property="regionLbl" destination="9mT-EZ-I00" id="w7q-kJ-h3G"/>
+
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
+
                             <outlet property="dataSource" destination="Ppl-n3-1c9" id="WH0-Jk-AFl"/>
                             <outlet property="delegate" destination="Ppl-n3-1c9" id="jyo-rp-hUc"/>
                         </connections>
@@ -1426,6 +1443,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3rt-FU-zDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2246" y="836"/>
+
         </scene>
     </scenes>
     <resources>
@@ -1447,6 +1465,7 @@
         <image name="partylist_mintbox" width="364" height="100"/>
         <image name="partylist_orangebox" width="364" height="100"/>
         <image name="partylist_redbox" width="364" height="100"/>
+        <image name="partylist_vote_blue" width="24" height="24"/>
         <image name="partylist_yellowbox" width="364" height="100"/>
         <image name="tab_community" width="23" height="23"/>
         <image name="tab_list" width="23" height="23"/>
