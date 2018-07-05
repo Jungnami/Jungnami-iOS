@@ -103,7 +103,6 @@ extension PartyListPageMenuVC {
         partyListTVC.delegate = self
         
         partyListTVC.title = "정당"
-        
         controllerArray.append(partyListTVC)
         
         
@@ -136,7 +135,9 @@ extension PartyListPageMenuVC {
         
         pageMenu!.delegate = self
         
+        self.addChildViewController(pageMenu!)
         self.view.addSubview(pageMenu!.view)
+        pageMenu!.didMove(toParentViewController: self)
         
     }
 }

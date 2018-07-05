@@ -13,4 +13,5 @@ struct SampleLegislator2{
     var name : String
     var rank : Int
     var region : String
+    var party : PartyList
 }

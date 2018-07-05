@@ -21,12 +21,11 @@ class PartyListTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // setKeyboardSetting()
         //        if #available(iOS 11.0, *) {
         //            tableView.contentInsetAdjustmentBehavior = .never
         //        }
-        tableView.contentInset.bottom = self.tabBarController?.tabBar.frame.height ?? 49.0
+//        tableView.contentInset.bottom = self.tabBarController?.tabBar.frame.height ?? 49.0
         
     }
     
