@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct ContentSample {
-    var imgaes : [UIImage]
+    var images : [UIImage]
     var title: String
     var date : String
     var category: String

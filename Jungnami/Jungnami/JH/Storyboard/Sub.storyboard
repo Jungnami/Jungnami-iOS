@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k0w-Vt-AO2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oGt-IY-asa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1052,14 +1051,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlx-NT-JTM">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qzF-ha-Yx7">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qzF-ha-Yx7">
                                         <rect key="frame" x="0.0" y="98" width="375" height="525"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="525" id="NYv-nz-xS7"/>
                                             <constraint firstAttribute="width" constant="375" id="eUe-ZA-ZF2"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="K9o-5a-KIe">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="K9o-5a-KIe">
                                             <size key="itemSize" width="375" height="527"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1067,7 +1066,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ContentDetailCell" id="sET-dn-TaY" customClass="ContentDetailCell" customModule="Jungnami" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
+                                                <rect key="frame" x="0.0" y="-1" width="375" height="527"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
@@ -1120,6 +1119,7 @@
                                                     <constraint firstItem="gxR-ue-wfO" firstAttribute="leading" secondItem="sET-dn-TaY" secondAttribute="leading" constant="12" id="Xcl-p7-bbh"/>
                                                     <constraint firstAttribute="bottom" secondItem="mGh-6L-uyR" secondAttribute="bottom" constant="14" id="Y2t-mU-uze"/>
                                                     <constraint firstAttribute="trailing" secondItem="T80-Od-TRI" secondAttribute="trailing" id="llU-K4-HyJ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="zmd-Rc-qat" secondAttribute="bottom" constant="81.5" id="meV-oa-RJc"/>
                                                     <constraint firstItem="gxR-ue-wfO" firstAttribute="top" secondItem="T80-Od-TRI" secondAttribute="bottom" constant="26" id="qPA-hy-8Vi"/>
                                                     <constraint firstItem="zmd-Rc-qat" firstAttribute="leading" secondItem="gxR-ue-wfO" secondAttribute="leading" id="uvr-8J-vug"/>
                                                 </constraints>
@@ -1236,6 +1236,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uY0-VA-2ZT"/>
                     </view>
+                    <connections>
+                        <outlet property="detailCollectionView" destination="qzF-ha-Yx7" id="cX0-E5-yp7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8q-Zo-GX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

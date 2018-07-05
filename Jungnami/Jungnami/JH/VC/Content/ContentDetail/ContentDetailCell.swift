@@ -16,11 +16,13 @@ class ContentDetailCell: UICollectionViewCell {
     @IBOutlet weak var contentDetailDateLbl: UILabel!
     @IBOutlet weak var contentDetailImgCountLbl: UILabel!
     
-//    func configure(data : CommentSample){
-//        commentProfileImg.image = data.profile
-//        commentUserLbl.text = data.userId
-//        commentContentLbl.text = data.commentContent
-//        commentDateLbl.text = data.date
-//        commentLikeLbl.text = data.likeCount
-//    }
+    func configure(index : Int, data : ContentSample){
+        contentDetailDateLbl.text = data.date
+        contentDetailTitleLbl.text = data.title
+        contentDetailCategoryLbl.text = data.category
+        contentDetailImgCountLbl.text = data.imageCount
+        //이미지를 어떻게 넣지?ㅎㅎㅎㅎㅎㅎㅎㅎ
+        contentDetailImgView.image = data.images[index]
+        contentDetailImgCountLbl.text = "\(index+1)/20"
+    }
 }
