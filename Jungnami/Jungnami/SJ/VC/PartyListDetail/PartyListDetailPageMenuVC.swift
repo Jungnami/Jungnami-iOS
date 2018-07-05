@@ -46,7 +46,7 @@ class PartyListDetailPageMenuVC : UIViewController, CAPSPageMenuDelegate{
         return view
     }()
     
-     var selectedParty : PartyList?
+    var selectedParty : PartyList?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -129,7 +129,7 @@ extension PartyListDetailPageMenuVC {
 
 //네비게이션 기본바 커스텀
 extension PartyListDetailPageMenuVC {
-  
+    
     @objc func setDefaultNav(){
         self.navigationItem.titleView = nil
         self.navigationItem.setHidesBackButton(true, animated:true)
@@ -145,7 +145,7 @@ extension PartyListDetailPageMenuVC {
             make.width.equalTo(24)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn)
-
+        
         //setupRightNavItem
         let searchBtn = UIButton(type: .system)
         searchBtn.setImage(#imageLiteral(resourceName: "partylist_search").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -155,8 +155,8 @@ extension PartyListDetailPageMenuVC {
         }
         searchBtn.addTarget(self, action:  #selector(PartyListDetailPageMenuVC.search(_sender:)), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
-    
-      
+        
+        
         
     }
     
@@ -166,17 +166,17 @@ extension PartyListDetailPageMenuVC {
 
 //기본 네비게이션 바에서 오른쪽/왼쪽 아이템에 대한 행동
 extension PartyListDetailPageMenuVC {
-   
+    
     @objc public func toBack(_sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
-
+    
     @objc public func search(_sender: UIButton) {
         //self.navigationItem.backBarButtonItem?.isEnabled = false
         self.navigationItem.leftBarButtonItem = nil
         makeSearchBarView()
     }
-
+    
 }
 
 //네비게이션 서치바 커스텀
