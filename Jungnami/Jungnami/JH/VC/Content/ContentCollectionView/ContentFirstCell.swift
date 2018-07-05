@@ -12,7 +12,17 @@ class ContentFirstCell: UICollectionViewCell {
     
     @IBOutlet weak var recommendImgView: UIImageView!
     @IBOutlet weak var recommendTitleLbl: UILabel!
-    @IBOutlet weak var recommendContentLbl: UILabel!
-    @IBOutlet weak var recommentContentTypeImgView: UIImageView!
+    @IBOutlet weak var recommendCategoryLbl: UILabel!
+    @IBOutlet weak var recommendContentTypeImgView: UIImageView!
     
+    @IBOutlet weak var recommendContentDate: UILabel!
+    
+    
+    func configure(data: ContentMenuSample) {
+        recommendImgView.image = data.imgView
+        recommendTitleLbl.text = data.title
+        recommendCategoryLbl.text = data.category
+        recommendContentDate.text = data.date
+        recommendContentTypeImgView.image = data.typeImg
+    }
 }
