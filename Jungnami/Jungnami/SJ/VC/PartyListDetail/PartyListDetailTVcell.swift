@@ -27,20 +27,23 @@ class PartyListDetailTVcell: UITableViewCell {
         regionLbl.text = data.region
         switch data.party {
         case .blue:
-              profileImgView.layer.borderColor = ColorChip.shared().partyBlue.cgColor
+
+            profileImgView.layer.borderColor = ColorChip.shared().partyBlue.cgColor
         case .red:
-              profileImgView.layer.borderColor = ColorChip.shared().partyRed.cgColor
+            profileImgView.layer.borderColor = ColorChip.shared().partyRed.cgColor
         case .green:
-              profileImgView.layer.borderColor = ColorChip.shared().partyGreen.cgColor
+            profileImgView.layer.borderColor = ColorChip.shared().partyGreen.cgColor
         case .yellow:
-              profileImgView.layer.borderColor = ColorChip.shared().partyYellow.cgColor
+            profileImgView.layer.borderColor = ColorChip.shared().partyYellow.cgColor
         case .orange:
-              profileImgView.layer.borderColor = ColorChip.shared().partyOrange.cgColor
+            profileImgView.layer.borderColor = ColorChip.shared().partyOrange.cgColor
+
         }
         
         if index % 2 == 1 {
             self.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
         }
+
      
      }
     override func awakeFromNib() {

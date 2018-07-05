@@ -15,8 +15,10 @@ class PartyListDetailLikeTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-        let a = SampleLegislator2(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", rank: 13, region: "서울 광진구 을", party : .blue )
-        let b = SampleLegislator2(profile: #imageLiteral(resourceName: "dabi"), name: "강병원", rank: 0, region: "서울 광진구 을", party : .red)
+
+        let a = SampleLegislator2(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", rank: 13, region: "서울 광진구 을", party : .green)
+        let b = SampleLegislator2(profile: #imageLiteral(resourceName: "dabi"), name: "강병원", rank: 0, region: "서울 광진구 을", party : .blue)
+
         
         sampleData.append(a)
         sampleData.append(b)
@@ -56,7 +58,10 @@ extension PartyListDetailLikeTVC {
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PartyListDetailTVcell.reuseIdentifier, for: indexPath) as! PartyListDetailTVcell
-            cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
+
+            
+           cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
+
             return cell
         }
     }
