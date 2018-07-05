@@ -9,24 +9,80 @@
 import UIKit
 
 class RegionVC: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
-
-    
-    
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+     0 : 인천
+     1 : 서울
+     2 : 경기
+     3 : 강원
+     4 : 충남
+     5 : 충북
+     6 : 대전
+     7 : 세종
+     8 : 경북
+     9 : 대구
+     10 : 울산
+     11 : 전북
+     12 : 광주
+     13 : 전남
+     14 : 경남
+     15 : 부산
+     16 : 제주
+     */
+    var selectedRegion : Region?
+    
+    @IBAction func toNext(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            selectedRegion = .INCHEON
+        case 1:
+            selectedRegion = .SEOUL
+        case 2:
+            selectedRegion = .GYUNGGI
+        case 3:
+            selectedRegion = .GANGWON
+        case 4:
+            selectedRegion = .CHUNGNAM
+        case 5:
+            selectedRegion = .CHUNGBUK
+        case 6:
+            selectedRegion = .DAEJEON
+        case 7:
+            selectedRegion = .SEJONG
+        case 8:
+            selectedRegion = .GYUNGBUK
+        case 9:
+            selectedRegion = .DAEGU
+        case 10:
+            selectedRegion = .ULSAN
+        case 11:
+            selectedRegion = .JEONBUK
+        case 12:
+            selectedRegion = .GWANGJU
+        case 13:
+            selectedRegion = .JUNNAM
+        case 14:
+            selectedRegion = .GYUNGNAM
+        case 15:
+            selectedRegion = .BUSAN
+        case 16:
+            selectedRegion = .JEJU
+            
+        default:
+            return
+        }
+        
+        print("hihi")
+        /* if let searchLegislatorResultTVC = self.storyboard?.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
+         self.navSearchView.endEditing(true)
+         //searchLegislatorResultTVC = self.selectedCategory
+         self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
+         }*/
     }
-    */
-
+    
 }
+

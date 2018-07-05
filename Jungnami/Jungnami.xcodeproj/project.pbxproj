@@ -12,6 +12,7 @@
 		3B6B030E20EE109600034C9B /* SampleLegislator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030D20EE109600034C9B /* SampleLegislator2.swift */; };
 		3B6B031920EE530000034C9B /* ColorChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B031820EE530000034C9B /* ColorChip.swift */; };
 		3B6B031B20EE530A00034C9B /* PartyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B031A20EE530A00034C9B /* PartyList.swift */; };
+		3BAFF97620EE845A0088F020 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAFF97520EE845A0088F020 /* Region.swift */; };
 		3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */; };
 		3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */; };
 		3BB1A5C320EB9EC000D4929A /* SampleLegislator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5C220EB9EC000D4929A /* SampleLegislator.swift */; };
@@ -61,6 +62,7 @@
 		3B6B030D20EE109600034C9B /* SampleLegislator2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleLegislator2.swift; sourceTree = "<group>"; };
 		3B6B031820EE530000034C9B /* ColorChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChip.swift; sourceTree = "<group>"; };
 		3B6B031A20EE530A00034C9B /* PartyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyList.swift; sourceTree = "<group>"; };
+		3BAFF97520EE845A0088F020 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVC.swift; sourceTree = "<group>"; };
 		3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVCell.swift; sourceTree = "<group>"; };
 		3BB1A5C220EB9EC000D4929A /* SampleLegislator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleLegislator.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				3B6B031820EE530000034C9B /* ColorChip.swift */,
 				3B6B031A20EE530A00034C9B /* PartyList.swift */,
+				3BAFF97520EE845A0088F020 /* Region.swift */,
 			);
 			path = SingleTon;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				439D814620EB2FE5007DAD57 /* WriteVC.swift in Sources */,
 				43D1DAB720EB4F6600B752D1 /* CommentVC.swift in Sources */,
 				439D814820EB2FE5007DAD57 /* CommunityTVC.swift in Sources */,
+				3BAFF97620EE845A0088F020 /* Region.swift in Sources */,
 				439D814920EB2FE5007DAD57 /* Sample.swift in Sources */,
 				3B6B030C20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift in Sources */,
 				43D1DABE20EB611C00B752D1 /* RecommentVC.swift in Sources */,
