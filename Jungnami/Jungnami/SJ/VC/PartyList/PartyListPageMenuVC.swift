@@ -85,7 +85,6 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTxtField.delegate = self
-       // setupPageMenu()
         setDefaultNav()
         blackView.isHidden = true
         self.view.addSubview(blackView)
@@ -94,6 +93,7 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
         }
         setupMenuBar()
         setupView()
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
     }
  
