@@ -278,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				439D813920EB2FE5007DAD57 /* ContentVC.swift */,
+				43E84BF920EE1DBD007C6C97 /* ContentDetail */,
 				439D813620EB2FE5007DAD57 /* ContentCollectionView */,
 				43D1DAB520EB4F2C00B752D1 /* Comment */,
 			);
@@ -356,6 +357,13 @@
 			children = (
 			);
 			path = MyFeed;
+			sourceTree = "<group>";
+		};
+		43E84BF920EE1DBD007C6C97 /* ContentDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ContentDetail;
 			sourceTree = "<group>";
 		};
 		DBF1C7D4E75F34E568FC6E76 /* Frameworks */ = {
