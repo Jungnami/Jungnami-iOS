@@ -51,6 +51,8 @@
 		43D1DAC320EB709700B752D1 /* CommentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D1DAC220EB709700B752D1 /* CommentSample.swift */; };
 		43D1DAC720EB989B00B752D1 /* RecommentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D1DAC620EB989B00B752D1 /* RecommentSample.swift */; };
 		43D1DAC920EB9A4E00B752D1 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D1DAC820EB9A4E00B752D1 /* CommentData.swift */; };
+		43D5639020EEA1BC003F59B1 /* ContentMenuSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5638F20EEA1BC003F59B1 /* ContentMenuSample.swift */; };
+		43D5639220EEA2B3003F59B1 /* ContentMenuData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5639120EEA2B3003F59B1 /* ContentMenuData.swift */; };
 		43E84BF620EDF811007C6C97 /* ScrapSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BF520EDF811007C6C97 /* ScrapSample.swift */; };
 		43E84BF820EDF854007C6C97 /* ScrapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BF720EDF854007C6C97 /* ScrapData.swift */; };
 		43E84BFB20EE2E42007C6C97 /* ContentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BFA20EE2E42007C6C97 /* ContentDetailVC.swift */; };
@@ -107,6 +109,8 @@
 		43D1DAC220EB709700B752D1 /* CommentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSample.swift; sourceTree = "<group>"; };
 		43D1DAC620EB989B00B752D1 /* RecommentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommentSample.swift; sourceTree = "<group>"; };
 		43D1DAC820EB9A4E00B752D1 /* CommentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
+		43D5638F20EEA1BC003F59B1 /* ContentMenuSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMenuSample.swift; sourceTree = "<group>"; };
+		43D5639120EEA2B3003F59B1 /* ContentMenuData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMenuData.swift; sourceTree = "<group>"; };
 		43E84BF520EDF811007C6C97 /* ScrapSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapSample.swift; sourceTree = "<group>"; };
 		43E84BF720EDF854007C6C97 /* ScrapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapData.swift; sourceTree = "<group>"; };
 		43E84BFA20EE2E42007C6C97 /* ContentDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailVC.swift; sourceTree = "<group>"; };
@@ -320,8 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				439D813920EB2FE5007DAD57 /* ContentVC.swift */,
-				43E84BF920EE1DBD007C6C97 /* ContentDetail */,
 				439D813620EB2FE5007DAD57 /* ContentCollectionView */,
+				43E84BF920EE1DBD007C6C97 /* ContentDetail */,
 				43D1DAB520EB4F2C00B752D1 /* Comment */,
 			);
 			path = Content;
@@ -385,11 +389,21 @@
 		43D1DAC120EB708800B752D1 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
+				43D5638E20EEA128003F59B1 /* content */,
 				43E84C0020EE3EB1007C6C97 /* comment */,
 				43E84C0120EE3EBB007C6C97 /* scrap */,
 				43E84C0220EE3ECB007C6C97 /* contentDetail */,
 			);
 			path = Sample;
+			sourceTree = "<group>";
+		};
+		43D5638E20EEA128003F59B1 /* content */ = {
+			isa = PBXGroup;
+			children = (
+				43D5638F20EEA1BC003F59B1 /* ContentMenuSample.swift */,
+				43D5639120EEA2B3003F59B1 /* ContentMenuData.swift */,
+			);
+			path = content;
 			sourceTree = "<group>";
 		};
 		43E84BEC20EDE1F4007C6C97 /* MyFeed */ = {
@@ -593,6 +607,7 @@
 				43D1DAB720EB4F6600B752D1 /* CommentVC.swift in Sources */,
 				439D814820EB2FE5007DAD57 /* CommunityTVC.swift in Sources */,
 				3BAFF97620EE845A0088F020 /* Region.swift in Sources */,
+				43D5639220EEA2B3003F59B1 /* ContentMenuData.swift in Sources */,
 				439D814920EB2FE5007DAD57 /* Sample.swift in Sources */,
 				3B6B030C20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift in Sources */,
 				43D1DABE20EB611C00B752D1 /* RecommentVC.swift in Sources */,
@@ -607,6 +622,7 @@
 				43D1DAC720EB989B00B752D1 /* RecommentSample.swift in Sources */,
 				43E84C0420EE3FCD007C6C97 /* ContentData.swift in Sources */,
 				43C5138020ECD9F70017BDD8 /* ScrapCell.swift in Sources */,
+				43D5639020EEA1BC003F59B1 /* ContentMenuSample.swift in Sources */,
 				439D814A20EB2FE5007DAD57 /* CommunityTVCell.swift in Sources */,
 				3BB4308F20ECE914002980D9 /* PartyListDetailLikeTVC.swift in Sources */,
 				3BB4308820EC9453002980D9 /* CommunityResultTVC.swift in Sources */,

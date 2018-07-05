@@ -13,13 +13,14 @@ class ContentVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var menuBtn: UIButton!
     
     
+    @IBOutlet weak var contentCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.shadowImage = UIImage()
         addNavBarImage()
-        
-
+        self.contentCollectionView.delegate = self
+        self.contentCollectionView.dataSource = self
     }
     
     
@@ -29,13 +30,6 @@ class ContentVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         
         let image = UIImage(named: "content_search_field") //Your logo url here
         let imageView = UIImageView(image: image)
-        
-//        let bannerWidth = navController.navigationBar.frame.size.width
-//        let bannerHeight = navController.navigationBar.frame.size.height
-        
-//        let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
-//        let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
-        
         imageView.frame = CGRect(x: 0, y: 0, width: 279, height: 31)
         imageView.contentMode = .scaleAspectFit
         
@@ -58,16 +52,17 @@ class ContentVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
            return 3
         }
     }
-    
+    var contentMenus = ContentMenuData.sharedInstance.contentMenus
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
         let cell = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: "ContentFirstCell") as! ContentFirstCell
             //cell에 데이터 연결!
-            
+            cell.configure(data: contentMenus[indexPath.row])
             return cell
         }else {
             let cell = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: "ContentSecondCell") as! ContentSecondCell
             //cell에 데이터 연결!
+            cell.configure(data: contentMenus[indexPath.row])
             
             return cell
         }
