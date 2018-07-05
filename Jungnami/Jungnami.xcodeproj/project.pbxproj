@@ -271,6 +271,7 @@
 			children = (
 				43C5137A20ECD81D0017BDD8 /* MyPageVC.swift */,
 				43C5137C20ECD9870017BDD8 /* Scrap */,
+				43E84BEC20EDE1F4007C6C97 /* MyFeed */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -319,6 +320,13 @@
 				43D1DAC820EB9A4E00B752D1 /* CommentData.swift */,
 			);
 			path = Sample;
+			sourceTree = "<group>";
+		};
+		43E84BEC20EDE1F4007C6C97 /* MyFeed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MyFeed;
 			sourceTree = "<group>";
 		};
 		DBF1C7D4E75F34E568FC6E76 /* Frameworks */ = {
