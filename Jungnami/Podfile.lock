@@ -1,20 +1,16 @@
 PODS:
-  - PageMenu (2.0.0)
   - SnapKit (4.0.0)
 
 DEPENDENCIES:
-  - PageMenu
   - SnapKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - PageMenu
+  https://github.com/CocoaPods/Specs.git:
     - SnapKit
 
 SPEC CHECKSUMS:
-  PageMenu: 9c38fd7e0d9ef4b1408320f55bb907bbc0e538dc
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 94c2d5fb15c75776040ad1e7f5e1d6a3fbae5d06
+PODFILE CHECKSUM: afcc4fa460fd31f9450c4a3b6c37838cfcd64288
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.0
