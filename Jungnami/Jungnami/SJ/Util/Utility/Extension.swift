@@ -106,6 +106,11 @@ extension UIView {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
     }
     
+    func makeRounded(){
+        self.layer.cornerRadius = self.layer.frame.height/2
+        self.layer.masksToBounds = true
+    }
+    
 }
 
 
