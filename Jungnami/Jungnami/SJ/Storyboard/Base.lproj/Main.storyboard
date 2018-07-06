@@ -803,90 +803,15 @@
             </objects>
             <point key="canvasLocation" x="3023" y="834"/>
         </scene>
-        <!--Main Page MenuVC-->
-        <scene sceneID="CDR-qm-Fcg">
+        <!--Second-->
+        <scene sceneID="scJ-Ae-K8v">
             <objects>
-                <viewController storyboardIdentifier="MainPageMenuVC" id="vP5-SK-Bul" customClass="MainPageMenuVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BbY-oN-QU5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4c-w4-oXg">
-                                <rect key="frame" x="0.0" y="125" width="375" height="493"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="7bX-61-pMV" firstAttribute="bottom" secondItem="g4c-w4-oXg" secondAttribute="bottom" id="IAP-0b-Fhz"/>
-                            <constraint firstItem="7bX-61-pMV" firstAttribute="trailing" secondItem="g4c-w4-oXg" secondAttribute="trailing" id="J2u-h3-cWN"/>
-                            <constraint firstItem="g4c-w4-oXg" firstAttribute="leading" secondItem="7bX-61-pMV" secondAttribute="leading" id="WJd-LG-7Mt"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="7bX-61-pMV"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="e05-Ft-nIb"/>
-                    <connections>
-                        <outlet property="containerView" destination="g4c-w4-oXg" id="hRx-Qt-3nm"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I9F-GU-d6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Second" id="cQl-lc-gN6" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cVF-de-f2m"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L0X-2J-5P7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="2402"/>
-        </scene>
-        <!--Main LikeTVC-->
-        <scene sceneID="w1t-el-kC8">
-            <objects>
-                <tableViewController storyboardIdentifier="MainLikeTVC" id="ZEb-rs-CGc" customClass="MainLikeTVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="JFX-dZ-f7Q">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ear-r1-FuV">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ear-r1-FuV" id="DV6-Cu-Sjf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ZEb-rs-CGc" id="aGg-Ir-tZp"/>
-                            <outlet property="delegate" destination="ZEb-rs-CGc" id="kFH-vR-xPV"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="soN-nC-Ko3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="905" y="2215"/>
-        </scene>
-        <!--Main DislikeTVC-->
-        <scene sceneID="LBq-aq-K0r">
-            <objects>
-                <tableViewController storyboardIdentifier="MainDislikeTVC" id="68f-tp-rX6" customClass="MainDislikeTVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5ex-iG-cyu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zJV-WS-2Q3">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zJV-WS-2Q3" id="jZe-eK-Znr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="68f-tp-rX6" id="YZG-qf-vJl"/>
-                            <outlet property="delegate" destination="68f-tp-rX6" id="YMt-D8-PBJ"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z5i-x1-Xfu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="905" y="2909"/>
+            <point key="canvasLocation" x="-253" y="1677"/>
         </scene>
         <!--RegionVC-->
         <scene sceneID="yOI-0K-oOJ">
@@ -905,7 +830,7 @@
                                     <constraint firstAttribute="height" constant="21" id="J4s-rr-ezp"/>
                                     <constraint firstAttribute="width" constant="41" id="f3f-T3-Nis"/>
                                 </constraints>
-                                <state key="normal" title="k"/>
+                                <state key="normal" title="인천"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="UtF-GE-5JZ"/>
                                 </connections>
@@ -1729,12 +1654,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vP5-SK-Bul" kind="relationship" relationship="rootViewController" id="aqZ-Hm-m45"/>
+                        <segue destination="cQl-lc-gN6" kind="relationship" relationship="rootViewController" id="hEd-XR-bZZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nvj-az-3mI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-855" y="2401"/>
+            <point key="canvasLocation" x="-850" y="1677"/>
         </scene>
     </scenes>
     <resources>

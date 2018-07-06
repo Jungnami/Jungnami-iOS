@@ -6,10 +6,10 @@
 //
 
 import Foundation
-enum PartyList {
-    case blue
-    case red
-    case green
-    case yellow
-    case orange
+enum PartyList : String {
+    case blue = "더불어민주당"
+    case red = "자유한국당"
+    case green = "바른미래당"
+    case yellow = "정의당"
+    case orange = "민중당"
 }
