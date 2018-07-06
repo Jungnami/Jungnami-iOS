@@ -140,7 +140,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommunityTVCell" rowHeight="430" id="7cg-2K-n5B" customClass="CommunityTVCell" customModule="Jungnami" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="141.5" width="375" height="430"/>
+                                <rect key="frame" x="0.0" y="142" width="375" height="430"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7cg-2K-n5B" id="0vV-lf-mHk">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="430"/>
@@ -762,7 +762,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchLegislatorResultTVCell" rowHeight="75" id="AF8-sR-6BO" customClass="SearchLegislatorResultTVCell" customModule="Jungnami" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="74.5" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AF8-sR-6BO" id="d5u-fC-che">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -867,6 +867,9 @@
                                     <constraint firstAttribute="width" constant="41" id="yeK-v7-WKB"/>
                                 </constraints>
                                 <state key="normal" title="강원"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="KeN-Xm-j1c"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2k-dF-zME">
                                 <rect key="frame" x="155" y="191" width="41" height="21"/>
@@ -886,6 +889,9 @@
                                     <constraint firstAttribute="height" constant="21" id="xiY-xo-37s"/>
                                 </constraints>
                                 <state key="normal" title="충남"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="Whr-nN-sKU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwH-rV-BTF">
                                 <rect key="frame" x="148" y="234" width="41" height="21"/>
@@ -894,6 +900,9 @@
                                     <constraint firstAttribute="width" constant="41" id="s8s-Jk-WJb"/>
                                 </constraints>
                                 <state key="normal" title="세종"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="jDj-oM-L76"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebr-cs-DbD">
                                 <rect key="frame" x="199" y="211" width="41" height="21"/>
@@ -902,6 +911,9 @@
                                     <constraint firstAttribute="height" constant="21" id="hv8-sp-dWb"/>
                                 </constraints>
                                 <state key="normal" title="충북"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="ier-pW-yns"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaK-Co-R2V">
                                 <rect key="frame" x="243" y="254" width="41" height="21"/>
@@ -910,6 +922,9 @@
                                     <constraint firstAttribute="width" constant="41" id="hiT-0o-rif"/>
                                 </constraints>
                                 <state key="normal" title="경북"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="kfm-bn-cWA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPk-kD-qgH">
                                 <rect key="frame" x="161" y="263" width="41" height="21"/>
@@ -918,6 +933,9 @@
                                     <constraint firstAttribute="width" constant="41" id="mPJ-Wk-xiT"/>
                                 </constraints>
                                 <state key="normal" title="대전"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="rja-PT-7oG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dcf-Eu-Iiw">
                                 <rect key="frame" x="230" y="293" width="41" height="21"/>
@@ -926,6 +944,9 @@
                                     <constraint firstAttribute="width" constant="41" id="eOy-cf-cfL"/>
                                 </constraints>
                                 <state key="normal" title="대구"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="GHV-PD-yLk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ony-2L-GQO">
                                 <rect key="frame" x="275" y="318" width="41" height="21"/>
@@ -934,6 +955,9 @@
                                     <constraint firstAttribute="height" constant="21" id="ogG-s0-cy5"/>
                                 </constraints>
                                 <state key="normal" title="울산"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="BeI-1w-Fej"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTS-PJ-XSP">
                                 <rect key="frame" x="246" y="355" width="41" height="21"/>
@@ -942,6 +966,9 @@
                                     <constraint firstAttribute="width" constant="41" id="jeK-fN-Ehd"/>
                                 </constraints>
                                 <state key="normal" title="부산"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="JBB-Vv-goT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2T-gA-f9n">
                                 <rect key="frame" x="189" y="346" width="41" height="21"/>
@@ -950,6 +977,9 @@
                                     <constraint firstAttribute="height" constant="21" id="bko-nS-hpI"/>
                                 </constraints>
                                 <state key="normal" title="경남"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="Iv0-vO-NB6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAS-Lb-q0I">
                                 <rect key="frame" x="132" y="314" width="41" height="21"/>
@@ -958,6 +988,9 @@
                                     <constraint firstAttribute="width" constant="41" id="gCb-U9-R3J"/>
                                 </constraints>
                                 <state key="normal" title="전북"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="k98-3K-BHL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fdc-JS-bxe">
                                 <rect key="frame" x="120" y="350" width="41" height="21"/>
@@ -966,6 +999,9 @@
                                     <constraint firstAttribute="height" constant="21" id="yjS-PZ-93d"/>
                                 </constraints>
                                 <state key="normal" title="광주"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="aQo-uS-MnJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laS-lB-0js">
                                 <rect key="frame" x="104" y="400" width="41" height="21"/>
@@ -974,6 +1010,9 @@
                                     <constraint firstAttribute="width" constant="41" id="Hg0-1I-L8O"/>
                                 </constraints>
                                 <state key="normal" title="전남"/>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="pxO-y5-B4R"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STR-Cx-Z8g">
                                 <rect key="frame" x="78" y="469" width="41" height="21"/>
@@ -1355,7 +1394,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityTVCell" rowHeight="430" id="BRk-u1-pkw" customClass="CommunityTVCell" customModule="Jungnami" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="74.5" width="375" height="430"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="430"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BRk-u1-pkw" id="2hL-Oq-UI3">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="430"/>

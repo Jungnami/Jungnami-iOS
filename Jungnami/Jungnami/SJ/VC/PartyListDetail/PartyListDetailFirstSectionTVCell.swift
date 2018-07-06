@@ -30,9 +30,38 @@ class PartyListDetailFirstSectionTVCell: UITableViewCell {
         switch selectedRegion {
         case .SEOUL:
             partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
-        default :
-            partyImgView.image = #imageLiteral(resourceName: "community_chat")
-            return
+        case .INCHEON:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .GYUNGGI:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .GANGWON:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .CHUNGNAM:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .CHUNGBUK:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .SEJONG:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .DAEJEON:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .GYUNGBUK:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .DAEGU:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .ULSAN:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .BUSAN:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .GYUNGNAM:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .JEONBUK:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .GWANGJU:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .JUNNAM:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        case .JEJU:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
         }
     }
 
