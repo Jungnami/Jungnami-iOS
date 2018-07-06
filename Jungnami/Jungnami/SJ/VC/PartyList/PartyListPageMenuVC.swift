@@ -328,16 +328,16 @@ extension PartyListPageMenuVC{
     
     private func updateView(selected : Int) {
         if selected == 0 {
-            partyBtn.titleLabel?.textColor = ColorChip.shared().mainColor
+            partyBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
             partyLine.isHidden = false
-            regionBtn.titleLabel?.textColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+            regionBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
             regionLine.isHidden = true
             remove(asChildViewController: regionVC)
             add(asChildViewController: partyListTVC)
         } else {
-            regionBtn.titleLabel?.textColor = .red
+            regionBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
             regionLine.isHidden = false
-            partyBtn.titleLabel?.textColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+            partyBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
             partyLine.isHidden = true
             remove(asChildViewController: partyListTVC)
             add(asChildViewController: regionVC)
