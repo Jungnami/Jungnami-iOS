@@ -26,6 +26,8 @@
 		3BB4308D20ECE8BF002980D9 /* PartyListDetailPageMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4308C20ECE8BF002980D9 /* PartyListDetailPageMenuVC.swift */; };
 		3BB4308F20ECE914002980D9 /* PartyListDetailLikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4308E20ECE914002980D9 /* PartyListDetailLikeTVC.swift */; };
 		3BB4309120ECE952002980D9 /* PartyListDetailDislikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4309020ECE951002980D9 /* PartyListDetailDislikeTVC.swift */; };
+		4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351999220EF7EE000D72AAF /* MyFeedVC.swift */; };
+		4351999620EFE94A00D72AAF /* OtherUserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351999520EFE94A00D72AAF /* OtherUserPage.swift */; };
 		439D813E20EB2FE5007DAD57 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D811B20EB2FE5007DAD57 /* Extension.swift */; };
 		439D813F20EB2FE5007DAD57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439D811D20EB2FE5007DAD57 /* LaunchScreen.storyboard */; };
 		439D814020EB2FE5007DAD57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439D811F20EB2FE5007DAD57 /* Main.storyboard */; };
@@ -88,6 +90,8 @@
 		3BB4308C20ECE8BF002980D9 /* PartyListDetailPageMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailPageMenuVC.swift; sourceTree = "<group>"; };
 		3BB4308E20ECE914002980D9 /* PartyListDetailLikeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailLikeTVC.swift; sourceTree = "<group>"; };
 		3BB4309020ECE951002980D9 /* PartyListDetailDislikeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailDislikeTVC.swift; sourceTree = "<group>"; };
+		4351999220EF7EE000D72AAF /* MyFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedVC.swift; sourceTree = "<group>"; };
+		4351999520EFE94A00D72AAF /* OtherUserPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserPage.swift; sourceTree = "<group>"; };
 		439D811B20EB2FE5007DAD57 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		439D811E20EB2FE5007DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		439D812020EB2FE5007DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -220,6 +224,14 @@
 			path = PartyListDetail;
 			sourceTree = "<group>";
 		};
+		4351999420EFE92600D72AAF /* OtherUserPage */ = {
+			isa = PBXGroup;
+			children = (
+				4351999520EFE94A00D72AAF /* OtherUserPage.swift */,
+			);
+			path = OtherUserPage;
+			sourceTree = "<group>";
+		};
 		439D811720EB2FE5007DAD57 /* Jungnami */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +346,7 @@
 		439D813420EB2FE5007DAD57 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				4351999420EFE92600D72AAF /* OtherUserPage */,
 				43C5137920ECD7E90017BDD8 /* MyPage */,
 				439D813520EB2FE5007DAD57 /* Content */,
 			);
@@ -429,6 +442,7 @@
 		43E84BEC20EDE1F4007C6C97 /* MyFeed */ = {
 			isa = PBXGroup;
 			children = (
+				4351999220EF7EE000D72AAF /* MyFeedVC.swift */,
 			);
 			path = MyFeed;
 			sourceTree = "<group>";
@@ -584,12 +598,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/PageMenu/PageMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PageMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,6 +625,7 @@
 				43E84BFB20EE2E42007C6C97 /* ContentDetailVC.swift in Sources */,
 				3B08969C20EEA8DD00BFBCBC /* PartyListDetailPageMenuBar.swift in Sources */,
 				439D814120EB2FE5007DAD57 /* CommunityWriteVC.swift in Sources */,
+				4351999620EFE94A00D72AAF /* OtherUserPage.swift in Sources */,
 				3B6B030E20EE109600034C9B /* SampleLegislator2.swift in Sources */,
 				3BB4309120ECE952002980D9 /* PartyListDetailDislikeTVC.swift in Sources */,
 				43E84BFD20EE2F07007C6C97 /* ContentDetailCell.swift in Sources */,
@@ -652,6 +665,7 @@
 				439D813E20EB2FE5007DAD57 /* Extension.swift in Sources */,
 				3B6B030A20EE09F700034C9B /* PartyListDetailTVcell.swift in Sources */,
 				3B0475F120EEBD8D00D30A4D /* MainLikeTVC.swift in Sources */,
+				4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */,
 				3B0475F320EEBD9B00D30A4D /* MainDislikeTVC.swift in Sources */,
 				3B0BEB7820EE960A0068CE7E /* PartyListMenuBar.swift in Sources */,
 				3B6B031920EE530000034C9B /* ColorChip.swift in Sources */,
