@@ -65,6 +65,10 @@ class CommunityTVC: UITableViewController, UISearchBarDelegate {
             
         }
         
+        //refreshControl
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
+        
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
         addChildView(containerView: containerView, asChildViewController: writeVC)
         let a = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "다비 최고야,, 형윤 최고야,, 디자인 세상에서 제일 예뻐요 선생님들,, ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
@@ -199,6 +203,17 @@ extension CommunityTVC{
     @objc func tapBackground() {
         //내 텍필
         self.view.endEditing(true)
+    }
+}
+
+extension CommunityTVC{
+    
+    @objc func startReloadTableView(_ sender: UIRefreshControl){
+         let aa = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "새로고침 ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
+        sampleData.append(aa)
+        
+        self.tableView.reloadData()
+        sender.endRefreshing()
     }
 }
 

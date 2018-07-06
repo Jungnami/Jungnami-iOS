@@ -13,6 +13,10 @@ class MainLikeTVC: UITableViewController {
     var sampleData : [SampleMain] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
+        
         /////////////////////Sample Data//////////////////////////
         let a = SampleMain(rank: 1, name: "김병관", profile : #imageLiteral(resourceName: "inni"), party: .orange, voteCount: 200000, rate : 1.0)
         let b = SampleMain(rank: 2, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.9)
@@ -29,6 +33,8 @@ class MainLikeTVC: UITableViewController {
         //////////////////////////////////////////////////////
        
     }
+    
+   
     
     @objc func vote(_ sender : UIButton){
         simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
@@ -82,4 +88,16 @@ extension MainLikeTVC {
     
     
     
+}
+
+//refreshContril
+extension MainLikeTVC{
+    
+    @objc func startReloadTableView(_ sender: UIRefreshControl){
+        let aa = SampleMain(rank: 1, name: "새로고침", profile : #imageLiteral(resourceName: "inni"), party: .orange, voteCount: 200000, rate : 1.0)
+        sampleData.append(aa)
+        
+        self.tableView.reloadData()
+        sender.endRefreshing()
+    }
 }
