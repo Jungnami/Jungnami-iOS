@@ -7,7 +7,7 @@ target 'Jungnami' do
 
 
 pod 'SnapKit'
-pod 'PageMenu'
+
 
   # Pods for Jungnami
 
