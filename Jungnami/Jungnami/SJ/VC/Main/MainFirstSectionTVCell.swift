@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import GTProgressBar
 class MainFirstSectionTVCell: UITableViewCell {
 
     @IBOutlet weak var firstImgView: UIImageView!
