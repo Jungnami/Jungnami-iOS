@@ -7,7 +7,7 @@ DEPENDENCIES:
   - SnapKit
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - PageMenu
     - SnapKit
 
@@ -17,4 +17,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 94c2d5fb15c75776040ad1e7f5e1d6a3fbae5d06
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
