@@ -25,4 +25,6 @@ class ContentFirstCell: UICollectionViewCell {
         recommendContentDate.text = data.date
         recommendContentTypeImgView.image = data.typeImg
     }
+    
+    
 }
