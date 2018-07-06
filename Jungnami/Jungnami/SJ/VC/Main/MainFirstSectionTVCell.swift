@@ -90,6 +90,8 @@ class MainFirstSectionTVCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+        firstProgressBar.isHidden = false
+        secondProgressBar.isHidden = false
     }
     
 }

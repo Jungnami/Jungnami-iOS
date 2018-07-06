@@ -49,7 +49,7 @@ class MainPageMenuVC: UIViewController {
     
     private lazy var mainLikeTVC: MainLikeTVC = {
         
-        let storyboard = UIStoryboard(name: "Second", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         var viewController = storyboard.instantiateViewController(withIdentifier: MainLikeTVC.reuseIdentifier) as! MainLikeTVC
         
@@ -61,7 +61,7 @@ class MainPageMenuVC: UIViewController {
     
     private lazy var mainDislikeTVC: MainDislikeTVC = {
         
-        let storyboard = UIStoryboard(name: "Second", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         var viewController = storyboard.instantiateViewController(withIdentifier: MainDislikeTVC.reuseIdentifier) as! MainDislikeTVC
         
@@ -83,6 +83,7 @@ class MainPageMenuVC: UIViewController {
         setKeyboardSetting()
     }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTxtField.delegate = self
@@ -124,7 +125,7 @@ extension MainPageMenuVC{
     
     
     static func viewController() -> PartyListDetailPageMenuVC {
-        return UIStoryboard.init(name: "Second", bundle: nil).instantiateViewController(withIdentifier: PartyListDetailPageMenuVC.reuseIdentifier) as! PartyListDetailPageMenuVC
+        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListDetailPageMenuVC.reuseIdentifier) as! PartyListDetailPageMenuVC
     }
     
     

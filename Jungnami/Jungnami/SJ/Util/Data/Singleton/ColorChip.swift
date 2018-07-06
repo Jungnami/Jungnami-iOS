@@ -14,6 +14,7 @@ class ColorChip {
     let partyGreen = #colorLiteral(red: 0.07843137255, green: 0.8039215686, blue: 0.8, alpha: 1)
     let partyYellow = #colorLiteral(red: 0.9882352941, green: 0.862745098, blue: 0, alpha: 1)
     let partyOrange = #colorLiteral(red: 0.9254901961, green: 0.5490196078, blue: 0.05098039216, alpha: 1)
+    let mainColor = #colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)
     
     struct StaticInstance {
         static var instance: ColorChip?
