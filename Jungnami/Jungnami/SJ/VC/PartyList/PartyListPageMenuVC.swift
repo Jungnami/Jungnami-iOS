@@ -91,8 +91,9 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
         blackView.snp.makeConstraints { (make) in
             make.leading.trailing.top.bottom.equalToSuperview()
         }
-        setupMenuBar()
-        setupView()
+        //setupMenuBar()
+        //setupView()
+        updateView(selected: 0)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
     }
@@ -121,6 +122,10 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
     func scrollToMenuIndex(menuIndex: Int) {
         updateView(selected: menuIndex)
         
+    }
+    
+    @IBAction func switchView(_ sender: UIButton) {
+        updateView(selected: sender.tag)
     }
     
    
