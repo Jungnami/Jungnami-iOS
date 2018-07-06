@@ -73,7 +73,7 @@ extension MainLikeTVC {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier, for: indexPath) as! MainTVCell
             
-            cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
+            cell.configure(viewType : .like, index: indexPath.row, data: sampleData[indexPath.row])
             cell.voteBtn.tag = indexPath.row
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
            
