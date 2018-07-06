@@ -12,7 +12,6 @@ class PartyListDetailPageMenuVC : UIViewController{
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var likeLine: UIView!
-    
     @IBOutlet weak var dislikeBtn: UIButton!
     @IBOutlet weak var dislikeLine: UIView!
     var keyboardDismissGesture: UITapGestureRecognizer?

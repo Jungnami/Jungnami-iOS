@@ -10,6 +10,11 @@ import UIKit
 class MainPageMenuVC: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var likeLine: UIView!
+    @IBOutlet weak var dislikeBtn: UIButton!
+    @IBOutlet weak var dislikeLine: UIView!
+    
     var keyboardDismissGesture: UITapGestureRecognizer?
     lazy var navSearchView : UIView = {
         let view = UIView()
@@ -71,12 +76,6 @@ class MainPageMenuVC: UIViewController {
     }()
     
     
-    lazy var menuBar: MainMenuBar = {
-        let mb = MainMenuBar()
-        mb.homeController = self
-        return mb
-    }()
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
@@ -93,8 +92,8 @@ class MainPageMenuVC: UIViewController {
         blackView.snp.makeConstraints { (make) in
             make.leading.trailing.top.bottom.equalToSuperview()
         }
-        setupMenuBar()
-        setupView()
+    
+         updateView(selected: 0)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
     }
@@ -115,6 +114,10 @@ class MainPageMenuVC: UIViewController {
             //searchLegislatorResultTVC = self.selectedCategory
             self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
         }
+    }
+    @IBAction func switchView(_ sender: UIButton) {
+        
+        updateView(selected: sender.tag)
     }
     
     
@@ -163,35 +166,24 @@ extension MainPageMenuVC{
     
     private func updateView(selected : Int) {
         if selected == 0 {
+            likeBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+            likeLine.isHidden = false
+            dislikeBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+            dislikeLine.isHidden = true
             remove(asChildViewController: mainDislikeTVC)
             add(asChildViewController: mainLikeTVC)
         } else {
+            dislikeBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+            
+            dislikeLine.isHidden = false
+            likeBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+            likeLine.isHidden = true
             remove(asChildViewController: mainLikeTVC)
             add(asChildViewController: mainDislikeTVC)
         }
     }
     
-    //----------------------------------------------------------------
     
-    func setupView() {
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
-        updateView(selected: 0)
-    }
-    
-    private func setupMenuBar() {
-        
-        //메뉴바 삽입
-        view.addSubview(menuBar)
-        
-        menuBar.translatesAutoresizingMaskIntoConstraints = false
-        menuBar.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-        menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        menuBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        
-        
-    }
 }
 
 //네비게이션 기본바 커스텀
