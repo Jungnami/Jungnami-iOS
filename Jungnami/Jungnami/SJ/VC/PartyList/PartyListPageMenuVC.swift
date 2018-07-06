@@ -12,6 +12,13 @@ import SnapKit
 class PartyListPageMenuVC: UIViewController, PushVCProtocol {
     
     @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var partyBtn: UIButton!
+    @IBOutlet weak var partyLine: UIView!
+    
+    @IBOutlet weak var regionBtn: UIButton!
+    @IBOutlet weak var regionLine: UIView!
+    
     var keyboardDismissGesture: UITapGestureRecognizer?
     lazy var navSearchView : UIView = {
         let view = UIView()
@@ -47,12 +54,8 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
         return view
     }()
     
-    lazy var menuBar: PartyListMenuBar = {
-        let mb = PartyListMenuBar()
-        mb.homeController = self
-        return mb
-    }()
-    
+
+ 
     
     private lazy var partyListTVC: PartyListTVC = {
         // Load Storyboard
@@ -91,8 +94,6 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
         blackView.snp.makeConstraints { (make) in
             make.leading.trailing.top.bottom.equalToSuperview()
         }
-        //setupMenuBar()
-        //setupView()
         updateView(selected: 0)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
@@ -119,10 +120,7 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
             self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
         }
     }
-    func scrollToMenuIndex(menuIndex: Int) {
-        updateView(selected: menuIndex)
-        
-    }
+
     
     @IBAction func switchView(_ sender: UIButton) {
         updateView(selected: sender.tag)
@@ -285,10 +283,6 @@ extension PartyListPageMenuVC{
     }
 
     
-    
-    
-
-    
 }
 
 //메뉴바랑 그 안 컨테이너뷰
@@ -334,35 +328,23 @@ extension PartyListPageMenuVC{
     
     private func updateView(selected : Int) {
         if selected == 0 {
+            partyBtn.titleLabel?.textColor = ColorChip.shared().mainColor
+            partyLine.isHidden = false
+            regionBtn.titleLabel?.textColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+            regionLine.isHidden = true
             remove(asChildViewController: regionVC)
             add(asChildViewController: partyListTVC)
         } else {
+            regionBtn.titleLabel?.textColor = .red
+            regionLine.isHidden = false
+            partyBtn.titleLabel?.textColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+            partyLine.isHidden = true
             remove(asChildViewController: partyListTVC)
             add(asChildViewController: regionVC)
         }
     }
     
-    //----------------------------------------------------------------
     
-    func setupView() {
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
-        updateView(selected: 0)
-    }
-    
-    private func setupMenuBar() {
-        
-        //메뉴바 삽입
-        view.addSubview(menuBar)
-        
-        menuBar.translatesAutoresizingMaskIntoConstraints = false
-        menuBar.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-        menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        menuBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        
-        
-    }
 }
 
 
