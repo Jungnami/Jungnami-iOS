@@ -25,6 +25,16 @@ class PartyListDetailFirstSectionTVCell: UITableViewCell {
         }
        
     }
+    
+    func configure2(selectedRegion : Region){
+        switch selectedRegion {
+        case .SEOUL:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+        default :
+            partyImgView.image = #imageLiteral(resourceName: "community_chat")
+            return
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
