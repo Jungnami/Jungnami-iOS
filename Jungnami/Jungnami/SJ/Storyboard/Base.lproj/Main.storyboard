@@ -354,7 +354,7 @@
                         <viewLayoutGuide key="safeArea" id="sXd-Ds-JS5"/>
                     </view>
                     <connections>
-                        <outlet property="containerView" destination="s3x-N1-ThG" id="1s7-tp-nir"/>
+                        <outlet property="containerView" destination="s3x-N1-ThG" id="Qlg-k0-d2Z"/>
                         <outlet property="dislikeBtn" destination="q2U-eo-vWL" id="wD2-fJ-Hqc"/>
                         <outlet property="dislikeLine" destination="TDi-gK-FoF" id="CEL-G7-yUg"/>
                         <outlet property="likeBtn" destination="NC1-7f-lzM" id="EJP-fK-gnS"/>
@@ -1820,9 +1820,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-0a-6bH">
-                                <rect key="frame" x="0.0" y="106" width="375" height="512"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xZ-CB-BoB">
                                 <rect key="frame" x="0.0" y="64" width="375" height="42"/>
                                 <subviews>
@@ -1884,23 +1881,25 @@
                                     <constraint firstItem="9Af-IF-afW" firstAttribute="centerX" secondItem="mtL-pz-qFe" secondAttribute="centerX" id="ugZ-zh-OR7"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VrX-m9-15Q">
+                                <rect key="frame" x="0.0" y="106" width="375" height="512"/>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QWc-dK-N9j" firstAttribute="trailing" secondItem="bjz-0a-6bH" secondAttribute="trailing" id="0PM-Jd-BHh"/>
+                            <constraint firstItem="QWc-dK-N9j" firstAttribute="bottom" secondItem="VrX-m9-15Q" secondAttribute="bottom" id="741-d7-Nz4"/>
+                            <constraint firstItem="VrX-m9-15Q" firstAttribute="leading" secondItem="QWc-dK-N9j" secondAttribute="leading" id="KAa-ky-m5b"/>
                             <constraint firstItem="7xZ-CB-BoB" firstAttribute="leading" secondItem="Svq-xy-3DC" secondAttribute="leading" id="SKi-li-M8w"/>
+                            <constraint firstItem="VrX-m9-15Q" firstAttribute="top" secondItem="7xZ-CB-BoB" secondAttribute="bottom" id="YVU-5u-Npp"/>
                             <constraint firstItem="7xZ-CB-BoB" firstAttribute="top" secondItem="QWc-dK-N9j" secondAttribute="top" id="dI5-vi-fnC"/>
-                            <constraint firstItem="bjz-0a-6bH" firstAttribute="bottom" secondItem="QWc-dK-N9j" secondAttribute="bottom" id="k7B-7e-gNp"/>
-                            <constraint firstItem="bjz-0a-6bH" firstAttribute="top" secondItem="7xZ-CB-BoB" secondAttribute="bottom" id="kJM-xt-AVO"/>
-                            <constraint firstItem="bjz-0a-6bH" firstAttribute="leading" secondItem="QWc-dK-N9j" secondAttribute="leading" id="snK-ws-fFs"/>
-                            <constraint firstItem="QWc-dK-N9j" firstAttribute="bottom" secondItem="bjz-0a-6bH" secondAttribute="bottom" id="whR-qL-dJi"/>
+                            <constraint firstItem="QWc-dK-N9j" firstAttribute="trailing" secondItem="VrX-m9-15Q" secondAttribute="trailing" id="iEm-Ha-EMP"/>
                             <constraint firstItem="QWc-dK-N9j" firstAttribute="trailing" secondItem="7xZ-CB-BoB" secondAttribute="trailing" id="ykc-RX-5XH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QWc-dK-N9j"/>
                     </view>
                     <navigationItem key="navigationItem" id="Zvk-Aj-5ap"/>
                     <connections>
-                        <outlet property="containerView" destination="bjz-0a-6bH" id="ymC-zX-H7h"/>
+                        <outlet property="containerView" destination="VrX-m9-15Q" id="LKf-wh-eUm"/>
                         <outlet property="dislikeBtn" destination="mtL-pz-qFe" id="FT5-Qb-Em3"/>
                         <outlet property="dislikeLine" destination="9Af-IF-afW" id="hZm-hL-kfk"/>
                         <outlet property="likeBtn" destination="ln1-Os-c53" id="9zz-2c-pKn"/>

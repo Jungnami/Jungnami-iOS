@@ -85,6 +85,7 @@ class MainPageMenuVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateView(selected: 0)
         searchTxtField.delegate = self
         setDefaultNav()
         blackView.isHidden = true
@@ -93,7 +94,7 @@ class MainPageMenuVC: UIViewController {
             make.leading.trailing.top.bottom.equalToSuperview()
         }
     
-         updateView(selected: 0)
+        
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
     }
@@ -102,10 +103,6 @@ class MainPageMenuVC: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-    }
-    func scrollToMenuIndex(menuIndex: Int) {
-        updateView(selected: menuIndex)
-        
     }
     
     func searchLegislator(searchString : String){
@@ -175,7 +172,6 @@ extension MainPageMenuVC{
             add(asChildViewController: mainLikeTVC)
         } else {
             dislikeBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
-            
             dislikeLine.isHidden = false
             likeBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
             likeLine.isHidden = true
@@ -183,6 +179,7 @@ extension MainPageMenuVC{
             add(asChildViewController: mainDislikeTVC)
         }
     }
+    
     
     
 }
