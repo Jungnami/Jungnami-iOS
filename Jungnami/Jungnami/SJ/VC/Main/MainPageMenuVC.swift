@@ -108,10 +108,11 @@ class MainPageMenuVC: UIViewController {
         
     }
     
-    func searchLegislator(){
+    func searchLegislator(searchString : String){
         if let searchLegislatorResultTVC = self.storyboard?.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
             self.navSearchView.endEditing(true)
             //searchLegislatorResultTVC = self.selectedCategory
+           searchLegislatorResultTVC.searchString = searchString
             self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
         }
     }
@@ -295,7 +296,9 @@ extension MainPageMenuVC : UITextFieldDelegate{
                 return false
             }
         }
-        searchLegislator()
+        if let searchString_ = textField.text {
+            searchLegislator(searchString : searchString_)
+        }
         return true
     }
 }

@@ -11,6 +11,7 @@ class CommunityResultTVC: UITableViewController {
     
     @IBOutlet weak var searchTxtfield: UITextField!
     @IBOutlet weak var separateView: UIView!
+    var searchString : String?
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -27,6 +28,11 @@ class CommunityResultTVC: UITableViewController {
     var keyboardDismissGesture: UITapGestureRecognizer?
     
     var sampleData : [Sample] = []
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchTxtfield.text = searchString
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTxtfield.delegate = self
