@@ -30,8 +30,9 @@ class MainTVCell: UITableViewCell {
         profileImgView.makeImageRound()
         progressBar.snp.makeConstraints { (make) in
             make.width.equalTo(maxWidth*data.rate)
+            
         }
-        
+
         progressBar.makeRounded()
        
         switch viewType {

@@ -19,16 +19,16 @@ class MainLikeTVC: UITableViewController {
         
         /////////////////////Sample Data//////////////////////////
         let a = SampleMain(rank: 1, name: "김병관", profile : #imageLiteral(resourceName: "inni"), party: .orange, voteCount: 200000, rate : 1.0)
-        let b = SampleMain(rank: 2, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.9)
-        let c = SampleMain(rank: 2, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.8)
-        let d = SampleMain(rank: 3, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.7)
-        let e = SampleMain(rank: 4, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.4)
-        let f = SampleMain(rank: 5, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.4)
-        let g = SampleMain(rank: 5, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.4)
-        let h = SampleMain(rank: 6, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.4)
-        let i = SampleMain(rank: 7, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.2)
-        let j = SampleMain(rank: 8, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.3)
-        let k = SampleMain(rank: 9, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 0.7)
+        let b = SampleMain(rank: 2, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 1.0)
+        let c = SampleMain(rank: 2, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate :1.0)
+        let d = SampleMain(rank: 3, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 1.0)
+        let e = SampleMain(rank: 4, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 1.0)
+        let f = SampleMain(rank: 5, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 1.0)
+        let g = SampleMain(rank: 5, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 1.0)
+        let h = SampleMain(rank: 6, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 1.0)
+        let i = SampleMain(rank: 7, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 1.0)
+        let j = SampleMain(rank: 8, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 1.0)
+        let k = SampleMain(rank: 9, name: "정다비", profile : #imageLiteral(resourceName: "dabi"), party: .blue, voteCount: 10000, rate : 1.0)
         sampleData.append(contentsOf : [a,b,c,d,e,f,g,h,i,j,k])
         //////////////////////////////////////////////////////
        
@@ -91,10 +91,10 @@ extension MainLikeTVC {
 }
 
 //refreshContril
-extension MainLikeTVC{
+extension MainLikeTVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        let aa = SampleMain(rank: 1, name: "새로고침", profile : #imageLiteral(resourceName: "inni"), party: .orange, voteCount: 200000, rate : 1.0)
+        let aa = SampleMain(rank: 1, name: "새로고침", profile : #imageLiteral(resourceName: "inni"), party: .orange, voteCount: 200000, rate : 0.5)
         sampleData.append(aa)
         
         self.tableView.reloadData()

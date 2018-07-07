@@ -89,9 +89,9 @@ extension MainDislikeTVC {
 extension MainDislikeTVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        let aa = SampleMain(rank: 1, name: "김병관", profile : #imageLiteral(resourceName: "inni"), party: .orange, voteCount: 200000, rate : 1.0)
+        let aa = SampleMain(rank: 1, name: "추가데이터", profile : #imageLiteral(resourceName: "inni"), party: .orange, voteCount: 200000, rate : 1.0)
         sampleData.append(aa)
-        
+      
         self.tableView.reloadData()
         sender.endRefreshing()
     }

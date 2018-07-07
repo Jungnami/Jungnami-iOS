@@ -49,7 +49,7 @@ class MainFirstSectionTVCell: UITableViewCell {
         secondImgView.image = second.profile
         secondNameLbl.text = second.name
         secondPartyLbl.text = second.party.rawValue
-        secondProgressBarLbl.text = "\(first.voteCount)표"
+        secondProgressBarLbl.text = "\(second.voteCount)표"
         switch second.party {
         case .blue:
             secondProgressBar.backgroundColor = ColorChip.shared().partyBlue
