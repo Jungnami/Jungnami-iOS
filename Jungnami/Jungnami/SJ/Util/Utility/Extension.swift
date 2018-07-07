@@ -48,18 +48,16 @@ extension UIViewController {
     }
 }
 
-extension UIApplication {
-    
-    var statusBarView: UIView? {
-        return value(forKey: "statusBar") as? UIView
-    }
-    
-}
 
 extension UIImageView {
     func makeImageRound(){
         self.layer.cornerRadius = self.layer.frame.width/2
         self.layer.masksToBounds = true
+    }
+    
+    func makeImgBorder(width : Int, color : UIColor){
+        self.layer.borderWidth = CGFloat(width)
+        self.layer.borderColor = color.cgColor
     }
 }
 extension UIViewController {

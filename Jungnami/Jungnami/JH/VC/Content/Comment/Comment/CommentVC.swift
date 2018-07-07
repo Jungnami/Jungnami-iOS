@@ -42,14 +42,7 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 //        }
 //    }
     
-    
-    /////statusBar///
-    private var hideStatusBar: Bool = false
-
-    override var prefersStatusBarHidden: Bool {
-        return hideStatusBar
-    }
-    /////////////////////////////
+   
     
     
     var keyboardDismissGesture: UITapGestureRecognizer?
@@ -66,9 +59,7 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         //comment의 댓글 글자수 제한
         commentWriteField.addTarget(self, action: #selector(canCommentSend), for: .editingChanged)
         setKeyboardSetting()
-        //상태바 없애
-//        hideStatusBar = true
-        setNeedsStatusBarAppearanceUpdate()
+     
         commentWriteBar.snp.makeConstraints { (make) in
             make.width.equalTo(self.view.frame.width)
             make.height.equalTo(56)
