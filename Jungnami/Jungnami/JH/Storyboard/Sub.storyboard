@@ -2306,16 +2306,25 @@
                                                                     <rect key="frame" x="129" y="129" width="62" height="28"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <state key="normal" title="Button"/>
+                                                                    <connections>
+                                                                        <action selector="legislatorLikeVoteBtn:" destination="a0X-ow-7N7" eventType="touchUpInside" id="gbF-7F-caT"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgK-aa-YUD">
                                                                     <rect key="frame" x="201" y="129" width="62" height="28"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <state key="normal" title="Button"/>
+                                                                    <connections>
+                                                                        <action selector="legislatorDialikeBtn:" destination="a0X-ow-7N7" eventType="touchUpInside" id="vl9-EQ-FEo"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXQ-7F-2mj">
                                                                     <rect key="frame" x="269" y="129" width="80" height="28"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <state key="normal" title="Button"/>
+                                                                    <connections>
+                                                                        <action selector="legislatorSupportBtn:" destination="a0X-ow-7N7" eventType="touchUpInside" id="LLa-6M-bVw"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2350,6 +2359,14 @@
                                             <constraint firstItem="iJw-XO-nyi" firstAttribute="leading" secondItem="a0X-ow-7N7" secondAttribute="leading" id="GLS-FX-LPM"/>
                                         </constraints>
                                         <size key="customSize" width="375" height="183"/>
+                                        <connections>
+                                            <outlet property="legislatorDislikeLbl" destination="zSV-Uk-GHr" id="B6a-gN-kE9"/>
+                                            <outlet property="legislatorLikeLbl" destination="Uyh-ND-Xef" id="W9I-yq-GVb"/>
+                                            <outlet property="legislatorNameLbl" destination="QeW-iO-twB" id="HQL-Ll-LQZ"/>
+                                            <outlet property="legislatorPartyLbl" destination="U9a-R0-WoO" id="pgE-KP-OXf"/>
+                                            <outlet property="legislatorProfileImgView" destination="v9D-a0-gF5" id="wZF-VW-xLH"/>
+                                            <outlet property="legislatorRegionLbl" destination="c1K-FS-KL7" id="3AS-HG-gy8"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="LegislatorRelatedCell" id="dfK-IG-MqT" userLabel="secondCell" customClass="LegislatorRelatedCell" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="193" width="375" height="54"/>
@@ -2396,6 +2413,9 @@
                                             <constraint firstItem="94i-R1-GxB" firstAttribute="centerY" secondItem="dfK-IG-MqT" secondAttribute="centerY" id="xS7-Ww-z8b"/>
                                         </constraints>
                                         <size key="customSize" width="375" height="54"/>
+                                        <connections>
+                                            <outlet property="fixedLbl" destination="94i-R1-GxB" id="Tsu-SS-pYD"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LegislatorContentCell" id="ww4-fY-Cpu" userLabel="contentCell" customClass="LegislatorContentCell" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="102.5" y="257" width="170" height="187"/>
@@ -2420,10 +2440,16 @@
                                                     <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZZ-Yn-fHo">
-                                                    <rect key="frame" x="0.0" y="172" width="31" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZZ-Yn-fHo">
+                                                    <rect key="frame" x="0.0" y="172" width="50" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uk-k5-HI1">
+                                                    <rect key="frame" x="57" y="172" width="26" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -2431,15 +2457,23 @@
                                         <constraints>
                                             <constraint firstItem="TEg-8w-eHg" firstAttribute="top" secondItem="ww4-fY-Cpu" secondAttribute="top" id="8ym-pg-KUC"/>
                                             <constraint firstAttribute="bottom" secondItem="hZZ-Yn-fHo" secondAttribute="bottom" id="Ear-sn-Xud"/>
+                                            <constraint firstItem="6uk-k5-HI1" firstAttribute="bottom" secondItem="hZZ-Yn-fHo" secondAttribute="bottom" id="Gga-6g-kRA"/>
                                             <constraint firstItem="Fyj-jc-saw" firstAttribute="top" secondItem="TEg-8w-eHg" secondAttribute="bottom" constant="13" id="MXC-C0-aUt"/>
                                             <constraint firstItem="hZZ-Yn-fHo" firstAttribute="leading" secondItem="ww4-fY-Cpu" secondAttribute="leading" id="VbT-5N-7kq"/>
                                             <constraint firstAttribute="trailing" secondItem="TEg-8w-eHg" secondAttribute="trailing" id="X1M-uM-sQO"/>
+                                            <constraint firstItem="6uk-k5-HI1" firstAttribute="leading" secondItem="hZZ-Yn-fHo" secondAttribute="trailing" constant="7" id="ZzC-E6-GOe"/>
                                             <constraint firstItem="TEg-8w-eHg" firstAttribute="leading" secondItem="ww4-fY-Cpu" secondAttribute="leading" id="f1e-KU-9Vj"/>
                                             <constraint firstItem="hZZ-Yn-fHo" firstAttribute="top" secondItem="Fyj-jc-saw" secondAttribute="bottom" constant="6" id="gok-e8-qAz"/>
                                             <constraint firstItem="Fyj-jc-saw" firstAttribute="leading" secondItem="ww4-fY-Cpu" secondAttribute="leading" id="i1U-5H-zZW"/>
                                             <constraint firstAttribute="trailing" secondItem="Fyj-jc-saw" secondAttribute="trailing" id="ud1-YP-Duu"/>
                                         </constraints>
                                         <size key="customSize" width="170" height="187"/>
+                                        <connections>
+                                            <outlet property="legislatorContentCategoryLbl" destination="hZZ-Yn-fHo" id="wd8-tY-Lat"/>
+                                            <outlet property="legislatorContentDate" destination="6uk-k5-HI1" id="JH4-r5-GN8"/>
+                                            <outlet property="legislatorContentImgView" destination="TEg-8w-eHg" id="tEc-Jm-BYE"/>
+                                            <outlet property="legislatorTitleLbl" destination="Fyj-jc-saw" id="Bcz-n6-5pB"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -2458,6 +2492,9 @@
                             <color key="tintColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="legislatorCollectionView" destination="9C3-I0-axI" id="JBW-09-sLe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaC-ui-Ghh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

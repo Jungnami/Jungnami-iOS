@@ -9,6 +9,8 @@ import UIKit
 
 class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    
+    
     //투두 - 타이틀이랑 데이트 여기 밖으로 빼내서 연결
     @IBOutlet weak var likeCountLbl: UILabel!
     

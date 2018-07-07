@@ -10,27 +10,29 @@ import UIKit
 class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
-
+    @IBOutlet weak var legislatorCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        legislatorCollectionView.delegate = self
+        legislatorCollectionView.dataSource = self
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    var contents = ContentMenuData.sharedInstance.contentMenus
+    var data = LegislatorData.sharedInstance.legislators
     //--------------collectionView-------------
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }
-        if section == 1 {
+        if section == 0 && section == 1 {
             return 1
         }else {
             //샘플데이터 넣고 .count넣기!
-            return 3
+            return contents.count
         }
     }
     
@@ -38,15 +40,17 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
         if indexPath.section == 0{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorProfileCell.reuseIdentifier, for: indexPath) as! LegislatorProfileCell
             //configure로 연결하기!
+//            cell.configure(data: contents)
             return cell
         }
         if indexPath.section == 1{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorRelatedCell.reuseIdentifier, for: indexPath) as! LegislatorRelatedCell
-            //투두 - cell.fixedLbl.text = "관련된 컨텐츠"
+             cell.fixedLbl.text = "관련된 컨텐츠"
             return cell
         }else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorContentCell.reuseIdentifier, for: indexPath) as! LegislatorContentCell
             //투두 - 샘플데이터 만들고 configure연결하기
+//            cell.configure(index: indexPath.row, data: contents[indexPath.row])
             return cell
         }
     }
