@@ -17,7 +17,7 @@ class PartyListDetailLikeTVC: UITableViewController {
         super.viewDidLoad()
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
 
-        let a = SampleLegislator2(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", rank: 13, region: "서울 광진구 을", party : .green)
+        let a = SampleLegislator2(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", rank: 13, region: "서울 광진구 을", party : .mint)
         let b = SampleLegislator2(profile: #imageLiteral(resourceName: "dabi"), name: "강병원", rank: 0, region: "서울 광진구 을", party : .blue)
 
         

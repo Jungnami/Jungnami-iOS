@@ -43,7 +43,7 @@ class PartyListTVC: UITableViewController {
         case 1:
             selectedParty = .red
         case 2:
-            selectedParty = .green
+            selectedParty = .mint
         case 3:
             selectedParty = .yellow
         case 4:
