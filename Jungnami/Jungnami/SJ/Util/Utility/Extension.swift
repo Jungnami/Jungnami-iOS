@@ -48,13 +48,6 @@ extension UIViewController {
     }
 }
 
-extension UIApplication {
-    
-    var statusBarView: UIView? {
-        return value(forKey: "statusBar") as? UIView
-    }
-    
-}
 
 extension UIImageView {
     func makeImageRound(){
