@@ -1043,6 +1043,7 @@
         <!--순위-->
         <scene sceneID="cCG-wt-JkB">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nvj-az-3mI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="er9-gp-dhO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="순위" image="tab_community" id="Za7-Y5-r65"/>
                     <toolbarItems/>
@@ -1055,17 +1056,16 @@
                         <segue destination="oDF-nA-Njr" kind="relationship" relationship="rootViewController" id="sew-HV-xdH"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nvj-az-3mI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-850" y="1569"/>
         </scene>
         <!--Rank-->
         <scene sceneID="TMH-ai-XDY">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jo2-uc-gxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Rank" id="oDF-nA-Njr" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="18K-Nv-zjL"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jo2-uc-gxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-108" y="1569"/>
         </scene>
