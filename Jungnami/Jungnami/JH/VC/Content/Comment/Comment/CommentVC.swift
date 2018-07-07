@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -15,6 +16,7 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var commentCountLbl: UILabel!
     
     
+    @IBOutlet weak var navView: UIView!
     
     //tableView
     @IBOutlet weak var CommentTableView: UITableView!
@@ -66,7 +68,21 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         setKeyboardSetting()
         //상태바 없애
 //        hideStatusBar = true
-//        setNeedsStatusBarAppearanceUpdate()
+        setNeedsStatusBarAppearanceUpdate()
+        commentWriteBar.snp.makeConstraints { (make) in
+            make.width.equalTo(self.view.frame.width)
+            make.height.equalTo(56)
+            make.bottom.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+        }
+      
+        
+        CommentTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(navView.snp.bottom)
+            make.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+            //make.height.equalTo(100)
+            make.bottom.equalTo(commentWriteBar.snp.top)
+        }
+        self.view.bringSubview(toFront: commentWriteBar)
         
         
         
@@ -162,6 +178,10 @@ extension CommentVC {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 위로 이동시킴 ////////
+
+            var contentInset = self.CommentTableView.contentInset
+            contentInset.bottom = keyboardSize.height
+            CommentTableView.contentInset = contentInset
             commentWriteBar.frame.origin.y -= keyboardSize.height
             ////////
             self.view.layoutIfNeeded()
@@ -174,6 +194,10 @@ extension CommentVC {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 아래로 이동시킴 ////////
             commentWriteBar.frame.origin.y += keyboardSize.height
+     
+            var contentInset = self.CommentTableView.contentInset
+            contentInset.bottom = 0
+            CommentTableView.contentInset = contentInset
             ////////
             self.view.layoutIfNeeded()
         }
