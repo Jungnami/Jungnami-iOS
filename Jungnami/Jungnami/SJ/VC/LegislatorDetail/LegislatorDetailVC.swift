@@ -30,6 +30,11 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
     var contents = LegislatorContentData.sharedInstance.legislatorContents
     /////////////////////////////////////////////////////////////////////
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     
 }
 

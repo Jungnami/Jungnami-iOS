@@ -11,18 +11,12 @@ class PartyListDetailLikeTVC: UITableViewController {
 
     var selectedParty : PartyList?
     var selectedRegion : Region?
-    var sampleData : [SampleLegislator2] = []
+    var sampleData : [SampleLegislator] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-
-        let a = SampleLegislator2(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", rank: 13, region: "서울 광진구 을", party : .mint)
-        let b = SampleLegislator2(profile: #imageLiteral(resourceName: "dabi"), name: "강병원", rank: 0, region: "서울 광진구 을", party : .blue)
-
-        
-        sampleData.append(a)
-        sampleData.append(b)
+        sampleData = SampleLegislatorData.sharedInstance.legislators
         /////////////////////////////////////////////////
 
     }
@@ -30,7 +24,7 @@ class PartyListDetailLikeTVC: UITableViewController {
 
 }
 
-
+//tableView dataSource, delegate
 extension PartyListDetailLikeTVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -68,5 +62,16 @@ extension PartyListDetailLikeTVC {
 
             return cell
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let legislatorDetailVC = self.storyboard?.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
+            
+            legislatorDetailVC.selectedLegislator = self.sampleData[indexPath.row]
+            
+            self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
+        }
+        
     }
 }

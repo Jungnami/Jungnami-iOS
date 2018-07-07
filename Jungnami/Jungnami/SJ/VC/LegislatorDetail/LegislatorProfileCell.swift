@@ -27,8 +27,10 @@ class LegislatorProfileCell: UICollectionViewCell {
         legislatorNameLbl.text = data.name
         legislatorPartyLbl.text = data.party.rawValue
         legislatorRegionLbl.text = data.region
-        legislatorLikeLbl.text = "\(data.likeCount)"
-        legislatorDislikeLbl.text = "\(data.dislikeCount)"
+        legislatorLikeLbl.text = "호감 \(data.likeCount)위"
+        legislatorDislikeLbl.text = "비호감 \(data.dislikeCount)위"
+        
+       
         
         switch data.party {
         case .blue:

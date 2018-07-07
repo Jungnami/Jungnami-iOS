@@ -15,5 +15,9 @@ struct SampleLegislator{
     var dislikeCount : Int
     var region : String
     var party : PartyList
+    var likeRank : Int
+    var dislikeRank : Int
+    var voteCount : Int
+    var rate : Double
 }
 

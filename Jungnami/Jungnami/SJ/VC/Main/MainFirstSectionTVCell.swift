@@ -25,7 +25,7 @@ class MainFirstSectionTVCell: UITableViewCell {
     @IBOutlet weak var secondProgressBarLbl: UILabel!
     let maxWidth : Double = 150.0
     //꽉찬게 240
-    func configure(first : SampleMain, second : SampleMain){
+    func configure(first : SampleLegislator, second : SampleLegislator){
         firstImgView.image = first.profile
         firstNameLbl.text = first.name
         firstPartyLbl.text = first.party.rawValue

@@ -37,8 +37,8 @@ class SearchLegislatorResultTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          self.navigationItem.setHidesBackButton(true, animated:true)
-        searchTxtfield.delegate = self
-        setKeyboardSetting()
+         searchTxtfield.delegate = self
+         setKeyboardSetting()
         
         self.tableView.addSubview(blackView)
         blackView.snp.makeConstraints { (make) in
@@ -50,15 +50,7 @@ class SearchLegislatorResultTVC: UITableViewController {
         blackView.isHidden = true
         
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-        let a = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "김성태", likeCount: 12, dislikeCount: 45, region: "서울 강서구 을", party : .blue)
-        let b = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", likeCount: 12, dislikeCount: 45, region: "당대표, 서울 광진구 을", party : .red)
-        let c = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "강수진", likeCount: 12, dislikeCount: 45, region: "서울 강서구 을", party : .blue)
-        let d = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", likeCount: 12, dislikeCount: 45, region: "당대표, 서울 광진구 을", party : .yellow)
-        let e = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "이지현", likeCount: 12, dislikeCount: 45, region: "서울 강서구 을", party : .orange)
-        let f = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "명선", likeCount: 12, dislikeCount: 45, region: "당대표, 서울 광진구 을", party : .mint)
-        sampleData.append(a)
-        sampleData.append(b)
-        sampleData.append(contentsOf: [c,d,e,f])
+         sampleData = SampleLegislatorData.sharedInstance.legislators
         ////////////////////////////////////////////////////
         
     }
