@@ -9,7 +9,7 @@ import UIKit
 
 class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    
+    //투두 - 타이틀이랑 데이트 여기 밖으로 빼내서 연결
     @IBOutlet weak var likeCountLbl: UILabel!
     
     @IBOutlet weak var commentCountLbl: UILabel!
@@ -64,6 +64,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
         pageLbl.isHidden = false
         pageLbl.text = "\(indexPath.row)"
+        //투두 - 연결해논것 indexPath.row > 0 이면 날짜랑, 타이틀 레이블.isHidden = true 로 주기
     }
 
 

@@ -16,9 +16,14 @@ struct CommentData {
     //////////sampleData/////////
     let a = CommentSample(profile: #imageLiteral(resourceName: "dabi"), userId: "daBee", commentContent: "다비야 디팟장해쥬라~!", date: "1시간 전", likeCount: "555", commentCount: "12")
     let b = CommentSample(profile: #imageLiteral(resourceName: "inni"), userId: "dP", commentContent: "12", date: "6시간 전", likeCount: "12", commentCount: "13")
-    
+    let z = CommentSample(profile: #imageLiteral(resourceName: "dabi"), userId: "daBee", commentContent: "다비야 디팟장해쥬라~!", date: "1시간 전", likeCount: "555", commentCount: "12")
+    let y = CommentSample(profile: #imageLiteral(resourceName: "inni"), userId: "dP", commentContent: "12", date: "6시간 전", likeCount: "12", commentCount: "13")
+    let x = CommentSample(profile: #imageLiteral(resourceName: "dabi"), userId: "daBee", commentContent: "다비야 디팟장해쥬라~!", date: "1시간 전", likeCount: "555", commentCount: "12")
+    let k = CommentSample(profile: #imageLiteral(resourceName: "inni"), userId: "dP", commentContent: "12", date: "6시간 전", likeCount: "12", commentCount: "13")
+    let aa = CommentSample(profile: #imageLiteral(resourceName: "dabi"), userId: "daBee", commentContent: "다비야 디팟장해쥬라~!", date: "1시간 전", likeCount: "555", commentCount: "12")
+    let bb = CommentSample(profile: #imageLiteral(resourceName: "inni"), userId: "dP", commentContent: "12", date: "6시간 전", likeCount: "12", commentCount: "13")
     init() {
-        comments.append(contentsOf: [a,b])
+        comments.append(contentsOf: [a,b, x, y, z, k,aa,bb])
     }
 }
 
