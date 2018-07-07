@@ -342,9 +342,4 @@ extension MainPageMenuVC{
         self.navSearchView.endEditing(true)
     }
     
-    
-    
-    
-    
-    
 }

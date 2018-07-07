@@ -24,19 +24,16 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         self.navigationController?.popViewController(animated: true)
     }
     
-    private var hideStatusBar: Bool = false
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
-        //상태바 statusBar hidden
-        hideStatusBar = true
-        setNeedsStatusBarAppearanceUpdate()
+       
+       
+        
     }
-    //상태바 숨기기
-    override var prefersStatusBarHidden: Bool {
-        return hideStatusBar
-    }
+    
     
 
     override func didReceiveMemoryWarning() {

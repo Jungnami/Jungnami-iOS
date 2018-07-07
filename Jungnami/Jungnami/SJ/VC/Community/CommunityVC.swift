@@ -8,13 +8,14 @@
 
 import UIKit
 
-class CommunityTVC: UITableViewController, UISearchBarDelegate {
+class CommunityVC: UIViewController, UISearchBarDelegate {
     
-    @IBOutlet weak var containerView: UIView!
+    
     @IBOutlet weak var badgeImg: UIImageView!
     @IBOutlet weak var alarmLbl: UILabel!
-    
-    
+    @IBOutlet weak var searchTxtfield: UITextField!
+    @IBOutlet weak var separateView: UIView!
+    @IBOutlet weak var communityTableView: UITableView!
     lazy var blackView : UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -25,8 +26,8 @@ class CommunityTVC: UITableViewController, UISearchBarDelegate {
     
     
     var keyboardDismissGesture: UITapGestureRecognizer?
+    var login : Bool = true
     
-    @IBOutlet weak var searchTxtfield: UITextField!
     
     @IBAction func mypageBtn(_ sender: Any) {
     }
@@ -34,23 +35,25 @@ class CommunityTVC: UITableViewController, UISearchBarDelegate {
     @IBAction func alarmBtn(_ sender: Any) {
     }
     
-    @IBOutlet weak var separateView: UIView!
+    
     var sampleData : [Sample] = []
     
     override func viewWillAppear(_ animated: Bool) {
         searchTxtfield.text = ""
     }
     ////////SampleData//////
-    let badgeCount = 18
+    let badgeCount = 0
     //////////////////
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTxtfield.delegate = self
+        communityTableView.dataSource = self
+        communityTableView.delegate = self
         setKeyboardSetting()
         alarmLbl.sizeToFit()
         searchTxtfield.enablesReturnKeyAutomatically = false
         self.navigationController?.isNavigationBarHidden = true
-        self.tableView.addSubview(blackView)
+        self.communityTableView.addSubview(blackView)
         blackView.isHidden = true
         blackView.snp.makeConstraints { (make) in
             make.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
@@ -58,19 +61,23 @@ class CommunityTVC: UITableViewController, UISearchBarDelegate {
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             alarmLbl.adjustsFontSizeToFitWidth = true
             if(badgeCount > 99){
+                 badgeImg.isHidden = false
                 alarmLbl.text = "99+"
+            } else if badgeCount == 0 {
+                badgeImg.isHidden = true
             } else {
+                 badgeImg.isHidden = false
                 alarmLbl.text = "\(badgeCount)"
             }
             
         }
         
         //refreshControl
-        self.tableView.refreshControl = UIRefreshControl()
-        self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
+        self.communityTableView.refreshControl = UIRefreshControl()
+        self.communityTableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-        addChildView(containerView: containerView, asChildViewController: writeVC)
+        
         let a = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "다비 최고야,, 형윤 최고야,, 디자인 세상에서 제일 예뻐요 선생님들,, ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
         let b = Sample(profileUrl: #imageLiteral(resourceName: "community_character"), name: "제리", time: "4시간 전", content: "픽미픽미픽미업", like: 73, comment: 6020, contentImg: #imageLiteral(resourceName: "inni"), heart: false, scrap: true)
         
@@ -81,46 +88,54 @@ class CommunityTVC: UITableViewController, UISearchBarDelegate {
         
     }
     
-    
-    //TODO
-    //1. 나중에 유저가 로그인 되어있냐 안되어 있냐에 따라서 addChildView, removeChildView 함수 이용해서 보이는 뷰 바뀌게 하기
-    //2. 만약 알람 없으면 뱃지 안보이게
-    
-    private lazy var needLoginVC: NeedLoginVC = {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        var viewController = storyboard.instantiateViewController(withIdentifier: NeedLoginVC.reuseIdentifier) as! NeedLoginVC
-        return viewController
-    }()
-    
-    private lazy var writeVC: WriteVC = {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        var viewController = storyboard.instantiateViewController(withIdentifier: WriteVC.reuseIdentifier) as! WriteVC
-        return viewController
-    }()
-    
-    
-    
 }
 
 //tableView deleagete, datasource
-extension CommunityTVC {
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return sampleData.count
+extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            return sampleData.count
+        }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            
+            if !login {
+                let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionLoginTVCell.reuseIdentifier) as! CommunityFirstSectionLoginTVCell
+
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionWriteTVCell.reuseIdentifier) as! CommunityFirstSectionWriteTVCell
+                cell.nextBtn.addTarget(self, action: #selector(toNext(_:)), for: .touchUpInside)
+                
+                return cell
+            }
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
+            
+            cell.configure(data: sampleData[indexPath.row])
+            
+            cell.scrapBtn.tag = indexPath.row
+            //        cell.scrapBtn.isUserInteractionEnabled = true
+            cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
+            
+            return cell
+        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
-        
-        cell.configure(data: sampleData[indexPath.row])
-        
-        cell.scrapBtn.tag = indexPath.row
-//        cell.scrapBtn.isUserInteractionEnabled = true
-        cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
-        
-        return cell
+    }
+    
+    @objc func toNext(_ sender : UIButton){
+        if let communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC {
+            self.present(communityWriteVC, animated: true, completion: nil)
+        }
         
     }
     
@@ -135,7 +150,7 @@ extension CommunityTVC {
 }
 
 //키보드 엔터 버튼 눌렀을 때
-extension CommunityTVC: UITextFieldDelegate {
+extension CommunityVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.text == "" {
@@ -168,7 +183,7 @@ extension CommunityTVC: UITextFieldDelegate {
 
 
 //키보드 대응
-extension CommunityTVC{
+extension CommunityVC{
     func setKeyboardSetting() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -206,15 +221,16 @@ extension CommunityTVC{
     }
 }
 
-extension CommunityTVC{
+extension CommunityVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-         let aa = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "새로고침 ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
+        let aa = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "새로고침 ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
         sampleData.append(aa)
         
-        self.tableView.reloadData()
+        self.communityTableView.reloadData()
         sender.endRefreshing()
     }
 }
+
 
 
