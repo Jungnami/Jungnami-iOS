@@ -16,7 +16,7 @@ class PartyListDetailFirstSectionTVCell: UITableViewCell {
             partyImgView.image = #imageLiteral(resourceName: "partylist_bluebox")
         case .red:
             partyImgView.image = #imageLiteral(resourceName: "partylist_redbox")
-        case .green :
+        case .mint :
             partyImgView.image = #imageLiteral(resourceName: "partylist_mintbox")
         case .yellow :
              partyImgView.image = #imageLiteral(resourceName: "partylist_yellowbox")

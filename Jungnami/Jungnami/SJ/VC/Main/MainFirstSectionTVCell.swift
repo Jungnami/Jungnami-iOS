@@ -35,8 +35,8 @@ class MainFirstSectionTVCell: UITableViewCell {
              firstProgressBar.backgroundColor = ColorChip.shared().partyBlue
         case .yellow:
             firstProgressBar.backgroundColor = ColorChip.shared().partyYellow
-        case .green:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyBlue
+        case .mint:
+            firstProgressBar.backgroundColor = ColorChip.shared().partyMint
         case .red:
             firstProgressBar.backgroundColor = ColorChip.shared().partyRed
         case .orange:
@@ -55,7 +55,7 @@ class MainFirstSectionTVCell: UITableViewCell {
             secondProgressBar.backgroundColor = ColorChip.shared().partyBlue
         case .yellow:
             secondProgressBar.backgroundColor = ColorChip.shared().partyYellow
-        case .green:
+        case .mint:
             secondProgressBar.backgroundColor = ColorChip.shared().partyBlue
         case .red:
             secondProgressBar.backgroundColor = ColorChip.shared().partyRed

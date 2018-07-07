@@ -31,8 +31,8 @@ class PartyListDetailTVcell: UITableViewCell {
             profileImgView.layer.borderColor = ColorChip.shared().partyBlue.cgColor
         case .red:
             profileImgView.layer.borderColor = ColorChip.shared().partyRed.cgColor
-        case .green:
-            profileImgView.layer.borderColor = ColorChip.shared().partyGreen.cgColor
+        case .mint:
+            profileImgView.layer.borderColor = ColorChip.shared().partyMint.cgColor
         case .yellow:
             profileImgView.layer.borderColor = ColorChip.shared().partyYellow.cgColor
         case .orange:
