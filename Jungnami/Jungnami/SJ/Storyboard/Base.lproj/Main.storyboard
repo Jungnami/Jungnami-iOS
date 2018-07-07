@@ -1271,6 +1271,7 @@
                                             <outlet property="legislatorProfileImgView" destination="8cD-Yv-KKy" id="xv5-K6-Cyz"/>
                                             <outlet property="legislatorRegionLbl" destination="3PZ-kd-w6H" id="bpR-wB-XG4"/>
                                             <outlet property="likeBtn" destination="pgU-Oh-jy7" id="0bS-Ao-mcP"/>
+                                            <outlet property="medalImgView" destination="zMi-8f-19b" id="8Ag-Bb-8gt"/>
                                             <outlet property="voteBtn" destination="cMN-ix-Uv9" id="da7-eW-3Eg"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1320,6 +1321,7 @@
                                         <size key="customSize" width="375" height="54"/>
                                         <connections>
                                             <outlet property="fixedLbl" destination="ewv-qV-8oh" id="hAV-v5-Ll6"/>
+                                            <outlet property="whiteBGView" destination="031-EL-kms" id="pGw-8S-hAj"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LegislatorContentCell" id="npp-vF-fYd" userLabel="contentCell" customClass="LegislatorContentCell" customModule="Jungnami" customModuleProvider="target">
@@ -1399,7 +1401,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lmj-5Q-MFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4588" y="832.53373313343332"/>
+            <point key="canvasLocation" x="3801" y="834"/>
         </scene>
     </scenes>
     <resources>

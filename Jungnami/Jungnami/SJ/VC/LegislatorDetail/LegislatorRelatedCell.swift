@@ -7,7 +7,15 @@
 
 import UIKit
 
+
 class LegislatorRelatedCell: UICollectionViewCell {
     
     @IBOutlet weak var fixedLbl: UILabel!
+    
+    @IBOutlet weak var whiteBGView: UIView!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        
+    }
 }

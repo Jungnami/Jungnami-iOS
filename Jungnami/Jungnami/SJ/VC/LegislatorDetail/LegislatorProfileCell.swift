@@ -8,7 +8,8 @@
 import UIKit
 
 class LegislatorProfileCell: UICollectionViewCell {
-    
+   
+    @IBOutlet weak var medalImgView: UIImageView!
     @IBOutlet weak var legislatorProfileImgView: UIImageView!
     @IBOutlet weak var legislatorNameLbl: UILabel!
     @IBOutlet weak var legislatorLikeLbl: UILabel!
@@ -21,26 +22,47 @@ class LegislatorProfileCell: UICollectionViewCell {
     @IBOutlet weak var voteBtn: UIButton!
     //호감투표버튼
     @IBAction func legislatorLikeVoteBtn(_ sender: Any) {
-        //likeBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_like_blue"), for: .selected)
+       
     }
     
     //비호감투표버튼
     @IBAction func legislatorDialikeBtn(_ sender: Any) {
-        //dislikeBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_hate_blue"), for: .selected)
+      
     }
     //후원하기버튼
     @IBAction func legislatorSupportBtn(_ sender: Any) {
-        //voteBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_support_blue"), for: .selected)
+        
     }
     
     var data = LegislatorData.sharedInstance.legislators
-    func configure(data: LegislatorSample) {
-        legislatorProfileImgView.image = data.profileImg
+    func configure(data: SampleLegislator) {
+        legislatorProfileImgView.image = data.profile
         legislatorNameLbl.text = data.name
-        legislatorPartyLbl.text = data.party
+        legislatorPartyLbl.text = data.party.rawValue
         legislatorRegionLbl.text = data.region
-        legislatorLikeLbl.text = data.likeRank
-        legislatorDislikeLbl.text = data.dislikeRank
+        legislatorLikeLbl.text = "\(data.likeCount)"
+        legislatorDislikeLbl.text = "\(data.dislikeCount)"
+        
+        switch data.party {
+        case .blue:
+             legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyBlue)
+        case .red:
+            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyRed)
+        case .orange:
+            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyOrange)
+        case .mint:
+            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyMint)
+        case .yellow:
+            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyYellow)
+       
+        }
+       
+        
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        legislatorProfileImgView.makeImageRound()
         
     }
 }

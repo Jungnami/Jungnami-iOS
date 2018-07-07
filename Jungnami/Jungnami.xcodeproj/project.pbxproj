@@ -507,8 +507,8 @@
 				43537F0320F0F0F50036435A /* Legislator */,
 				43E5D27920F078D50020DEBE /* LegislatorDetailVC.swift */,
 				43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */,
-				43537EFF20F0EA070036435A /* LegislatorContentCell.swift */,
 				43537F0120F0EBA50036435A /* LegislatorRelatedCell.swift */,
+				43537EFF20F0EA070036435A /* LegislatorContentCell.swift */,
 			);
 			path = LegislatorDetail;
 			sourceTree = "<group>";
