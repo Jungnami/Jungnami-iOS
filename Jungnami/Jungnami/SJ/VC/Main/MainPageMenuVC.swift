@@ -54,8 +54,9 @@ class MainPageMenuVC: UIViewController {
     
     private lazy var mainLikeTVC: MainLikeTVC = {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: "Rank", bundle: Bundle.main)
         
+    
         var viewController = storyboard.instantiateViewController(withIdentifier: MainLikeTVC.reuseIdentifier) as! MainLikeTVC
         
         
@@ -66,7 +67,7 @@ class MainPageMenuVC: UIViewController {
     
     private lazy var mainDislikeTVC: MainDislikeTVC = {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: "Rank", bundle: Bundle.main)
         
         var viewController = storyboard.instantiateViewController(withIdentifier: MainDislikeTVC.reuseIdentifier) as! MainDislikeTVC
         
@@ -85,6 +86,7 @@ class MainPageMenuVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateView(selected: 0)
         searchTxtField.delegate = self
         setDefaultNav()
         blackView.isHidden = true
@@ -93,7 +95,7 @@ class MainPageMenuVC: UIViewController {
             make.leading.trailing.top.bottom.equalToSuperview()
         }
     
-         updateView(selected: 0)
+        
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
     }
@@ -102,10 +104,6 @@ class MainPageMenuVC: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-    }
-    func scrollToMenuIndex(menuIndex: Int) {
-        updateView(selected: menuIndex)
-        
     }
     
     func searchLegislator(searchString : String){
@@ -128,8 +126,8 @@ class MainPageMenuVC: UIViewController {
 extension MainPageMenuVC{
     
     
-    static func viewController() -> PartyListDetailPageMenuVC {
-        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: PartyListDetailPageMenuVC.reuseIdentifier) as! PartyListDetailPageMenuVC
+    static func viewController() -> MainPageMenuVC {
+        return UIStoryboard.init(name: "Rank", bundle: nil).instantiateViewController(withIdentifier: MainPageMenuVC.reuseIdentifier) as! MainPageMenuVC
     }
     
     
@@ -175,7 +173,6 @@ extension MainPageMenuVC{
             add(asChildViewController: mainLikeTVC)
         } else {
             dislikeBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
-            
             dislikeLine.isHidden = false
             likeBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
             likeLine.isHidden = true
@@ -183,6 +180,7 @@ extension MainPageMenuVC{
             add(asChildViewController: mainDislikeTVC)
         }
     }
+    
     
     
 }
