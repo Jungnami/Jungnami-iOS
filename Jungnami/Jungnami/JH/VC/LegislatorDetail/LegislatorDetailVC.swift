@@ -46,13 +46,12 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorProfileCell.reuseIdentifier, for: indexPath) as! LegislatorProfileCell
-            //configure로 연결하기!
+            
             cell.configure(data: data[0])
-           // cell.legislatorProfileImgView.image = #imageLiteral(resourceName: "dabi")
-            cell.legislatorProfileImgView.makeImageRound()
+//            cell.legislatorProfileImgView.layer.cornerRadius = 10
             //투두 - 이미지 안뜨고 border도 안뜸 ㅠㅠ
-            cell.legislatorProfileImgView.layer.borderWidth = 3
-            cell.legislatorProfileImgView.layer.borderColor = #colorLiteral(red: 0.09019607843, green: 0.5137254902, blue: 0.862745098, alpha: 1)
+            cell.legislatorProfileImgView.makeImageRound()
+            cell.legislatorProfileImgView.makeImgBorder(width: 3, color: #colorLiteral(red: 0.09019607843, green: 0.5137254902, blue: 0.862745098, alpha: 1))
             return cell
         } else if indexPath.section == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorRelatedCell.reuseIdentifier, for: indexPath) as! LegislatorRelatedCell
@@ -64,7 +63,7 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
             cell.configure(data: contents[indexPath.row])
             cell.legislatorContentImgView.layer.cornerRadius = 10
             cell.legislatorContentImgView.layer.masksToBounds = true
-            cell.legislatorContentImgView.clipsToBounds = true
+            
             return cell
         }
  
