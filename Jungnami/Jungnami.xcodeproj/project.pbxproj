@@ -31,6 +31,12 @@
 		3BB4308F20ECE914002980D9 /* PartyListDetailLikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4308E20ECE914002980D9 /* PartyListDetailLikeTVC.swift */; };
 		3BB4309120ECE952002980D9 /* PartyListDetailDislikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB4309020ECE951002980D9 /* PartyListDetailDislikeTVC.swift */; };
 		3BCC933820EFD2BD008F17C6 /* SampleMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCC933720EFD2BD008F17C6 /* SampleMain.swift */; };
+		3BCF932E20F15CA500E9E7F7 /* SupportPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF932D20F15CA500E9E7F7 /* SupportPopupView.swift */; };
+		3BCF933020F15F5F00E9E7F7 /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF932F20F15F5F00E9E7F7 /* Modal.swift */; };
+		3BCF933220F15F6700E9E7F7 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF933120F15F6700E9E7F7 /* CustomAlert.swift */; };
+		3BCF933620F1656600E9E7F7 /* SupportPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCF933520F1656600E9E7F7 /* SupportPopup.xib */; };
+		3BCF933820F16B4700E9E7F7 /* CompletePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCF933720F16B4700E9E7F7 /* CompletePopup.xib */; };
+		3BCF933A20F16F8F00E9E7F7 /* CompletePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF933920F16F8F00E9E7F7 /* CompletePopupView.swift */; };
 		430703D520F107D800D37732 /* LegislatorContentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430703D420F107D800D37732 /* LegislatorContentSample.swift */; };
 		430703D720F107E500D37732 /* LegislatorContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430703D620F107E500D37732 /* LegislatorContentData.swift */; };
 		4331B01220EFFBD500FA290C /* NoticeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331B01120EFFBD500FA290C /* NoticeVC.swift */; };
@@ -40,8 +46,6 @@
 		43537EFE20F0E9C50036435A /* LegislatorProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */; };
 		43537F0020F0EA070036435A /* LegislatorContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537EFF20F0EA070036435A /* LegislatorContentCell.swift */; };
 		43537F0220F0EBA50036435A /* LegislatorRelatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537F0120F0EBA50036435A /* LegislatorRelatedCell.swift */; };
-		43537F0520F0F1050036435A /* LegislatorSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537F0420F0F1050036435A /* LegislatorSample.swift */; };
-		43537F0720F0F3620036435A /* LegislatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537F0620F0F3620036435A /* LegislatorData.swift */; };
 		439D813E20EB2FE5007DAD57 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D811B20EB2FE5007DAD57 /* Extension.swift */; };
 		439D813F20EB2FE5007DAD57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439D811D20EB2FE5007DAD57 /* LaunchScreen.storyboard */; };
 		439D814020EB2FE5007DAD57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439D811F20EB2FE5007DAD57 /* Main.storyboard */; };
@@ -109,6 +113,12 @@
 		3BB4308E20ECE914002980D9 /* PartyListDetailLikeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailLikeTVC.swift; sourceTree = "<group>"; };
 		3BB4309020ECE951002980D9 /* PartyListDetailDislikeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailDislikeTVC.swift; sourceTree = "<group>"; };
 		3BCC933720EFD2BD008F17C6 /* SampleMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleMain.swift; sourceTree = "<group>"; };
+		3BCF932D20F15CA500E9E7F7 /* SupportPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportPopupView.swift; sourceTree = "<group>"; };
+		3BCF932F20F15F5F00E9E7F7 /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
+		3BCF933120F15F6700E9E7F7 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		3BCF933520F1656600E9E7F7 /* SupportPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportPopup.xib; sourceTree = "<group>"; };
+		3BCF933720F16B4700E9E7F7 /* CompletePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletePopup.xib; sourceTree = "<group>"; };
+		3BCF933920F16F8F00E9E7F7 /* CompletePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletePopupView.swift; sourceTree = "<group>"; };
 		430703D420F107D800D37732 /* LegislatorContentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorContentSample.swift; sourceTree = "<group>"; };
 		430703D620F107E500D37732 /* LegislatorContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorContentData.swift; sourceTree = "<group>"; };
 		4331B01120EFFBD500FA290C /* NoticeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeVC.swift; sourceTree = "<group>"; };
@@ -118,8 +128,6 @@
 		43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorProfileCell.swift; sourceTree = "<group>"; };
 		43537EFF20F0EA070036435A /* LegislatorContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorContentCell.swift; sourceTree = "<group>"; };
 		43537F0120F0EBA50036435A /* LegislatorRelatedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorRelatedCell.swift; sourceTree = "<group>"; };
-		43537F0420F0F1050036435A /* LegislatorSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorSample.swift; sourceTree = "<group>"; };
-		43537F0620F0F3620036435A /* LegislatorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorData.swift; sourceTree = "<group>"; };
 		439D811B20EB2FE5007DAD57 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		439D811E20EB2FE5007DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		439D812020EB2FE5007DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -253,6 +261,19 @@
 			path = PartyListDetail;
 			sourceTree = "<group>";
 		};
+		3BCF932A20F1575500E9E7F7 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				3BCF932D20F15CA500E9E7F7 /* SupportPopupView.swift */,
+				3BCF933920F16F8F00E9E7F7 /* CompletePopupView.swift */,
+				3BCF932F20F15F5F00E9E7F7 /* Modal.swift */,
+				3BCF933120F15F6700E9E7F7 /* CustomAlert.swift */,
+				3BCF933520F1656600E9E7F7 /* SupportPopup.xib */,
+				3BCF933720F16B4700E9E7F7 /* CompletePopup.xib */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		4331B01020EFFBB000FA290C /* Notice */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,8 +294,6 @@
 		43537F0320F0F0F50036435A /* Legislator */ = {
 			isa = PBXGroup;
 			children = (
-				43537F0420F0F1050036435A /* LegislatorSample.swift */,
-				43537F0620F0F3620036435A /* LegislatorData.swift */,
 				430703D420F107D800D37732 /* LegislatorContentSample.swift */,
 				430703D620F107E500D37732 /* LegislatorContentData.swift */,
 			);
@@ -504,6 +523,7 @@
 		43E5D27820F078B60020DEBE /* LegislatorDetail */ = {
 			isa = PBXGroup;
 			children = (
+				3BCF932A20F1575500E9E7F7 /* Alert */,
 				43537F0320F0F0F50036435A /* Legislator */,
 				43E5D27920F078D50020DEBE /* LegislatorDetailVC.swift */,
 				43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */,
@@ -641,6 +661,8 @@
 				439D813F20EB2FE5007DAD57 /* LaunchScreen.storyboard in Resources */,
 				439D814B20EB2FE5007DAD57 /* Sub.storyboard in Resources */,
 				439D815020EB2FE5007DAD57 /* Assets.xcassets in Resources */,
+				3BCF933820F16B4700E9E7F7 /* CompletePopup.xib in Resources */,
+				3BCF933620F1656600E9E7F7 /* SupportPopup.xib in Resources */,
 				439D815220EB2FE5007DAD57 /* Info.plist in Resources */,
 				439D814020EB2FE5007DAD57 /* Main.storyboard in Resources */,
 			);
@@ -715,17 +737,17 @@
 				43E84BF620EDF811007C6C97 /* ScrapSample.swift in Sources */,
 				43E84BF820EDF854007C6C97 /* ScrapData.swift in Sources */,
 				3B82550020EF675F00ABCB59 /* MainTVCell.swift in Sources */,
-				43537F0520F0F1050036435A /* LegislatorSample.swift in Sources */,
-				43537F0720F0F3620036435A /* LegislatorData.swift in Sources */,
 				439D814D20EB2FE5007DAD57 /* ContentSecondCell.swift in Sources */,
 				43D1DAC320EB709700B752D1 /* CommentSample.swift in Sources */,
 				439D814E20EB2FE5007DAD57 /* ContentVC.swift in Sources */,
 				43537EF620F0AD6E0036435A /* NoticeCell.swift in Sources */,
 				43E5D27720F06EC30020DEBE /* MyPageData.swift in Sources */,
 				43D1DAB720EB4F6600B752D1 /* CommentVC.swift in Sources */,
+				3BCF932E20F15CA500E9E7F7 /* SupportPopupView.swift in Sources */,
 				3BAFF97620EE845A0088F020 /* Region.swift in Sources */,
 				43537EFE20F0E9C50036435A /* LegislatorProfileCell.swift in Sources */,
 				43D5639220EEA2B3003F59B1 /* ContentMenuData.swift in Sources */,
+				3BCF933220F15F6700E9E7F7 /* CustomAlert.swift in Sources */,
 				439D814920EB2FE5007DAD57 /* Sample.swift in Sources */,
 				3B6B030C20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift in Sources */,
 				43D1DABE20EB611C00B752D1 /* RecommentVC.swift in Sources */,
@@ -744,6 +766,7 @@
 				43537F0020F0EA070036435A /* LegislatorContentCell.swift in Sources */,
 				43D5639020EEA1BC003F59B1 /* ContentMenuSample.swift in Sources */,
 				439D814A20EB2FE5007DAD57 /* CommunityTVCell.swift in Sources */,
+				3BCF933020F15F5F00E9E7F7 /* Modal.swift in Sources */,
 				3BCC933820EFD2BD008F17C6 /* SampleMain.swift in Sources */,
 				3B83165B20F10AF9001D2423 /* CommunityFirstSectionLoginTVCell.swift in Sources */,
 				3BB4308F20ECE914002980D9 /* PartyListDetailLikeTVC.swift in Sources */,
@@ -751,6 +774,7 @@
 				439D814320EB2FE5007DAD57 /* PartyListTVC.swift in Sources */,
 				439D813E20EB2FE5007DAD57 /* Extension.swift in Sources */,
 				43537F0220F0EBA50036435A /* LegislatorRelatedCell.swift in Sources */,
+				3BCF933A20F16F8F00E9E7F7 /* CompletePopupView.swift in Sources */,
 				3B6B030A20EE09F700034C9B /* PartyListDetailTVcell.swift in Sources */,
 				3B0475F120EEBD8D00D30A4D /* MainLikeTVC.swift in Sources */,
 				3B83165920F106E0001D2423 /* CommunityFirstSectionWriteTVCell.swift in Sources */,

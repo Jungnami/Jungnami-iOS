@@ -20,21 +20,8 @@ class LegislatorProfileCell: UICollectionViewCell {
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var dislikeBtn: UIButton!
     @IBOutlet weak var voteBtn: UIButton!
-    //호감투표버튼
-    @IBAction func legislatorLikeVoteBtn(_ sender: Any) {
-       
-    }
     
-    //비호감투표버튼
-    @IBAction func legislatorDialikeBtn(_ sender: Any) {
-      
-    }
-    //후원하기버튼
-    @IBAction func legislatorSupportBtn(_ sender: Any) {
-        
-    }
     
-    var data = LegislatorData.sharedInstance.legislators
     func configure(data: SampleLegislator) {
         legislatorProfileImgView.image = data.profile
         legislatorNameLbl.text = data.name
@@ -56,8 +43,6 @@ class LegislatorProfileCell: UICollectionViewCell {
             legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyYellow)
        
         }
-       
-        
     }
     
     override func awakeFromNib() {

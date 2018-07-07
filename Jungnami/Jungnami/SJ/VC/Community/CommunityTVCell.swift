@@ -43,7 +43,7 @@ class CommunityTVCell: UITableViewCell {
             scrapBtn.setImage(#imageLiteral(resourceName: "community_scrap_blue"), for: .normal)
         }
 
-       
+        
         if data.contentImg != nil {
             contentImgView.image = data.contentImg
         } else {

@@ -12,19 +12,24 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var legislatorCollectionView: UICollectionView!
     var selectedLegislator : SampleLegislator?
+    var supportAlert : CustomAlert?
+    var completeAlert : CustomAlert?
+    var keyboardDismissGesture: UITapGestureRecognizer?
+    let supportPopupView = SupportPopupView.instanceFromNib()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        setKeyboardSetting()
         setupBackBtn()
-        
-        
         
         legislatorCollectionView.delegate = self
         legislatorCollectionView.dataSource = self
         
     }
+    //////////////////////////////SampleData//////////////////////////////
     var contents = LegislatorContentData.sharedInstance.legislatorContents
-    var data = LegislatorData.sharedInstance.legislators
+    /////////////////////////////////////////////////////////////////////
+    
     
 }
 
@@ -72,9 +77,8 @@ extension LegislatorDetailVC {
                 cell.configure(data: selectedLegislator_)
             }
             
-            //            cell.legislatorProfileImgView.layer.cornerRadius = 10
-            //투두 - 이미지 안뜨고 border도 안뜸 ㅠㅠ
-           
+            cell.voteBtn.addTarget(self, action: #selector(support(_sender:)), for: .touchUpInside)
+            
             return cell
         } else if indexPath.section == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorRelatedCell.reuseIdentifier, for: indexPath) as! LegislatorRelatedCell
@@ -91,6 +95,42 @@ extension LegislatorDetailVC {
         }
         
     }
+}
+
+//후원하기에 대한 행동
+extension LegislatorDetailVC  {
+    @objc func support(_sender: UIButton){
+        
+        supportPopupView.inputTxtField.keyboardType = UIKeyboardType.decimalPad
+         supportPopupView.inputTxtField.text = ""
+        supportPopupView.cancleBtn.addTarget(self, action:#selector(self.cancle(_sender:)), for: .touchUpInside)
+        supportPopupView.okBtn.addTarget(self, action:#selector(self.supportOk(_sender:)), for: .touchUpInside)
+        
+        supportAlert = CustomAlert(view : supportPopupView, width : 253, height : 297)
+        supportAlert?.show(animated: false)
+    }
+    
+    
+    @objc func cancle(_sender: UIButton){
+        supportAlert?.dismiss(animated: false)
+    }
+    
+    @objc func supportOk(_sender: UIButton){
+        
+        let completePopupView = CompletePopupView.instanceFromNib()
+        completePopupView.nameLbl.text = selectedLegislator?.name
+        completePopupView.coinLbl.text = "\(gsno(supportPopupView.inputTxtField.text))원"
+        completePopupView.okBtn.addTarget(self, action:#selector(self.completeOk(_sender:)), for: .touchUpInside)
+        supportAlert?.dismiss(animated: false)
+        completeAlert = CustomAlert(view : completePopupView, width : 263, height : 331)
+        completeAlert?.show(animated: false)
+    }
+    
+    @objc func completeOk(_sender: UIButton){
+        completeAlert?.dismiss(animated: false)
+    }
+    
+    
 }
 
 //collection View cell 레이아웃
@@ -127,4 +167,59 @@ extension LegislatorDetailVC {
             return UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         }
     }
+}
+
+
+//키보드 반응
+extension LegislatorDetailVC{
+    
+    func setKeyboardSetting() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        adjustKeyboardDismissGesture(isKeyboardVisible: true)
+        
+        
+        if let firstAlert_ = supportAlert{
+            if (0.0) > ((firstAlert_.frame.origin.y)) {
+                return
+            }
+        }
+        
+        supportAlert?.frame.origin.y -= 50
+        
+        self.view.layoutIfNeeded()
+        
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        adjustKeyboardDismissGesture(isKeyboardVisible: false)
+        
+        //  firstAlert?.frame.origin.y += 50
+        
+        self.view.layoutIfNeeded()
+        
+        
+    }
+    
+    func adjustKeyboardDismissGesture(isKeyboardVisible: Bool) {
+        if isKeyboardVisible {
+            if keyboardDismissGesture == nil {
+                keyboardDismissGesture = UITapGestureRecognizer(target: self, action: #selector(tapBackground))
+                view.addGestureRecognizer(keyboardDismissGesture!)
+            }
+        } else {
+            if keyboardDismissGesture != nil {
+                view.removeGestureRecognizer(keyboardDismissGesture!)
+                keyboardDismissGesture = nil
+            }
+        }
+    }
+    
+    @objc func tapBackground() {
+        self.view.endEditing(true)
+    }
+    
 }
