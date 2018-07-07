@@ -341,6 +341,7 @@
 				439D812720EB2FE5007DAD57 /* PartyList */,
 				3BB4308920ECDF5B002980D9 /* PartyListDetail */,
 				3BB1A5BD20EB958E00D4929A /* SearchLegislatorResult */,
+				43E5D27820F078B60020DEBE /* LegislatorDetail */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -396,7 +397,6 @@
 		439D813420EB2FE5007DAD57 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				43E5D27820F078B60020DEBE /* LegislatorDetail */,
 				4351999420EFE92600D72AAF /* OtherUserPage */,
 				43C5137920ECD7E90017BDD8 /* MyPage */,
 				439D813520EB2FE5007DAD57 /* Content */,
@@ -474,7 +474,6 @@
 		43D1DAC120EB708800B752D1 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				43537F0320F0F0F50036435A /* Legislator */,
 				43E5D27520F06E150020DEBE /* myPage */,
 				43D5638E20EEA128003F59B1 /* content */,
 				43E84C0020EE3EB1007C6C97 /* comment */,
@@ -505,6 +504,7 @@
 		43E5D27820F078B60020DEBE /* LegislatorDetail */ = {
 			isa = PBXGroup;
 			children = (
+				43537F0320F0F0F50036435A /* Legislator */,
 				43E5D27920F078D50020DEBE /* LegislatorDetailVC.swift */,
 				43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */,
 				43537EFF20F0EA070036435A /* LegislatorContentCell.swift */,
@@ -895,7 +895,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4PDAEX33Y3;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jungnami;
@@ -911,7 +911,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4PDAEX33Y3;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jungnami;
