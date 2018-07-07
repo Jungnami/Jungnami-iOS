@@ -27,6 +27,8 @@ class LegislatorProfileCell: UICollectionViewCell {
     
     var data = LegislatorData.sharedInstance.legislators
     func configure(data: LegislatorSample) {
+       // self.legislatorProfileImgView.layer.cornerRadius = self.legislatorProfileImgView.layer.frame.size.width / 2
+        //legislatorProfileImgView.backgroundColor = .red
         legislatorProfileImgView.image = data.profileImg
         legislatorNameLbl.text = data.name
         legislatorPartyLbl.text = data.party

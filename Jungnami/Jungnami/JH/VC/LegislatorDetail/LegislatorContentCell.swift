@@ -15,9 +15,9 @@ class LegislatorContentCell: UICollectionViewCell {
     
     @IBOutlet weak var legislatorContentDate: UILabel!
     
-    var contents = ContentMenuData.sharedInstance.contentMenus
-    func configure(index: Int, data: ContentSample) {
-        legislatorContentImgView.image = data.images[index]
+    var legisContents = LegislatorContentData.sharedInstance.legislatorContents
+    func configure(data: LegislatorContentSample) {
+        legislatorContentImgView.image = data.contentImg
         legislatorTitleLbl.text = data.title
         legislatorContentDate.text = data.date
         legislatorContentCategoryLbl.text = data.category
