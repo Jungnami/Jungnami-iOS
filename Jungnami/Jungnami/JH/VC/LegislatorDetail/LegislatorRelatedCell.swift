@@ -9,4 +9,5 @@ import UIKit
 
 class LegislatorRelatedCell: UICollectionViewCell {
     
+    @IBOutlet weak var fixedLbl: UILabel!
 }
