@@ -54,6 +54,11 @@ extension UIImageView {
         self.layer.cornerRadius = self.layer.frame.width/2
         self.layer.masksToBounds = true
     }
+    
+    func makeImgBorder(width : Int, color : UIColor){
+        self.layer.borderWidth = CGFloat(width)
+        self.layer.borderColor = color.cgColor
+    }
 }
 extension UIViewController {
     func simpleAlert(title: String, message: String){
