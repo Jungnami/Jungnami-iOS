@@ -157,7 +157,7 @@ extension CommunityTVC: UITextFieldDelegate {
             textField.resignFirstResponder()
             //searchLegislatorResultTVC = self.selectedCategory
             // communityResultTVC.searchTxtfield.text = self.searchTxtfield.text
-            
+            communityResultTVC.searchString = self.searchTxtfield.text
             self.navigationController?.pushViewController(communityResultTVC, animated: true)
         }
         
