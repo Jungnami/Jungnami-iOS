@@ -14,14 +14,27 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
+        setupBackBtn()
+        
         legislatorCollectionView.delegate = self
         legislatorCollectionView.dataSource = self
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func setupBackBtn(){
+        let backBtn = UIButton(type: .system)
+        backBtn.setImage(#imageLiteral(resourceName: "area_left_arrow").withRenderingMode(.alwaysOriginal), for: .normal)
+        backBtn.addTarget(self, action:  #selector(self.toBack(_sender:)), for: .touchUpInside)
+        backBtn.snp.makeConstraints { (make) in
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn)
+    }
+    
+    @objc func toBack(_sender: UIButton){
+        self.navigationController?.popViewController(animated: true)
     }
     
     var contents = LegislatorContentData.sharedInstance.legislatorContents
@@ -48,14 +61,14 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorProfileCell.reuseIdentifier, for: indexPath) as! LegislatorProfileCell
             
             cell.configure(data: data[0])
-//            cell.legislatorProfileImgView.layer.cornerRadius = 10
+            //            cell.legislatorProfileImgView.layer.cornerRadius = 10
             //투두 - 이미지 안뜨고 border도 안뜸 ㅠㅠ
             cell.legislatorProfileImgView.makeImageRound()
             cell.legislatorProfileImgView.makeImgBorder(width: 3, color: #colorLiteral(red: 0.09019607843, green: 0.5137254902, blue: 0.862745098, alpha: 1))
             return cell
         } else if indexPath.section == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorRelatedCell.reuseIdentifier, for: indexPath) as! LegislatorRelatedCell
-             cell.fixedLbl.text = "관련된 컨텐츠"
+            cell.fixedLbl.text = "관련된 컨텐츠"
             return cell
         } else  {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorContentCell.reuseIdentifier, for: indexPath) as! LegislatorContentCell
@@ -66,12 +79,12 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
             
             return cell
         }
- 
+        
     }
-//layout
+    //layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0{
-        return CGSize(width: 375, height: 183)
+            return CGSize(width: 375, height: 183)
         }
         if indexPath.section == 1 {
             return CGSize(width: 375, height: 54)
@@ -97,8 +110,8 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
         if section == 0 && section == 1 {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }else {
-          return UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+            return UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         }
     }
-
+    
 }
