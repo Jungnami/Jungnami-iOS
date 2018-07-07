@@ -17,12 +17,27 @@ class MyPageVC: UIViewController {
     @IBOutlet weak var profileFollowingNumLbl: UILabel!
     @IBOutlet weak var profileFollowerNumLbl: UILabel!
     
+    @IBOutlet weak var profileCoinCountLbl: UILabel!
+    @IBOutlet weak var profileVoteCountLbl: UILabel!
+    
     //알림, 설정, 버튼으로 연결해야함
+    var data = MyPageData.sharedInstance.myPageUsers
+    func configure(data: MyPageSample) {
+        profileImgView.image = data.profileImg
+        self.profileImgView.layer.cornerRadius = self.profileImgView.layer.frame.size.width / 2
+        profileuserNameLbl.text = data.userId
+        profileScrapNumLbl.text = data.scrapCount
+        profileMyfeedNumLbl.text = data.scrapCount
+        profileFollowerNumLbl.text = data.followerCount
+        profileFollowingNumLbl.text = data.followCount
+        profileCoinCountLbl.text = data.coin
+        profileVoteCountLbl.text = data.vote
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+//        self.profileImgView.layer.cornerRadius = self.profileImgView.layer.frame.size.width / 2
+        configure(data: data[1])
     }
 
     override func didReceiveMemoryWarning() {
