@@ -105,10 +105,12 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
-    func searchLegislator(){
+    func searchLegislator(searchString : String){
         if let searchLegislatorResultTVC = self.storyboard?.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
             self.navSearchView.endEditing(true)
             //searchLegislatorResultTVC = self.selectedCategory
+           searchLegislatorResultTVC.searchString = searchString
+        
             self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
         }
     }
@@ -180,8 +182,6 @@ extension PartyListPageMenuVC {
         self.navigationItem.leftBarButtonItem = nil
         
     }
-    
-    
 }
 
 //네비게이션 서치바 커스텀
@@ -238,7 +238,11 @@ extension PartyListPageMenuVC : UITextFieldDelegate{
                 return false
             }
         }
-        searchLegislator()
+        
+        if let searchString_ = textField.text {
+            searchLegislator(searchString : searchString_)
+        }
+        
         return true
     }
 }

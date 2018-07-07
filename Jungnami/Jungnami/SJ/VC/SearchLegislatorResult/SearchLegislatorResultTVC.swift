@@ -10,6 +10,7 @@ import UIKit
 
 class SearchLegislatorResultTVC: UITableViewController {
 
+    var searchString : String?
     var sampleData : [SampleLegislator] = []
     @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var searchTxtfield: UITextField!
@@ -26,6 +27,13 @@ class SearchLegislatorResultTVC: UITableViewController {
     }()
     
     var keyboardDismissGesture: UITapGestureRecognizer?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("searchString")
+        print(searchString)
+        searchTxtfield.text = searchString
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

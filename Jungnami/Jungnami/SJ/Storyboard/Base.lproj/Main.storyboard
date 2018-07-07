@@ -60,10 +60,7 @@
                                     </constraints>
                                 </imageView>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="찾고 싶은 글을 검색해 보세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gRE-pa-FUa">
-                                    <rect key="frame" x="88" y="6" width="235" height="32"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="235" id="iJD-pG-43u"/>
-                                    </constraints>
+                                    <rect key="frame" x="88" y="6" width="165" height="32"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -132,6 +129,7 @@
                                 <constraint firstItem="iIk-qx-6bR" firstAttribute="leading" secondItem="RS7-j9-1bq" secondAttribute="leading" id="WGq-Pv-Njh"/>
                                 <constraint firstItem="dcO-W4-KKI" firstAttribute="centerY" secondItem="EDR-Ps-tDC" secondAttribute="centerY" id="a5W-pr-k0A"/>
                                 <constraint firstItem="C9Z-zk-NVX" firstAttribute="leading" secondItem="BDF-4j-yGD" secondAttribute="trailing" constant="15" id="aG0-YN-9K2"/>
+                                <constraint firstItem="THr-3P-tyV" firstAttribute="leading" secondItem="C9Z-zk-NVX" secondAttribute="trailing" constant="16" id="fc0-pr-gh7"/>
                                 <constraint firstItem="gRE-pa-FUa" firstAttribute="top" secondItem="C9Z-zk-NVX" secondAttribute="top" id="n7g-wh-mCv"/>
                                 <constraint firstItem="gRE-pa-FUa" firstAttribute="bottom" secondItem="C9Z-zk-NVX" secondAttribute="bottom" id="pVs-qa-axn"/>
                                 <constraint firstItem="C9Z-zk-NVX" firstAttribute="centerY" secondItem="BDF-4j-yGD" secondAttribute="centerY" id="uWR-eY-gNd"/>
