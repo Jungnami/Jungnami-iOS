@@ -54,7 +54,7 @@ class MainPageMenuVC: UIViewController {
     
     private lazy var mainLikeTVC: MainLikeTVC = {
         
-        let storyboard = UIStoryboard(name: "Rank", bundle: Bundle.main)
+        let storyboard = Storyboard.shared().rankStoryboard
         
     
         var viewController = storyboard.instantiateViewController(withIdentifier: MainLikeTVC.reuseIdentifier) as! MainLikeTVC
@@ -67,7 +67,7 @@ class MainPageMenuVC: UIViewController {
     
     private lazy var mainDislikeTVC: MainDislikeTVC = {
         
-        let storyboard = UIStoryboard(name: "Rank", bundle: Bundle.main)
+        let storyboard = Storyboard.shared().rankStoryboard
         
         var viewController = storyboard.instantiateViewController(withIdentifier: MainDislikeTVC.reuseIdentifier) as! MainDislikeTVC
         
@@ -107,7 +107,7 @@ class MainPageMenuVC: UIViewController {
     }
  
     func searchLegislator(searchString : String){
-         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+         let mainStoryboard = Storyboard.shared().mainStoryboard
         if let searchLegislatorResultTVC = mainStoryboard.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
             self.navSearchView.endEditing(true)
             //searchLegislatorResultTVC = self.selectedCategory

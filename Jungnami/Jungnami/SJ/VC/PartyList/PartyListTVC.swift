@@ -19,6 +19,11 @@ class PartyListTVC: UITableViewController {
     //노티를 날릴만한 뷰에서는 delegate 를 쓴다.
     var delegate: PushVCProtocol?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.setContentOffset(.zero, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

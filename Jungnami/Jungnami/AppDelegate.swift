@@ -78,8 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     //카카오 시작
     fileprivate func setupEntryController() {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let rankStoryboard = UIStoryboard(name: "Rank", bundle: nil)
+        let mainStoryboard = Storyboard.shared().mainStoryboard
+        let rankStoryboard = Storyboard.shared().rankStoryboard
       
         
         self.loginVC = rankStoryboard.instantiateViewController(withIdentifier: LoginVC.reuseIdentifier) as! LoginVC

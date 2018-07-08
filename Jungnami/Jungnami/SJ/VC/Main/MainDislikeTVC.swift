@@ -14,13 +14,18 @@ enum MainViewType {
 class MainDislikeTVC: UITableViewController {
     
     var sampleData : [SampleLegislator] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.setContentOffset(.zero, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         
         /////////////////////Sample Data//////////////////////////
-        
         sampleData = SampleLegislatorData.sharedInstance.legislators
         //////////////////////////////////////////////////////
         
@@ -72,7 +77,7 @@ extension MainDislikeTVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let mainStoryboard = Storyboard.shared().mainStoryboard
         
         if let legislatorDetailVC = mainStoryboard.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             

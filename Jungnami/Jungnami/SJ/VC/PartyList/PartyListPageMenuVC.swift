@@ -59,7 +59,7 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
     
     private lazy var partyListTVC: PartyListTVC = {
         // Load Storyboard
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = Storyboard.shared().mainStoryboard
         
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC
        
@@ -70,7 +70,7 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
     
     private lazy var regionVC: RegionVC = {
        
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = Storyboard.shared().mainStoryboard
       
         var viewController = storyboard.instantiateViewController(withIdentifier: RegionVC.reuseIdentifier) as! RegionVC
       
