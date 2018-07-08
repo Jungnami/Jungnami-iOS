@@ -12,6 +12,9 @@ class LoginVC: UIViewController {
     var tabbarVC : UIViewController?
    
     
+    @IBAction func dismissBtn(_ sender: Any) {
+    }
+    
     @IBAction func withoutLogin(_ sender: Any) {
          self.tabbarVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: "tabBar") as! TabbarVC
         if let tabbarVC_ = tabbarVC {
@@ -41,7 +44,7 @@ class LoginVC: UIViewController {
                     print("Login failed")
                 }
             }else{
-                print("Login error : \(error)")
+                print("Login error : \(String(describing: error))")
             }
             // 사용자 정보 요청
             KOSessionTask.userMeTask { [weak self] (error, me) in
@@ -63,7 +66,9 @@ class LoginVC: UIViewController {
                     case Int(KOErrorCancelled.rawValue):
                         break
                     default:
-                        self.simpleAlert(title: "err", message: error.description)
+                        //간편 로그인 취소
+                        print("error : \(error.description)")
+
                     }
                 }
             }
