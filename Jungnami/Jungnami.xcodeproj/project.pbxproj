@@ -26,6 +26,7 @@
 		3B97B5C020F205E300020A81 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5BF20F205E300020A81 /* LoginVC.swift */; };
 		3B97B5C220F212AF00020A81 /* TabbarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5C120F212AF00020A81 /* TabbarVC.swift */; };
 		3B97B5C520F2432800020A81 /* TapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5C420F2432800020A81 /* TapDelegate.swift */; };
+		3B97B5C720F25BA700020A81 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5C620F25BA700020A81 /* Storyboard.swift */; };
 		3BAFF97620EE845A0088F020 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAFF97520EE845A0088F020 /* Region.swift */; };
 		3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */; };
 		3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */; };
@@ -129,6 +130,7 @@
 		3B97B5BF20F205E300020A81 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3B97B5C120F212AF00020A81 /* TabbarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarVC.swift; sourceTree = "<group>"; };
 		3B97B5C420F2432800020A81 /* TapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapDelegate.swift; sourceTree = "<group>"; };
+		3B97B5C620F25BA700020A81 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		3BAFF97520EE845A0088F020 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVC.swift; sourceTree = "<group>"; };
 		3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVCell.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				3B6B031A20EE530A00034C9B /* PartyList.swift */,
 				3BAFF97520EE845A0088F020 /* Region.swift */,
 				3B97B5C420F2432800020A81 /* TapDelegate.swift */,
+				3B97B5C620F25BA700020A81 /* Storyboard.swift */,
 			);
 			path = SingleTon;
 			sourceTree = "<group>";
@@ -875,6 +878,7 @@
 				3B97B5BE20F201F700020A81 /* kakaoLogin.cpp in Sources */,
 				3B83165720F104C3001D2423 /* CommunityVC.swift in Sources */,
 				430703D520F107D800D37732 /* LegislatorContentSample.swift in Sources */,
+				3B97B5C720F25BA700020A81 /* Storyboard.swift in Sources */,
 				3BB4309120ECE952002980D9 /* PartyListDetailDislikeTVC.swift in Sources */,
 				43E5D27A20F078D50020DEBE /* LegislatorDetailVC.swift in Sources */,
 				3B8254FE20EF674D00ABCB59 /* MainFirstSectionTVCell.swift in Sources */,

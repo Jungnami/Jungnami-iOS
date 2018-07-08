@@ -54,7 +54,7 @@ class PartyListDetailPageMenuVC : UIViewController{
     
     private lazy var partyListDetailLikeTVC: PartyListDetailLikeTVC = {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = Storyboard.shared().mainStoryboard
         
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailLikeTVC.reuseIdentifier) as! PartyListDetailLikeTVC
         
@@ -67,7 +67,7 @@ class PartyListDetailPageMenuVC : UIViewController{
     
     private lazy var partyListDetailDislikeTVC: PartyListDetailDislikeTVC = {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = Storyboard.shared().mainStoryboard
         
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailDislikeTVC.reuseIdentifier) as! PartyListDetailDislikeTVC
         viewController.selectedParty = selectedParty

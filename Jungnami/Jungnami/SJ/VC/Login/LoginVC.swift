@@ -9,6 +9,17 @@ import UIKit
 
 class LoginVC: UIViewController {
 
+    var tabbarVC : UIViewController?
+   
+    
+    @IBAction func withoutLogin(_ sender: Any) {
+         self.tabbarVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: "tabBar") as! TabbarVC
+        if let tabbarVC_ = tabbarVC {
+             self.present(tabbarVC_, animated: true, completion: nil)
+        }
+       
+        
+    }
     @IBAction func loginWithKakao(_ sender: Any) {let session: KOSession = KOSession.shared();
         
         if session.isOpen() {

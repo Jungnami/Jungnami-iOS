@@ -13,6 +13,11 @@ class PartyListDetailDislikeTVC: UITableViewController {
     var selectedRegion : Region?
     var sampleData : [SampleLegislator] = []
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.setContentOffset(.zero, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
