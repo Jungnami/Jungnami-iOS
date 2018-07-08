@@ -16,6 +16,8 @@ class CommunityVC: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchTxtfield: UITextField!
     @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var communityTableView: UITableView!
+   
+    
     lazy var blackView : UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -121,10 +123,10 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
             
-            cell.configure(data: sampleData[indexPath.row])
-            
+            cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
+            cell.delegate = self
             cell.scrapBtn.tag = indexPath.row
-            //        cell.scrapBtn.isUserInteractionEnabled = true
+           
             cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
             
             return cell
@@ -229,6 +231,13 @@ extension CommunityVC{
         
         self.communityTableView.reloadData()
         sender.endRefreshing()
+    }
+}
+
+//탭제스처 레코그나이저
+extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate {
+    func myTableDelegate(index : Int) {
+        print(index)
     }
 }
 
