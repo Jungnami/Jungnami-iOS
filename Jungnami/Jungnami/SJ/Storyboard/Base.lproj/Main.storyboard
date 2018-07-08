@@ -442,34 +442,36 @@
                                                 <constraint firstAttribute="width" secondItem="JTU-It-cIq" secondAttribute="height" multiplier="1:1" id="SBk-vF-7bk"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ranking_like" translatesAutoresizingMaskIntoConstraints="NO" id="Y6u-ik-dCg">
-                                            <rect key="frame" x="331" y="16" width="32" height="32"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-0h-Qoc">
+                                            <rect key="frame" x="328" y="15" width="35" height="35"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="32" id="273-zy-kzt"/>
-                                                <constraint firstAttribute="width" secondItem="Y6u-ik-dCg" secondAttribute="height" multiplier="1:1" id="jBj-1U-IZb"/>
+                                                <constraint firstAttribute="width" constant="35" id="eXE-nh-0DQ"/>
+                                                <constraint firstAttribute="width" secondItem="sCn-0h-Qoc" secondAttribute="height" multiplier="1:1" id="sd0-vK-4Ul"/>
                                             </constraints>
-                                        </imageView>
+                                            <state key="normal" image="ranking_like"/>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="DVO-iz-zKu" firstAttribute="top" secondItem="jby-xS-2Jg" secondAttribute="bottom" constant="5" id="3ee-PV-APx"/>
+                                        <constraint firstAttribute="trailing" secondItem="sCn-0h-Qoc" secondAttribute="trailing" constant="12" id="3yy-Op-WAN"/>
                                         <constraint firstItem="NB4-ru-aTK" firstAttribute="leading" secondItem="vf1-G9-72L" secondAttribute="leading" constant="12" id="9zZ-ZK-4sg"/>
                                         <constraint firstItem="NB4-ru-aTK" firstAttribute="centerY" secondItem="vf1-G9-72L" secondAttribute="centerY" id="BcT-qZ-mKc"/>
                                         <constraint firstItem="JTU-It-cIq" firstAttribute="top" secondItem="vf1-G9-72L" secondAttribute="top" constant="12.5" id="G0C-Ef-dSl"/>
                                         <constraint firstAttribute="bottom" secondItem="JTU-It-cIq" secondAttribute="bottom" constant="12" id="Icg-p2-MhD"/>
                                         <constraint firstItem="JTU-It-cIq" firstAttribute="width" secondItem="vf1-G9-72L" secondAttribute="width" multiplier="39:375" id="Ks8-cB-zjF"/>
                                         <constraint firstItem="jby-xS-2Jg" firstAttribute="leading" secondItem="JTU-It-cIq" secondAttribute="trailing" constant="13" id="O7o-Ip-XUq"/>
-                                        <constraint firstAttribute="trailing" secondItem="Y6u-ik-dCg" secondAttribute="trailing" constant="12" id="PxW-DJ-eS7"/>
                                         <constraint firstItem="JTU-It-cIq" firstAttribute="leading" secondItem="NB4-ru-aTK" secondAttribute="trailing" constant="13" id="XW5-kS-vMU"/>
                                         <constraint firstItem="jby-xS-2Jg" firstAttribute="top" secondItem="JTU-It-cIq" secondAttribute="top" constant="2" id="bXP-Uy-qFs"/>
                                         <constraint firstItem="JTU-It-cIq" firstAttribute="centerY" secondItem="NB4-ru-aTK" secondAttribute="centerY" id="dfZ-k8-Wxa"/>
-                                        <constraint firstItem="Y6u-ik-dCg" firstAttribute="centerY" secondItem="NB4-ru-aTK" secondAttribute="centerY" id="tMb-mI-diI"/>
                                         <constraint firstItem="mb9-Ik-Khb" firstAttribute="leading" secondItem="DVO-iz-zKu" secondAttribute="trailing" constant="3" id="vJR-RV-jf0"/>
                                         <constraint firstItem="mb9-Ik-Khb" firstAttribute="centerY" secondItem="DVO-iz-zKu" secondAttribute="centerY" id="vUE-7F-tDK"/>
+                                        <constraint firstItem="sCn-0h-Qoc" firstAttribute="centerY" secondItem="JTU-It-cIq" secondAttribute="centerY" id="w5Z-bi-3bR"/>
                                         <constraint firstItem="DVO-iz-zKu" firstAttribute="leading" secondItem="jby-xS-2Jg" secondAttribute="leading" id="zcd-dm-nGr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="indexLbl" destination="NB4-ru-aTK" id="JDP-rc-4Q4"/>
+                                    <outlet property="likeBtn" destination="sCn-0h-Qoc" id="IWR-VH-3pD"/>
                                     <outlet property="nameLbl" destination="jby-xS-2Jg" id="xqu-7O-Qnb"/>
                                     <outlet property="profileImgView" destination="JTU-It-cIq" id="aDL-db-gsc"/>
                                     <outlet property="rankLbl" destination="DVO-iz-zKu" id="jFg-mL-QSz"/>
@@ -1001,20 +1003,19 @@
                                                 <constraint firstAttribute="width" secondItem="Cmf-J5-He0" secondAttribute="height" multiplier="1:1" id="6eB-Ld-F24"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ranking_hate" translatesAutoresizingMaskIntoConstraints="NO" id="emm-qT-AwZ">
-                                            <rect key="frame" x="331" y="16" width="32" height="32"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xf-WA-lfd">
+                                            <rect key="frame" x="328" y="15" width="35" height="35"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="32" id="9CK-H3-GVA"/>
-                                                <constraint firstAttribute="width" secondItem="emm-qT-AwZ" secondAttribute="height" multiplier="1:1" id="FA5-fs-GKr"/>
+                                                <constraint firstAttribute="width" constant="35" id="Tq6-Sb-iB6"/>
+                                                <constraint firstAttribute="width" secondItem="8xf-WA-lfd" secondAttribute="height" multiplier="1:1" id="j2h-UU-Deg"/>
                                             </constraints>
-                                        </imageView>
+                                            <state key="normal" image="ranking_hate"/>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Cmf-J5-He0" firstAttribute="width" secondItem="STS-9d-PJz" secondAttribute="width" multiplier="39:375" id="7Wq-cS-CLt"/>
-                                        <constraint firstAttribute="trailing" secondItem="emm-qT-AwZ" secondAttribute="trailing" constant="12" id="8rr-lV-bNV"/>
                                         <constraint firstItem="9mT-EZ-I00" firstAttribute="centerY" secondItem="XND-KC-MRN" secondAttribute="centerY" id="AgI-sm-Y6c"/>
                                         <constraint firstItem="Wj9-7U-Fow" firstAttribute="leading" secondItem="Cmf-J5-He0" secondAttribute="trailing" constant="13" id="Emm-m6-Vr2"/>
-                                        <constraint firstItem="emm-qT-AwZ" firstAttribute="centerY" secondItem="2Z3-Ub-Lfj" secondAttribute="centerY" id="Itg-3d-vYS"/>
                                         <constraint firstItem="Cmf-J5-He0" firstAttribute="centerY" secondItem="2Z3-Ub-Lfj" secondAttribute="centerY" id="LLr-0S-dPk"/>
                                         <constraint firstItem="2Z3-Ub-Lfj" firstAttribute="leading" secondItem="STS-9d-PJz" secondAttribute="leading" constant="12" id="PvN-cl-ChR"/>
                                         <constraint firstItem="Wj9-7U-Fow" firstAttribute="top" secondItem="Cmf-J5-He0" secondAttribute="top" constant="2" id="S2D-oL-fxF"/>
@@ -1022,13 +1023,16 @@
                                         <constraint firstItem="Cmf-J5-He0" firstAttribute="top" secondItem="STS-9d-PJz" secondAttribute="top" constant="12.5" id="bIb-JA-aNR"/>
                                         <constraint firstItem="XND-KC-MRN" firstAttribute="leading" secondItem="Wj9-7U-Fow" secondAttribute="leading" id="bQZ-Es-Dc1"/>
                                         <constraint firstItem="2Z3-Ub-Lfj" firstAttribute="centerY" secondItem="STS-9d-PJz" secondAttribute="centerY" id="cW4-fp-geL"/>
+                                        <constraint firstAttribute="trailing" secondItem="8xf-WA-lfd" secondAttribute="trailing" constant="12" id="fe7-4O-d24"/>
                                         <constraint firstItem="Cmf-J5-He0" firstAttribute="leading" secondItem="2Z3-Ub-Lfj" secondAttribute="trailing" constant="13" id="gxd-Y4-l8L"/>
                                         <constraint firstAttribute="bottom" secondItem="Cmf-J5-He0" secondAttribute="bottom" constant="12" id="ivt-NK-0qK"/>
+                                        <constraint firstItem="8xf-WA-lfd" firstAttribute="centerY" secondItem="Cmf-J5-He0" secondAttribute="centerY" id="k6Q-tx-FYn"/>
                                         <constraint firstItem="9mT-EZ-I00" firstAttribute="leading" secondItem="XND-KC-MRN" secondAttribute="trailing" constant="3" id="zvb-Np-38l"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="indexLbl" destination="2Z3-Ub-Lfj" id="NZ6-2e-Oq9"/>
+                                    <outlet property="likeBtn" destination="8xf-WA-lfd" id="0Sj-Pk-2xO"/>
                                     <outlet property="nameLbl" destination="Wj9-7U-Fow" id="542-yc-5O2"/>
                                     <outlet property="profileImgView" destination="Cmf-J5-He0" id="6Vn-nw-cSl"/>
                                     <outlet property="rankLbl" destination="XND-KC-MRN" id="L12-02-ikK"/>
@@ -1187,7 +1191,7 @@
                                                                         <constraint firstAttribute="width" constant="62" id="oID-j0-QSR"/>
                                                                         <constraint firstAttribute="height" constant="28" id="wmX-WE-peX"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="legislator-detailpage_like_gray"/>
+                                                                    <state key="normal" image="legislator-detailpage_like_blue"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHE-r0-9am">
                                                                     <rect key="frame" x="194" y="127" width="71" height="28"/>
@@ -1195,7 +1199,7 @@
                                                                         <constraint firstAttribute="width" constant="71" id="VtX-dr-tbf"/>
                                                                         <constraint firstAttribute="height" constant="28" id="wCe-Pc-FxH"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="legislator-detailpage_hate_gray"/>
+                                                                    <state key="normal" image="legislator-detailpage_hate_blue"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-ix-Uv9">
                                                                     <rect key="frame" x="273" y="127" width="80" height="28"/>
@@ -1203,7 +1207,7 @@
                                                                         <constraint firstAttribute="width" constant="80" id="FRq-2O-vbm"/>
                                                                         <constraint firstAttribute="height" constant="28" id="lkk-nY-bPN"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="legislator-detailpage_support_gray"/>
+                                                                    <state key="normal" image="legislator-detailpage_support_blue"/>
                                                                 </button>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legislator-detailpage_medal_bronze" translatesAutoresizingMaskIntoConstraints="NO" id="zMi-8f-19b">
                                                                     <rect key="frame" x="86" y="76" width="23" height="30"/>
@@ -1400,10 +1404,10 @@
         <image name="community_left_arrow" width="12" height="24"/>
         <image name="community_search" width="15" height="15"/>
         <image name="community_search_field" width="279" height="31"/>
-        <image name="legislator-detailpage_hate_gray" width="71" height="28"/>
-        <image name="legislator-detailpage_like_gray" width="62" height="28"/>
+        <image name="legislator-detailpage_hate_blue" width="71" height="28"/>
+        <image name="legislator-detailpage_like_blue" width="62" height="28"/>
         <image name="legislator-detailpage_medal_bronze" width="23" height="30"/>
-        <image name="legislator-detailpage_support_gray" width="80" height="28"/>
+        <image name="legislator-detailpage_support_blue" width="80" height="28"/>
         <image name="partylist_bluebox" width="364" height="100"/>
         <image name="partylist_mintbox" width="364" height="100"/>
         <image name="partylist_orangebox" width="364" height="100"/>

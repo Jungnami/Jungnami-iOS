@@ -16,6 +16,12 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
     var completeAlert : CustomAlert?
     var keyboardDismissGesture: UITapGestureRecognizer?
     let supportPopupView = SupportPopupView.instanceFromNib()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.view.backgroundColor = UIColor.white
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
@@ -83,6 +89,12 @@ extension LegislatorDetailVC {
             }
             
             cell.voteBtn.addTarget(self, action: #selector(support(_sender:)), for: .touchUpInside)
+          //  cell.voteBtn.tag = selectedLegislator.고유아이디
+            
+            cell.likeBtn.addTarget(self, action: #selector(like(_sender:)), for: .touchUpInside)
+            cell.dislikeBtn.addTarget(self, action: #selector(dislike(_sender:)), for: .touchUpInside)
+           
+          
             
             return cell
         } else if indexPath.section == 1 {
@@ -102,8 +114,22 @@ extension LegislatorDetailVC {
     }
 }
 
-//후원하기에 대한 행동
+//좋아요, 싫어요, 후원하기에 대한 행동
 extension LegislatorDetailVC  {
+    //좋아요
+    @objc func like(_sender: UIButton){
+        simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
+            self.popupImgView(fileName: "ranking_like")
+        }
+    }
+    
+    //싫어요
+    @objc func dislike(_sender: UIButton){
+        simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
+            self.popupImgView(fileName: "ranking_hate")
+        }
+    }
+    //후원하기
     @objc func support(_sender: UIButton){
         
         supportPopupView.inputTxtField.keyboardType = UIKeyboardType.decimalPad

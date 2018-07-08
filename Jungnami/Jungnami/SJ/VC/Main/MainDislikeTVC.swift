@@ -20,27 +20,20 @@ class MainDislikeTVC: UITableViewController {
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         
         /////////////////////Sample Data//////////////////////////
-       /* let a = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "sample Data", likeCount: 12, dislikeCount: 1, region: "서울 성북구 안암동", party: .blue, likeRank: 12, dislikeRank: 1, voteCount: 200000, rate: 1.8)
-        let b = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "sample Data", likeCount: 12, dislikeCount: 2, region: "서울 성북구 안암동", party: .blue, likeRank: 12, dislikeRank: 2, voteCount: 200000, rate: 1.8)
-        let c = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "sample Data", likeCount: 12, dislikeCount: 2, region: "서울 성북구 안암동", party: .blue, likeRank: 12, dislikeRank: 3, voteCount: 200000, rate: 1.8)
-        let d = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "sample Data", likeCount: 12, dislikeCount: 1, region: "서울 성북구 안암동", party: .blue, likeRank: 12, dislikeRank: 4, voteCount: 200000, rate: 1.8)
-        let e = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "sample Data", likeCount: 12, dislikeCount: 1, region: "서울 성북구 안암동", party: .blue, likeRank: 12, dislikeRank: 4, voteCount: 200000, rate: 1.8)
-        let f = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "sample Data", likeCount: 12, dislikeCount: 1, region: "서울 성북구 안암동", party: .blue, likeRank: 12, dislikeRank: 4, voteCount: 200000, rate: 1.8)
         
-        sampleData.append(contentsOf : [a,b,c,d,e,f])*/
-        
-         sampleData = SampleLegislatorData.sharedInstance.legislators
+        sampleData = SampleLegislatorData.sharedInstance.legislators
         //////////////////////////////////////////////////////
         
     }
     
     @objc func vote(_ sender : UIButton){
         simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-            print("vote!")
+            self.popupImgView(fileName: "ranking_hate")
         }
     }
     
 }
+
 
 
 //tableview deleagte, datasource
@@ -80,7 +73,7 @@ extension MainDislikeTVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-
+        
         if let legislatorDetailVC = mainStoryboard.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
             legislatorDetailVC.selectedLegislator = self.sampleData[indexPath.row]

@@ -18,7 +18,7 @@ class PartyListDetailTVcell: UITableViewCell {
     @IBOutlet weak var rankLbl: UILabel!
     
     @IBOutlet weak var regionLbl: UILabel!
-    
+     @IBOutlet weak var likeBtn: UIButton!
     func configure(index : Int, data : SampleLegislator){
         indexLbl.text = "\(index+1)"
         profileImgView.image = data.profile
@@ -39,6 +39,8 @@ class PartyListDetailTVcell: UITableViewCell {
             profileImgView.layer.borderColor = ColorChip.shared().partyOrange.cgColor
 
         }
+        
+
         
         if index % 2 == 1 {
             self.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
