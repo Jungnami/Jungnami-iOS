@@ -13,7 +13,7 @@ class ContentFirstCell: UICollectionViewCell {
     @IBOutlet weak var recommendImgView: UIImageView!
     @IBOutlet weak var recommendTitleLbl: UILabel!
     @IBOutlet weak var recommendCategoryLbl: UILabel!
-    @IBOutlet weak var recommendContentTypeImgView: UIImageView!
+    
     
     @IBOutlet weak var recommendContentDate: UILabel!
     
@@ -23,7 +23,7 @@ class ContentFirstCell: UICollectionViewCell {
         recommendTitleLbl.text = data.title
         recommendCategoryLbl.text = data.category
         recommendContentDate.text = data.date
-        recommendContentTypeImgView.image = data.typeImg
+        
     }
     
     

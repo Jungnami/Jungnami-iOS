@@ -8,20 +8,42 @@
 
 import UIKit
 
-class ContentVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ContentVC: UIViewController {
     
-    @IBOutlet weak var menuBtn: UIButton!
+    @IBOutlet weak var recommendBtn: UIButton!
+    @IBOutlet weak var tmiBtn: UIButton!
+    @IBOutlet weak var storyBtn: UIButton!
     
-    
-    @IBOutlet weak var contentCollectionView: UICollectionView!
+    @IBOutlet weak var contentContainerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.shadowImage = UIImage()
 //        addNavBarImage()
-        self.contentCollectionView.delegate = self
-        self.contentCollectionView.dataSource = self
+       
     }
+    private lazy var contentContainer: ContentContainerVC = {
+        
+        let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
+        
+        var viewController = storyboard.instantiateViewController(withIdentifier: ContentContainerVC.reuseIdentifier) as! ContentContainerVC
+        
+        
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+//
+//    private lazy var myFeedVC: MyFeedVC = {
+//
+//        let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
+//
+//        var viewController = storyboard.instantiateViewController(withIdentifier: MyFeedVC.reuseIdentifier) as! MyFeedVC
+//
+//        self.add(asChildViewController: viewController)
+//
+//        return viewController
+//    }()
     
     
 //    func addNavBarImage() {
@@ -39,74 +61,67 @@ class ContentVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //-------------------collectionView
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
-    var contentMenus = ContentMenuData.sharedInstance.contentMenus
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }else {
-            
-            return contentMenus.count
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentFirstCell.reuseIdentifier, for: indexPath) as! ContentFirstCell            //cell에 데이터 연결!
-            cell.configure(data: contentMenus[indexPath.row])
-            return cell
-        }else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentSecondCell.reuseIdentifier, for: indexPath) as! ContentSecondCell
-            //cell에 데이터 연결!
-            cell.configure(data: contentMenus[indexPath.row])
-            cell.contentImgView.layer.cornerRadius = 10
-            cell.contentImgView.layer.masksToBounds = true
-            return cell
-        }
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //item을 누르면 contentDetailVC로 pushViewController로 넘겨야 함
-//        performSegue(withIdentifier: "goToContnetDetail", sender: AnyObject.self)
-    }
-    
-    //--------collectionView Layout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
-                return CGSize(width: self.view.frame.width, height: 257)
-        }else {
-            return CGSize(width: 170, height: 187)
-        }
-        
-    }
-        //세로간격
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if section == 0 {
-            return 0
-        }else{
-            return 6
-        }
-    }
-        //가로간격
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if section == 0 {
-            return 0
-        }else {
-            return 7.5
-        }
-    }
-        //section과 collectionView사이 간격 - (top, left, bottom, right)
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if section == 0{
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }else {
-            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        }
-    }
-    
-
-
 }
+extension ContentVC{
+    
+    
+    static func viewController() -> ContentVC {
+        return UIStoryboard.init(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: ContentVC.reuseIdentifier) as! ContentVC
+    }
+    
+    
+    
+    private func add(asChildViewController viewController: UIViewController) {
+        
+        // Add Child View Controller
+        addChildViewController(viewController)
+        
+        // Add Child View as Subview
+        contentContainerView.addSubview(viewController.view)
+        
+        // Configure Child View
+        viewController.view.frame = contentContainerView.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Notify Child View Controller
+        viewController.didMove(toParentViewController: self)
+    }
+    
+    //----------------------------------------------------------------
+    
+    private func remove(asChildViewController viewController: UIViewController) {
+        // Notify Child View Controller
+        viewController.willMove(toParentViewController: nil)
+        
+        // Remove Child View From Superview
+        viewController.view.removeFromSuperview()
+        
+        // Notify Child View Controller
+        viewController.removeFromParentViewController()
+    }
+    
+    //----------------------------------------------------------------
+            //투두 - 수진한테 물어보기 containerView에 연결된 VC가 하나의 형식이라 하나만 연결했는데 add,remove뷰를 어떻게 연결해야할지?!?!
+//    private func updateView(selected : Int) {
+//        if selected == 0 {
+//            recommendBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+//            
+//            tmiBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+//            storyBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+//            
+//            //remove(asChildViewController: )
+////            add(asChildViewController: contentContainerView)
+////            remove(asChildViewController: <#T##UIViewController#>)
+//        }else if selected == 1 {
+//            
+//        }else {
+//            feedBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+//            
+//            scapBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+//            
+//            remove(asChildViewController: scrapCVC)
+//            add(asChildViewController: myFeedVC)
+//        }
+//    }
+}
+

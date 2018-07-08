@@ -51,7 +51,7 @@ class MyPageVC: UIViewController {
     }()
     func configure(data: MyPageSample) {
         profileImgView.image = data.profileImg
-        self.profileImgView.layer.cornerRadius = self.profileImgView.layer.frame.size.width / 2
+        profileImgView.makeImageRound()
         profileuserNameLbl.text = data.userId
         profileScrapNumLbl.text = data.scrapCount
         profileMyfeedNumLbl.text = data.scrapCount

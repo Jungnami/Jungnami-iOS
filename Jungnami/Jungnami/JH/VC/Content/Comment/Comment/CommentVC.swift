@@ -48,10 +48,8 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var keyboardDismissGesture: UITapGestureRecognizer?
     ////////////////샘플데이터//////////////////////
     var data = CommentData.sharedInstance.comments
-    
     ////////////////////////////////////
-    //---------------------------------------
-    
+    //--------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         CommentTableView.delegate = self
@@ -59,6 +57,9 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         //comment의 댓글 글자수 제한
         commentWriteField.addTarget(self, action: #selector(canCommentSend), for: .editingChanged)
         setKeyboardSetting()
+        //statusBar 없애기
+        hideStatusBar = true
+        setNeedsStatusBarAppearanceUpdate()
      
         commentWriteBar.snp.makeConstraints { (make) in
             make.width.equalTo(self.view.frame.width)
@@ -75,9 +76,11 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         self.view.bringSubview(toFront: commentWriteBar)
         
-        
-        
-        
+    }
+    private var hideStatusBar: Bool = false
+    
+    override var prefersStatusBarHidden: Bool {
+        return hideStatusBar
     }
     //comment댓글 글자 수 제한
     @objc func canCommentSend() {
@@ -145,9 +148,8 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // Your code here
         let userId = data[sender.tag].userId
         let recommentVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: "RecommentVC") as! RecommentVC
-        self.navigationController?.pushViewController(recommentVC, animated: false)
+        self.navigationController?.pushViewController(recommentVC, animated: true)
         //다른 뷰로 넘길때 userId 같이 넘기면 (나중에는 댓글에 대한 고유 인덱스가 됨) 그거 가지고 다시 통신
-        print(userId)
     }
     
 }

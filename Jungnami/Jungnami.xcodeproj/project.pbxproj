@@ -82,6 +82,7 @@
 		43E84BFD20EE2F07007C6C97 /* ContentDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BFC20EE2F07007C6C97 /* ContentDetailCell.swift */; };
 		43E84BFF20EE3EAE007C6C97 /* ContentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84BFE20EE3EAE007C6C97 /* ContentSample.swift */; };
 		43E84C0420EE3FCD007C6C97 /* ContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E84C0320EE3FCD007C6C97 /* ContentData.swift */; };
+		43EDECB020F1B25B00E0F0E9 /* ContentContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECAF20F1B25B00E0F0E9 /* ContentContainerVC.swift */; };
 		B0FAAE4A343BF869C79BD42B /* Pods_Jungnami.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +164,7 @@
 		43E84BFC20EE2F07007C6C97 /* ContentDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailCell.swift; sourceTree = "<group>"; };
 		43E84BFE20EE3EAE007C6C97 /* ContentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSample.swift; sourceTree = "<group>"; };
 		43E84C0320EE3FCD007C6C97 /* ContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentData.swift; sourceTree = "<group>"; };
+		43EDECAF20F1B25B00E0F0E9 /* ContentContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentContainerVC.swift; sourceTree = "<group>"; };
 		744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jungnami.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D460A20ABACB58096DFE5D7A /* Pods-Jungnami.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jungnami.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -424,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				439D813920EB2FE5007DAD57 /* ContentVC.swift */,
+				43EDECAF20F1B25B00E0F0E9 /* ContentContainerVC.swift */,
 				439D813620EB2FE5007DAD57 /* ContentCollectionView */,
 				43E84BF920EE1DBD007C6C97 /* ContentDetail */,
 				43D1DAB520EB4F2C00B752D1 /* Comment */,
@@ -760,6 +763,7 @@
 				43D1DAC720EB989B00B752D1 /* RecommentSample.swift in Sources */,
 				43E84C0420EE3FCD007C6C97 /* ContentData.swift in Sources */,
 				43C5138020ECD9F70017BDD8 /* ScrapCell.swift in Sources */,
+				43EDECB020F1B25B00E0F0E9 /* ContentContainerVC.swift in Sources */,
 				43537F0020F0EA070036435A /* LegislatorContentCell.swift in Sources */,
 				43D5639020EEA1BC003F59B1 /* ContentMenuSample.swift in Sources */,
 				439D814A20EB2FE5007DAD57 /* CommunityTVCell.swift in Sources */,
@@ -915,7 +919,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y4XABUQ539;
+				DEVELOPMENT_TEAM = 4PDAEX33Y3;
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jungnami;
@@ -931,7 +935,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y4XABUQ539;
+				DEVELOPMENT_TEAM = 4PDAEX33Y3;
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jungnami;
