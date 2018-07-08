@@ -89,6 +89,14 @@
 		43EDECBC20F1C97000E0F0E9 /* TmiSecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECBB20F1C97000E0F0E9 /* TmiSecondCell.swift */; };
 		43EDECBF20F1CA9500E0F0E9 /* StoryFirstCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECBE20F1CA9400E0F0E9 /* StoryFirstCell.swift */; };
 		43EDECC120F1CAA200E0F0E9 /* StorySecondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECC020F1CAA200E0F0E9 /* StorySecondCell.swift */; };
+		43EDECC320F2039000E0F0E9 /* FollowListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECC220F2039000E0F0E9 /* FollowListVC.swift */; };
+		43EDECC620F2051500E0F0E9 /* FollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECC520F2051500E0F0E9 /* FollowCell.swift */; };
+		43EDECC820F205B300E0F0E9 /* FollowerFixedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECC720F205B300E0F0E9 /* FollowerFixedCell.swift */; };
+		43EDECCA20F2063E00E0F0E9 /* FollowerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECC920F2063E00E0F0E9 /* FollowerListVC.swift */; };
+		43EDECCC20F208FA00E0F0E9 /* FollowListSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECCB20F208FA00E0F0E9 /* FollowListSample.swift */; };
+		43EDECCE20F2095E00E0F0E9 /* FollowListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECCD20F2095E00E0F0E9 /* FollowListData.swift */; };
+		43EDECD220F20C8700E0F0E9 /* FollowFixedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECD120F20C8700E0F0E9 /* FollowFixedCell.swift */; };
+		43EDECD420F20C9A00E0F0E9 /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EDECD320F20C9A00E0F0E9 /* FollowerCell.swift */; };
 		B0FAAE4A343BF869C79BD42B /* Pods_Jungnami.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */; };
 /* End PBXBuildFile section */
 
@@ -177,6 +185,14 @@
 		43EDECBB20F1C97000E0F0E9 /* TmiSecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmiSecondCell.swift; sourceTree = "<group>"; };
 		43EDECBE20F1CA9400E0F0E9 /* StoryFirstCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryFirstCell.swift; sourceTree = "<group>"; };
 		43EDECC020F1CAA200E0F0E9 /* StorySecondCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorySecondCell.swift; sourceTree = "<group>"; };
+		43EDECC220F2039000E0F0E9 /* FollowListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListVC.swift; sourceTree = "<group>"; };
+		43EDECC520F2051500E0F0E9 /* FollowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowCell.swift; sourceTree = "<group>"; };
+		43EDECC720F205B300E0F0E9 /* FollowerFixedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFixedCell.swift; sourceTree = "<group>"; };
+		43EDECC920F2063E00E0F0E9 /* FollowerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVC.swift; sourceTree = "<group>"; };
+		43EDECCB20F208FA00E0F0E9 /* FollowListSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListSample.swift; sourceTree = "<group>"; };
+		43EDECCD20F2095E00E0F0E9 /* FollowListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListData.swift; sourceTree = "<group>"; };
+		43EDECD120F20C8700E0F0E9 /* FollowFixedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowFixedCell.swift; sourceTree = "<group>"; };
+		43EDECD320F20C9A00E0F0E9 /* FollowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
 		744C0104DC536AD11F511D74 /* Pods_Jungnami.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jungnami.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D460A20ABACB58096DFE5D7A /* Pods-Jungnami.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jungnami.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -460,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				43C5137A20ECD81D0017BDD8 /* MyPageVC.swift */,
+				43EDECC420F204DE00E0F0E9 /* FollowFollowing */,
 				4331B01020EFFBB000FA290C /* Notice */,
 				43C5137C20ECD9870017BDD8 /* Scrap */,
 				43E84BEC20EDE1F4007C6C97 /* MyFeed */,
@@ -529,6 +546,8 @@
 			children = (
 				43E5D27320F06D980020DEBE /* MyPageSample.swift */,
 				43E5D27620F06EC30020DEBE /* MyPageData.swift */,
+				43EDECCB20F208FA00E0F0E9 /* FollowListSample.swift */,
+				43EDECCD20F2095E00E0F0E9 /* FollowListData.swift */,
 			);
 			path = myPage;
 			sourceTree = "<group>";
@@ -634,6 +653,35 @@
 				43EDECC020F1CAA200E0F0E9 /* StorySecondCell.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		43EDECC420F204DE00E0F0E9 /* FollowFollowing */ = {
+			isa = PBXGroup;
+			children = (
+				43EDECD020F20C4200E0F0E9 /* Follower */,
+				43EDECCF20F20C3100E0F0E9 /* Follow */,
+			);
+			path = FollowFollowing;
+			sourceTree = "<group>";
+		};
+		43EDECCF20F20C3100E0F0E9 /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				43EDECC220F2039000E0F0E9 /* FollowListVC.swift */,
+				43EDECD120F20C8700E0F0E9 /* FollowFixedCell.swift */,
+				43EDECC520F2051500E0F0E9 /* FollowCell.swift */,
+			);
+			path = Follow;
+			sourceTree = "<group>";
+		};
+		43EDECD020F20C4200E0F0E9 /* Follower */ = {
+			isa = PBXGroup;
+			children = (
+				43EDECC920F2063E00E0F0E9 /* FollowerListVC.swift */,
+				43EDECC720F205B300E0F0E9 /* FollowerFixedCell.swift */,
+				43EDECD320F20C9A00E0F0E9 /* FollowerCell.swift */,
+			);
+			path = Follower;
 			sourceTree = "<group>";
 		};
 		DBF1C7D4E75F34E568FC6E76 /* Frameworks */ = {
@@ -774,14 +822,17 @@
 			files = (
 				4331B01220EFFBD500FA290C /* NoticeVC.swift in Sources */,
 				3B6B031B20EE530A00034C9B /* PartyList.swift in Sources */,
+				43EDECD420F20C9A00E0F0E9 /* FollowerCell.swift in Sources */,
 				430703D720F107E500D37732 /* LegislatorContentData.swift in Sources */,
 				43EDECB220F1C60500E0F0E9 /* ContentTmiVC.swift in Sources */,
 				43C5137E20ECD9D00017BDD8 /* ScrapCVC.swift in Sources */,
+				43EDECC320F2039000E0F0E9 /* FollowListVC.swift in Sources */,
 				3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */,
 				439D814420EB2FE5007DAD57 /* RegionVC.swift in Sources */,
 				3B0896A120EEBA2B00BFBCBC /* MainPageMenuVC.swift in Sources */,
 				43E84BFF20EE3EAE007C6C97 /* ContentSample.swift in Sources */,
 				43E84BFB20EE2E42007C6C97 /* ContentDetailVC.swift in Sources */,
+				43EDECCA20F2063E00E0F0E9 /* FollowerListVC.swift in Sources */,
 				439D814120EB2FE5007DAD57 /* CommunityWriteVC.swift in Sources */,
 				4351999620EFE94A00D72AAF /* OtherUserPageVC.swift in Sources */,
 				3B83165720F104C3001D2423 /* CommunityVC.swift in Sources */,
@@ -789,20 +840,25 @@
 				3BB4309120ECE952002980D9 /* PartyListDetailDislikeTVC.swift in Sources */,
 				43E5D27A20F078D50020DEBE /* LegislatorDetailVC.swift in Sources */,
 				3B8254FE20EF674D00ABCB59 /* MainFirstSectionTVCell.swift in Sources */,
+				43EDECD220F20C8700E0F0E9 /* FollowFixedCell.swift in Sources */,
 				43E84BFD20EE2F07007C6C97 /* ContentDetailCell.swift in Sources */,
+				43EDECCC20F208FA00E0F0E9 /* FollowListSample.swift in Sources */,
 				3BB1A5C320EB9EC000D4929A /* SampleLegislator.swift in Sources */,
 				3BCF933C20F1854300E9E7F7 /* SampleLegislatorData.swift in Sources */,
 				3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */,
 				43E84BF620EDF811007C6C97 /* ScrapSample.swift in Sources */,
+				43EDECC620F2051500E0F0E9 /* FollowCell.swift in Sources */,
 				43E84BF820EDF854007C6C97 /* ScrapData.swift in Sources */,
 				3B82550020EF675F00ABCB59 /* MainTVCell.swift in Sources */,
 				43EDECBF20F1CA9500E0F0E9 /* StoryFirstCell.swift in Sources */,
 				439D814D20EB2FE5007DAD57 /* RecommendSecondCell.swift in Sources */,
 				43D1DAC320EB709700B752D1 /* CommentSample.swift in Sources */,
 				439D814E20EB2FE5007DAD57 /* ContentVC.swift in Sources */,
+				43EDECC820F205B300E0F0E9 /* FollowerFixedCell.swift in Sources */,
 				43537EF620F0AD6E0036435A /* NoticeCell.swift in Sources */,
 				43E5D27720F06EC30020DEBE /* MyPageData.swift in Sources */,
 				43EDECB420F1C6D500E0F0E9 /* ContentStoryVC.swift in Sources */,
+				43EDECCE20F2095E00E0F0E9 /* FollowListData.swift in Sources */,
 				43D1DAB720EB4F6600B752D1 /* CommentVC.swift in Sources */,
 				3BCF932E20F15CA500E9E7F7 /* SupportPopupView.swift in Sources */,
 				3BAFF97620EE845A0088F020 /* Region.swift in Sources */,
