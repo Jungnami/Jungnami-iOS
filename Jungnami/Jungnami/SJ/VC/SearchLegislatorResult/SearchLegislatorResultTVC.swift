@@ -37,8 +37,8 @@ class SearchLegislatorResultTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          self.navigationItem.setHidesBackButton(true, animated:true)
-        searchTxtfield.delegate = self
-        setKeyboardSetting()
+         searchTxtfield.delegate = self
+         setKeyboardSetting()
         
         self.tableView.addSubview(blackView)
         blackView.snp.makeConstraints { (make) in
@@ -50,11 +50,7 @@ class SearchLegislatorResultTVC: UITableViewController {
         blackView.isHidden = true
         
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-        let a = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "김성태", likeCount: 12, dislikeCount: 45, region: "서울 강서구 을", party : "민주당")
-        let b = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", likeCount: 12, dislikeCount: 45, region: "당대표, 서울 광진구 을", party : "자한당")
-        
-        sampleData.append(a)
-        sampleData.append(b)
+         sampleData = SampleLegislatorData.sharedInstance.legislators
         ////////////////////////////////////////////////////
         
     }
@@ -80,7 +76,8 @@ extension SearchLegislatorResultTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let legislatorDetailVC = self.storyboard?.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
-           // textField.resignFirstResponder()
+         
+            legislatorDetailVC.selectedLegislator = self.sampleData[indexPath.row]
             
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }

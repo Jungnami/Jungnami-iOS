@@ -23,11 +23,19 @@ class SearchLegislatorResultTVCell: UITableViewCell {
         nameLbl.text = data.name
         rankDetailLbl.text = "호감 \(data.likeCount)위 / 비호감 \(data.dislikeCount)위"
         regionLbl.text = data.region
-        if (data.party == "민주당"){
-            profileImg.layer.borderColor = ColorChip.shared().partyBlue.cgColor
-        } else {
-            profileImg.layer.borderColor = ColorChip.shared().partyRed.cgColor
+        switch data.party {
+        case .blue:
+            profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyBlue)
+        case .red:
+            profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyRed)
+        case .yellow:
+            profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyYellow)
+        case .orange:
+            profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyOrange)
+        case .mint:
+            profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyMint)
         }
+        
         
         if rank % 2 == 0 {
             self.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
@@ -37,7 +45,7 @@ class SearchLegislatorResultTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImg.makeImageRound()
-        profileImg.layer.borderWidth = 2
+        //profileImg.layer.borderWidth = 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

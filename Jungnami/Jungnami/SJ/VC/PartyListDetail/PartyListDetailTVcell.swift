@@ -19,11 +19,11 @@ class PartyListDetailTVcell: UITableViewCell {
     
     @IBOutlet weak var regionLbl: UILabel!
     
-    func configure(index : Int, data : SampleLegislator2){
+    func configure(index : Int, data : SampleLegislator){
         indexLbl.text = "\(index+1)"
         profileImgView.image = data.profile
         nameLbl.text = data.name
-        rankLbl.text = "\(data.rank)위"
+        rankLbl.text = "\(data.likeRank)위"
         regionLbl.text = data.region
         switch data.party {
         case .blue:

@@ -29,6 +29,17 @@ extension NSObject {
 
 extension UIViewController {
     
+    func gsno(_ value : String?) -> String{
+        return value ?? ""
+    }
+    
+    func gino(_ value : Int?) -> Int {
+        return value ?? 0
+    }
+    
+    
+    
+    
     func addChildView(containerView : UIView, asChildViewController viewController: UIViewController) {
         
         addChildViewController(viewController)

@@ -1188,9 +1188,6 @@
                                                                         <constraint firstAttribute="height" constant="28" id="wmX-WE-peX"/>
                                                                     </constraints>
                                                                     <state key="normal" image="legislator-detailpage_like_gray"/>
-                                                                    <connections>
-                                                                        <action selector="legislatorLikeVoteBtn:" destination="j5A-Qd-MLr" eventType="touchUpInside" id="3j2-VE-lcU"/>
-                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHE-r0-9am">
                                                                     <rect key="frame" x="194" y="127" width="71" height="28"/>
@@ -1199,9 +1196,6 @@
                                                                         <constraint firstAttribute="height" constant="28" id="wCe-Pc-FxH"/>
                                                                     </constraints>
                                                                     <state key="normal" image="legislator-detailpage_hate_gray"/>
-                                                                    <connections>
-                                                                        <action selector="legislatorDialikeBtn:" destination="j5A-Qd-MLr" eventType="touchUpInside" id="qUX-2D-clP"/>
-                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-ix-Uv9">
                                                                     <rect key="frame" x="273" y="127" width="80" height="28"/>
@@ -1210,9 +1204,6 @@
                                                                         <constraint firstAttribute="height" constant="28" id="lkk-nY-bPN"/>
                                                                     </constraints>
                                                                     <state key="normal" image="legislator-detailpage_support_gray"/>
-                                                                    <connections>
-                                                                        <action selector="legislatorSupportBtn:" destination="j5A-Qd-MLr" eventType="touchUpInside" id="j2M-ZV-dxa"/>
-                                                                    </connections>
                                                                 </button>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legislator-detailpage_medal_bronze" translatesAutoresizingMaskIntoConstraints="NO" id="zMi-8f-19b">
                                                                     <rect key="frame" x="86" y="76" width="23" height="30"/>
@@ -1271,6 +1262,7 @@
                                             <outlet property="legislatorProfileImgView" destination="8cD-Yv-KKy" id="xv5-K6-Cyz"/>
                                             <outlet property="legislatorRegionLbl" destination="3PZ-kd-w6H" id="bpR-wB-XG4"/>
                                             <outlet property="likeBtn" destination="pgU-Oh-jy7" id="0bS-Ao-mcP"/>
+                                            <outlet property="medalImgView" destination="zMi-8f-19b" id="8Ag-Bb-8gt"/>
                                             <outlet property="voteBtn" destination="cMN-ix-Uv9" id="da7-eW-3Eg"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1320,6 +1312,7 @@
                                         <size key="customSize" width="375" height="54"/>
                                         <connections>
                                             <outlet property="fixedLbl" destination="ewv-qV-8oh" id="hAV-v5-Ll6"/>
+                                            <outlet property="whiteBGView" destination="031-EL-kms" id="pGw-8S-hAj"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LegislatorContentCell" id="npp-vF-fYd" userLabel="contentCell" customClass="LegislatorContentCell" customModule="Jungnami" customModuleProvider="target">
@@ -1399,7 +1392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lmj-5Q-MFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4588" y="832.53373313343332"/>
+            <point key="canvasLocation" x="3801" y="834"/>
         </scene>
     </scenes>
     <resources>

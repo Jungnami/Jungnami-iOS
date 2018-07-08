@@ -25,7 +25,7 @@ class MainFirstSectionTVCell: UITableViewCell {
     @IBOutlet weak var secondProgressBarLbl: UILabel!
     let maxWidth : Double = 150.0
     //꽉찬게 240
-    func configure(first : SampleMain, second : SampleMain){
+    func configure(first : SampleLegislator, second : SampleLegislator){
         firstImgView.image = first.profile
         firstNameLbl.text = first.name
         firstPartyLbl.text = first.party.rawValue
@@ -70,20 +70,8 @@ class MainFirstSectionTVCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //왼쪽 바 둥글게
-        let leftRectShape = CAShapeLayer()
-        leftRectShape.bounds = self.firstProgressBar.frame
-        leftRectShape.position = self.firstProgressBar.center
-        leftRectShape.path = UIBezierPath(roundedRect: self.firstProgressBar.bounds, byRoundingCorners: [.topRight , .bottomRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-        self.firstProgressBar.layer.mask = leftRectShape
-        
-        //오른쪽 바 둥글게
-        let rightRectShape = CAShapeLayer()
-        rightRectShape.bounds = self.secondProgressBar.frame
-        rightRectShape.position = self.secondProgressBar.center
-        rightRectShape.path = UIBezierPath(roundedRect: self.secondProgressBar.bounds, byRoundingCorners: [.topLeft , .bottomLeft], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-        self.secondProgressBar.layer.mask = rightRectShape
-        
+        firstProgressBar.makeRounded()
+        secondProgressBar.makeRounded()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
