@@ -26,7 +26,6 @@ class MainDislikeTVC: UITableViewController {
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         
         /////////////////////Sample Data//////////////////////////
-        
         sampleData = SampleLegislatorData.sharedInstance.legislators
         //////////////////////////////////////////////////////
         
