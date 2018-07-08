@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class PartyListDetailLikeTVC: UITableViewController {
 
     var selectedParty : PartyList?
@@ -18,6 +20,7 @@ class PartyListDetailLikeTVC: UITableViewController {
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
         sampleData = SampleLegislatorData.sharedInstance.legislators
         /////////////////////////////////////////////////
+         
 
     }
 
@@ -57,9 +60,10 @@ extension PartyListDetailLikeTVC {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PartyListDetailTVcell.reuseIdentifier, for: indexPath) as! PartyListDetailTVcell
 
-            
-           cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
-
+            cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
+            cell.likeBtn.tag = indexPath.row
+            cell.likeBtn.isUserInteractionEnabled = true
+           cell.likeBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
             return cell
         }
     }
@@ -73,5 +77,11 @@ extension PartyListDetailLikeTVC {
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
         
+    }
+    
+    @objc func vote(_ sender : UIButton){
+        simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
+            self.popupImgView(fileName: "ranking_like")
+        }
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class PartyListDetailPageMenuVC : UIViewController{
     
     @IBOutlet weak var containerView: UIView!

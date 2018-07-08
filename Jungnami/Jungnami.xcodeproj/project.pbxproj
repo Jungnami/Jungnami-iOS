@@ -197,9 +197,9 @@
 			isa = PBXGroup;
 			children = (
 				3B0896A020EEBA2B00BFBCBC /* MainPageMenuVC.swift */,
-				3B8254FD20EF674D00ABCB59 /* MainFirstSectionTVCell.swift */,
 				3B0475F020EEBD8D00D30A4D /* MainLikeTVC.swift */,
 				3B0475F220EEBD9B00D30A4D /* MainDislikeTVC.swift */,
+				3B8254FD20EF674D00ABCB59 /* MainFirstSectionTVCell.swift */,
 				3B8254FF20EF675F00ABCB59 /* MainTVCell.swift */,
 			);
 			path = Main;

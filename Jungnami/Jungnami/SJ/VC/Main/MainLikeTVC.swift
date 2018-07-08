@@ -27,12 +27,9 @@ class MainLikeTVC: UITableViewController {
     
     @objc func vote(_ sender : UIButton){
         simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-            print("vote!")
+             self.popupImgView(fileName: "ranking_like")
         }
     }
-    
-    
-    
     
 }
 
@@ -58,6 +55,7 @@ extension MainLikeTVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainFirstSectionTVCell.reuseIdentifier) as! MainFirstSectionTVCell
             cell.configure(first: sampleData[0], second: sampleData[1])
             return cell
+          
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier, for: indexPath) as! MainTVCell

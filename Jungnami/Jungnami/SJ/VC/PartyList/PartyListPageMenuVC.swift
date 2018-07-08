@@ -82,6 +82,7 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        navigationController?.view.backgroundColor = UIColor.white
         setKeyboardSetting()
     }
     

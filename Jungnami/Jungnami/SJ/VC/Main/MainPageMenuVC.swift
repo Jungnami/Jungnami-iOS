@@ -105,9 +105,10 @@ class MainPageMenuVC: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
-    
+ 
     func searchLegislator(searchString : String){
-        if let searchLegislatorResultTVC = self.storyboard?.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
+         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if let searchLegislatorResultTVC = mainStoryboard.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
             self.navSearchView.endEditing(true)
             //searchLegislatorResultTVC = self.selectedCategory
            searchLegislatorResultTVC.searchString = searchString

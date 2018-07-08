@@ -59,6 +59,9 @@ class PartyListDetailDislikeTVC: UITableViewController {
 
             
             cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
+            cell.likeBtn.tag = indexPath.row
+            cell.likeBtn.isUserInteractionEnabled = true
+            cell.likeBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
 
             return cell
         }
@@ -73,5 +76,11 @@ class PartyListDetailDislikeTVC: UITableViewController {
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
         
+    }
+    
+    @objc func vote(_ sender : UIButton){
+        simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
+             self.popupImgView(fileName: "ranking_hate")
+        }
     }
 }
