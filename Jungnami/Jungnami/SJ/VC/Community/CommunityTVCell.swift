@@ -21,10 +21,14 @@ class CommunityTVCell: UITableViewCell {
     @IBOutlet weak var commentBtn : UIButton!
     @IBOutlet weak var scrapBtn : UIButton!
     
-    
+    var delegate: TapDelegate?
+
+    var index : Int = 0
+
     /////////////////////샘플설정///////////////////////////////
-    func configure(data : Sample){
-      
+    func configure(index : Int, data : Sample){
+        self.index = index
+       
         profileImgView.image = data.profileUrl
         nameLabel.text = data.name
         timeLabel.text = data.time
@@ -56,13 +60,29 @@ class CommunityTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImgView.makeImageRound()
-        
+        //탭제스처 레코그나이저
+        profileImgView.isUserInteractionEnabled = true
+        nameLabel.isUserInteractionEnabled = true
+        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(CommunityTVCell.imgTap(sender:)))
+         let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(CommunityTVCell.lblTap(sender:)))
+         self.nameLabel.addGestureRecognizer(lblTapGesture)
+         self.profileImgView.addGestureRecognizer(imgTapGesture)
     }
+   
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
+    }
+    
+    @objc func imgTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
+       
+    }
+    @objc func lblTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
     }
 
 }
+
