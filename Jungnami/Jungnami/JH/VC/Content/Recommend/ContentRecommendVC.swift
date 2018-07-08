@@ -1,5 +1,5 @@
 //
-//  ContentContainerVC.swift
+//  ContentRecommendVC.swift
 //  Jungnami
 //
 //  Created by 이지현 on 2018. 7. 8..
@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ContentContainerVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var contentCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        contentCollectionView.delegate = self
+        contentCollectionView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,8 +23,6 @@ class ContentContainerVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     var contentMenus = ContentMenuData.sharedInstance.contentMenus
-}
-extension ContentContainerVC {
     
     //-------------------collectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -42,11 +40,11 @@ extension ContentContainerVC {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentFirstCell.reuseIdentifier, for: indexPath) as! ContentFirstCell            //cell에 데이터 연결!
+            let cell = contentCollectionView.dequeueReusableCell(withReuseIdentifier: RecommendFirstCell.reuseIdentifier, for: indexPath) as! RecommendFirstCell            //cell에 데이터 연결!
             cell.configure(data: contentMenus[indexPath.row])
             return cell
         }else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentSecondCell.reuseIdentifier, for: indexPath) as! ContentSecondCell
+            let cell = contentCollectionView.dequeueReusableCell(withReuseIdentifier: RecommendSecondCell.reuseIdentifier, for: indexPath) as! RecommendSecondCell
             //cell에 데이터 연결!
             cell.configure(data: contentMenus[indexPath.row])
             cell.contentImgView.layer.cornerRadius = 10
@@ -92,4 +90,8 @@ extension ContentContainerVC {
             return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }
     }
+    
+
 }
+
+

@@ -8,21 +8,20 @@
 
 import UIKit
 
-class ContentFirstCell: UICollectionViewCell {
-    
+class RecommendFirstCell: UICollectionViewCell {
+
     @IBOutlet weak var recommendImgView: UIImageView!
+    
     @IBOutlet weak var recommendTitleLbl: UILabel!
     @IBOutlet weak var recommendCategoryLbl: UILabel!
-    
-    
-    @IBOutlet weak var recommendContentDate: UILabel!
+    @IBOutlet weak var recommendDateLbl: UILabel!
     
     
     func configure(data: ContentMenuSample) {
         recommendImgView.image = data.imgView
         recommendTitleLbl.text = data.title
         recommendCategoryLbl.text = data.category
-        recommendContentDate.text = data.date
+        recommendDateLbl.text = data.date
         
     }
     

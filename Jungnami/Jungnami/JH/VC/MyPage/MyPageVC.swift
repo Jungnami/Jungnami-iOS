@@ -54,7 +54,7 @@ class MyPageVC: UIViewController {
         profileImgView.makeImageRound()
         profileuserNameLbl.text = data.userId
         profileScrapNumLbl.text = data.scrapCount
-        profileMyfeedNumLbl.text = data.scrapCount
+        profileMyfeedNumLbl.text = data.feedCount
         profileFollowerNumLbl.text = data.followerCount
         profileFollowingNumLbl.text = data.followCount
         profileCoinCountLbl.text = data.coin
@@ -63,9 +63,7 @@ class MyPageVC: UIViewController {
     
     
     @IBAction func changeView(_ sender: UIButton) {
-        
         updateView(selected: sender.tag)
-        
     }
     
     override func viewDidLoad() {
@@ -79,25 +77,10 @@ class MyPageVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 //메뉴바랑 그 안 컨테이너뷰
 extension MyPageVC{
-    
     
     static func viewController() -> MyPageVC {
         return UIStoryboard.init(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC

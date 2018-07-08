@@ -15,36 +15,53 @@ class ContentVC: UIViewController {
     @IBOutlet weak var storyBtn: UIButton!
     
     @IBOutlet weak var contentContainerView: UIView!
+    //메뉴 blueBar
+    @IBOutlet weak var recommendBlueBar: UIImageView!
+    @IBOutlet weak var tmiBlueBar: UIImageView!
+    @IBOutlet weak var storyBlueBar: UIImageView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        addNavBarImage()
-       
-    }
-    private lazy var contentContainer: ContentContainerVC = {
+    private lazy var recommendVC: ContentRecommendVC = {
         
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
         
-        var viewController = storyboard.instantiateViewController(withIdentifier: ContentContainerVC.reuseIdentifier) as! ContentContainerVC
+        var viewController = storyboard.instantiateViewController(withIdentifier: ContentRecommendVC.reuseIdentifier) as! ContentRecommendVC
         
         
         self.add(asChildViewController: viewController)
         
         return viewController
     }()
-//
-//    private lazy var myFeedVC: MyFeedVC = {
-//
-//        let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
-//
-//        var viewController = storyboard.instantiateViewController(withIdentifier: MyFeedVC.reuseIdentifier) as! MyFeedVC
-//
-//        self.add(asChildViewController: viewController)
-//
-//        return viewController
-//    }()
+    private lazy var tmiVC: ContentTmiVC = {
+
+        let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
+
+        var viewController = storyboard.instantiateViewController(withIdentifier: ContentTmiVC.reuseIdentifier) as! ContentTmiVC
+
+        self.add(asChildViewController: viewController)
+
+        return viewController
+    }()
+    private lazy var storyVC: ContentStoryVC = {
+        
+        let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
+        
+        var viewController = storyboard.instantiateViewController(withIdentifier: ContentStoryVC.reuseIdentifier) as! ContentStoryVC
+        
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        //        addNavBarImage()
+        updateView(selected: 0)
+    }
     
+    
+    @IBAction func changView(_ sender: UIButton) {
+        updateView(selected: sender.tag)
+    }
     
 //    func addNavBarImage() {
 //
@@ -57,13 +74,9 @@ class ContentVC: UIViewController {
 //
 //        navigationItem.titleView = imageView
 //    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+   
 }
 extension ContentVC{
-    
     
     static func viewController() -> ContentVC {
         return UIStoryboard.init(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: ContentVC.reuseIdentifier) as! ContentVC
@@ -101,27 +114,47 @@ extension ContentVC{
     }
     
     //----------------------------------------------------------------
-            //투두 - 수진한테 물어보기 containerView에 연결된 VC가 하나의 형식이라 하나만 연결했는데 add,remove뷰를 어떻게 연결해야할지?!?!
-//    private func updateView(selected : Int) {
-//        if selected == 0 {
-//            recommendBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
-//            
-//            tmiBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
-//            storyBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
-//            
-//            //remove(asChildViewController: )
-////            add(asChildViewController: contentContainerView)
-////            remove(asChildViewController: <#T##UIViewController#>)
-//        }else if selected == 1 {
-//            
-//        }else {
-//            feedBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
-//            
-//            scapBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
-//            
-//            remove(asChildViewController: scrapCVC)
-//            add(asChildViewController: myFeedVC)
-//        }
-//    }
+    private func updateView(selected : Int) {
+        if selected == 0 {
+            //recommendBtn 누르면 나머지 tmi, 스토리 폰트컬러 기존색으로 바꾸고, tmi,story뷰 지워줌
+            recommendBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+            
+            tmiBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+            storyBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+            
+            recommendBlueBar.isHidden = false
+            tmiBlueBar.isHidden = true
+            storyBlueBar.isHidden = true
+                
+            remove(asChildViewController: tmiVC)
+            remove(asChildViewController: storyVC)
+            add(asChildViewController: recommendVC)
+        }else if selected == 1 {
+            tmiBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+            
+            recommendBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+            storyBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+            
+            recommendBlueBar.isHidden = true
+            tmiBlueBar.isHidden = false
+            storyBlueBar.isHidden = true
+            
+            remove(asChildViewController: recommendVC)
+            remove(asChildViewController: storyVC)
+            add(asChildViewController: tmiVC)
+        }else {
+            storyBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+            tmiBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+            recommendBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
+            
+            recommendBlueBar.isHidden = true
+            tmiBlueBar.isHidden = true
+            storyBlueBar.isHidden = false
+            
+            remove(asChildViewController: tmiVC)
+            remove(asChildViewController: recommendVC)
+            add(asChildViewController: storyVC)
+        }
+    }
 }
 

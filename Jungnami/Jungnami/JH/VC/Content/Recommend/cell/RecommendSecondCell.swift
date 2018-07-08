@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentSecondCell: UICollectionViewCell {
+class RecommendSecondCell: UICollectionViewCell {
     
     @IBOutlet weak var contentImgView: UIImageView!
     @IBOutlet weak var contentTitleLbl: UILabel!
