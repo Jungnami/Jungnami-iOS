@@ -115,7 +115,7 @@ extension LegislatorDetailVC {
 }
 
 //좋아요, 싫어요, 후원하기에 대한 행동
-extension LegislatorDetailVC  {
+extension LegislatorDetailVC : UITextFieldDelegate {
     //좋아요
     @objc func like(_sender: UIButton){
         simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
@@ -133,14 +133,30 @@ extension LegislatorDetailVC  {
     @objc func support(_sender: UIButton){
         
         supportPopupView.inputTxtField.keyboardType = UIKeyboardType.decimalPad
-         supportPopupView.inputTxtField.text = ""
+        supportPopupView.inputTxtField.text = ""
+        supportPopupView.inputTxtField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        supportPopupView.inputTxtField.delegate = self
         supportPopupView.cancleBtn.addTarget(self, action:#selector(self.cancle(_sender:)), for: .touchUpInside)
+        supportPopupView.okBtn.isEnabled = false
+        supportPopupView.okBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_confirm_gray"), for: .normal)
         supportPopupView.okBtn.addTarget(self, action:#selector(self.supportOk(_sender:)), for: .touchUpInside)
         
         supportAlert = CustomAlert(view : supportPopupView, width : 253, height : 297)
         supportAlert?.show(animated: false)
     }
-    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+        supportPopupView.okBtn.isEnabled = false
+        supportPopupView.okBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_confirm_gray"), for: .normal)
+        
+        if let coin = Int(gsno(textField.text)) {
+            if coin > 0 {
+                supportPopupView.okBtn.isEnabled = true
+                supportPopupView.okBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_confirm_blue"), for: .normal)
+            }
+        }
+        
+    }
     
     @objc func cancle(_sender: UIButton){
         supportAlert?.dismiss(animated: false)

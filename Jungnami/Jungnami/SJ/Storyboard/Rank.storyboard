@@ -18,18 +18,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeI-gG-j1a">
-                                <rect key="frame" x="94" y="325" width="191" height="92"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cd-VJ-L7c">
+                                <rect key="frame" x="12" y="31" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1Cd-VJ-L7c" secondAttribute="height" multiplier="1:1" id="G3n-Dc-KMR"/>
+                                    <constraint firstAttribute="width" constant="24" id="avs-X9-sS0"/>
+                                </constraints>
+                                <state key="normal" image="login_x"/>
+                                <connections>
+                                    <action selector="dismissClick:" destination="Fav-UM-8Rz" eventType="touchUpInside" id="khO-mF-CIW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqp-tB-3JK">
+                                <rect key="frame" x="262" y="590" width="66" height="30"/>
+                                <state key="normal" title="건너뛰기 &gt;"/>
+                                <connections>
+                                    <action selector="withoutLogin:" destination="Fav-UM-8Rz" eventType="touchUpInside" id="CIh-jc-8uc"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo" translatesAutoresizingMaskIntoConstraints="NO" id="sPZ-nz-lg0">
+                                <rect key="frame" x="48" y="159" width="278" height="195"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="195" id="KPb-Qw-kqd"/>
+                                    <constraint firstAttribute="width" constant="278" id="apg-QT-b16"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeI-gG-j1a">
+                                <rect key="frame" x="62" y="416" width="250" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Nut-wf-4NE"/>
+                                    <constraint firstAttribute="height" constant="40" id="Ve2-Yp-kAY"/>
+                                </constraints>
+                                <state key="normal" image="kakao_account_login_btn_medium_narrow"/>
                                 <connections>
                                     <action selector="loginWithKakao:" destination="Fav-UM-8Rz" eventType="touchUpInside" id="QCm-nX-S27"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jcu-fd-lQw" firstAttribute="trailing" secondItem="fqp-tB-3JK" secondAttribute="trailing" constant="47" id="9q9-G4-plH"/>
+                            <constraint firstItem="Jcu-fd-lQw" firstAttribute="bottom" secondItem="fqp-tB-3JK" secondAttribute="bottom" constant="47" id="JHb-mn-GPC"/>
+                            <constraint firstItem="1Cd-VJ-L7c" firstAttribute="leading" secondItem="Jcu-fd-lQw" secondAttribute="leading" constant="12" id="SwJ-9f-Wjm"/>
+                            <constraint firstItem="sPZ-nz-lg0" firstAttribute="top" secondItem="Jcu-fd-lQw" secondAttribute="top" constant="139" id="Vy1-qt-RuX"/>
+                            <constraint firstItem="sPZ-nz-lg0" firstAttribute="centerX" secondItem="Jcu-fd-lQw" secondAttribute="centerX" id="gjn-ve-oDk"/>
+                            <constraint firstItem="1Cd-VJ-L7c" firstAttribute="top" secondItem="Jcu-fd-lQw" secondAttribute="top" constant="11" id="ifb-V7-lgw"/>
+                            <constraint firstItem="JeI-gG-j1a" firstAttribute="top" secondItem="sPZ-nz-lg0" secondAttribute="bottom" constant="62" id="kfF-VN-qdE"/>
+                            <constraint firstItem="JeI-gG-j1a" firstAttribute="centerX" secondItem="sPZ-nz-lg0" secondAttribute="centerX" id="xh5-VQ-w9k"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Jcu-fd-lQw"/>
                     </view>
+                    <connections>
+                        <outlet property="dismissBtn" destination="1Cd-VJ-L7c" id="ebA-ra-lju"/>
+                        <outlet property="nextBtn" destination="fqp-tB-3JK" id="Mx9-VY-zVk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sMS-8t-J8z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,6 +726,9 @@
     </scenes>
     <resources>
         <image name="Content_gradient" width="375" height="667"/>
+        <image name="kakao_account_login_btn_medium_narrow" width="222" height="49"/>
+        <image name="login_logo" width="278" height="195"/>
+        <image name="login_x" width="24" height="24"/>
         <image name="ranking_bronze_medal" width="40" height="40"/>
         <image name="ranking_hate" width="32" height="32"/>
         <image name="ranking_like" width="32" height="32"/>

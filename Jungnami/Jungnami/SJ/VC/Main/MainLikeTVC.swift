@@ -11,6 +11,12 @@ import SnapKit
 class MainLikeTVC: UITableViewController {
     
     var sampleData : [SampleLegislator] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.setContentOffset(.zero, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +77,7 @@ extension MainLikeTVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let mainStoryboard = Storyboard.shared().mainStoryboard
         
         //        var viewController = storyboard.instantiateViewController(withIdentifier: LegislatorDetailVC.reuseIdentifier) as! LegislatorDetailVC
         
