@@ -14,7 +14,7 @@ struct SampleLegislatorData {
     var legislators = [SampleLegislator]()
     
     init() {
-        let a = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "정다비", likeCount: 12, dislikeCount: 1, region: "서울 성북구 안암동", party: .mint, likeRank: 1, dislikeRank: 1, voteCount: 200000, rate: 0.8)
+        let a = SampleLegislator(profile: #imageLiteral(resourceName: "legislator1"), name: "정다비", likeCount: 12, dislikeCount: 1, region: "서울 성북구 안암동", party: .mint, likeRank: 1, dislikeRank: 1, voteCount: 200000, rate: 0.8)
         let b = SampleLegislator(profile: #imageLiteral(resourceName: "sujin"), name: "강수진", likeCount: 2, dislikeCount: 1, region: "인천", party: .mint, likeRank: 2, dislikeRank: 2, voteCount: 10000, rate: 0.4)
         let c = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "이지현", likeCount: 12, dislikeCount: 1, region: "대전 대덕구 송촌동", party: .red, likeRank: 3, dislikeRank: 2, voteCount: 200000, rate: 1.0)
         let d = SampleLegislator(profile: #imageLiteral(resourceName: "myungsun"), name: "명선", likeCount: 12, dislikeCount: 1, region: "서울 성북구 안암동", party: .mint, likeRank: 3, dislikeRank: 4, voteCount: 200000, rate: 0.4)
