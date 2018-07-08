@@ -427,6 +427,7 @@
 				3BB4308920ECDF5B002980D9 /* PartyListDetail */,
 				3BB1A5BD20EB958E00D4929A /* SearchLegislatorResult */,
 				43E5D27820F078B60020DEBE /* LegislatorDetail */,
+				43537F0320F0F0F50036435A /* Legislator */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -595,7 +596,6 @@
 			isa = PBXGroup;
 			children = (
 				3BCF932A20F1575500E9E7F7 /* Alert */,
-				43537F0320F0F0F50036435A /* Legislator */,
 				43E5D27920F078D50020DEBE /* LegislatorDetailVC.swift */,
 				43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */,
 				43537F0120F0EBA50036435A /* LegislatorRelatedCell.swift */,
