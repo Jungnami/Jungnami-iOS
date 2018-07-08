@@ -18,6 +18,7 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
     let supportPopupView = SupportPopupView.instanceFromNib()
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.view.backgroundColor = UIColor.white
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
     }
