@@ -50,6 +50,10 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var data = CommentData.sharedInstance.comments
     ////////////////////////////////////
     //--------------------------------------
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         CommentTableView.delegate = self
@@ -120,6 +124,7 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
         cell.configure(data: data[indexPath.row])
+        cell.delegate = self
         //cell.commentLikeBtn.setImage(#imageLiteral(resourceName: "content_smallheart_blackbackground"), for: .normal)
         cell.commentLikeBtn.addTarget(self, action: #selector(self.likeBtnClicked(sender:)), for: .touchUpInside)
         cell.recommentBtn.tag = indexPath.row;
@@ -214,4 +219,10 @@ extension CommentVC {
         self.view.endEditing(true)
     }
     ////////
+}
+
+extension CommentVC : TapDelegate, UIGestureRecognizerDelegate {
+    func myTableDelegate(index: Int) {
+        print(index)
+    }
 }

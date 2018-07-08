@@ -23,20 +23,38 @@ class CommentCell: UITableViewCell {
     //댓글 좋아요 Btn
     @IBOutlet weak var commentLikeBtn: UIButton!
     
+    var delegate : TapDelegate?
+    var index = 0
     func configure(data : CommentSample){
         commentProfileImg.image = data.profile
         commentUserLbl.text = data.userId
         commentContentLbl.text = data.commentContent
         commentDateLbl.text = data.date
         commentLikeLbl.text = data.likeCount
+        index = 12 //나중에 유저 인덱스 등으로 고칠 수 있음
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         commentProfileImg.layer.masksToBounds = true
         commentProfileImg.layer.cornerRadius = commentProfileImg.layer.frame.width/2
+        
+        //탭제스처 레코그나이저
+        commentProfileImg.isUserInteractionEnabled = true
+        commentUserLbl.isUserInteractionEnabled = true
+        
+        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(CommentCell.imgTap(sender:)))
+        let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(CommentCell.lblTap(sender:)))
+        self.commentUserLbl.addGestureRecognizer(lblTapGesture)
+        self.commentProfileImg.addGestureRecognizer(imgTapGesture)
     }
 
+    @objc func imgTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
+    }
+    @objc func lblTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

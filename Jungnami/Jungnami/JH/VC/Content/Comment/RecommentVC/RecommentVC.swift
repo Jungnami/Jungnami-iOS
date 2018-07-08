@@ -34,6 +34,11 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var recommentData = RecommentData.sharedInstance.recomments
     var commentData = CommentData.sharedInstance.comments
     ///////////////////////////
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         RecommentTableView.delegate = self
@@ -142,12 +147,13 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
             //cell정보들에 연결하기
+            cell.delegate = self
             cell.configure(data: commentData[indexPath.row])
             return cell
         }else {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "RecommentCell", for: indexPath) as! RecommentCell
             //cell에 연결된 정보 연결하기
-            
+            cell.delegate = self
             cell.configure(data: recommentData[indexPath.row])
             cell.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
             
@@ -222,4 +228,9 @@ extension RecommentVC {
         self.view.endEditing(true)
     }
     ////////
+}
+extension RecommentVC : TapDelegate, UIGestureRecognizerDelegate {
+    func myTableDelegate(index: Int) {
+        print(index)
+    }
 }

@@ -18,7 +18,8 @@ class RecommentCell: UITableViewCell {
     @IBOutlet weak var recommentLikeCountLbl: UILabel!
     //누르면 댓글입력창에 유저아이디/닉네임 굵은 글씨로 나오고, tableviewReload
     @IBOutlet weak var recommentRecommentBtn: UIButton!
-    
+    var delegate : TapDelegate?
+     var index = 0
     //데이터 통신할 때 짧게 쓰기위해 씀!
     func configure(data: RecommentSample) {
         recommentProfilImg.image = data.profileImg
@@ -31,8 +32,24 @@ class RecommentCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        //탭제스처 레코그나이저
+        recommentProfilImg.isUserInteractionEnabled = true
+        recommentUserLbl.isUserInteractionEnabled = true
+        
+        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.imgTap(sender:)))
+        let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.lblTap(sender:)))
+        self.recommentUserLbl.addGestureRecognizer(lblTapGesture)
+        self.recommentProfilImg.addGestureRecognizer(imgTapGesture)
+        
         recommentProfilImg.layer.masksToBounds = true
         recommentProfilImg.layer.cornerRadius = recommentProfilImg.layer.frame.width/2
+    }
+    
+    @objc func imgTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
+    }
+    @objc func lblTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

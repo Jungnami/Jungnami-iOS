@@ -15,6 +15,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         followTableView.delegate = self
         followTableView.dataSource = self
+        //네비게이션바 히든
     self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
