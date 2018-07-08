@@ -11,8 +11,13 @@ class LoginVC: UIViewController {
 
     var tabbarVC : UIViewController?
    
+   
+    @IBOutlet weak var dismissBtn: UIButton!
     
-    @IBAction func dismissBtn(_ sender: Any) {
+    @IBOutlet weak var nextBtn: UIButton!
+    
+    @IBAction func dismissClick(_ sender: Any) {
+        
     }
     
     @IBAction func withoutLogin(_ sender: Any) {
@@ -77,8 +82,7 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.dismissBtn.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {

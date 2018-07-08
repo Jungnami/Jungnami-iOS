@@ -26,7 +26,7 @@
                                 </constraints>
                                 <state key="normal" image="login_x"/>
                                 <connections>
-                                    <action selector="dismissBtn:" destination="Fav-UM-8Rz" eventType="touchUpInside" id="FFq-hu-BhS"/>
+                                    <action selector="dismissClick:" destination="Fav-UM-8Rz" eventType="touchUpInside" id="khO-mF-CIW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqp-tB-3JK">
@@ -68,6 +68,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jcu-fd-lQw"/>
                     </view>
+                    <connections>
+                        <outlet property="dismissBtn" destination="1Cd-VJ-L7c" id="ebA-ra-lju"/>
+                        <outlet property="nextBtn" destination="fqp-tB-3JK" id="Mx9-VY-zVk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sMS-8t-J8z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
