@@ -27,7 +27,7 @@ class MainLikeTVC: UITableViewController {
     
     @objc func vote(_ sender : UIButton){
         simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-            print("vote!")
+             self.popupImgView(fileName: "ranking_like")
         }
     }
     
