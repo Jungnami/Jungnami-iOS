@@ -2252,16 +2252,9 @@
                                                         <constraint firstAttribute="width" constant="56" id="JNj-x7-JcO"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="돌돌문어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlO-Fl-emj">
-                                                    <rect key="frame" x="79" y="19" width="45" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="돌돌문어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIL-s8-WED">
-                                                    <rect key="frame" x="79" y="42" width="42" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
+                                                    <rect key="frame" x="79" y="28" width="45" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQG-cu-8TJ">
@@ -2274,20 +2267,17 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="O8Z-nB-uMT" secondAttribute="bottom" constant="8.5" id="6Gn-hR-77K"/>
-                                                <constraint firstItem="DlO-Fl-emj" firstAttribute="leading" secondItem="O8Z-nB-uMT" secondAttribute="trailing" constant="11" id="787-OJ-LSf"/>
                                                 <constraint firstItem="tQG-cu-8TJ" firstAttribute="centerY" secondItem="niu-FB-bvd" secondAttribute="centerY" id="B03-4l-rP5"/>
-                                                <constraint firstItem="sIL-s8-WED" firstAttribute="top" secondItem="DlO-Fl-emj" secondAttribute="bottom" constant="7" id="EM8-Ps-UT2"/>
                                                 <constraint firstItem="O8Z-nB-uMT" firstAttribute="top" secondItem="niu-FB-bvd" secondAttribute="top" constant="8" id="IcA-XN-1bp"/>
-                                                <constraint firstItem="sIL-s8-WED" firstAttribute="leading" secondItem="DlO-Fl-emj" secondAttribute="leading" id="Qs3-vb-oOJ"/>
-                                                <constraint firstItem="DlO-Fl-emj" firstAttribute="top" secondItem="niu-FB-bvd" secondAttribute="top" constant="19" id="YJD-Vo-ZdP"/>
                                                 <constraint firstItem="O8Z-nB-uMT" firstAttribute="leading" secondItem="niu-FB-bvd" secondAttribute="leading" constant="12" id="fK1-mS-32K"/>
                                                 <constraint firstAttribute="trailing" secondItem="tQG-cu-8TJ" secondAttribute="trailing" constant="14" id="kKl-Ia-02a"/>
+                                                <constraint firstItem="sIL-s8-WED" firstAttribute="leading" secondItem="O8Z-nB-uMT" secondAttribute="trailing" constant="11" id="ljq-gp-hRd"/>
+                                                <constraint firstItem="sIL-s8-WED" firstAttribute="centerY" secondItem="O8Z-nB-uMT" secondAttribute="centerY" id="ukz-VL-HUA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="followImgView" destination="O8Z-nB-uMT" id="Hpu-Ra-TO5"/>
                                             <outlet property="followNickNameLbl" destination="sIL-s8-WED" id="Bqo-gI-rab"/>
-                                            <outlet property="followUserLbl" destination="DlO-Fl-emj" id="11u-y9-0FT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -3001,14 +2991,9 @@
                                                         <constraint firstAttribute="width" constant="56" id="Nfk-Hw-8iA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="돌돌문어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dc-ux-pOV">
-                                                    <rect key="frame" x="79" y="19" width="45" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="돌돌문어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSc-3m-Tx7">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="돌돌문어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSc-3m-Tx7">
                                                     <rect key="frame" x="79" y="42" width="42" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                     <nil key="highlightedColor"/>
@@ -3022,19 +3007,14 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="tSc-3m-Tx7" firstAttribute="leading" secondItem="9dc-ux-pOV" secondAttribute="leading" id="EdC-7O-8sm"/>
                                                 <constraint firstAttribute="trailing" secondItem="4Oz-Id-Hw3" secondAttribute="trailing" constant="14" id="Jsi-9o-cai"/>
                                                 <constraint firstItem="4Oz-Id-Hw3" firstAttribute="centerY" secondItem="Mol-7u-V7p" secondAttribute="centerY" id="K0D-7S-mhz"/>
                                                 <constraint firstAttribute="bottom" secondItem="WrF-5L-Qww" secondAttribute="bottom" constant="8.5" id="MHY-CM-UMu"/>
-                                                <constraint firstItem="9dc-ux-pOV" firstAttribute="leading" secondItem="WrF-5L-Qww" secondAttribute="trailing" constant="11" id="UIa-c5-21b"/>
                                                 <constraint firstItem="WrF-5L-Qww" firstAttribute="top" secondItem="Mol-7u-V7p" secondAttribute="top" constant="8" id="Z8J-8p-iTn"/>
-                                                <constraint firstItem="tSc-3m-Tx7" firstAttribute="top" secondItem="9dc-ux-pOV" secondAttribute="bottom" constant="7" id="ly4-dO-SDY"/>
-                                                <constraint firstItem="9dc-ux-pOV" firstAttribute="top" secondItem="Mol-7u-V7p" secondAttribute="top" constant="19" id="rOG-Xe-Gjy"/>
                                                 <constraint firstItem="WrF-5L-Qww" firstAttribute="leading" secondItem="Mol-7u-V7p" secondAttribute="leading" constant="12" id="swW-XU-rzS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="followerNameLbl" destination="9dc-ux-pOV" id="VS7-SK-wO0"/>
                                             <outlet property="followerNicknameLbl" destination="tSc-3m-Tx7" id="So7-ky-aKY"/>
                                             <outlet property="followerProfileImgView" destination="WrF-5L-Qww" id="06B-UF-MHd"/>
                                         </connections>

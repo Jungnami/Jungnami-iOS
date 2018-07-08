@@ -9,6 +9,9 @@ import UIKit
 
 class NoticeCell: UITableViewCell {
     
+    var delegate : TapDelegate?
+    var index = 0
+    
     @IBOutlet weak var noticeProfileImgView: UIImageView!
     
     @IBOutlet weak var noticeUserLbl: UILabel!
@@ -37,6 +40,20 @@ class NoticeCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         noticeProfileImgView.layer.cornerRadius = noticeProfileImgView.layer.frame.size.width / 2
+        //
+        noticeProfileImgView.isUserInteractionEnabled = true
+        noticeUserLbl.isUserInteractionEnabled = true
+        
+        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.imgTap(sender:)))
+        let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.lblTap(sender:)))
+        self.noticeUserLbl.addGestureRecognizer(lblTapGesture)
+        self.noticeProfileImgView.addGestureRecognizer(imgTapGesture)
+    }
+    @objc func imgTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
+    }
+    @objc func lblTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

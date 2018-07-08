@@ -11,6 +11,8 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     @IBOutlet weak var followTableView: UITableView!
     
+    var keyboardDismissGesture: UITapGestureRecognizer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         followTableView.delegate = self
@@ -34,7 +36,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 return 1
         }else {
             //data로 연결
-            return 3
+            return data.count
         }
     }
     
@@ -46,9 +48,15 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: FollowCell.reuseIdentifier, for: indexPath) as! FollowCell
             cell.configure(data: data[indexPath.row])
+            cell.delegate = self
             return cell
         }
         
+    }
+}
+extension FollowListVC : TapDelegate, UIGestureRecognizerDelegate {
+    func myTableDelegate(index: Int) {
+        print(index)
     }
 }
 

@@ -9,17 +9,20 @@ import UIKit
 
 class FollowCell: UITableViewCell {
 
+    var delegate : TapDelegate?
+    var index = 0
+    
     @IBOutlet weak var followImgView: UIImageView!
-    @IBOutlet weak var followUserLbl: UILabel!
+    
     @IBOutlet weak var followNickNameLbl: UILabel!
     //팔로우버튼
     @IBAction func followBtn(_ sender: Any) {
+        //팔로우버튼 다시 눌렀을 때 팔로우버튼으로 바뀌어야 함
         
     }
     
     func configure(data: FollowListSample) {
         followImgView.image = data.profileImg
-        followUserLbl.text = data.user
         followNickNameLbl.text = data.nickName
     }
     
@@ -27,6 +30,21 @@ class FollowCell: UITableViewCell {
         super.awakeFromNib()
         //이미지 깎기
         followImgView.makeImageRound()
+        //탭레코그나이저
+        followImgView.isUserInteractionEnabled = true
+        followNickNameLbl.isUserInteractionEnabled = true
+        
+        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.imgTap(sender:)))
+        let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.lblTap(sender:)))
+        self.followNickNameLbl.addGestureRecognizer(lblTapGesture)
+        self.followImgView.addGestureRecognizer(imgTapGesture)
+        
+    }
+    @objc func imgTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
+    }
+    @objc func lblTap(sender: UITapGestureRecognizer) {
+        delegate?.myTableDelegate(index : index)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
