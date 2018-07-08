@@ -1210,10 +1210,17 @@
                                                                     <state key="normal" image="legislator-detailpage_support_blue"/>
                                                                 </button>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legislator-detailpage_medal_bronze" translatesAutoresizingMaskIntoConstraints="NO" id="zMi-8f-19b">
-                                                                    <rect key="frame" x="86" y="76" width="23" height="30"/>
+                                                                    <rect key="frame" x="187.5" y="18" width="22" height="28"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="6np-w2-kl9"/>
-                                                                        <constraint firstAttribute="width" constant="23" id="Bs3-xs-csZ"/>
+                                                                        <constraint firstAttribute="height" constant="28" id="Anb-jM-3SB"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="uOp-zi-j2N"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legislator-detailpage_orange_bomb" translatesAutoresizingMaskIntoConstraints="NO" id="6Vs-rE-kEO">
+                                                                    <rect key="frame" x="215.5" y="13" width="23" height="29"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="29" id="RtT-pc-JN0"/>
+                                                                        <constraint firstAttribute="width" constant="23" id="yn8-i1-Lc9"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -1223,9 +1230,9 @@
                                                                 <constraint firstItem="hj1-H5-Sxe" firstAttribute="leading" secondItem="Ht5-hQ-mD7" secondAttribute="leading" id="3xv-kH-6F5"/>
                                                                 <constraint firstItem="iHE-r0-9am" firstAttribute="centerY" secondItem="cMN-ix-Uv9" secondAttribute="centerY" id="BgI-Ln-E1z"/>
                                                                 <constraint firstItem="MDv-17-nH3" firstAttribute="leading" secondItem="8cD-Yv-KKy" secondAttribute="trailing" constant="15" id="Dx8-T0-Mls"/>
-                                                                <constraint firstItem="zMi-8f-19b" firstAttribute="leading" secondItem="8cD-Yv-KKy" secondAttribute="trailing" constant="-23" id="GBE-or-7Mb"/>
-                                                                <constraint firstItem="zMi-8f-19b" firstAttribute="top" secondItem="8cD-Yv-KKy" secondAttribute="bottom" constant="-30" id="MMY-MW-wp7"/>
+                                                                <constraint firstItem="zMi-8f-19b" firstAttribute="leading" secondItem="MDv-17-nH3" secondAttribute="trailing" constant="6" id="KRR-Qz-uah"/>
                                                                 <constraint firstAttribute="height" constant="175" id="PKz-pF-ewf"/>
+                                                                <constraint firstItem="zMi-8f-19b" firstAttribute="centerY" secondItem="MDv-17-nH3" secondAttribute="centerY" id="VFf-MD-MTl"/>
                                                                 <constraint firstItem="pgU-Oh-jy7" firstAttribute="centerY" secondItem="iHE-r0-9am" secondAttribute="centerY" id="Yd5-VI-NUz"/>
                                                                 <constraint firstItem="iHE-r0-9am" firstAttribute="leading" secondItem="pgU-Oh-jy7" secondAttribute="trailing" constant="8" id="aho-O6-9ma"/>
                                                                 <constraint firstItem="MDv-17-nH3" firstAttribute="top" secondItem="8cD-Yv-KKy" secondAttribute="top" id="cyZ-ao-oSw"/>
@@ -1234,10 +1241,13 @@
                                                                 <constraint firstItem="3PZ-kd-w6H" firstAttribute="top" secondItem="hj1-H5-Sxe" secondAttribute="bottom" constant="5" id="f4k-vn-fT9"/>
                                                                 <constraint firstAttribute="trailing" secondItem="cMN-ix-Uv9" secondAttribute="trailing" constant="22" id="hq2-Zt-V4d"/>
                                                                 <constraint firstItem="Ht5-hQ-mD7" firstAttribute="top" secondItem="MDv-17-nH3" secondAttribute="bottom" constant="5" id="ip5-EO-ooK"/>
+                                                                <constraint firstItem="6Vs-rE-kEO" firstAttribute="centerY" secondItem="MDv-17-nH3" secondAttribute="centerY" constant="-5" id="jqy-0G-xAy"/>
                                                                 <constraint firstItem="3PZ-kd-w6H" firstAttribute="leading" secondItem="hj1-H5-Sxe" secondAttribute="leading" id="k4j-wb-a0J"/>
                                                                 <constraint firstAttribute="bottom" secondItem="cMN-ix-Uv9" secondAttribute="bottom" constant="20" id="o5X-cQ-zuc"/>
+                                                                <constraint firstItem="6Vs-rE-kEO" firstAttribute="leading" secondItem="MDv-17-nH3" secondAttribute="trailing" priority="900" constant="6" id="sOP-zL-1DJ"/>
                                                                 <constraint firstItem="Ht5-hQ-mD7" firstAttribute="leading" secondItem="MDv-17-nH3" secondAttribute="leading" id="wVj-f0-j9S"/>
                                                                 <constraint firstItem="8cD-Yv-KKy" firstAttribute="leading" secondItem="1s6-aV-Qf3" secondAttribute="leading" constant="22" id="z0r-Ug-9mq"/>
+                                                                <constraint firstItem="6Vs-rE-kEO" firstAttribute="leading" secondItem="zMi-8f-19b" secondAttribute="trailing" constant="6" id="zTa-yu-8hz"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -1258,6 +1268,7 @@
                                         </constraints>
                                         <size key="customSize" width="375" height="183"/>
                                         <connections>
+                                            <outlet property="bombImgView" destination="6Vs-rE-kEO" id="j2Y-i8-BxM"/>
                                             <outlet property="dislikeBtn" destination="iHE-r0-9am" id="erA-rq-GAA"/>
                                             <outlet property="legislatorDislikeLbl" destination="VH4-cD-TdT" id="QOv-4l-iBW"/>
                                             <outlet property="legislatorLikeLbl" destination="BzM-8h-ggh" id="p4F-jt-Ncj"/>
@@ -1396,7 +1407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lmj-5Q-MFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3801" y="834"/>
+            <point key="canvasLocation" x="3800.8000000000002" y="833.43328335832086"/>
         </scene>
     </scenes>
     <resources>
@@ -1407,6 +1418,7 @@
         <image name="legislator-detailpage_hate_blue" width="71" height="28"/>
         <image name="legislator-detailpage_like_blue" width="62" height="28"/>
         <image name="legislator-detailpage_medal_bronze" width="23" height="30"/>
+        <image name="legislator-detailpage_orange_bomb" width="23" height="29"/>
         <image name="legislator-detailpage_support_blue" width="80" height="28"/>
         <image name="partylist_bluebox" width="364" height="100"/>
         <image name="partylist_mintbox" width="364" height="100"/>

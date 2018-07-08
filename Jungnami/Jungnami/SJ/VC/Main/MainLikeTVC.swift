@@ -14,7 +14,7 @@ class MainLikeTVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.setContentOffset(.zero, animated: true)
+        //self.tableView.setContentOffset(.zero, animated: true)
     }
     
     override func viewDidLoad() {
