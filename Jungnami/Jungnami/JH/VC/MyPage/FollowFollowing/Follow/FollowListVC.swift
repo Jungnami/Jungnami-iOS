@@ -15,6 +15,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         followTableView.delegate = self
         followTableView.dataSource = self
+    self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func didReceiveMemoryWarning() {

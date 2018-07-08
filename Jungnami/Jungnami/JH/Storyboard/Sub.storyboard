@@ -2317,7 +2317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZ7-Cm-BLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="4338"/>
+            <point key="canvasLocation" x="1552.8" y="4337.1814092953528"/>
         </scene>
         <!--ScrapCVC-->
         <scene sceneID="W8e-bn-5Im">
@@ -3066,7 +3066,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QnT-o2-4kA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1260" y="4337"/>
+            <point key="canvasLocation" x="2199.1999999999998" y="4336.2818590704655"/>
         </scene>
     </scenes>
     <resources>
