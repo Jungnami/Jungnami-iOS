@@ -61,12 +61,12 @@ class CommunityVC: UIViewController, UISearchBarDelegate {
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             alarmLbl.adjustsFontSizeToFitWidth = true
             if(badgeCount > 99){
-                 badgeImg.isHidden = false
+                badgeImg.isHidden = false
                 alarmLbl.text = "99+"
             } else if badgeCount == 0 {
                 badgeImg.isHidden = true
             } else {
-                 badgeImg.isHidden = false
+                badgeImg.isHidden = false
                 alarmLbl.text = "\(badgeCount)"
             }
             
@@ -79,7 +79,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate {
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
         
         let a = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "다비 최고야,, 형윤 최고야,, 디자인 세상에서 제일 예뻐요 선생님들,, ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
-        let b = Sample(profileUrl: #imageLiteral(resourceName: "community_character"), name: "제리", time: "4시간 전", content: "픽미픽미픽미업", like: 73, comment: 6020, contentImg: #imageLiteral(resourceName: "inni"), heart: false, scrap: true)
+        let b = Sample(profileUrl: #imageLiteral(resourceName: "mypage_profile_girl"), name: "제리", time: "4시간 전", content: "픽미픽미픽미업", like: 73, comment: 6020, contentImg: #imageLiteral(resourceName: "inni"), heart: false, scrap: true)
         
         sampleData.append(a)
         sampleData.append(b)
@@ -109,7 +109,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
             
             if !login {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionLoginTVCell.reuseIdentifier) as! CommunityFirstSectionLoginTVCell
-
+                
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionWriteTVCell.reuseIdentifier) as! CommunityFirstSectionWriteTVCell
@@ -146,7 +146,6 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
             // print(userName)
         }
     }
-    
 }
 
 //키보드 엔터 버튼 눌렀을 때
@@ -221,6 +220,7 @@ extension CommunityVC{
     }
 }
 
+//refreshControl
 extension CommunityVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
