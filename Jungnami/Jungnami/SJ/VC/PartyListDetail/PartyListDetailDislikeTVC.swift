@@ -85,7 +85,7 @@ class PartyListDetailDislikeTVC: UITableViewController {
     
     @objc func vote(_ sender : UIButton){
         simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-             self.popupImgView(fileName: "ranking_hate")
+             self.popupImgView(fileName: "area_hate_popup")
         }
     }
 }
