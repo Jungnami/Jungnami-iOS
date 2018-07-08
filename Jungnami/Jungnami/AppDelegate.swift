@@ -6,16 +6,47 @@
 //  Copyright © 2018년 강수진. All rights reserved.
 //
 
+
+//kakaoTalk
+enum LoginType {
+    case kakao
+    case local
+}
+
+var loginWith : LoginType!
+
+
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
 
     var window: UIWindow?
-
+    var loginVC: UIViewController?
+    var tabbarVC : UIViewController?
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //카카오 시작
+        setupEntryController()
+        setupPushNotification()
+        
+        // 로그인,로그아웃 상태 변경 받기
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(AppDelegate.kakaoSessionDidChangeWithNotification),
+                                               name: NSNotification.Name.KOSessionDidChange,
+                                               object: nil)
+        
+        reloadRootViewController()
+        
+        
+        //kakao
+        let isOpened = KOSession.shared().isOpen()
+        if  isOpened {loginWith = .kakao}
+        
+        //카카오 끝
        
         UITabBar.appearance().tintColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(197/255.0), blue: CGFloat(241/255.0), alpha: CGFloat(1.0) )
     
@@ -44,7 +75,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    //카카오 시작
+    fileprivate func setupEntryController() {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let rankStoryboard = UIStoryboard(name: "Rank", bundle: nil)
+      
+        
+        self.loginVC = rankStoryboard.instantiateViewController(withIdentifier: LoginVC.reuseIdentifier) as! LoginVC
+        self.tabbarVC = mainStoryboard.instantiateViewController(withIdentifier: "tabBar") as! TabbarVC
+    
+        
+    }
+    
+    fileprivate func reloadRootViewController() {
+        let isOpened = KOSession.shared().isOpen()
+        if !isOpened {
+            
+            self.window?.rootViewController = loginVC
+        
+        }
+        self.window?.rootViewController = isOpened ? self.tabbarVC : self.loginVC
+        self.window?.makeKeyAndVisible()
+    }
+    
+    @objc func kakaoSessionDidChangeWithNotification() {
+        reloadRootViewController()
+    }
+    func setupPushNotification() {
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if let error = error as NSError? {
+                print("APNS Authorization failure. \(error)")
+            } else {
+                print("APNS Authorization success.")
+            }
+        }
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("The notification \"\(notification.request.identifier)\" is presenting. \"\(notification.request.content.body)\"")
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("The user responded to the notification \"\(response.notification.request.identifier)\" at \"\(response.notification.date.description(with: .current))\".")
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        completionHandler()
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        if KOSession.handleOpen(url) {
+            return true
+        }
+        return false
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        if KOSession.handleOpen(url) {
+            return true
+        }
+        return false
+    }
+    //카카오 끝
 
 }
 
