@@ -60,6 +60,7 @@ class CommunityResultTVC: UITableViewController {
     
 }
 
+//데이터소스, 딜리게이트 
 extension CommunityResultTVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,8 +72,8 @@ extension CommunityResultTVC {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
         
-        cell.configure(data: sampleData[indexPath.row])
-        
+        cell.configure(index : indexPath.row, data: sampleData[indexPath.row])
+        cell.delegate = self
         cell.scrapBtn.tag = indexPath.row
         cell.scrapBtn.isUserInteractionEnabled = true
         cell.scrapBtn.addTarget(self, action: #selector(scrap(sender:)), for: .touchUpInside)
@@ -158,3 +159,13 @@ extension CommunityResultTVC{
         self.view.endEditing(true)
     }
 }
+
+//탭제스처 레코그나이저
+extension CommunityResultTVC :  UIGestureRecognizerDelegate, TapDelegate {
+    func myTableDelegate(index: Int) {
+        print(index)
+    }
+}
+
+
+
