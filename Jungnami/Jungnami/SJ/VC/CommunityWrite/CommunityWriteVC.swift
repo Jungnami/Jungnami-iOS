@@ -143,11 +143,29 @@ extension CommunityWriteVC {
         }
     }
     
+
+    
     func textViewDidChange(_ textView: UITextView) {
         //TODO - 스페이스만 입력 됐을 때 처리
+        
+        
         if let myString = textView.text {
             let emptySpacesCount = myString.components(separatedBy: " ").count-1
             if emptySpacesCount == myString.count {
+                doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
+                doneBtn.isUserInteractionEnabled = false
+                return
+            }
+            
+            let nCount = myString.components(separatedBy: "\n").count-1
+            if nCount == myString.count {
+                doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
+                doneBtn.isUserInteractionEnabled = false
+                return
+            }
+            
+            let nCount_emptySpaceCount = nCount+emptySpacesCount
+            if nCount_emptySpaceCount == myString.count {
                 doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
                 doneBtn.isUserInteractionEnabled = false
                 return
