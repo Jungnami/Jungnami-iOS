@@ -22,7 +22,10 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
- static var data = FollowListData.sharedInstance.followers
+ var data = FollowListData.sharedInstance.followers
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -40,7 +43,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: FollowCell.reuseIdentifier, for: indexPath) as! FollowCell
-            cell.configure(data: FollowListVC.data[indexPath.row])
+            cell.configure(data: data[indexPath.row])
             return cell
         }
         
