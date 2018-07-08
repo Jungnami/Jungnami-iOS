@@ -28,7 +28,7 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     //댓글로 돌아가기 버튼
     @IBAction func backBtn(_ sender: Any) {
-        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
     ///////샘플데이터////////////
     var recommentData = RecommentData.sharedInstance.recomments

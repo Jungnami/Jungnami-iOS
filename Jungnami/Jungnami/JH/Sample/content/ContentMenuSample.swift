@@ -12,6 +12,5 @@ struct ContentMenuSample {
     var imgView: UIImage
     var title: String
     var category: String
-    var typeImg: UIImage
     var date: String
 }

@@ -20,8 +20,6 @@ class ContentDetailCell: UICollectionViewCell {
         contentDetailDateLbl.text = data.date
         contentDetailTitleLbl.text = data.title
         contentDetailCategoryLbl.text = data.category
-        
-        //이미지를 어떻게 넣지?ㅎㅎㅎㅎㅎㅎㅎㅎ
         contentDetailImgView.image = data.images[index]
         
     }

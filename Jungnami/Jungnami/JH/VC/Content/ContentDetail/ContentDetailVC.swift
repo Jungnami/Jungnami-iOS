@@ -9,8 +9,6 @@ import UIKit
 
 class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    
-    
     //투두 - 타이틀이랑 데이트 여기 밖으로 빼내서 연결
     @IBOutlet weak var likeCountLbl: UILabel!
     
@@ -29,9 +27,6 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         super.viewDidLoad()
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
-       
-       
-        
     }
     
     
@@ -49,8 +44,6 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentDetailCell.reuseIdentifier, for: indexPath) as! ContentDetailCell
         cell.configure(index : indexPath.row, data: data[0])
-     // data[0].images.count
-    //     cell.contentDetailTitleLbl.text = "hihi"
         cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         return cell
     }
@@ -59,11 +52,16 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         
         if indexPath.row == 0 {
             pageLbl.isHidden = true
+            
             return
+        }else {
+            //cell밖으로 빼내야하나~?~?~?~?
+            pageLbl.isHidden = false
+            pageLbl.text = "\(indexPath.row)"
         }
-        pageLbl.isHidden = false
-        pageLbl.text = "\(indexPath.row)"
+        
         //투두 - 연결해논것 indexPath.row > 0 이면 날짜랑, 타이틀 레이블.isHidden = true 로 주기
+        
     }
 
 
