@@ -652,7 +652,6 @@
                                     <constraint firstAttribute="height" constant="21" id="ogp-6M-sTz"/>
                                     <constraint firstAttribute="width" constant="41" id="xH0-Xw-OcV"/>
                                 </constraints>
-                                <state key="normal" title="서울"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="M0U-jA-PNI"/>
                                 </connections>
@@ -663,7 +662,6 @@
                                     <constraint firstAttribute="height" constant="21" id="2e8-xP-4Gf"/>
                                     <constraint firstAttribute="width" constant="41" id="yeK-v7-WKB"/>
                                 </constraints>
-                                <state key="normal" title="강원"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="KeN-Xm-j1c"/>
                                 </connections>
@@ -674,7 +672,6 @@
                                     <constraint firstAttribute="width" constant="41" id="hz7-Is-3Uc"/>
                                     <constraint firstAttribute="height" constant="21" id="xZW-8q-YGT"/>
                                 </constraints>
-                                <state key="normal" title="경기"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="4dB-h8-2uw"/>
                                 </connections>
@@ -685,7 +682,6 @@
                                     <constraint firstAttribute="width" constant="41" id="DtG-yr-7YD"/>
                                     <constraint firstAttribute="height" constant="21" id="xiY-xo-37s"/>
                                 </constraints>
-                                <state key="normal" title="충남"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="Whr-nN-sKU"/>
                                 </connections>
@@ -696,7 +692,6 @@
                                     <constraint firstAttribute="height" constant="21" id="MXb-Lf-EHH"/>
                                     <constraint firstAttribute="width" constant="41" id="s8s-Jk-WJb"/>
                                 </constraints>
-                                <state key="normal" title="세종"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="jDj-oM-L76"/>
                                 </connections>
@@ -707,7 +702,6 @@
                                     <constraint firstAttribute="width" constant="41" id="b3E-d9-2Wf"/>
                                     <constraint firstAttribute="height" constant="21" id="hv8-sp-dWb"/>
                                 </constraints>
-                                <state key="normal" title="충북"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="ier-pW-yns"/>
                                 </connections>
@@ -718,7 +712,6 @@
                                     <constraint firstAttribute="height" constant="21" id="eVM-2I-wQp"/>
                                     <constraint firstAttribute="width" constant="41" id="hiT-0o-rif"/>
                                 </constraints>
-                                <state key="normal" title="경북"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="kfm-bn-cWA"/>
                                 </connections>
@@ -729,7 +722,6 @@
                                     <constraint firstAttribute="height" constant="21" id="eiH-qb-wSz"/>
                                     <constraint firstAttribute="width" constant="41" id="mPJ-Wk-xiT"/>
                                 </constraints>
-                                <state key="normal" title="대전"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="rja-PT-7oG"/>
                                 </connections>
@@ -740,7 +732,6 @@
                                     <constraint firstAttribute="height" constant="21" id="5zo-b5-Q5z"/>
                                     <constraint firstAttribute="width" constant="41" id="eOy-cf-cfL"/>
                                 </constraints>
-                                <state key="normal" title="대구"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="GHV-PD-yLk"/>
                                 </connections>
@@ -751,7 +742,6 @@
                                     <constraint firstAttribute="width" constant="41" id="JeA-IX-YOM"/>
                                     <constraint firstAttribute="height" constant="21" id="ogG-s0-cy5"/>
                                 </constraints>
-                                <state key="normal" title="울산"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="BeI-1w-Fej"/>
                                 </connections>
@@ -762,7 +752,6 @@
                                     <constraint firstAttribute="height" constant="21" id="6rm-od-R79"/>
                                     <constraint firstAttribute="width" constant="41" id="jeK-fN-Ehd"/>
                                 </constraints>
-                                <state key="normal" title="부산"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="JBB-Vv-goT"/>
                                 </connections>
@@ -773,7 +762,6 @@
                                     <constraint firstAttribute="width" constant="41" id="VY9-K8-qeX"/>
                                     <constraint firstAttribute="height" constant="21" id="bko-nS-hpI"/>
                                 </constraints>
-                                <state key="normal" title="경남"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="Iv0-vO-NB6"/>
                                 </connections>
@@ -784,7 +772,6 @@
                                     <constraint firstAttribute="height" constant="21" id="BER-IN-eeb"/>
                                     <constraint firstAttribute="width" constant="41" id="gCb-U9-R3J"/>
                                 </constraints>
-                                <state key="normal" title="전북"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="k98-3K-BHL"/>
                                 </connections>
@@ -795,7 +782,6 @@
                                     <constraint firstAttribute="width" constant="41" id="2Uj-Qu-MQV"/>
                                     <constraint firstAttribute="height" constant="21" id="yjS-PZ-93d"/>
                                 </constraints>
-                                <state key="normal" title="광주"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="aQo-uS-MnJ"/>
                                 </connections>
@@ -806,7 +792,6 @@
                                     <constraint firstAttribute="height" constant="21" id="43C-xB-rFR"/>
                                     <constraint firstAttribute="width" constant="41" id="Hg0-1I-L8O"/>
                                 </constraints>
-                                <state key="normal" title="전남"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="pxO-y5-B4R"/>
                                 </connections>
@@ -817,7 +802,6 @@
                                     <constraint firstAttribute="height" constant="21" id="nIh-9Z-EsA"/>
                                     <constraint firstAttribute="width" constant="41" id="wwO-SM-W6r"/>
                                 </constraints>
-                                <state key="normal" title="제주"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btl-IE-pcl">
                                 <rect key="frame" x="99" y="147" width="41" height="21"/>
@@ -825,7 +809,6 @@
                                     <constraint firstAttribute="width" constant="41" id="Qxp-iw-3My"/>
                                     <constraint firstAttribute="height" constant="21" id="ord-u4-DCM"/>
                                 </constraints>
-                                <state key="normal" title="인천"/>
                                 <connections>
                                     <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="UtF-GE-5JZ"/>
                                 </connections>

@@ -27,7 +27,18 @@ extension PostableService {
     
     func post(_ URL:String, params : [String : Any], completion : @escaping (Result<networkResult>)->Void){
         
-        Alamofire.request(URL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData(){
+        guard let encodedUrl = URL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            print("networking - invalid url")
+            return
+        }
+        
+        let userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
+        
+        let headers: HTTPHeaders = [
+            "authorization" : userToken
+        ]
+
+        Alamofire.request(encodedUrl, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseData(){
             res in
             switch res.result {
                 

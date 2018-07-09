@@ -33,7 +33,7 @@ extension GettableService {
             "authorization" : userToken
         ]
         
-        Alamofire.request(URL, method: .get, parameters: nil, headers: headers).responseData {(res) in
+        Alamofire.request(encodedUrl, method: .get, parameters: nil, headers: headers).responseData {(res) in
             switch res.result {
             case .success :
                 if let value = res.result.value {

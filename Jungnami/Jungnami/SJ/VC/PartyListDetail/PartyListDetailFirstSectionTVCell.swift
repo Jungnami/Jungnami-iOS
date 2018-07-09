@@ -35,39 +35,39 @@ class PartyListDetailFirstSectionTVCell: UITableViewCell {
     func configure2(selectedRegion : Region){
         switch selectedRegion {
         case .SEOUL:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_seoul_bluebox")
         case .INCHEON:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_incheon_skybluebox")
         case .GYUNGGI:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_gyeonggi_skybluebox")
         case .GANGWON:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_gangwon_redbox")
         case .CHUNGNAM:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_chungnam_pinkbox")
         case .CHUNGBUK:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_chungbuk_pinkbox")
         case .SEJONG:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_sejong_pinkbox")
         case .DAEJEON:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_daejeon_pinkbox")
         case .GYUNGBUK:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_gyeongbuk_redbox")
         case .DAEGU:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_daegu_pinkbox")
         case .ULSAN:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_ulsan_pinkbox")
         case .BUSAN:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_busan_redbox")
         case .GYUNGNAM:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_gyeongnam_redbox")
         case .JEONBUK:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_jeonbuk_mintbox")
         case .GWANGJU:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_gwangju_greenbox")
         case .JUNNAM:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_jeonnam_greenbox")
         case .JEJU:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "area_jeju_bluebox")
         }
     }
 
