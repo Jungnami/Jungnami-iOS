@@ -9,6 +9,7 @@ import UIKit
 
 class FollowerListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var keyboardDismissGesture: UITapGestureRecognizer?
     
     @IBOutlet weak var followerTableView: UITableView!
     
@@ -27,6 +28,9 @@ class FollowerListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     var data = FollowListData.sharedInstance.followers
     //----------------tableView--------------------
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
@@ -44,8 +48,15 @@ class FollowerListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: FollowerCell.reuseIdentifier, for: indexPath) as! FollowerCell
             cell.configure(data: data[indexPath.row])
+            cell.delegate = self
             return cell
         }
+    }
+    
+}
+extension FollowerListVC: TapDelegate, UIGestureRecognizerDelegate {
+    func myTableDelegate(index: Int) {
+        print(index)
     }
     
 }

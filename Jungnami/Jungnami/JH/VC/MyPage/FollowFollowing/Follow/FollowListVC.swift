@@ -11,11 +11,28 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     @IBOutlet weak var followTableView: UITableView!
     
+    
+    @IBOutlet weak var followSearchField: UITextField!
+    @IBOutlet weak var followSearchImg: UIImageView!
+    
+    
+    var keyboardDismissGesture: UITapGestureRecognizer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         followTableView.delegate = self
         followTableView.dataSource = self
+        //네비게이션바 히든
+    self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        //searchField
+        if followSearchField.text != "" {
+            followSearchImg.isHidden = true
+        }else {
+            followSearchImg.isHidden = false
+        }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -32,7 +49,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 return 1
         }else {
             //data로 연결
-            return 3
+            return data.count
         }
     }
     
@@ -44,9 +61,15 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: FollowCell.reuseIdentifier, for: indexPath) as! FollowCell
             cell.configure(data: data[indexPath.row])
+            cell.delegate = self
             return cell
         }
         
+    }
+}
+extension FollowListVC : TapDelegate, UIGestureRecognizerDelegate {
+    func myTableDelegate(index: Int) {
+        print(index)
     }
 }
 

@@ -31,25 +31,29 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     //댓글 저장Btn
     @IBOutlet weak var commentSendBtn: UIButton!
     
-//    var clicked: Bool = false
-//   @objc func isClicked(_ sender: UIButton) {
-//        if clicked == false { //
-//            commentLikeBtn.setImage(#imageLiteral(resourceName: "content_smallheart_blackbackground"), for: .normal)
-//            //cell에 있는 likeCount늘어나야함
-//        }else {
-//            clicked = true
-//            commentLikeBtn.setImage(#imageLiteral(resourceName: "content_smallheart_whitebackground"), for: .normal)
-//        }
-//    }
-    
-   
+    //    var clicked: Bool = false
+    //   @objc func isClicked(_ sender: UIButton) {
+    //        if clicked == false { //
+    //            commentLikeBtn.setImage(#imageLiteral(resourceName: "content_smallheart_blackbackground"), for: .normal)
+    //            //cell에 있는 likeCount늘어나야함
+    //        }else {
+    //            clicked = true
+    //            commentLikeBtn.setImage(#imageLiteral(resourceName: "content_smallheart_whitebackground"), for: .normal)
+    //        }
+    //    }
     
     
+    
+    //tapGesture
     var keyboardDismissGesture: UITapGestureRecognizer?
     ////////////////샘플데이터//////////////////////
     var data = CommentData.sharedInstance.comments
     ////////////////////////////////////
     //--------------------------------------
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         CommentTableView.delegate = self
@@ -60,13 +64,13 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         //statusBar 없애기
         hideStatusBar = true
         setNeedsStatusBarAppearanceUpdate()
-     
+        
         commentWriteBar.snp.makeConstraints { (make) in
             make.width.equalTo(self.view.frame.width)
             make.height.equalTo(56)
             make.bottom.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
         }
-      
+        
         
         CommentTableView.snp.makeConstraints { (make) in
             make.top.equalTo(navView.snp.bottom)
@@ -111,7 +115,8 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    //----------------tableView---------------
+    
+    //----------------tableView----------------------
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //다시!!!!!!!!!!!!!!!!!!!!!1
         return data.count
@@ -120,6 +125,7 @@ class CommentVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
         cell.configure(data: data[indexPath.row])
+        cell.delegate = self
         //cell.commentLikeBtn.setImage(#imageLiteral(resourceName: "content_smallheart_blackbackground"), for: .normal)
         cell.commentLikeBtn.addTarget(self, action: #selector(self.likeBtnClicked(sender:)), for: .touchUpInside)
         cell.recommentBtn.tag = indexPath.row;
@@ -171,7 +177,7 @@ extension CommentVC {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 위로 이동시킴 ////////
-
+            
             var contentInset = self.CommentTableView.contentInset
             contentInset.bottom = keyboardSize.height
             CommentTableView.contentInset = contentInset
@@ -187,7 +193,7 @@ extension CommentVC {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 아래로 이동시킴 ////////
             commentWriteBar.frame.origin.y += keyboardSize.height
-     
+            
             var contentInset = self.CommentTableView.contentInset
             contentInset.bottom = 0
             CommentTableView.contentInset = contentInset
@@ -214,4 +220,10 @@ extension CommentVC {
         self.view.endEditing(true)
     }
     ////////
+}
+//tapGesture
+extension CommentVC : TapDelegate, UIGestureRecognizerDelegate {
+    func myTableDelegate(index: Int) {
+        print(index)
+    }
 }
