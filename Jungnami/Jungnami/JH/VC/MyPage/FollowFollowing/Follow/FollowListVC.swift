@@ -11,6 +11,11 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     @IBOutlet weak var followTableView: UITableView!
     
+    
+    @IBOutlet weak var followSearchField: UITextField!
+    @IBOutlet weak var followSearchImg: UIImageView!
+    
+    
     var keyboardDismissGesture: UITapGestureRecognizer?
     
     override func viewDidLoad() {
@@ -19,7 +24,15 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         followTableView.dataSource = self
         //네비게이션바 히든
     self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        //searchField
+        if followSearchField.text != "" {
+            followSearchImg.isHidden = true
+        }else {
+            followSearchImg.isHidden = false
+        }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

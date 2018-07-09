@@ -54,6 +54,7 @@ class ContentVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.shadowImage = UIImage()
+         self.navigationController?.setNavigationBarHidden(true, animated: false)
         //        addNavBarImage()
         updateView(selected: 0)
     }
