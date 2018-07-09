@@ -13,7 +13,6 @@ protocol GettableService {
     associatedtype NetworkData : Codable
     typealias networkResult = (resCode : Int, resResult : NetworkData)
     func get(_ URL:String, completion : @escaping (Result<networkResult>)->Void)
-    
 }
 
 extension GettableService {
@@ -28,11 +27,17 @@ extension GettableService {
             return
         }
         
-        Alamofire.request(encodedUrl).responseData {(res) in
+        let userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
+        
+        let headers: HTTPHeaders = [
+            "authorization" : userToken
+        ]
+        
+        Alamofire.request(URL, method: .get, parameters: nil, headers: headers).responseData {(res) in
             switch res.result {
-
             case .success :
                 if let value = res.result.value {
+                    print("networking Here!")
                     print(encodedUrl)
                     print(JSON(value))
                     
