@@ -28,11 +28,14 @@ extension GettableService {
         }
         
         let userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
+        var headers: HTTPHeaders?
         
-        let headers: HTTPHeaders = [
-            "authorization" : userToken
-        ]
-        
+        if userToken != "-1" {
+            headers = [
+                "authorization" : userToken
+            ]
+        }
+
         Alamofire.request(encodedUrl, method: .get, parameters: nil, headers: headers).responseData {(res) in
             switch res.result {
             case .success :
