@@ -8,11 +8,11 @@
 import UIKit
 
 class MainTVCell: UITableViewCell {
-
+    
     @IBOutlet weak var rankLbl: UILabel!
-    @IBOutlet weak var medalImgView: UIImageView! //
+    @IBOutlet weak var medalImgView: UIImageView!
     @IBOutlet weak var profileImgView: UIImageView!
-    @IBOutlet weak var progressBar: UIView! //
+    @IBOutlet weak var progressBar: UIView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var partyLbl: UILabel!
     @IBOutlet weak var voteCountLbl: UILabel!
@@ -20,45 +20,42 @@ class MainTVCell: UITableViewCell {
     @IBOutlet weak var voteBtn: UIButton!
     
     let maxWidth : Double = 240.0
-    func configure(viewType : MainViewType, index : Int, data : SampleLegislator){
-        
-        profileImgView.image = data.profile
-        nameLbl.text = data.name
-        partyLbl.text = "_\(data.party.rawValue)"
-        voteCountLbl.text = "\(data.voteCount)"
+    func configure(viewType : MainViewType, index : Int, data : Datum){
+
+        profileImgView.image = #imageLiteral(resourceName: "inni")
+        nameLbl.text = data.lName
+        partyLbl.text = "_\(data.partyName.rawValue)"
+        voteCountLbl.text = "\(String(describing: data.scoretext))"
         
         profileImgView.makeImageRound()
         progressBar.snp.makeConstraints { (make) in
-            make.width.equalTo(maxWidth*data.rate)
-            
+            make.width.equalTo(maxWidth*data.width)
+            make.height.equalTo(12)
+            make.leading.equalTo(profileImgView.snp.trailing).offset(-15)
+            make.bottom.equalTo(profileImgView.snp.bottom).offset(-7)
+            make.top.equalTo(nameLbl.snp.bottom).offset(3)
         }
-
         progressBar.makeRounded()
-       
+        
         switch viewType {
         case .like:
-            rankLbl.text = "\(data.likeRank)"
-            
-            if data.likeRank == 1 {
+            rankLbl.text = data.ranking
+            if data.ranking == "1" {
                 medalImgView.image = #imageLiteral(resourceName: "ranking_gold_medal")
-            } else if data.likeRank == 2 {
+            } else if data.ranking == "2" {
                 medalImgView.image = #imageLiteral(resourceName: "ranking_silver_medal")
-            } else if data.likeRank == 3 {
+            } else if data.ranking == "3" {
                 medalImgView.image = #imageLiteral(resourceName: "ranking_bronze_medal")
-            } else {
-                medalImgView.isHidden = true
             }
         case .dislike :
-             rankLbl.text = "\(data.dislikeRank)"
-            if data.dislikeRank == 1 {
+            rankLbl.text =  data.ranking
+            if data.ranking == "1" {
                 medalImgView.image = #imageLiteral(resourceName: "ranking_red_bomb")
-            } else if data.dislikeRank == 2 {
+            } else if data.ranking == "2" {
                 medalImgView.image = #imageLiteral(resourceName: "ranking_orange_bomb")
-            } else if data.dislikeRank == 3 {
+            } else if data.ranking == "3" {
                 medalImgView.image = #imageLiteral(resourceName: "ranking_yellow_bomb")
-            } else {
-                 medalImgView.isHidden = true
-             }
+            }
             
         }
         
@@ -79,14 +76,14 @@ class MainTVCell: UITableViewCell {
         super.awakeFromNib()
         profileImgView.layer.borderColor = ColorChip.shared().mainColor.cgColor
         profileImgView.layer.borderWidth = 2
-       
+   
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }
 

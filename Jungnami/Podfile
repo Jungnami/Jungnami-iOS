@@ -7,6 +7,8 @@ target 'Jungnami' do
 
 
 pod 'SnapKit'
+pod 'Alamofire'
+pod 'SwiftyJSON'
 
 
 

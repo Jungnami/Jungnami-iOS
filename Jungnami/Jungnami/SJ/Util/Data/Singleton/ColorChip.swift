@@ -18,6 +18,7 @@ class ColorChip {
     let partyGreen = #colorLiteral(red: 0.2, green: 0.7647058824, blue: 0.1647058824, alpha: 1)
     let partyGray = #colorLiteral(red: 0.7137254902, green: 0.7137254902, blue: 0.7137254902, alpha: 1)
     let mainColor = #colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)
+   
     
     
     struct StaticInstance {
