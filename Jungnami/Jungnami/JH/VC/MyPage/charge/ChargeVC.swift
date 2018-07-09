@@ -9,26 +9,120 @@ import UIKit
 
 class ChargeVC: UIViewController {
 
+    
+    @IBAction func changeView(_ sender: UIButton) {
+        updateView(selected: sender.tag)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateView(selected: 0)
     }
-
+    @IBOutlet weak var chargeCoinBtn: UIButton!
+    @IBOutlet weak var chargeVoteBtn: UIButton!
+    
+    @IBOutlet weak var chargeContainerView: UIView!
+    @IBOutlet weak var chargeCoinBar: UIView!
+    @IBOutlet weak var chargeVoteBar: UIView!
+    
+    @IBAction func dismissBtn(_ sender: UIButton) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    //--------------containerView-----------------------
+    private lazy var myCoinVC: MyCoinVC = {
+        
+        let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
+        
+        var viewController = storyboard.instantiateViewController(withIdentifier: MyCoinVC.reuseIdentifier) as! MyCoinVC
+        
+        
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
+    private lazy var changeCoinVC: ChangeCoinVC = {
+        
+        let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
+        
+        var viewController = storyboard.instantiateViewController(withIdentifier: ChangeCoinVC.reuseIdentifier) as! ChangeCoinVC
+        
+        self.add(asChildViewController: viewController)
+        
+        return viewController
+    }()
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+extension ChargeVC{
+    
+    static func viewController() -> ChargeVC {
+        return UIStoryboard.init(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! ChargeVC
+    }
+    
+    
+    
+    private func add(asChildViewController viewController: UIViewController) {
+        
+        // Add Child View Controller
+        addChildViewController(viewController)
+        
+        // Add Child View as Subview
+        chargeContainerView.addSubview(viewController.view)
+        
+        // Configure Child View
+        viewController.view.frame = chargeContainerView.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Notify Child View Controller
+        viewController.didMove(toParentViewController: self)
+    }
+    
+    //----------------------------------------------------------------
+    
+    private func remove(asChildViewController viewController: UIViewController) {
+        // Notify Child View Controller
+        viewController.willMove(toParentViewController: nil)
+        
+        // Remove Child View From Superview
+        viewController.view.removeFromSuperview()
+        
+        // Notify Child View Controller
+        viewController.removeFromParentViewController()
+    }
+    
+    //----------------------------------------------------------------
+    
+    private func updateView(selected : Int) {
+        if selected == 0 {
+            chargeCoinBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+            
+            chargeVoteBtn.setTitleColor(#colorLiteral(red: 0.8510189652, green: 0.85114187, blue: 0.8509921432, alpha: 1), for: .normal)
+            
+            chargeVoteBar.isHidden = true
+            chargeCoinBar.isHidden = false
+            
+            remove(asChildViewController: changeCoinVC)
+            add(asChildViewController: myCoinVC)
+        } else {
+            chargeVoteBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+            
+            chargeCoinBtn.setTitleColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1), for: .normal)
+            
+            chargeVoteBar.isHidden = false
+            chargeCoinBar.isHidden = true
+            
+            remove(asChildViewController: myCoinVC)
+            add(asChildViewController: changeCoinVC)
+        }
+    }
+    
+    
+    
+}
+
+

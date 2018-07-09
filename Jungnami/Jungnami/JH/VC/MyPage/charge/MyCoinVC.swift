@@ -9,6 +9,12 @@ import UIKit
 
 class MyCoinVC: UIViewController {
 
+    //가격버튼 누르면 alert 띄우기
+    
+    @IBAction func priceBtn(_ sender: Any) {
+        simpleAlert(title: "알림", message: "결제서비스는 현재 사용할 수 없습니다")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

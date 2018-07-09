@@ -24,6 +24,10 @@ class MyPageVC: UIViewController {
     @IBOutlet weak var scapBtn: UIButton!
     @IBOutlet weak var feedBtn: UIButton!
     
+    @IBAction func changeView(_ sender: UIButton) {
+        updateView(selected: sender.tag)
+    }
+    
     //알림, 설정, 버튼으로 연결해야함
     var data = MyPageData.sharedInstance.myPageUsers
     //tapGesture--------------------------------
@@ -67,9 +71,7 @@ class MyPageVC: UIViewController {
     }
     
     
-    @IBAction func changeView(_ sender: UIButton) {
-        updateView(selected: sender.tag)
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
