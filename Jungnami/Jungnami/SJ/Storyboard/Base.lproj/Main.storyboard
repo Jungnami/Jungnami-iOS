@@ -911,10 +911,9 @@
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="AJh-0J-KwN" kind="relationship" relationship="viewControllers" id="v5r-ya-AN9"/>
-                        <segue destination="vnt-hg-dzm" kind="relationship" relationship="viewControllers" id="xPx-ik-HiK"/>
-                        <segue destination="er9-gp-dhO" kind="relationship" relationship="viewControllers" id="85n-xW-rkt"/>
-                        <segue destination="r4i-3L-pUg" kind="relationship" relationship="viewControllers" id="0kc-a9-j8j"/>
+                        <segue destination="er9-gp-dhO" kind="relationship" relationship="viewControllers" id="m5q-7I-F0w"/>
+                        <segue destination="vnt-hg-dzm" kind="relationship" relationship="viewControllers" id="x7z-q6-6h1"/>
+                        <segue destination="AJh-0J-KwN" kind="relationship" relationship="viewControllers" id="Dcn-nl-eEd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ag1-cp-TlB" userLabel="First Responder" sceneMemberID="firstResponder"/>

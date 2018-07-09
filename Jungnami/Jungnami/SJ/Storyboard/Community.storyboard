@@ -262,6 +262,9 @@
                                                 <constraint firstItem="bge-r9-OLW" firstAttribute="top" secondItem="S0M-35-mwg" secondAttribute="top" id="oZt-jT-QS4"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nextBtn" destination="bge-r9-OLW" id="Zzv-gU-isI"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityFirstSectionWriteTVCell" rowHeight="67" id="cwu-uX-igg" customClass="CommunityFirstSectionWriteTVCell" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="95" width="375" height="67"/>
@@ -579,7 +582,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityTVCell" rowHeight="430" id="Ybp-a5-nvw" customClass="CommunityTVCell" customModule="Jungnami" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="74.5" width="375" height="430"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="430"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ybp-a5-nvw" id="gs0-tO-fGU">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="430"/>
