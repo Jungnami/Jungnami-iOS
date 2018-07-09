@@ -16,10 +16,10 @@ class LegislatorContentCell: UICollectionViewCell {
     @IBOutlet weak var legislatorContentDate: UILabel!
     
     var legisContents = LegislatorContentData.sharedInstance.legislatorContents
-    func configure(data: LegislatorContentSample) {
-        legislatorContentImgView.image = data.contentImg
+    func configure(data: LegislatorDetailVODatumContent) {
+        legislatorContentImgView.image = #imageLiteral(resourceName: "dabi")
         legislatorTitleLbl.text = data.title
-        legislatorContentDate.text = data.date
+        legislatorContentDate.text = data.writingtime
         legislatorContentCategoryLbl.text = data.category
     }
 }

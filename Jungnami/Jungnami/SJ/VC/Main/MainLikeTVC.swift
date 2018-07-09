@@ -107,7 +107,8 @@ extension MainLikeTVC {
         
         if let legislatorDetailVC = mainStoryboard.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
-            //legislatorDetailVC.selectedLegislator = self.legislatorLikeData[indexPath.row]
+            
+            legislatorDetailVC.selectedLegislatorIdx = self.legislatorLikeData[indexPath.row].lID
             
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }

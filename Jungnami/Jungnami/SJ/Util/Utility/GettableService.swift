@@ -33,6 +33,9 @@ extension GettableService {
 
             case .success :
                 if let value = res.result.value {
+                    print(encodedUrl)
+                    print(JSON(value))
+                    
                     let decoder = JSONDecoder()
                     do {
                         let resCode = self.gino(res.response?.statusCode)

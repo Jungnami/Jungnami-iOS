@@ -58,6 +58,8 @@ class PartyListTVC: UITableViewController {
         }
         if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
             partyListDetailPageMenuVC.selectedParty = selectedParty
+            
+           partyListDetailPageMenuVC.navTitle = "정당"
             self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
         }
         

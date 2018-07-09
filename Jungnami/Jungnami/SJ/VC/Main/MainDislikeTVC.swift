@@ -103,8 +103,7 @@ extension MainDislikeTVC {
         
         if let legislatorDetailVC = mainStoryboard.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
-         //   legislatorDetailVC.selectedLegislator = self.sampleData[indexPath.row]
-            
+          legislatorDetailVC.selectedLegislatorIdx = self.legislatorDislikeData[indexPath.row].lID
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
         

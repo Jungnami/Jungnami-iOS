@@ -14,14 +14,15 @@ struct PartyLegistorLikeVO: Codable {
 
 struct PartyLegistorLikeVODatum: Codable {
     let id: Int
-    let name, content: String
+    let name, position: String
     let imgurl: String?
-    let rank, rankInAll: String
+    let rank : Int
+    let rankInAll: String
     let partyName: PartyName
     
     enum CodingKeys: String, CodingKey {
         case partyName = "party_name"
-        case id, name, content, imgurl, rank, rankInAll
+        case id, name, imgurl, rank, rankInAll, position
     }
 }
 

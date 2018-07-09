@@ -18,6 +18,7 @@ class PartyListDetailPageMenuVC : UIViewController{
     var keyboardDismissGesture: UITapGestureRecognizer?
     var selectedRegion : Region?
     var selectedParty : PartyName?
+    var navTitle : String = ""
     lazy var navSearchView : UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -82,6 +83,7 @@ class PartyListDetailPageMenuVC : UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = navTitle
         setKeyboardSetting()
     }
     

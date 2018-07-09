@@ -20,11 +20,11 @@ class PartyListDetailTVcell: UITableViewCell {
     @IBOutlet weak var regionLbl: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
     func configure(index : Int, data : PartyLegistorLikeVODatum){
-        indexLbl.text = data.rank
+        indexLbl.text = "\(data.rank)"
         profileImgView.image = #imageLiteral(resourceName: "dabi")
         nameLbl.text = data.name
         rankLbl.text = data.rankInAll
-        regionLbl.text = data.content
+        regionLbl.text = data.position
         switch data.partyName {
         case .더불어민주당:
             profileImgView.layer.borderColor = ColorChip.shared().partyBlue.cgColor

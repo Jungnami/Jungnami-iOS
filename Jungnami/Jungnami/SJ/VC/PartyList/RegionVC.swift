@@ -79,7 +79,8 @@ class RegionVC: UIViewController {
 
         if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
             partyListDetailPageMenuVC.selectedRegion = selectedRegion
-    self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
+              partyListDetailPageMenuVC.navTitle = "지역"
+        self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
         }
     }
     
