@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4UJ-ug-HBB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vbn-w1-f72">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -3086,6 +3086,9 @@
                                             <constraint firstAttribute="height" constant="24" id="Q2G-xg-UwT"/>
                                         </constraints>
                                         <state key="normal" image="mypage_x"/>
+                                        <connections>
+                                            <action selector="dismissBtn:" destination="vbn-w1-f72" eventType="touchUpInside" id="zXF-Ig-IA5"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="충전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTo-i9-T8O">
                                         <rect key="frame" x="174" y="13" width="28" height="19.5"/>
@@ -3105,6 +3108,9 @@
                                                 <state key="normal" title="코인충전">
                                                     <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="changeView:" destination="vbn-w1-f72" eventType="touchUpInside" id="DQl-Z1-2fp"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5Q-uX-izd">
                                                 <rect key="frame" x="188" y="0.0" width="187.5" height="42"/>
@@ -3115,6 +3121,9 @@
                                                 <state key="normal" title="투표권 충전">
                                                     <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="changeView:" destination="vbn-w1-f72" eventType="touchUpInside" id="fem-nJ-DeT"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKt-qC-niw">
                                                 <rect key="frame" x="52" y="39" width="84" height="3"/>
@@ -3177,6 +3186,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IK2-RB-dQz"/>
                     </view>
+                    <connections>
+                        <outlet property="chargeCoinBar" destination="VKt-qC-niw" id="CbU-Ra-oNc"/>
+                        <outlet property="chargeCoinBtn" destination="lbA-yU-uwc" id="up7-yy-ed9"/>
+                        <outlet property="chargeContainerView" destination="7Zs-DQ-ew1" id="Pzl-zI-4pd"/>
+                        <outlet property="chargeVoteBar" destination="PC5-bt-3ec" id="g9S-pK-rRe"/>
+                        <outlet property="chargeVoteBtn" destination="j5Q-uX-izd" id="3Ad-1k-muJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0d-n7-3mi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3253,6 +3269,9 @@
                                             <constraint firstAttribute="height" constant="30" id="hlJ-81-uOy"/>
                                         </constraints>
                                         <state key="normal" image="charge_usd_1.09"/>
+                                        <connections>
+                                            <action selector="priceBtn:" destination="Qzg-hL-INj" eventType="touchUpInside" id="Qp8-L5-hEK"/>
+                                        </connections>
                                     </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="charge_coin_small" translatesAutoresizingMaskIntoConstraints="NO" id="4fr-vw-boz">
                                         <rect key="frame" x="10" y="60" width="17" height="17"/>
@@ -3402,6 +3421,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="87J-zT-VMo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D3n-6t-q5z" userLabel="나의코인">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="141"/>
                                 <subviews>
@@ -3468,7 +3491,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8aO-dG-DCf">
                                 <rect key="frame" x="20" y="298.5" width="335" height="2"/>
@@ -3512,6 +3535,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cxx-1S-jVd"/>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="87J-zT-VMo" id="ECH-ni-HJF"/>
+                        <outlet property="userCoinLbl" destination="VKx-4c-e1J" id="22y-TD-V3U"/>
+                        <outlet property="voteField" destination="Pc1-DQ-rCK" id="jje-0X-gdB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LaL-XK-YqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
