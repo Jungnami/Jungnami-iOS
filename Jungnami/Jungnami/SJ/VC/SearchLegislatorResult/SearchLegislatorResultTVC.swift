@@ -77,7 +77,7 @@ extension SearchLegislatorResultTVC {
         
         if let legislatorDetailVC = self.storyboard?.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
          
-            legislatorDetailVC.selectedLegislator = self.sampleData[indexPath.row]
+           // legislatorDetailVC.selectedLegislator = self.sampleData[indexPath.row]
             
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }

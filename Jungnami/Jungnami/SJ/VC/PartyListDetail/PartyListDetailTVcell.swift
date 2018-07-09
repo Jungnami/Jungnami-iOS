@@ -18,36 +18,41 @@ class PartyListDetailTVcell: UITableViewCell {
     @IBOutlet weak var rankLbl: UILabel!
     
     @IBOutlet weak var regionLbl: UILabel!
-     @IBOutlet weak var likeBtn: UIButton!
-    func configure(index : Int, data : SampleLegislator){
-        indexLbl.text = "\(index+1)"
-        profileImgView.image = data.profile
+    @IBOutlet weak var likeBtn: UIButton!
+    func configure(index : Int, data : PartyLegistorLikeVODatum){
+        indexLbl.text = "\(data.rank)"
+        profileImgView.image = #imageLiteral(resourceName: "dabi")
         nameLbl.text = data.name
-        rankLbl.text = "\(data.likeRank)위"
-        regionLbl.text = data.region
-        switch data.party {
-        case .blue:
-
+        rankLbl.text = data.rankInAll
+        regionLbl.text = data.position
+        switch data.partyName {
+        case .더불어민주당:
             profileImgView.layer.borderColor = ColorChip.shared().partyBlue.cgColor
-        case .red:
+        case .자유한국당:
             profileImgView.layer.borderColor = ColorChip.shared().partyRed.cgColor
-        case .mint:
+        case .바른미래당:
             profileImgView.layer.borderColor = ColorChip.shared().partyMint.cgColor
-        case .yellow:
+        case .정의당:
             profileImgView.layer.borderColor = ColorChip.shared().partyYellow.cgColor
-        case .orange:
+        case .민중당:
             profileImgView.layer.borderColor = ColorChip.shared().partyOrange.cgColor
-
+        case .무소속:
+            profileImgView.layer.borderColor =
+            ColorChip.shared().partyGray.cgColor
+        case .대한애국당:
+            profileImgView.layer.borderColor =
+            ColorChip.shared().partyOrange.cgColor
+        case .민주평화당:
+            profileImgView.layer.borderColor =
+            ColorChip.shared().partyNavy.cgColor
         }
-        
-
         
         if index % 2 == 1 {
             self.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
         }
-
-     
-     }
+        
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImgView.makeImageRound()
@@ -55,11 +60,11 @@ class PartyListDetailTVcell: UITableViewCell {
         
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

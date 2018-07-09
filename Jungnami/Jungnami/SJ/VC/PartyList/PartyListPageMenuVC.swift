@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class PartyListPageMenuVC: UIViewController, PushVCProtocol {
+class PartyListPageMenuVC: UIViewController {
     
     @IBOutlet weak var containerView: UIView!
     
@@ -116,13 +116,13 @@ class PartyListPageMenuVC: UIViewController, PushVCProtocol {
         }
     }
     
-    func pushAction(selectedParty: PartyList) {
+  /*  func pushAction(selectedParty: PartyList) {
         print("aaa")
         if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
             partyListDetailPageMenuVC.selectedParty = selectedParty
             self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)
         }
-    }
+    } */
 
     
     @IBAction func switchView(_ sender: UIButton) {

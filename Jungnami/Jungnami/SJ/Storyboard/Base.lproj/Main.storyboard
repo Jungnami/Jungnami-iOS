@@ -1270,7 +1270,7 @@
                                         <connections>
                                             <outlet property="bombImgView" destination="6Vs-rE-kEO" id="j2Y-i8-BxM"/>
                                             <outlet property="dislikeBtn" destination="iHE-r0-9am" id="erA-rq-GAA"/>
-                                            <outlet property="legislatorDislikeLbl" destination="VH4-cD-TdT" id="QOv-4l-iBW"/>
+                                            <outlet property="legislatorDislikeLbl" destination="VH4-cD-TdT" id="o35-Si-rAJ"/>
                                             <outlet property="legislatorLikeLbl" destination="BzM-8h-ggh" id="p4F-jt-Ncj"/>
                                             <outlet property="legislatorNameLbl" destination="MDv-17-nH3" id="EUS-sS-qCG"/>
                                             <outlet property="legislatorPartyLbl" destination="hj1-H5-Sxe" id="YNN-fV-ZDV"/>
