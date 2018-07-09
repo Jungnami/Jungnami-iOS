@@ -34,27 +34,6 @@ class MainDislikeTVC: UITableViewController, APIService {
         }
     }
     
-    func legislatorLikeInit(url : String){
-        GetLegislatorLikeService.shareInstance.getLegislatorLike(url: url, completion: { [weak self] (result) in
-            guard let `self` = self else { return }
-            
-            switch result {
-            case .networkSuccess(let legislatorData):
-                self.legislatorDislikeData = legislatorData as! [Datum]
-                self.firstData = self.legislatorDislikeData[0]
-                self.secondData = self.legislatorDislikeData[1]
-                self.tableView.reloadData()
-                break
-                
-            case .networkFail :
-                self.simpleAlert(title: "network", message: "check")
-            default :
-                break
-            }
-            
-        })
-        
-    }
     
     
 }
@@ -118,5 +97,31 @@ extension MainDislikeTVC{
         
         self.tableView.reloadData()
         sender.endRefreshing()
+    }
+}
+//통신
+
+extension MainDislikeTVC {
+    
+    func legislatorLikeInit(url : String){
+        GetLegislatorLikeService.shareInstance.getLegislatorLike(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let legislatorData):
+                self.legislatorDislikeData = legislatorData as! [Datum]
+                self.firstData = self.legislatorDislikeData[0]
+                self.secondData = self.legislatorDislikeData[1]
+                self.tableView.reloadData()
+                break
+                
+            case .networkFail :
+                self.simpleAlert(title: "network", message: "check")
+            default :
+                break
+            }
+            
+        })
+        
     }
 }

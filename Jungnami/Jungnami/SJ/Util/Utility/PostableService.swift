@@ -12,9 +12,10 @@ import SwiftyJSON
 
 protocol PostableService {
     associatedtype NetworkData : Codable
-    func post(_ URL:String, params : [String : Any], completion : @escaping (Result<NetworkData>)->Void)
+    typealias networkResult = (resCode : Int, resResult : NetworkData)
+    func post(_ URL:String, params : [String : Any], completion : @escaping (Result<networkResult>)->Void)
     
-    func delete(_ URL:String, params : [String : Any], completion : @escaping (Result<NetworkData>)->Void)
+    func delete(_ URL:String, params : [String : Any], completion : @escaping (Result<networkResult>)->Void)
 }
 
 extension PostableService {
@@ -24,25 +25,31 @@ extension PostableService {
     }
     
     
-    func post(_ URL:String, params : [String : Any], completion : @escaping (Result<NetworkData>)->Void){
+    func post(_ URL:String, params : [String : Any], completion : @escaping (Result<networkResult>)->Void){
         
         Alamofire.request(URL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData(){
             res in
             switch res.result {
-            case .success:
                 
+            case .success:
+                print("networkHEre")
                 if let value = res.result.value {
-                    
+                    print(JSON(value))
                     let decoder = JSONDecoder()
                     
                     
                     do {
+                        
+                        let resCode = self.gino(res.response?.statusCode)
                         let data = try decoder.decode(NetworkData.self, from: value)
-                        completion(.success(data))
+                        
+                        let result : networkResult = (resCode, data)
+                        completion(.success(result))
+    
                         
                     }catch{
                         
-                        completion(.error("error"))
+                        completion(.error("error post"))
                     }
                 }
                 break
@@ -56,7 +63,7 @@ extension PostableService {
     }
     
     
-    func delete(_ URL:String, params : [String : Any], completion : @escaping (Result<NetworkData>)->Void){
+    func delete(_ URL:String, params : [String : Any], completion : @escaping (Result<networkResult>)->Void){
         
         Alamofire.request(URL, method: .delete, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData(){
             res in
@@ -68,8 +75,12 @@ extension PostableService {
                     let decoder = JSONDecoder()
                     
                     do {
+                        let resCode = self.gino(res.response?.statusCode)
                         let data = try decoder.decode(NetworkData.self, from: value)
-                        completion(.success(data))
+                        
+                        let result : networkResult = (resCode, data)
+                        completion(.success(result))
+                        
                         
                     }catch{
                         
