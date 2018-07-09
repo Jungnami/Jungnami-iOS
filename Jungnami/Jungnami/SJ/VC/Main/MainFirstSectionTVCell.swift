@@ -25,45 +25,57 @@ class MainFirstSectionTVCell: UITableViewCell {
     @IBOutlet weak var secondProgressBarLbl: UILabel!
     let maxWidth : Double = 150.0
     //꽉찬게 240
-    func configure(first : SampleLegislator, second : SampleLegislator){
-        firstImgView.image = first.profile
-        firstNameLbl.text = first.name
-        firstPartyLbl.text = first.party.rawValue
-        firstProgressBarLbl.text = "\(first.voteCount)표"
-        switch first.party {
-        case .blue:
+    func configure(first : Datum, second : Datum){
+        firstImgView.image = #imageLiteral(resourceName: "inni")
+        firstNameLbl.text = first.lName
+        firstPartyLbl.text = first.partyName.rawValue
+        firstProgressBarLbl.text = first.scoretext
+        switch first.partyName {
+        case .더불어민주당:
              firstProgressBar.backgroundColor = ColorChip.shared().partyBlue
-        case .yellow:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyYellow
-        case .mint:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyMint
-        case .red:
+        case .자유한국당:
             firstProgressBar.backgroundColor = ColorChip.shared().partyRed
-        case .orange:
+        case .민중당:
             firstProgressBar.backgroundColor = ColorChip.shared().partyOrange
+        case .바른미래당:
+            firstProgressBar.backgroundColor = ColorChip.shared().partyMint
+        case .무소속:
+            firstProgressBar.backgroundColor = ColorChip.shared().partyGray
+        case .대한애국당:
+            firstProgressBar.backgroundColor = ColorChip.shared().partyNavy
+        case .민주평화당:
+            firstProgressBar.backgroundColor = ColorChip.shared().partyGreen
+        case .정의당:
+            firstProgressBar.backgroundColor = ColorChip.shared().partyYellow
         }
-        
+    
         firstProgressBar.snp.makeConstraints { (make) in
-            make.width.equalTo(maxWidth*first.rate)
+            make.width.equalTo(maxWidth*first.width)
         }
-        secondImgView.image = second.profile
-        secondNameLbl.text = second.name
-        secondPartyLbl.text = second.party.rawValue
-        secondProgressBarLbl.text = "\(second.voteCount)표"
-        switch second.party {
-        case .blue:
+        secondImgView.image = #imageLiteral(resourceName: "dabi")
+        secondNameLbl.text = second.lName
+        secondPartyLbl.text = second.partyName.rawValue
+        secondProgressBarLbl.text = second.scoretext
+        switch second.partyName {
+        case .더불어민주당:
             secondProgressBar.backgroundColor = ColorChip.shared().partyBlue
-        case .yellow:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyYellow
-        case .mint:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyMint
-        case .red:
+        case .자유한국당:
             secondProgressBar.backgroundColor = ColorChip.shared().partyRed
-        case .orange:
+        case .민중당:
             secondProgressBar.backgroundColor = ColorChip.shared().partyOrange
+        case .바른미래당:
+            secondProgressBar.backgroundColor = ColorChip.shared().partyMint
+        case .무소속:
+            secondProgressBar.backgroundColor = ColorChip.shared().partyGray
+        case .대한애국당:
+            secondProgressBar.backgroundColor = ColorChip.shared().partyNavy
+        case .민주평화당:
+            secondProgressBar.backgroundColor = ColorChip.shared().partyGreen
+        case .정의당:
+            secondProgressBar.backgroundColor = ColorChip.shared().partyYellow
         }
         secondProgressBar.snp.makeConstraints { (make) in
-            make.width.equalTo(maxWidth*second.rate)
+            make.width.equalTo(maxWidth*second.width)
         }
         
     }

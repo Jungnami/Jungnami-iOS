@@ -119,14 +119,14 @@ extension LegislatorDetailVC : UITextFieldDelegate {
     //좋아요
     @objc func like(_sender: UIButton){
         simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-            self.popupImgView(fileName: "ranking_like")
+            self.popupImgView(fileName: "area_like_popup")
         }
     }
     
     //싫어요
     @objc func dislike(_sender: UIButton){
         simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-            self.popupImgView(fileName: "ranking_hate")
+            self.popupImgView(fileName: "area_hate_popup")
         }
     }
     //후원하기
