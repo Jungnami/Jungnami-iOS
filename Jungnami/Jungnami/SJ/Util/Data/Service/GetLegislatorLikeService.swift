@@ -11,11 +11,14 @@ import Alamofire
 import SwiftyJSON
 
 struct GetLegislatorLikeService : GettableService {
+   
     
+   // let userDefault = UserDefaults.standard
     typealias NetworkData = LegislatorLikeVO
     static let shareInstance = GetLegislatorLikeService()
     
     func getLegislatorLike(url : String, completion : @escaping (NetworkResult<Any>) -> Void){
+        
         get(url) { (result) in
             switch result {
             case .success(let networkResult):

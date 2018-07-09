@@ -7,11 +7,13 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
-
+class LoginVC: UIViewController, APIService{
+    
     var tabbarVC : UIViewController?
     let userDefault = UserDefaults.standard
-   
+    var userData : LoginData?
+    var accessToken : String?
+    
     @IBOutlet weak var dismissBtn: UIButton!
     
     @IBOutlet weak var nextBtn: UIButton!
@@ -19,16 +21,13 @@ class LoginVC: UIViewController {
     @IBAction func dismissClick(_ sender: Any) {
         
     }
-    
     @IBAction func withoutLogin(_ sender: Any) {
-         self.tabbarVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: "tabBar") as! TabbarVC
-        if let tabbarVC_ = tabbarVC {
-             self.present(tabbarVC_, animated: true, completion: nil)
-        }
-       
-        
+        toMainPage()
     }
-    @IBAction func loginWithKakao(_ sender: Any) {let session: KOSession = KOSession.shared();
+    
+    
+    @IBAction func loginWithKakao(_ sender: Any) {
+        let session: KOSession = KOSession.shared();
         
         if session.isOpen() {
             session.close()
@@ -41,36 +40,17 @@ class LoginVC: UIViewController {
             if error == nil{
                 print("no Error");
                 if session.isOpen(){
-                    //userDefault.set(gsno(nickNameTxt.text), forKey: "nickName")
-                    //let userDefault = UserDefaults.standard
-//                    guard  let nickName = userDefault.string(forKey: "nickName") else {
-//                        return
-//                    }
-                    print("token : \(session.token.accessToken)")
-                    print("refresh token : \(session.token.refreshToken)")
-                    
-                    
-                    
+                  //  print("token : \(session.token.accessToken)")
+                  //  print("refresh token : \(session.token.refreshToken)")
+                    let params : [String : Any] = ["accessToken" : session.token.accessToken]
+                    self.login(url: self.url("/user/kakaologin"), params: params)
+                 
                 }else{
                     print("Login failed")
                 }
             }else{
                 print("Login error : \(String(describing: error))")
             }
-            // 사용자 정보 요청
-            KOSessionTask.userMeTask { [weak self] (error, me) in
-                if let error = error as NSError? {
-                    self?.simpleAlert(title: "err", message: error.description)
-                    
-                } else if let me = me as KOUserMe? {
-                    
-                    
-                    print(self?.gsno(me.id) ?? "id")
-                    print(self?.gsno(me.nickname) ?? "nickname")
-                    
-                }
-            }
-            //이제 로그인 하면 네트워킹 해서 userData 보내줘야함
             if !session.isOpen() {
                 if let error = error as NSError? {
                     switch error.code {
@@ -79,32 +59,54 @@ class LoginVC: UIViewController {
                     default:
                         //간편 로그인 취소
                         print("error : \(error.description)")
-
+                        
                     }
                 }
             }
         })
     } //카카오톡 끝
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dismissBtn.isHidden = true
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+//통신
+extension LoginVC {
+    
+    func login(url : String, params : [String:Any]){
+        LoginService.shareInstance.login(url: url, params : params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(let loginData):
+                //유저 값 설정
+                self.userData = loginData as? LoginData
+                self.userDefault.set(self.userData?.id, forKey: "userIdx")
+                self.userDefault.set(self.userData?.token, forKey : "userToken")
+                //유저디폴트
+                let userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
+            
+                print(userToken)
+                //화면 띄우기
+                self.toMainPage()
+            case .accessDenied :
+                self.simpleAlert(title: "오류", message: "Access Denied")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    } //login
+    
+    //메인페이지로
+    func toMainPage(){
+        self.tabbarVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: "tabBar") as! TabbarVC
+        if let tabbarVC_ = tabbarVC {
+            self.present(tabbarVC_, animated: true, completion: nil)
+        }
     }
-    */
-
 }
