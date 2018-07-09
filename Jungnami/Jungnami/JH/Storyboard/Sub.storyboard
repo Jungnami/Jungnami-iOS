@@ -3510,6 +3510,7 @@
                             <constraint firstItem="VKx-4c-e1J" firstAttribute="leading" secondItem="yFf-mu-95c" secondAttribute="trailing" constant="5" id="hhX-p9-jLb"/>
                             <constraint firstItem="PlF-DM-2Wa" firstAttribute="top" secondItem="D3n-6t-q5z" secondAttribute="bottom" id="ov8-lU-ZfP"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="cxx-1S-jVd"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LaL-XK-YqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
