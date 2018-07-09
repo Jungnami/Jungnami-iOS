@@ -51,6 +51,9 @@
 		3BCF933C20F1854300E9E7F7 /* SampleLegislatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF933B20F1854300E9E7F7 /* SampleLegislatorData.swift */; };
 		430703D520F107D800D37732 /* LegislatorContentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430703D420F107D800D37732 /* LegislatorContentSample.swift */; };
 		430703D720F107E500D37732 /* LegislatorContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430703D620F107E500D37732 /* LegislatorContentData.swift */; };
+		432BA53720F3674900B33A36 /* ChargeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BA53620F3674900B33A36 /* ChargeVC.swift */; };
+		432BA53920F3678A00B33A36 /* MyCoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BA53820F3678A00B33A36 /* MyCoinVC.swift */; };
+		432BA53B20F367C600B33A36 /* ChangeCoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BA53A20F367C600B33A36 /* ChangeCoinVC.swift */; };
 		4331B01220EFFBD500FA290C /* NoticeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331B01120EFFBD500FA290C /* NoticeVC.swift */; };
 		4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351999220EF7EE000D72AAF /* MyFeedVC.swift */; };
 		4351999620EFE94A00D72AAF /* OtherUserPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351999520EFE94A00D72AAF /* OtherUserPageVC.swift */; };
@@ -163,6 +166,9 @@
 		3BCF933B20F1854300E9E7F7 /* SampleLegislatorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleLegislatorData.swift; sourceTree = "<group>"; };
 		430703D420F107D800D37732 /* LegislatorContentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorContentSample.swift; sourceTree = "<group>"; };
 		430703D620F107E500D37732 /* LegislatorContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorContentData.swift; sourceTree = "<group>"; };
+		432BA53620F3674900B33A36 /* ChargeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeVC.swift; sourceTree = "<group>"; };
+		432BA53820F3678A00B33A36 /* MyCoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinVC.swift; sourceTree = "<group>"; };
+		432BA53A20F367C600B33A36 /* ChangeCoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCoinVC.swift; sourceTree = "<group>"; };
 		4331B01120EFFBD500FA290C /* NoticeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeVC.swift; sourceTree = "<group>"; };
 		4351999220EF7EE000D72AAF /* MyFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedVC.swift; sourceTree = "<group>"; };
 		4351999520EFE94A00D72AAF /* OtherUserPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserPageVC.swift; sourceTree = "<group>"; };
@@ -367,6 +373,16 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		432BA53420F3658700B33A36 /* charge */ = {
+			isa = PBXGroup;
+			children = (
+				432BA53620F3674900B33A36 /* ChargeVC.swift */,
+				432BA53820F3678A00B33A36 /* MyCoinVC.swift */,
+				432BA53A20F367C600B33A36 /* ChangeCoinVC.swift */,
+			);
+			path = charge;
+			sourceTree = "<group>";
+		};
 		4331B01020EFFBB000FA290C /* Notice */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +570,7 @@
 		43C5137920ECD7E90017BDD8 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				432BA53420F3658700B33A36 /* charge */,
 				43C5137A20ECD81D0017BDD8 /* MyPageVC.swift */,
 				43EDECC420F204DE00E0F0E9 /* FollowFollowing */,
 				4331B01020EFFBB000FA290C /* Notice */,
@@ -940,6 +957,7 @@
 				3B97B5C220F212AF00020A81 /* TabbarVC.swift in Sources */,
 				43E84BFD20EE2F07007C6C97 /* ContentDetailCell.swift in Sources */,
 				43EDECCC20F208FA00E0F0E9 /* FollowListSample.swift in Sources */,
+				432BA53720F3674900B33A36 /* ChargeVC.swift in Sources */,
 				3BB1A5C320EB9EC000D4929A /* SampleLegislator.swift in Sources */,
 				3BCF933C20F1854300E9E7F7 /* SampleLegislatorData.swift in Sources */,
 				3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */,
@@ -976,6 +994,7 @@
 				439D814520EB2FE5007DAD57 /* PartyListPageMenuVC.swift in Sources */,
 				3B97B5D520F28DF400020A81 /* LegislatorLikeVO.swift in Sources */,
 				439D814C20EB2FE5007DAD57 /* RecommendFirstCell.swift in Sources */,
+				432BA53B20F367C600B33A36 /* ChangeCoinVC.swift in Sources */,
 				3BB4308D20ECE8BF002980D9 /* PartyListDetailPageMenuVC.swift in Sources */,
 				43D1DAC920EB9A4E00B752D1 /* CommentData.swift in Sources */,
 				3B97B5C520F2432800020A81 /* TapDelegate.swift in Sources */,
@@ -992,6 +1011,7 @@
 				3B83165B20F10AF9001D2423 /* CommunityFirstSectionLoginTVCell.swift in Sources */,
 				3BB4308F20ECE914002980D9 /* PartyListDetailLikeTVC.swift in Sources */,
 				3BB4308820EC9453002980D9 /* CommunityResultTVC.swift in Sources */,
+				432BA53920F3678A00B33A36 /* MyCoinVC.swift in Sources */,
 				43EDECD720F26A7600E0F0E9 /* NoticeSample.swift in Sources */,
 				439D814320EB2FE5007DAD57 /* PartyListTVC.swift in Sources */,
 				43EDECBC20F1C97000E0F0E9 /* TmiSecondCell.swift in Sources */,
