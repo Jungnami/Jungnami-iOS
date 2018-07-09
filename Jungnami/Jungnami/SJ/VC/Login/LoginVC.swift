@@ -9,17 +9,19 @@ import UIKit
 
 class LoginVC: UIViewController, APIService{
     
+    //0이면 처음 들어오는것 1이면 중간에 들어오는것
+    var entryPoint : Int = 0
     var tabbarVC : UIViewController?
     let userDefault = UserDefaults.standard
-    var userData : LoginData?
+    var userData : LoginVOData?
     var accessToken : String?
-    
+    var userToken = ""
     @IBOutlet weak var dismissBtn: UIButton!
     
     @IBOutlet weak var nextBtn: UIButton!
     
     @IBAction func dismissClick(_ sender: Any) {
-        
+        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func withoutLogin(_ sender: Any) {
         toMainPage()
@@ -66,9 +68,18 @@ class LoginVC: UIViewController, APIService{
         })
     } //카카오톡 끝
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if entryPoint == 0 {
+            self.dismissBtn.isHidden = true
+        } else {
+            self.dismissBtn.isHidden = false
+            self.nextBtn.isHidden = true
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dismissBtn.isHidden = true
+       
     }
     
 }
@@ -82,13 +93,12 @@ extension LoginVC {
             switch result {
             case .networkSuccess(let loginData):
                 //유저 값 설정
-                self.userData = loginData as? LoginData
+                self.userData = loginData as? LoginVOData
                 self.userDefault.set(self.userData?.id, forKey: "userIdx")
                 self.userDefault.set(self.userData?.token, forKey : "userToken")
                 //유저디폴트
-                let userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
-            
-                print(userToken)
+                self.userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
+                print(self.userToken)
                 //화면 띄우기
                 self.toMainPage()
             case .accessDenied :
@@ -104,9 +114,14 @@ extension LoginVC {
     
     //메인페이지로
     func toMainPage(){
-        self.tabbarVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: "tabBar") as! TabbarVC
-        if let tabbarVC_ = tabbarVC {
-            self.present(tabbarVC_, animated: true, completion: nil)
+        if entryPoint == 0 {
+            self.tabbarVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: "tabBar") as! TabbarVC
+            if let tabbarVC_ = tabbarVC {
+                self.present(tabbarVC_, animated: true, completion: nil)
+            }
+        } else {
+            self.dismiss(animated: true, completion: nil)
         }
+       
     }
 }

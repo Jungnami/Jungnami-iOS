@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommunityVC: UIViewController, UISearchBarDelegate {
+class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
     
     
     @IBOutlet weak var badgeImg: UIImageView!
@@ -16,7 +16,8 @@ class CommunityVC: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchTxtfield: UITextField!
     @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var communityTableView: UITableView!
-   
+    
+    var communityWriteVC : CommunityWriteVC?
     
     lazy var blackView : UIView = {
         let view = UIView()
@@ -28,10 +29,17 @@ class CommunityVC: UIViewController, UISearchBarDelegate {
     
     
     var keyboardDismissGesture: UITapGestureRecognizer?
-    var login : Bool = true
+    var login : Bool = false {
+        didSet {
+            communityTableView.reloadData()
+        }
+    }
+    
+    
     
     
     @IBAction func mypageBtn(_ sender: Any) {
+        
     }
     
     @IBAction func alarmBtn(_ sender: Any) {
@@ -42,6 +50,16 @@ class CommunityVC: UIViewController, UISearchBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         searchTxtfield.text = ""
+        let userIdx = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
+        print("community VC Check")
+        print(userIdx)
+        //유저가 로그인 되어있는지 아닌지 체크
+        if userIdx == "-1" {
+            login = false
+        } else {
+            login = true
+        }
+        communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC
     }
     ////////SampleData//////
     let badgeCount = 0
@@ -111,7 +129,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
             
             if !login {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionLoginTVCell.reuseIdentifier) as! CommunityFirstSectionLoginTVCell
-                
+                cell.nextBtn.addTarget(self, action: #selector(toLogin(_:)), for: .touchUpInside)
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionWriteTVCell.reuseIdentifier) as! CommunityFirstSectionWriteTVCell
@@ -126,7 +144,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
             cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
             cell.delegate = self
             cell.scrapBtn.tag = indexPath.row
-           
+            
             cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
             
             return cell
@@ -135,10 +153,20 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func toNext(_ sender : UIButton){
-        if let communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC {
-            self.present(communityWriteVC, animated: true, completion: nil)
+        write(url: url("/board/post"))
+       
+    }
+
+    
+    @objc func toLogin(_ sender : UIButton){
+        let rankStoryboard = Storyboard.shared().rankStoryboard
+        if let loginVC = rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+            loginVC.entryPoint = 1
+            self.present(loginVC, animated: true, completion: nil)
         }
-        
+    }
+    func toCommunity(){
+        self.present(communityWriteVC!, animated: true, completion: nil)
     }
     
     @objc func scrap(_ sender : UIButton){
@@ -241,5 +269,30 @@ extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate {
     }
 }
 
+//통신
+extension CommunityVC {
+    
+    func write(url : String){
+        CommunityWriteService.shareInstance.communityWrite(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let legislatorData):
+                let img = legislatorData as! CommunityWriteVOData
+                self.communityWriteVC?.imgURL = img.imgURL
+                self.toCommunity()
+                break
+            case .accessDenied :
+                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+            case .networkFail :
+                self.simpleAlert(title: "network", message: "check")
+            default :
+                break
+            }
+            
+        })
+        
+    }
+}
 
 

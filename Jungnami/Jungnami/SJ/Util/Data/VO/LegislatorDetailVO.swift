@@ -8,17 +8,17 @@ import Foundation
 
 struct LegislatorDetailVO: Codable {
     let message: String
-    let data: LegislatorDetailVODatum
+    let data: LegislatorDetailVOData
 }
 
-struct LegislatorDetailVODatum: Codable {
+struct LegislatorDetailVOData: Codable {
     let lID: Int
     let lName, position : String
     let partyName : PartyName
     let profileimg: String?
     let likerank : String
     let unlikerank : String
-    let contents: [LegislatorDetailVODatumContent]
+    let contents: [LegislatorDetailVODataContent]
     
     enum CodingKeys: String, CodingKey {
         case lID = "l_id"
@@ -28,7 +28,7 @@ struct LegislatorDetailVODatum: Codable {
     }
 }
 
-struct LegislatorDetailVODatumContent: Codable {
+struct LegislatorDetailVODataContent: Codable {
     let id: Int
     let title, category, writingtime: String
     let thumbnailURL : String?

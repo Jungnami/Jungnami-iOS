@@ -9,6 +9,8 @@ import UIKit
 
 class CommunityFirstSectionLoginTVCell: UITableViewCell {
 
+     @IBOutlet weak var nextBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

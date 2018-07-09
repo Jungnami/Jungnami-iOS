@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class CommunityWriteVC: UIViewController, UITextViewDelegate {
     
@@ -21,6 +22,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var contentTxtView: UITextView!
      @IBOutlet weak var scrollView: UIScrollView!
     var contentImgView: UIImageView = UIImageView()
+    var imgURL : String = ""
     lazy var deleteImgBtn : UIButton = {
         let button = UIButton()
         button.isEnabled = true
@@ -55,6 +57,14 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         setKeyboardSetting()
         setToolbar()
         contentTxtView.delegate = self
+        
+        if let url = URL(string: gsno(imgURL)){
+            self.profileImgView.kf.setImage(with: url)
+        } else {
+            self.profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        }
+       
+        
         profileImgView.makeImageRound()
         imageData = nil
         contentTxtView.text = "생각을 공유해 보세요"

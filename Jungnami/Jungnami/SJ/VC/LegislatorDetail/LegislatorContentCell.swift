@@ -16,7 +16,7 @@ class LegislatorContentCell: UICollectionViewCell {
     @IBOutlet weak var legislatorContentDate: UILabel!
     
     var legisContents = LegislatorContentData.sharedInstance.legislatorContents
-    func configure(data: LegislatorDetailVODatumContent) {
+    func configure(data: LegislatorDetailVODataContent) {
         legislatorContentImgView.image = #imageLiteral(resourceName: "dabi")
         legislatorTitleLbl.text = data.title
         legislatorContentDate.text = data.writingtime

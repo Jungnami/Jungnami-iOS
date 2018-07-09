@@ -21,6 +21,15 @@
 		3B83165B20F10AF9001D2423 /* CommunityFirstSectionLoginTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83165A20F10AF9001D2423 /* CommunityFirstSectionLoginTVCell.swift */; };
 		3B83165F20F137A2001D2423 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B83165E20F137A2001D2423 /* Community.storyboard */; };
 		3B83166120F138A4001D2423 /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B83166020F138A4001D2423 /* Rank.storyboard */; };
+		3B94984F20F3BC6B00BFA81E /* CommunityWriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94984E20F3BC6B00BFA81E /* CommunityWriteService.swift */; };
+		3B94985120F3BD2400BFA81E /* CommunityWriteVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985020F3BD2400BFA81E /* CommunityWriteVO.swift */; };
+		3B94985320F3E36700BFA81E /* GetPointService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985220F3E36700BFA81E /* GetPointService.swift */; };
+		3B94985520F3E3A300BFA81E /* PointVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985420F3E3A300BFA81E /* PointVO.swift */; };
+		3B94985720F3EBB700BFA81E /* VoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985620F3EBB700BFA81E /* VoteService.swift */; };
+		3B94985920F3EC8000BFA81E /* MessageVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985820F3EC8000BFA81E /* MessageVO.swift */; };
+		3B94985B20F3FCCC00BFA81E /* GetCoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985A20F3FCCC00BFA81E /* GetCoinService.swift */; };
+		3B94985D20F3FCD400BFA81E /* SupportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985C20F3FCD400BFA81E /* SupportService.swift */; };
+		3B94985F20F3FDA500BFA81E /* CoinVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985E20F3FDA500BFA81E /* CoinVO.swift */; };
 		3B97B5BA20F2006E00020A81 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B97B5B920F2006D00020A81 /* KakaoOpenSDK.framework */; };
 		3B97B5BE20F201F700020A81 /* kakaoLogin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5BC20F201F700020A81 /* kakaoLogin.cpp */; };
 		3B97B5C020F205E300020A81 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5BF20F205E300020A81 /* LoginVC.swift */; };
@@ -140,6 +149,15 @@
 		3B83165A20F10AF9001D2423 /* CommunityFirstSectionLoginTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFirstSectionLoginTVCell.swift; sourceTree = "<group>"; };
 		3B83165E20F137A2001D2423 /* Community.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		3B83166020F138A4001D2423 /* Rank.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
+		3B94984E20F3BC6B00BFA81E /* CommunityWriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteService.swift; sourceTree = "<group>"; };
+		3B94985020F3BD2400BFA81E /* CommunityWriteVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteVO.swift; sourceTree = "<group>"; };
+		3B94985220F3E36700BFA81E /* GetPointService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPointService.swift; sourceTree = "<group>"; };
+		3B94985420F3E3A300BFA81E /* PointVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointVO.swift; sourceTree = "<group>"; };
+		3B94985620F3EBB700BFA81E /* VoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteService.swift; sourceTree = "<group>"; };
+		3B94985820F3EC8000BFA81E /* MessageVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVO.swift; sourceTree = "<group>"; };
+		3B94985A20F3FCCC00BFA81E /* GetCoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoinService.swift; sourceTree = "<group>"; };
+		3B94985C20F3FCD400BFA81E /* SupportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportService.swift; sourceTree = "<group>"; };
+		3B94985E20F3FDA500BFA81E /* CoinVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinVO.swift; sourceTree = "<group>"; };
 		3B97B5B920F2006D00020A81 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		3B97B5BB20F201F600020A81 /* Jungnami-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Jungnami-Bridging-Header.h"; sourceTree = "<group>"; };
 		3B97B5BC20F201F700020A81 /* kakaoLogin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kakaoLogin.cpp; sourceTree = "<group>"; };
@@ -334,6 +352,10 @@
 				3B97B5DD20F3402C00020A81 /* PartyLegistorLikeVO.swift */,
 				3B97B5E120F35B2500020A81 /* LegislatorDetailVO.swift */,
 				3B97B5E720F3869900020A81 /* LoginVO.swift */,
+				3B94985020F3BD2400BFA81E /* CommunityWriteVO.swift */,
+				3B94985420F3E3A300BFA81E /* PointVO.swift */,
+				3B94985E20F3FDA500BFA81E /* CoinVO.swift */,
+				3B94985820F3EC8000BFA81E /* MessageVO.swift */,
 			);
 			path = VO;
 			sourceTree = "<group>";
@@ -345,6 +367,11 @@
 				3B97B5DF20F340C400020A81 /* GetPartyLegislatorLikeService.swift */,
 				3B97B5E320F35C1000020A81 /* GetLegislatorDetailService.swift */,
 				3B97B5E520F3842700020A81 /* LoginService.swift */,
+				3B94984E20F3BC6B00BFA81E /* CommunityWriteService.swift */,
+				3B94985220F3E36700BFA81E /* GetPointService.swift */,
+				3B94985620F3EBB700BFA81E /* VoteService.swift */,
+				3B94985A20F3FCCC00BFA81E /* GetCoinService.swift */,
+				3B94985C20F3FCD400BFA81E /* SupportService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -958,12 +985,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Jungnami/Pods-Jungnami-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -984,6 +1013,7 @@
 				43EDECD420F20C9A00E0F0E9 /* FollowerCell.swift in Sources */,
 				430703D720F107E500D37732 /* LegislatorContentData.swift in Sources */,
 				43EDECB220F1C60500E0F0E9 /* ContentTmiVC.swift in Sources */,
+				3B94985520F3E3A300BFA81E /* PointVO.swift in Sources */,
 				3B97B5D320F28D2000020A81 /* PostablewithPhoto.swift in Sources */,
 				43C5137E20ECD9D00017BDD8 /* ScrapCVC.swift in Sources */,
 				43EDECC320F2039000E0F0E9 /* FollowListVC.swift in Sources */,
@@ -1016,6 +1046,7 @@
 				3B97B5E820F3869900020A81 /* LoginVO.swift in Sources */,
 				43E84BF620EDF811007C6C97 /* ScrapSample.swift in Sources */,
 				43EDECC620F2051500E0F0E9 /* FollowCell.swift in Sources */,
+				3B94985D20F3FCD400BFA81E /* SupportService.swift in Sources */,
 				43E84BF820EDF854007C6C97 /* ScrapData.swift in Sources */,
 				3B82550020EF675F00ABCB59 /* MainTVCell.swift in Sources */,
 				43EDECBF20F1CA9500E0F0E9 /* StoryFirstCell.swift in Sources */,
@@ -1024,11 +1055,13 @@
 				439D814E20EB2FE5007DAD57 /* ContentVC.swift in Sources */,
 				43EDECC820F205B300E0F0E9 /* FollowerFixedCell.swift in Sources */,
 				3B97B5DE20F3402C00020A81 /* PartyLegistorLikeVO.swift in Sources */,
+				3B94985320F3E36700BFA81E /* GetPointService.swift in Sources */,
 				43537EF620F0AD6E0036435A /* NoticeCell.swift in Sources */,
 				43E5D27720F06EC30020DEBE /* MyPageData.swift in Sources */,
 				43EDECB420F1C6D500E0F0E9 /* ContentStoryVC.swift in Sources */,
 				43EDECCE20F2095E00E0F0E9 /* FollowListData.swift in Sources */,
 				43D1DAB720EB4F6600B752D1 /* CommentVC.swift in Sources */,
+				3B94985F20F3FDA500BFA81E /* CoinVO.swift in Sources */,
 				3BCF932E20F15CA500E9E7F7 /* SupportPopupView.swift in Sources */,
 				3BAFF97620EE845A0088F020 /* Region.swift in Sources */,
 				43537EFE20F0E9C50036435A /* LegislatorProfileCell.swift in Sources */,
@@ -1039,6 +1072,8 @@
 				43D1DABE20EB611C00B752D1 /* RecommentVC.swift in Sources */,
 				3B97B5C020F205E300020A81 /* LoginVC.swift in Sources */,
 				43D1DAC020EB613A00B752D1 /* RecommentCell.swift in Sources */,
+				3B94985920F3EC8000BFA81E /* MessageVO.swift in Sources */,
+				3B94985120F3BD2400BFA81E /* CommunityWriteVO.swift in Sources */,
 				43EDECC120F1CAA200E0F0E9 /* StorySecondCell.swift in Sources */,
 				43E5D27420F06D980020DEBE /* MyPageSample.swift in Sources */,
 				43C5137B20ECD81D0017BDD8 /* MyPageVC.swift in Sources */,
@@ -1074,10 +1109,13 @@
 				43EDECBA20F1C94600E0F0E9 /* TmiFirstCell.swift in Sources */,
 				3B97B5E420F35C1000020A81 /* GetLegislatorDetailService.swift in Sources */,
 				3B97B5D120F28CFB00020A81 /* PostableService.swift in Sources */,
+				3B94984F20F3BC6B00BFA81E /* CommunityWriteService.swift in Sources */,
+				3B94985720F3EBB700BFA81E /* VoteService.swift in Sources */,
 				43537F0220F0EBA50036435A /* LegislatorRelatedCell.swift in Sources */,
 				3BCF933A20F16F8F00E9E7F7 /* CompletePopupView.swift in Sources */,
 				3B6B030A20EE09F700034C9B /* PartyListDetailTVcell.swift in Sources */,
 				3B0475F120EEBD8D00D30A4D /* MainLikeTVC.swift in Sources */,
+				3B94985B20F3FCCC00BFA81E /* GetCoinService.swift in Sources */,
 				3B83165920F106E0001D2423 /* CommunityFirstSectionWriteTVCell.swift in Sources */,
 				4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */,
 				3B0475F320EEBD9B00D30A4D /* MainDislikeTVC.swift in Sources */,
@@ -1221,7 +1259,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4PDAEX33Y3;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jungnami",
@@ -1245,7 +1283,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4PDAEX33Y3;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jungnami",
