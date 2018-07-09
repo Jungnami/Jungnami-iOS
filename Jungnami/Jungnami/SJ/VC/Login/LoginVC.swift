@@ -13,7 +13,7 @@ class LoginVC: UIViewController, APIService{
     var entryPoint : Int = 0
     var tabbarVC : UIViewController?
     let userDefault = UserDefaults.standard
-    var userData : LoginData?
+    var userData : LoginVOData?
     var accessToken : String?
     var userToken = ""
     @IBOutlet weak var dismissBtn: UIButton!
@@ -93,7 +93,7 @@ extension LoginVC {
             switch result {
             case .networkSuccess(let loginData):
                 //유저 값 설정
-                self.userData = loginData as? LoginData
+                self.userData = loginData as? LoginVOData
                 self.userDefault.set(self.userData?.id, forKey: "userIdx")
                 self.userDefault.set(self.userData?.token, forKey : "userToken")
                 //유저디폴트

@@ -33,21 +33,21 @@ extension PostableService {
         }
         
         let userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
-       
+    
         var headers: HTTPHeaders?
         if userToken != "-1" {
             headers = [
             "authorization" : userToken
             ]
         }
-       
+      
 
         Alamofire.request(encodedUrl, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseData(){
             res in
             switch res.result {
-                
             case .success:
-                print("networkHEre")
+                print("networkPostHere")
+                print(JSON(res.result))
                 if let value = res.result.value {
                     print(JSON(value))
                     let decoder = JSONDecoder()

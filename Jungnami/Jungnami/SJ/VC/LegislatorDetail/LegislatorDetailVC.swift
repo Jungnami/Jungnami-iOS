@@ -11,9 +11,9 @@ import UIKit
 class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, APIService {
     
     @IBOutlet weak var legislatorCollectionView: UICollectionView!
-    var selectedLegislatorIdx : Int?
-    var selectedLegislator : LegislatorDetailVODatum?
-    var contents : [LegislatorDetailVODatumContent]?
+    var selectedLegislatorIdx : Int = 0
+    var selectedLegislator : LegislatorDetailVOData?
+    var contents : [LegislatorDetailVODataContent]?
     var supportAlert : CustomAlert?
     var completeAlert : CustomAlert?
     var keyboardDismissGesture: UITapGestureRecognizer?
@@ -88,16 +88,16 @@ extension LegislatorDetailVC {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorProfileCell.reuseIdentifier, for: indexPath) as! LegislatorProfileCell
             if let selectedLegislator_ = selectedLegislator {
-                 cell.configure(data: selectedLegislator_)
+                cell.configure(data: selectedLegislator_)
             }
             
             cell.voteBtn.addTarget(self, action: #selector(support(_sender:)), for: .touchUpInside)
-          //  cell.voteBtn.tag = selectedLegislator.고유아이디
+            //  cell.voteBtn.tag = selectedLegislator.고유아이디
             
             cell.likeBtn.addTarget(self, action: #selector(like(_sender:)), for: .touchUpInside)
             cell.dislikeBtn.addTarget(self, action: #selector(dislike(_sender:)), for: .touchUpInside)
-           
-          
+            
+            
             
             return cell
         } else if indexPath.section == 1 {
@@ -109,10 +109,10 @@ extension LegislatorDetailVC {
             //투두 - 샘플데이터 만들고 configure연결하기
             if let contents_ = contents {
                 cell.configure(data: contents_[indexPath.row])
-        cell.legislatorContentImgView.layer.cornerRadius = 10
-        cell.legislatorContentImgView.layer.masksToBounds = true
+                cell.legislatorContentImgView.layer.cornerRadius = 10
+                cell.legislatorContentImgView.layer.masksToBounds = true
             }
-           
+            
             
             return cell
         }
@@ -137,7 +137,11 @@ extension LegislatorDetailVC : UITextFieldDelegate {
     }
     //후원하기
     @objc func support(_sender: UIButton){
-        
+        getMyCoin(url: url("/legislator/support"))
+    }
+    
+    func showSupportPopup(myCoin : Int){
+        supportPopupView.myCoinLbtl.text = "\(myCoin) 코인"
         supportPopupView.inputTxtField.keyboardType = UIKeyboardType.decimalPad
         supportPopupView.inputTxtField.text = ""
         supportPopupView.inputTxtField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -150,6 +154,7 @@ extension LegislatorDetailVC : UITextFieldDelegate {
         supportAlert = CustomAlert(view : supportPopupView, width : 253, height : 297)
         supportAlert?.show(animated: false)
     }
+    
     @objc func textFieldDidChange(_ textField: UITextField) {
         
         supportPopupView.okBtn.isEnabled = false
@@ -169,7 +174,16 @@ extension LegislatorDetailVC : UITextFieldDelegate {
     }
     
     @objc func supportOk(_sender: UIButton){
+        //통신
+        let params : [String : Any] = [
+            "l_id" : selectedLegislatorIdx,
+            "coin" : gsno(supportPopupView.inputTxtField.text)
+        ]
         
+        supportOkAction(url: url("/legislator/support"), params: params)
+    }
+    
+    func showCompletePopup(){
         let completePopupView = CompletePopupView.instanceFromNib()
         //completePopupView.nameLbl.text = selectedLegislator?.name
         completePopupView.coinLbl.text = "\(gsno(supportPopupView.inputTxtField.text))원"
@@ -277,28 +291,65 @@ extension LegislatorDetailVC{
     
 }
 
-
+//통신
 extension LegislatorDetailVC {
-    //통신
-        func legislatorDetailInit(url : String){
-            GetLegislatorDetailService.shareInstance.getLegislatorDetail(url: url, completion: { [weak self] (result) in
-                guard let `self` = self else { return }
-                
-                switch result {
-                case .networkSuccess(let legislatorData):
-                    self.selectedLegislator = legislatorData as? LegislatorDetailVODatum
-                    self.contents = self.selectedLegislator?.contents
-                    self.legislatorCollectionView.reloadData()
-                    break
-                    
-                case .networkFail :
-                    self.simpleAlert(title: "network", message: "check")
-                default :
-                    break
-                }
-                
-            })
+    
+    func legislatorDetailInit(url : String){
+        GetLegislatorDetailService.shareInstance.getLegislatorDetail(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
             
-        }
+            switch result {
+            case .networkSuccess(let legislatorData):
+                self.selectedLegislator = legislatorData as? LegislatorDetailVOData
+                self.contents = self.selectedLegislator?.contents
+                self.legislatorCollectionView.reloadData()
+                break
+                
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결을 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+        
+    }
+    func getMyCoin(url : String){
+        GetCoinService.shareInstance.getCoin(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(let coinData):
+                let data = coinData as! CoinVOData
+                let myCoin = data.userCoin
+                self.showSupportPopup(myCoin: myCoin)
+                break
+            case .accessDenied :
+                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    func supportOkAction(url : String, params : [String : Any]) {
+        SupportService.shareInstance.support(url: url, params : params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(_):
+                self.showCompletePopup()
+                break
+            case .noCoin :
+                self.simpleAlert(title: "오류", message: "코인 부족합니다")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결을 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
     
 }

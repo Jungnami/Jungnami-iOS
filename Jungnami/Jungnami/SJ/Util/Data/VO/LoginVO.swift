@@ -8,11 +8,11 @@
 import Foundation
 
 struct LoginVO: Codable {
-    let data: LoginData
+    let data: LoginVOData
     let message: String
 }
 
-struct LoginData: Codable {
+struct LoginVOData: Codable {
     let token: String
     let id : Int
 }

@@ -29,6 +29,8 @@ enum NetworkResult<T> {
     case networkFail
     case wrongInput
     case accessDenied
+    case noCoin
+    case noPoint
 }
 
 

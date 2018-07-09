@@ -22,7 +22,7 @@ class LegislatorProfileCell: UICollectionViewCell {
     @IBOutlet weak var dislikeBtn: UIButton!
     @IBOutlet weak var voteBtn: UIButton!
  
-    func configure(data: LegislatorDetailVODatum) {
+    func configure(data: LegislatorDetailVOData) {
         legislatorProfileImgView.image = #imageLiteral(resourceName: "dabi")
         legislatorNameLbl.text = data.lName
         legislatorPartyLbl.text = data.partyName.rawValue
