@@ -8,10 +8,12 @@
 import UIKit
 
 
-class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, APIService {
     
     @IBOutlet weak var legislatorCollectionView: UICollectionView!
-    var selectedLegislator : SampleLegislator?
+    var selectedLegislatorIdx : Int?
+    var selectedLegislator : LegislatorDetailVODatum?
+    var contents : [LegislatorDetailVODatumContent]?
     var supportAlert : CustomAlert?
     var completeAlert : CustomAlert?
     var keyboardDismissGesture: UITapGestureRecognizer?
@@ -21,6 +23,7 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
         navigationController?.view.backgroundColor = UIColor.white
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
+        legislatorDetailInit(url: url("/legislator/page/\(gino(selectedLegislatorIdx))"))
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +35,6 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
         legislatorCollectionView.dataSource = self
         
     }
-    //////////////////////////////SampleData//////////////////////////////
-    var contents = LegislatorContentData.sharedInstance.legislatorContents
-    /////////////////////////////////////////////////////////////////////
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -77,7 +77,10 @@ extension LegislatorDetailVC {
             return 1
         }else {
             //샘플데이터 넣고 .count넣기!
-            return contents.count
+            if let contents_ = contents {
+                return contents_.count
+            }
+            return 0
         }
     }
     
@@ -85,7 +88,7 @@ extension LegislatorDetailVC {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorProfileCell.reuseIdentifier, for: indexPath) as! LegislatorProfileCell
             if let selectedLegislator_ = selectedLegislator {
-                cell.configure(data: selectedLegislator_)
+                 cell.configure(data: selectedLegislator_)
             }
             
             cell.voteBtn.addTarget(self, action: #selector(support(_sender:)), for: .touchUpInside)
@@ -104,9 +107,12 @@ extension LegislatorDetailVC {
         } else  {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorContentCell.reuseIdentifier, for: indexPath) as! LegislatorContentCell
             //투두 - 샘플데이터 만들고 configure연결하기
-            cell.configure(data: contents[indexPath.row])
-            cell.legislatorContentImgView.layer.cornerRadius = 10
-            cell.legislatorContentImgView.layer.masksToBounds = true
+            if let contents_ = contents {
+                cell.configure(data: contents_[indexPath.row])
+        cell.legislatorContentImgView.layer.cornerRadius = 10
+        cell.legislatorContentImgView.layer.masksToBounds = true
+            }
+           
             
             return cell
         }
@@ -165,7 +171,7 @@ extension LegislatorDetailVC : UITextFieldDelegate {
     @objc func supportOk(_sender: UIButton){
         
         let completePopupView = CompletePopupView.instanceFromNib()
-        completePopupView.nameLbl.text = selectedLegislator?.name
+        //completePopupView.nameLbl.text = selectedLegislator?.name
         completePopupView.coinLbl.text = "\(gsno(supportPopupView.inputTxtField.text))원"
         completePopupView.okBtn.addTarget(self, action:#selector(self.completeOk(_sender:)), for: .touchUpInside)
         supportAlert?.dismiss(animated: false)
@@ -268,5 +274,31 @@ extension LegislatorDetailVC{
     @objc func tapBackground() {
         self.view.endEditing(true)
     }
+    
+}
+
+
+extension LegislatorDetailVC {
+    //통신
+        func legislatorDetailInit(url : String){
+            GetLegislatorDetailService.shareInstance.getLegislatorDetail(url: url, completion: { [weak self] (result) in
+                guard let `self` = self else { return }
+                
+                switch result {
+                case .networkSuccess(let legislatorData):
+                    self.selectedLegislator = legislatorData as? LegislatorDetailVODatum
+                    self.contents = self.selectedLegislator?.contents
+                    self.legislatorCollectionView.reloadData()
+                    break
+                    
+                case .networkFail :
+                    self.simpleAlert(title: "network", message: "check")
+                default :
+                    break
+                }
+                
+            })
+            
+        }
     
 }
