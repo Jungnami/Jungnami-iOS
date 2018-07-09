@@ -11,12 +11,14 @@ enum MainViewType {
     case like, dislike
 }
 
-class MainDislikeTVC: UITableViewController {
+class MainDislikeTVC: UITableViewController, APIService {
     
-    var sampleData : [SampleLegislator] = []
-    
+   var legislatorDislikeData : [Datum] = []
+    var firstData : Datum?
+    var secondData : Datum?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        legislatorLikeInit(url : url("/ranking/list/0"))
        // self.tableView.setContentOffset(.zero, animated: true)
     }
     
@@ -24,11 +26,6 @@ class MainDislikeTVC: UITableViewController {
         super.viewDidLoad()
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
-        
-        /////////////////////Sample Data//////////////////////////
-        sampleData = SampleLegislatorData.sharedInstance.legislators
-        //////////////////////////////////////////////////////
-        
     }
     
     @objc func vote(_ sender : UIButton){
@@ -36,6 +33,29 @@ class MainDislikeTVC: UITableViewController {
             self.popupImgView(fileName: "area_hate_popup")
         }
     }
+    
+    func legislatorLikeInit(url : String){
+        GetLegislatorLikeService.shareInstance.getLegislatorLike(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let legislatorData):
+                self.legislatorDislikeData = legislatorData as! [Datum]
+                self.firstData = self.legislatorDislikeData[0]
+                self.secondData = self.legislatorDislikeData[1]
+                self.tableView.reloadData()
+                break
+                
+            case .networkFail :
+                self.simpleAlert(title: "network", message: "check")
+            default :
+                break
+            }
+            
+        })
+        
+    }
+    
     
 }
 
@@ -52,7 +72,7 @@ extension MainDislikeTVC {
         if section == 0 {
             return 1
         } else {
-            return sampleData.count
+            return legislatorDislikeData.count
         }
     }
     
@@ -61,13 +81,15 @@ extension MainDislikeTVC {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainFirstSectionTVCell.reuseIdentifier) as! MainFirstSectionTVCell
-            cell.configure(first: sampleData[0], second: sampleData[1])
+            if let first = firstData, let second = secondData {
+                cell.configure(first: first, second: second)
+            }
             return cell
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier, for: indexPath) as! MainTVCell
             
-            cell.configure(viewType : .dislike, index: indexPath.row, data: sampleData[indexPath.row])
+            cell.configure(viewType : .dislike, index: indexPath.row, data: legislatorDislikeData[indexPath.row])
             cell.voteBtn.tag = indexPath.row
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
             
@@ -81,7 +103,7 @@ extension MainDislikeTVC {
         
         if let legislatorDetailVC = mainStoryboard.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
-            legislatorDetailVC.selectedLegislator = self.sampleData[indexPath.row]
+         //   legislatorDetailVC.selectedLegislator = self.sampleData[indexPath.row]
             
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
@@ -93,8 +115,7 @@ extension MainDislikeTVC {
 extension MainDislikeTVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        let aa = SampleLegislator(profile: #imageLiteral(resourceName: "dabi"), name: "sample Data", likeCount: 12, dislikeCount: 1, region: "서울 성북구 안암동", party: .blue, likeRank: 12, dislikeRank: 4, voteCount: 200000, rate: 1.8)
-        sampleData.append(aa)
+        legislatorLikeInit(url : url("/ranking/list/1"))
         
         self.tableView.reloadData()
         sender.endRefreshing()
