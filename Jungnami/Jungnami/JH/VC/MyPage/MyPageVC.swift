@@ -26,7 +26,12 @@ class MyPageVC: UIViewController {
     
     //알림, 설정, 버튼으로 연결해야함
     var data = MyPageData.sharedInstance.myPageUsers
-    
+    //tapGesture--------------------------------
+    var keyboardDismiss: UITapGestureRecognizer?
+//    var delegate : TapDelegate?
+//    var index = 0
+    //셀아닌부분에서 tapGesture하려면 어떻게...?
+    //------------------------------------------
     private lazy var scrapCVC: ScrapCVC = {
         
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)

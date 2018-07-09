@@ -8,10 +8,10 @@
 import UIKit
 
 class NoticeCell: UITableViewCell {
-    
+    //----tapGesture--------------
     var delegate : TapDelegate?
     var index = 0
-    
+    //------------------------------
     @IBOutlet weak var noticeProfileImgView: UIImageView!
     
     @IBOutlet weak var noticeUserLbl: UILabel!
@@ -32,20 +32,27 @@ class NoticeCell: UITableViewCell {
         }
         
         //투두 - 버튼 다시 눌렀을 때 팔로우로 바뀌어야 함
-        
+    }
+    func configure(data: NoticeSample) {
+        noticeProfileImgView.image = data.profileImg
+        noticeUserLbl.text = data.userNickname
+        noticeTypeLbl.text = data.noticeType.rawValue
+        noticeDateLbl.text = data.date
         
     }
+
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         noticeProfileImgView.layer.cornerRadius = noticeProfileImgView.layer.frame.size.width / 2
-        //
+        //tapGesture-----------------------------------------
         noticeProfileImgView.isUserInteractionEnabled = true
         noticeUserLbl.isUserInteractionEnabled = true
         
-        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.imgTap(sender:)))
-        let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.lblTap(sender:)))
+        
+        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(NoticeCell.imgTap(sender:)))
+        let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(NoticeCell.lblTap(sender:)))
         self.noticeUserLbl.addGestureRecognizer(lblTapGesture)
         self.noticeProfileImgView.addGestureRecognizer(imgTapGesture)
     }
@@ -55,11 +62,11 @@ class NoticeCell: UITableViewCell {
     @objc func lblTap(sender: UITapGestureRecognizer) {
         delegate?.myTableDelegate(index : index)
     }
-    
+    //-----------------------------------------------------
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+        
     }
     
 }

@@ -22,9 +22,10 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var commentBestImg: UIImageView!
     //댓글 좋아요 Btn
     @IBOutlet weak var commentLikeBtn: UIButton!
-    
+    //---------tapGesture--------
     var delegate : TapDelegate?
     var index = 0
+    //----------------------------
     func configure(data : CommentSample){
         commentProfileImg.image = data.profile
         commentUserLbl.text = data.userId
@@ -39,7 +40,7 @@ class CommentCell: UITableViewCell {
         commentProfileImg.layer.masksToBounds = true
         commentProfileImg.layer.cornerRadius = commentProfileImg.layer.frame.width/2
         
-        //탭제스처 레코그나이저
+        //------------tapGesture--------------------------
         commentProfileImg.isUserInteractionEnabled = true
         commentUserLbl.isUserInteractionEnabled = true
         
@@ -55,6 +56,7 @@ class CommentCell: UITableViewCell {
     @objc func lblTap(sender: UITapGestureRecognizer) {
         delegate?.myTableDelegate(index : index)
     }
+    //-----------------------------------------------
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

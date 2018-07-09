@@ -23,8 +23,9 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var grayBar: UIImageView!
     //comment 전송버튼
     @IBOutlet weak var sendRecommentBtn: UIButton!
-    var keyboardDismissGesture: UITapGestureRecognizer?
     
+    //tapGesture
+    var keyboardDismissGesture: UITapGestureRecognizer?
     
     //댓글로 돌아가기 버튼
     @IBAction func backBtn(_ sender: Any) {
@@ -37,7 +38,7 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,29 +50,29 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         wirteRecommentField.addTarget(self, action: #selector(canCommentSend), for: .editingChanged)
         setKeyboardSetting()
-            RecommentTableView.tableFooterView = UIView()
+        RecommentTableView.tableFooterView = UIView()
         //레이아웃 맞추는 것
         writeRecommentBar.snp.makeConstraints { (make) in
             
             make.width.equalTo(self.view.frame.width)
             
-           make.height.equalTo(56)
+            make.height.equalTo(56)
             make.leading.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide)
             
         }
         
-    
+        
         writeRecommentBar.addSubview(sendRecommentBtn)
         writeRecommentBar.addSubview(grayBar)
         writeRecommentBar.addSubview(wirteRecommentField)
-     
+        
         grayBar.snp.makeConstraints { (make) in
             make.leading.equalTo(writeRecommentBar).offset(12)
             make.centerY.equalTo(writeRecommentBar)
-           make.width.equalTo(302)
+            make.width.equalTo(302)
             
         }
-
+        
         wirteRecommentField.snp.makeConstraints { (make) in
             make.top.bottom.trailing.equalTo(grayBar)
             make.leading.equalTo(grayBar).offset(10)
@@ -79,8 +80,8 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         sendRecommentBtn.snp.makeConstraints { (make) in
             make.leading.equalTo(grayBar.snp.trailing).offset(8)
             make.centerY.equalTo(grayBar)
-           make.width.height.equalTo(42)
-           
+            make.width.height.equalTo(42)
+            
         }
         
         
@@ -90,7 +91,7 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             //make.height.equalTo(100)
             make.bottom.equalTo(writeRecommentBar.snp.top)
         }
-       self.view.bringSubview(toFront: writeRecommentBar)
+        self.view.bringSubview(toFront: writeRecommentBar)
         
         ///////////샘플데이터/////////////////
         
@@ -227,8 +228,8 @@ extension RecommentVC {
     @objc func tapBackground() {
         self.view.endEditing(true)
     }
-    ////////
 }
+//tapGesture
 extension RecommentVC : TapDelegate, UIGestureRecognizerDelegate {
     func myTableDelegate(index: Int) {
         print(index)
