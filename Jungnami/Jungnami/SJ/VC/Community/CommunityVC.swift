@@ -10,14 +10,11 @@ import UIKit
 
 class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
     
-    
     @IBOutlet weak var badgeImg: UIImageView!
     @IBOutlet weak var alarmLbl: UILabel!
     @IBOutlet weak var searchTxtfield: UITextField!
     @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var communityTableView: UITableView!
-    
-    var communityWriteVC : CommunityWriteVC?
     
     lazy var blackView : UIView = {
         let view = UIView()
@@ -25,18 +22,14 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         view.alpha = 0.4
         return view
     }()
-    
-    
-    
+    var communityWriteVC : CommunityWriteVC?
     var keyboardDismissGesture: UITapGestureRecognizer?
+    var sampleData : [Sample] = []
     var login : Bool = false {
         didSet {
             communityTableView.reloadData()
         }
     }
-    
-    
-    
     
     @IBAction func mypageBtn(_ sender: Any) {
         
@@ -46,13 +39,10 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
     }
     
     
-    var sampleData : [Sample] = []
-    
     override func viewWillAppear(_ animated: Bool) {
         searchTxtfield.text = ""
+        //원래 이 뷰가 첫번째로 뜨면 너무 빨리 떠서 userIdx 가 0인 상태
         let userIdx = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
-        print("community VC Check")
-        print(userIdx)
         //유저가 로그인 되어있는지 아닌지 체크
         if userIdx == "-1" {
             login = false
@@ -66,14 +56,14 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
     //////////////////
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         searchTxtfield.delegate = self
         communityTableView.dataSource = self
         communityTableView.delegate = self
-        setKeyboardSetting()
         alarmLbl.sizeToFit()
         searchTxtfield.enablesReturnKeyAutomatically = false
-        self.navigationController?.isNavigationBarHidden = true
         self.communityTableView.addSubview(blackView)
+        setKeyboardSetting()
         blackView.isHidden = true
         blackView.snp.makeConstraints { (make) in
             make.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
@@ -91,13 +81,10 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
             }
             
         }
-        
         //refreshControl
         self.communityTableView.refreshControl = UIRefreshControl()
         self.communityTableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
-        
         //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-        
         let a = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "다비 최고야,, 형윤 최고야,, 디자인 세상에서 제일 예뻐요 선생님들,, ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
         let b = Sample(profileUrl: #imageLiteral(resourceName: "mypage_profile_girl"), name: "제리", time: "4시간 전", content: "픽미픽미픽미업", like: 73, comment: 6020, contentImg: #imageLiteral(resourceName: "inni"), heart: false, scrap: true)
         
@@ -106,8 +93,11 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         ////////////////////////////////////////////////////
         
         
-    }
+    } //viewDidLoad
     
+    func toCommunityWriteVC(){
+        self.present(communityWriteVC!, animated: true, completion: nil)
+    }
 }
 
 //tableView deleagete, datasource
@@ -133,7 +123,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionWriteTVCell.reuseIdentifier) as! CommunityFirstSectionWriteTVCell
-                cell.nextBtn.addTarget(self, action: #selector(toNext(_:)), for: .touchUpInside)
+                cell.nextBtn.addTarget(self, action: #selector(toWrite(_:)), for: .touchUpInside)
                 
                 return cell
             }
@@ -152,11 +142,15 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    @objc func toNext(_ sender : UIButton){
-        write(url: url("/board/post"))
-       
-    }
+    
+}
 
+//셀들에 관한 액션 -> 글쓰기/로그인/스크랩
+extension CommunityVC {
+    
+    @objc func toWrite(_ sender : UIButton){
+        write(url: url("/board/post"))
+    }
     
     @objc func toLogin(_ sender : UIButton){
         let rankStoryboard = Storyboard.shared().rankStoryboard
@@ -164,9 +158,6 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
             loginVC.entryPoint = 1
             self.present(loginVC, animated: true, completion: nil)
         }
-    }
-    func toCommunity(){
-        self.present(communityWriteVC!, animated: true, completion: nil)
     }
     
     @objc func scrap(_ sender : UIButton){
@@ -209,7 +200,6 @@ extension CommunityVC: UITextFieldDelegate {
         return true
     }
 }
-
 
 //키보드 대응
 extension CommunityVC{
@@ -254,9 +244,9 @@ extension CommunityVC{
 extension CommunityVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        let aa = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "새로고침 ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
-        sampleData.append(aa)
-        
+        /*let aa = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "새로고침 ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
+         sampleData.append(aa)
+         */
         self.communityTableView.reloadData()
         sender.endRefreshing()
     }
@@ -271,7 +261,7 @@ extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate {
 
 //통신
 extension CommunityVC {
-    
+    //글쓰기 눌렀을 때
     func write(url : String){
         CommunityWriteService.shareInstance.communityWrite(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
@@ -280,7 +270,7 @@ extension CommunityVC {
             case .networkSuccess(let legislatorData):
                 let img = legislatorData as! CommunityWriteVOData
                 self.communityWriteVC?.imgURL = img.imgURL
-                self.toCommunity()
+                self.toCommunityWriteVC()
                 break
             case .accessDenied :
                 self.simpleAlert(title: "오류", message: "로그인을 해주세요")

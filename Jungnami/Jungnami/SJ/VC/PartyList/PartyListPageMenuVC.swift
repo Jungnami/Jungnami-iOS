@@ -54,11 +54,8 @@ class PartyListPageMenuVC: UIViewController {
         return view
     }()
     
-
- 
-    
     private lazy var partyListTVC: PartyListTVC = {
-        // Load Storyboard
+
         let storyboard = Storyboard.shared().mainStoryboard
         
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListTVC.reuseIdentifier) as! PartyListTVC

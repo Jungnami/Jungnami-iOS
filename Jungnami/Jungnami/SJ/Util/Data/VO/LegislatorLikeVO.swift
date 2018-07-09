@@ -9,10 +9,10 @@ import Foundation
 
 struct LegislatorLikeVO: Codable {
     let message: String
-    let data: [Datum]
+    let data: [LegislatorLikeVOData]
 }
 
-struct Datum: Codable {
+struct LegislatorLikeVOData: Codable {
     
     let lID: Int
     let lName: String
@@ -33,13 +33,3 @@ struct Datum: Codable {
     }
 }
 
-enum PartyName: String, Codable {
-    case 더불어민주당 = "더불어민주당"
-    case 자유한국당 = "자유한국당"
-    case 민중당 = "민중당"
-    case 바른미래당 = "바른미래당"
-    case 무소속 = "무소속"
-    case 대한애국당 = "대한애국당"
-    case 민주평화당 = "민주평화당"
-    case 정의당 = "정의당"
-}

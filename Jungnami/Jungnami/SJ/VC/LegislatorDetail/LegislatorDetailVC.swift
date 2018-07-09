@@ -30,7 +30,6 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
         self.navigationController?.navigationBar.isHidden = false
         setKeyboardSetting()
         setupBackBtn()
-        
         legislatorCollectionView.delegate = self
         legislatorCollectionView.dataSource = self
         
@@ -121,7 +120,7 @@ extension LegislatorDetailVC {
 }
 
 //좋아요, 싫어요, 후원하기에 대한 행동
-extension LegislatorDetailVC : UITextFieldDelegate {
+extension LegislatorDetailVC{
     //좋아요
     @objc func like(_sender: UIButton){
         simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
@@ -139,6 +138,11 @@ extension LegislatorDetailVC : UITextFieldDelegate {
     @objc func support(_sender: UIButton){
         getMyCoin(url: url("/legislator/support"))
     }
+
+}
+
+//커스텀 모달에 관한 행동 - 후원하기 때 팝업 올라오기, 취소버튼, 확인 (또 다시 모달 올라옴)버튼에 대한 행동, 텍슴트필드 바뀔 때(0 이하일때) 에러 처리
+extension LegislatorDetailVC : UITextFieldDelegate{
     
     func showSupportPopup(myCoin : Int){
         supportPopupView.myCoinLbtl.text = "\(myCoin) 코인"
@@ -155,6 +159,20 @@ extension LegislatorDetailVC : UITextFieldDelegate {
         supportAlert?.show(animated: false)
     }
     
+    @objc func cancle(_sender: UIButton){
+        supportAlert?.dismiss(animated: false)
+    }
+    
+    @objc func supportOk(_sender: UIButton){
+        let params : [String : Any] = [
+            "l_id" : selectedLegislatorIdx,
+            "coin" : gsno(supportPopupView.inputTxtField.text)
+        ]
+        
+        supportOkAction(url: url("/legislator/support"), params: params)
+    }
+    
+    
     @objc func textFieldDidChange(_ textField: UITextField) {
         
         supportPopupView.okBtn.isEnabled = false
@@ -167,20 +185,6 @@ extension LegislatorDetailVC : UITextFieldDelegate {
             }
         }
         
-    }
-    
-    @objc func cancle(_sender: UIButton){
-        supportAlert?.dismiss(animated: false)
-    }
-    
-    @objc func supportOk(_sender: UIButton){
-        //통신
-        let params : [String : Any] = [
-            "l_id" : selectedLegislatorIdx,
-            "coin" : gsno(supportPopupView.inputTxtField.text)
-        ]
-        
-        supportOkAction(url: url("/legislator/support"), params: params)
     }
     
     func showCompletePopup(){
@@ -196,8 +200,6 @@ extension LegislatorDetailVC : UITextFieldDelegate {
     @objc func completeOk(_sender: UIButton){
         completeAlert?.dismiss(animated: false)
     }
-    
-    
 }
 
 //collection View cell 레이아웃
@@ -291,9 +293,9 @@ extension LegislatorDetailVC{
     
 }
 
-//통신
+//통신 - 해당 의원 정보 가져오기, 호감/비호감 클릭, 후원하기
 extension LegislatorDetailVC {
-    
+    //해당 의원 정보 가져오기
     func legislatorDetailInit(url : String){
         GetLegislatorDetailService.shareInstance.getLegislatorDetail(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
@@ -314,6 +316,7 @@ extension LegislatorDetailVC {
         })
         
     }
+    //후원하기 클릭
     func getMyCoin(url : String){
         GetCoinService.shareInstance.getCoin(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
@@ -333,7 +336,7 @@ extension LegislatorDetailVC {
             
         })
     }
-    
+    //후원하기 '확인' 했을때 액션
     func supportOkAction(url : String, params : [String : Any]) {
         SupportService.shareInstance.support(url: url, params : params, completion: { [weak self] (result) in
             guard let `self` = self else { return }

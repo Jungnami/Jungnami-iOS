@@ -11,7 +11,7 @@ class PartyListDetailDislikeTVC: UITableViewController, APIService {
     
     var selectedParty : PartyName?
     var selectedRegion : Region?
-    var legislatorDislikeData : [PartyLegistorLikeVODatum] = []
+    var legislatorDislikeData : [PartyLegistorLikeVOData] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -30,11 +30,7 @@ class PartyListDetailDislikeTVC: UITableViewController, APIService {
         
     }
     
-    @objc func vote(_ sender : UIButton){
-        simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-            self.popupImgView(fileName: "area_hate_popup")
-        }
-    }
+    
 }
 
 //table view delegate, datasource
@@ -94,15 +90,25 @@ extension PartyListDetailDislikeTVC{
     }
 }
 
-//통신
+//셀에 버튼에 대한 클릭 액션 - 투표
 extension PartyListDetailDislikeTVC{
+    @objc func vote(_ sender : UIButton){
+        simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
+            self.popupImgView(fileName: "area_hate_popup")
+        }
+    }
+}
+
+//통신 - 정당별, 지역별 비호감 의원 리스트 불러오기
+extension PartyListDetailDislikeTVC{
+    //정당별, 지역별 비호감 의원 리스트 불러오기
     func legislatorDislikeInit(url : String){
         GetPartyLegislatorLikeService.shareInstance.getLegislatorLike(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             
             switch result {
             case .networkSuccess(let legislatorData):
-                self.legislatorDislikeData = legislatorData as! [PartyLegistorLikeVODatum]
+                self.legislatorDislikeData = legislatorData as! [PartyLegistorLikeVOData]
                 self.tableView.reloadData()
                 break
                 

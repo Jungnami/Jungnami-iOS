@@ -20,9 +20,11 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var contentTxtView: UITextView!
-     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView!
     var contentImgView: UIImageView = UIImageView()
     var imgURL : String = ""
+    var keyboardDismissGesture: UITapGestureRecognizer?
+    let imagePicker : UIImagePickerController = UIImagePickerController()
     lazy var deleteImgBtn : UIButton = {
         let button = UIButton()
         button.isEnabled = true
@@ -31,7 +33,6 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         button.addTarget(self, action: #selector(CommunityWriteVC.deleteImg(_sender:)), for: .touchUpInside)
         return button
     }()
-    
     
     var imageData : Data? {
         didSet {
@@ -49,8 +50,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         }
     }
     
-    var keyboardDismissGesture: UITapGestureRecognizer?
-    let imagePicker : UIImagePickerController = UIImagePickerController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,8 +63,6 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         } else {
             self.profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         }
-       
-        
         profileImgView.makeImageRound()
         imageData = nil
         contentTxtView.text = "생각을 공유해 보세요"
@@ -80,7 +78,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @objc public func deleteImg (_sender: UIButton) {
         removeImgView()
     }
-
+    
 }
 
 //이미지뷰에 대한 추가 및 삭제
@@ -153,7 +151,7 @@ extension CommunityWriteVC {
         }
     }
     
-
+    
     
     func textViewDidChange(_ textView: UITextView) {
         //TODO - 스페이스만 입력 됐을 때 처리
@@ -212,12 +210,12 @@ extension CommunityWriteVC {
         adjustKeyboardDismissGesture(isKeyboardVisible: true)
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-           let keyboardEndframe = self.view.convert(keyboardSize, from: nil)
+            let keyboardEndframe = self.view.convert(keyboardSize, from: nil)
             
             var contentInset:UIEdgeInsets = self.scrollView.contentInset
-           // contentInset.bottom = keyboardEndframe.size.height
-
-             contentInset.bottom = 170
+            // contentInset.bottom = keyboardEndframe.size.height
+            
+            contentInset.bottom = 170
             scrollView.contentInset = contentInset
             self.scrollView.layoutIfNeeded()
         }
@@ -225,7 +223,7 @@ extension CommunityWriteVC {
     
     @objc func keyboardWillHide(_ notification: Notification) {
         adjustKeyboardDismissGesture(isKeyboardVisible: false)
-  
+        
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
         self.view.layoutIfNeeded()

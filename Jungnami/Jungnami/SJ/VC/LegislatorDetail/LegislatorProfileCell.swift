@@ -17,7 +17,6 @@ class LegislatorProfileCell: UICollectionViewCell {
     @IBOutlet weak var legislatorDislikeLbl: UILabel!
     @IBOutlet weak var legislatorPartyLbl: UILabel!
     @IBOutlet weak var legislatorRegionLbl: UILabel!
-    
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var dislikeBtn: UIButton!
     @IBOutlet weak var voteBtn: UIButton!
@@ -30,13 +29,17 @@ class LegislatorProfileCell: UICollectionViewCell {
         
         legislatorLikeLbl.text = "호감 \(data.likerank)위"
         legislatorDislikeLbl.text = "비호감 \(data.unlikerank)위"
+       
         switch data.likerank {
         case "1":
             medalImgView.image = #imageLiteral(resourceName: "legislator-detailpage_medal_gold")
+            medalImgView.isHidden = false
         case "2":
             medalImgView.image = #imageLiteral(resourceName: "legislator-detailpage_medal_silver")
+            medalImgView.isHidden = false
         case "3":
             medalImgView.image = #imageLiteral(resourceName: "legislator-detailpage_medal_bronze")
+            medalImgView.isHidden = false
         default:
             medalImgView.deactivateAllConstraints()
             medalImgView.isHidden = true
@@ -44,10 +47,13 @@ class LegislatorProfileCell: UICollectionViewCell {
         switch data.unlikerank {
         case "1":
             bombImgView.image = #imageLiteral(resourceName: "legislator-detailpage_red_bomb")
+             bombImgView.isHidden = false
         case "2":
             bombImgView.image = #imageLiteral(resourceName: "legislator-detailpage_orange_bomb")
+             bombImgView.isHidden = false
         case "3":
             bombImgView.image = #imageLiteral(resourceName: "legislator-detailpage_yellow_bomb")
+             bombImgView.isHidden = false
         default :
             bombImgView.isHidden = true
         }

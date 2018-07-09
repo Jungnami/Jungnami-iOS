@@ -119,9 +119,6 @@ class MainPageMenuVC: UIViewController {
         
         updateView(selected: sender.tag)
     }
-    
-    
-    
 }
 //메뉴바랑 그 안 컨테이너뷰
 extension MainPageMenuVC{
