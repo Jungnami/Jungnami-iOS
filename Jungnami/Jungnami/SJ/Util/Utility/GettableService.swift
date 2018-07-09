@@ -23,13 +23,16 @@ extension GettableService {
     }
     
     func get(_ URL:String, completion : @escaping (Result<networkResult>)->Void){
-        Alamofire.request(URL).responseData {(res) in
+        guard let encodedUrl = URL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            print("networking - invalid url")
+            return
+        }
+        
+        Alamofire.request(encodedUrl).responseData {(res) in
             switch res.result {
+
             case .success :
-               
-                
                 if let value = res.result.value {
-                  
                     let decoder = JSONDecoder()
                     do {
                         let resCode = self.gino(res.response?.statusCode)
@@ -44,6 +47,8 @@ extension GettableService {
                 }
                 break
             case .failure(let err) :
+                print("network~~ error")
+                print(err)
                 completion(.failure(err))
                 break
             }

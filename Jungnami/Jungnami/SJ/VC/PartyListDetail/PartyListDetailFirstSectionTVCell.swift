@@ -10,17 +10,23 @@ import UIKit
 class PartyListDetailFirstSectionTVCell: UITableViewCell {
     
     @IBOutlet weak var partyImgView: UIImageView!
-    func configure(selectedParty : PartyList){
+    func configure(selectedParty : PartyName){
         switch selectedParty {
-        case .blue:
+        case .더불어민주당:
             partyImgView.image = #imageLiteral(resourceName: "partylist_bluebox")
-        case .red:
+        case .자유한국당:
             partyImgView.image = #imageLiteral(resourceName: "partylist_redbox")
-        case .mint :
+        case .바른미래당 :
             partyImgView.image = #imageLiteral(resourceName: "partylist_mintbox")
-        case .yellow :
+        case .정의당:
              partyImgView.image = #imageLiteral(resourceName: "partylist_yellowbox")
-        case .orange :
+        case .민중당 :
+            partyImgView.image = #imageLiteral(resourceName: "partylist_orangebox")
+        case .무소속:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_orangebox")
+        case .대한애국당:
+            partyImgView.image = #imageLiteral(resourceName: "partylist_orangebox")
+        case .민주평화당:
             partyImgView.image = #imageLiteral(resourceName: "partylist_orangebox")
         }
        

@@ -41,22 +41,21 @@ class PartyListTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        let index = indexPath.row
-        var selectedParty : PartyList
+        var selectedParty : PartyName
         switch index {
         case 0:
-            selectedParty = .blue
+            selectedParty = .더불어민주당
         case 1:
-            selectedParty = .red
+            selectedParty = .자유한국당
         case 2:
-            selectedParty = .mint
+            selectedParty = .바른미래당
         case 3:
-            selectedParty = .yellow
+            selectedParty = .정의당
         case 4:
-            selectedParty = .orange
+            selectedParty = .민중당
         default:
             return
         }
-        print("aaa")
         if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
             partyListDetailPageMenuVC.selectedParty = selectedParty
             self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)

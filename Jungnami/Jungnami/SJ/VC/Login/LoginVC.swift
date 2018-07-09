@@ -10,7 +10,7 @@ import UIKit
 class LoginVC: UIViewController {
 
     var tabbarVC : UIViewController?
-   
+    let userDefault = UserDefaults.standard
    
     @IBOutlet weak var dismissBtn: UIButton!
     
@@ -41,8 +41,14 @@ class LoginVC: UIViewController {
             if error == nil{
                 print("no Error");
                 if session.isOpen(){
+                    //userDefault.set(gsno(nickNameTxt.text), forKey: "nickName")
+                    //let userDefault = UserDefaults.standard
+//                    guard  let nickName = userDefault.string(forKey: "nickName") else {
+//                        return
+//                    }
                     print("token : \(session.token.accessToken)")
                     print("refresh token : \(session.token.refreshToken)")
+                    
                     
                     
                 }else{

@@ -76,7 +76,7 @@ class RegionVC: UIViewController {
             return
         }
         
-        print("hihi")
+
         if let partyListDetailPageMenuVC = self.storyboard?.instantiateViewController(withIdentifier:PartyListDetailPageMenuVC.reuseIdentifier) as? PartyListDetailPageMenuVC {
             partyListDetailPageMenuVC.selectedRegion = selectedRegion
     self.navigationController?.pushViewController(partyListDetailPageMenuVC, animated: true)

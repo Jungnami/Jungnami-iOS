@@ -11,7 +11,7 @@ import UIKit
 class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var legislatorCollectionView: UICollectionView!
-    var selectedLegislator : SampleLegislator?
+    var selectedLegislator : Int?
     var supportAlert : CustomAlert?
     var completeAlert : CustomAlert?
     var keyboardDismissGesture: UITapGestureRecognizer?
@@ -85,7 +85,7 @@ extension LegislatorDetailVC {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorProfileCell.reuseIdentifier, for: indexPath) as! LegislatorProfileCell
             if let selectedLegislator_ = selectedLegislator {
-                cell.configure(data: selectedLegislator_)
+            //    cell.configure(data: selectedLegislator_)
             }
             
             cell.voteBtn.addTarget(self, action: #selector(support(_sender:)), for: .touchUpInside)
@@ -165,7 +165,7 @@ extension LegislatorDetailVC : UITextFieldDelegate {
     @objc func supportOk(_sender: UIButton){
         
         let completePopupView = CompletePopupView.instanceFromNib()
-        completePopupView.nameLbl.text = selectedLegislator?.name
+        //completePopupView.nameLbl.text = selectedLegislator?.name
         completePopupView.coinLbl.text = "\(gsno(supportPopupView.inputTxtField.text))원"
         completePopupView.okBtn.addTarget(self, action:#selector(self.completeOk(_sender:)), for: .touchUpInside)
         supportAlert?.dismiss(animated: false)

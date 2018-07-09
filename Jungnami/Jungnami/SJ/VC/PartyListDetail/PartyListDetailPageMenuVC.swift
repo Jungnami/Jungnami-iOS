@@ -17,7 +17,7 @@ class PartyListDetailPageMenuVC : UIViewController{
     @IBOutlet weak var dislikeLine: UIView!
     var keyboardDismissGesture: UITapGestureRecognizer?
     var selectedRegion : Region?
-    var selectedParty : PartyList?
+    var selectedParty : PartyName?
     lazy var navSearchView : UIView = {
         let view = UIView()
         view.backgroundColor = .white

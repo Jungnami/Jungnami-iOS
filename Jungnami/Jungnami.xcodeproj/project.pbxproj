@@ -34,6 +34,8 @@
 		3B97B5D320F28D2000020A81 /* PostablewithPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5D220F28D2000020A81 /* PostablewithPhoto.swift */; };
 		3B97B5D520F28DF400020A81 /* LegislatorLikeVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5D420F28DF400020A81 /* LegislatorLikeVO.swift */; };
 		3B97B5D720F28EE800020A81 /* GetLegislatorLikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5D620F28EE800020A81 /* GetLegislatorLikeService.swift */; };
+		3B97B5DE20F3402C00020A81 /* PartyLegistorLikeVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5DD20F3402C00020A81 /* PartyLegistorLikeVO.swift */; };
+		3B97B5E020F340C400020A81 /* GetPartyLegislatorLikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5DF20F340C400020A81 /* GetPartyLegislatorLikeService.swift */; };
 		3BAFF97620EE845A0088F020 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAFF97520EE845A0088F020 /* Region.swift */; };
 		3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */; };
 		3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */; };
@@ -146,6 +148,8 @@
 		3B97B5D220F28D2000020A81 /* PostablewithPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostablewithPhoto.swift; sourceTree = "<group>"; };
 		3B97B5D420F28DF400020A81 /* LegislatorLikeVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorLikeVO.swift; sourceTree = "<group>"; };
 		3B97B5D620F28EE800020A81 /* GetLegislatorLikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLegislatorLikeService.swift; sourceTree = "<group>"; };
+		3B97B5DD20F3402C00020A81 /* PartyLegistorLikeVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyLegistorLikeVO.swift; sourceTree = "<group>"; };
+		3B97B5DF20F340C400020A81 /* GetPartyLegislatorLikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPartyLegislatorLikeService.swift; sourceTree = "<group>"; };
 		3BAFF97520EE845A0088F020 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVC.swift; sourceTree = "<group>"; };
 		3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVCell.swift; sourceTree = "<group>"; };
@@ -313,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				3B97B5D420F28DF400020A81 /* LegislatorLikeVO.swift */,
+				3B97B5DD20F3402C00020A81 /* PartyLegistorLikeVO.swift */,
 			);
 			path = VO;
 			sourceTree = "<group>";
@@ -321,8 +326,40 @@
 			isa = PBXGroup;
 			children = (
 				3B97B5D620F28EE800020A81 /* GetLegislatorLikeService.swift */,
+				3B97B5DF20F340C400020A81 /* GetPartyLegislatorLikeService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		3B97B5D820F3382C00020A81 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3B97B5D920F3383200020A81 /* Data */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		3B97B5D920F3383200020A81 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3B97B5DB20F3386A00020A81 /* VO */,
+				3B97B5DA20F3383700020A81 /* Service */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		3B97B5DA20F3383700020A81 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		3B97B5DB20F3386A00020A81 /* VO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VO;
 			sourceTree = "<group>";
 		};
 		3BB1A5BD20EB958E00D4929A /* SearchLegislatorResult */ = {
@@ -504,6 +541,7 @@
 		439D813120EB2FE5007DAD57 /* JH */ = {
 			isa = PBXGroup;
 			children = (
+				3B97B5D820F3382C00020A81 /* Util */,
 				439D813220EB2FE5007DAD57 /* Storyboard */,
 				439D813420EB2FE5007DAD57 /* VC */,
 				43D1DAC120EB708800B752D1 /* Sample */,
@@ -943,6 +981,7 @@
 				3BB1A5C320EB9EC000D4929A /* SampleLegislator.swift in Sources */,
 				3BCF933C20F1854300E9E7F7 /* SampleLegislatorData.swift in Sources */,
 				3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */,
+				3B97B5E020F340C400020A81 /* GetPartyLegislatorLikeService.swift in Sources */,
 				43E84BF620EDF811007C6C97 /* ScrapSample.swift in Sources */,
 				43EDECC620F2051500E0F0E9 /* FollowCell.swift in Sources */,
 				43E84BF820EDF854007C6C97 /* ScrapData.swift in Sources */,
@@ -952,6 +991,7 @@
 				43D1DAC320EB709700B752D1 /* CommentSample.swift in Sources */,
 				439D814E20EB2FE5007DAD57 /* ContentVC.swift in Sources */,
 				43EDECC820F205B300E0F0E9 /* FollowerFixedCell.swift in Sources */,
+				3B97B5DE20F3402C00020A81 /* PartyLegistorLikeVO.swift in Sources */,
 				43537EF620F0AD6E0036435A /* NoticeCell.swift in Sources */,
 				43E5D27720F06EC30020DEBE /* MyPageData.swift in Sources */,
 				43EDECB420F1C6D500E0F0E9 /* ContentStoryVC.swift in Sources */,
@@ -1145,7 +1185,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4PDAEX33Y3;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jungnami",
@@ -1153,7 +1193,7 @@
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = Jungnami3;
+				PRODUCT_BUNDLE_IDENTIFIER = kangsujin.Jungnami;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jungnami/SJ/Jungnami-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1169,7 +1209,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4PDAEX33Y3;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jungnami",
@@ -1177,7 +1217,7 @@
 				INFOPLIST_FILE = Jungnami/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = Jungnami3;
+				PRODUCT_BUNDLE_IDENTIFIER = kangsujin.Jungnami;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jungnami/SJ/Jungnami-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
