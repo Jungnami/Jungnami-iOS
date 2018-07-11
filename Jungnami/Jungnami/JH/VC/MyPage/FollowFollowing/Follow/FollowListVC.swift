@@ -15,6 +15,11 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var followSearchField: UITextField!
     @IBOutlet weak var followSearchImg: UIImageView!
     
+    @IBAction func dismissBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     var keyboardDismissGesture: UITapGestureRecognizer?
     
@@ -23,30 +28,33 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         followTableView.delegate = self
         followTableView.dataSource = self
         //네비게이션바 히든
-    self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        //keyboardDown
+        hideKeyboardWhenTappedAround()
         
         //searchField
-        if followSearchField.text != "" {
-            followSearchImg.isHidden = true
-        }else {
-            followSearchImg.isHidden = false
-        }
+        //        if followSearchField.text != "" {
+        //            followSearchImg.isHidden = true
+        //        }else {
+        //            followSearchImg.isHidden = false
+        //        }
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
- var data = FollowListData.sharedInstance.followers
+    var data = FollowListData.sharedInstance.followers
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-                return 1
+            return 1
         }else {
             //data로 연결
             return data.count
@@ -55,7 +63,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-        let cell = tableView.dequeueReusableCell(withIdentifier: FollowFixedCell.reuseIdentifier, for: indexPath) as! FollowFixedCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: FollowFixedCell.reuseIdentifier, for: indexPath) as! FollowFixedCell
             cell.followFixedLbl.text = "사람"
             return cell
         }else{
@@ -70,6 +78,17 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 extension FollowListVC : TapDelegate, UIGestureRecognizerDelegate {
     func myTableDelegate(index: Int) {
         print(index)
+    }
+}
+extension FollowListVC {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChangeCoinVC.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
