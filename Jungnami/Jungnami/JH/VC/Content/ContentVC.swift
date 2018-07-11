@@ -21,7 +21,7 @@ class ContentVC: UIViewController {
     @IBOutlet weak var storyBlueBar: UIImageView!
     //mypageBtn
     @IBAction func myPageBtn(_ sender: Any) {
-        let mypageVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
+        let mypageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
         let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
         if (myId == "-1"){
             self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in

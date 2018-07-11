@@ -16,9 +16,7 @@ class MyFeedVC: UIViewController {
                 myFeedTableView_.reloadData()
                 print("hihihihihihi")
             }
-           //
-            print("check my board")
-            print(myBoardData)
+          
         }
     }
     override func viewDidLoad() {

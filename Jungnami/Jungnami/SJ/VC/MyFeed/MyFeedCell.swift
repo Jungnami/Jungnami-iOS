@@ -47,6 +47,7 @@ class MyFeedCell: UITableViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
+        userImgView.makeImageRound()
         // Initialization code
     }
 

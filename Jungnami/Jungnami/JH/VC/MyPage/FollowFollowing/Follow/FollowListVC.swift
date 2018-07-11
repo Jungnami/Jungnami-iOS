@@ -7,14 +7,12 @@
 
 import UIKit
 
-class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, APIService {
     
     @IBOutlet weak var followTableView: UITableView!
-    
-    
     @IBOutlet weak var followSearchField: UITextField!
     @IBOutlet weak var followSearchImg: UIImageView!
-    
+    var selectedUserId : String?
     @IBAction func dismissBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -32,6 +30,9 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         //keyboardDown
         hideKeyboardWhenTappedAround()
+        if let selectedUserId_ = selectedUserId {
+            getFollwList(url: "/user/followinglist/\(selectedUserId_)")
+        }
         
         //searchField
         //        if followSearchField.text != "" {
@@ -89,6 +90,13 @@ extension FollowListVC {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+//통신
+extension FollowListVC {
+    func getFollwList(url : String){
+        
     }
 }
 

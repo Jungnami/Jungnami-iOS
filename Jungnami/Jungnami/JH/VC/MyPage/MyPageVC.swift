@@ -81,8 +81,8 @@ class MyPageVC: UIViewController , APIService{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.profileImgView.layer.cornerRadius = self.profileImgView.layer.frame.size.width / 2
-        // configure(data: data[1]) 샘플데이터 -> 통신으로 바꾸기
+        profileImgView.makeImageRound()
+        
         updateView(selected: 0)
         
         //네비게이션바 히든
@@ -103,9 +103,12 @@ class MyPageVC: UIViewController , APIService{
     }
     //followLbl 터치했을 때 화면 올리기
     @objc func tapFollowLbl(_ sender: UITapGestureRecognizer) {
-        let followList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowListVC.reuseIdentifier) as! FollowListVC
-        //데이터 pass하는거 어케하지~?
-        self.present(followList, animated: true, completion: nil)
+        
+        
+        if let followListVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:FollowListVC.reuseIdentifier) as? FollowListVC {
+            followListVC.selectedUserId = selectedUserId
+            self.present(followListVC, animated: true, completion: nil)
+        }
     }
     //followerLbl 터치했을 때 화면 올리기
     @objc func tapFollowerLbl(_ sender: UITapGestureRecognizer) {
@@ -123,7 +126,7 @@ class MyPageVC: UIViewController , APIService{
 extension MyPageVC{
     
     static func viewController() -> MyPageVC {
-        return UIStoryboard.init(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
+        return Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
     }
     
     
