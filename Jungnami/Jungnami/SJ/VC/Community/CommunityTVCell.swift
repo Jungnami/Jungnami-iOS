@@ -72,25 +72,11 @@ class CommunityTVCell: UITableViewCell {
             }
         }
       
-      //  self.contentView.addSubview(self.contentImgView)
-//        //이미지
-    /*    if (gsno(data.img) != ""){
-//            if let url = URL(string: gsno(data.img)){
-//                //self.contentImgView.kf.setImage(with: url)
-//
-//                //contentImgView.image = #imageLiteral(resourceName: "dabi")
-//            }
-            let url = URL(string: gsno(data.img))
-            contentImgView.kf.setImage(with: url)
-         
-          
-        }*/
+  
         if (gsno(data.img) == "0") {
-           // if (contentImgView != nil ) {
-           //     contentImgView.removeFromSuperview()
-           // }
+          
             contentImgView.image = #imageLiteral(resourceName: "dabi")
-      // self.contentView.viewWithTag(-1)?.removeFromSuperview()
+    
         } else {
              if let url = URL(string: gsno(data.img)){
                 self.contentImgView.kf.setImage(with: url)
@@ -119,8 +105,7 @@ class CommunityTVCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+     
     }
     
     @objc func imgTap(sender: UITapGestureRecognizer) {

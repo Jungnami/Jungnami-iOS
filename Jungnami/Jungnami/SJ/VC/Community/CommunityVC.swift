@@ -34,7 +34,21 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
     var userIngURL : String?
     
     @IBAction func mypageBtn(_ sender: Any) {
-        
+        //마이페이지 통신
+        let mypageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
+        let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+        if (myId == "-1"){
+            self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                    loginVC.entryPoint = 1
+                    self.present(loginVC, animated: true, completion: nil)
+                }
+            })
+            
+        } else {
+            mypageVC.selectedUserId = myId
+            self.present(mypageVC, animated: true, completion: nil)
+        }
     }
     
     @IBAction func alarmBtn(_ sender: Any) {
