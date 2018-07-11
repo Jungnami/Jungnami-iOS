@@ -13,15 +13,17 @@ class FollowerListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var followerTableView: UITableView!
     
-    @IBAction func dismissBtn(_ sender: Any) {
+    @IBAction func dismissBtn(_ sender: UIButton) {
         //취소버튼
+        self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         followerTableView.delegate = self
         followerTableView.dataSource = self
+        hideKeyboardWhenTappedAround()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -41,8 +43,8 @@ class FollowerListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FollowerFixedCell.reuseIdentifier, for: indexPath) as! FollowerFixedCell
-        cell.fixedLbl.text = "사람"
+            let cell = tableView.dequeueReusableCell(withIdentifier: FollowerFixedCell.reuseIdentifier, for: indexPath) as! FollowerFixedCell
+            cell.fixedLbl.text = "사람"
             
             return cell
         }else {
@@ -59,4 +61,15 @@ extension FollowerListVC: TapDelegate, UIGestureRecognizerDelegate {
         print(index)
     }
     
+}
+extension FollowerListVC {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChangeCoinVC.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
