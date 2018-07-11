@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchLegislatorResultTVCell: UITableViewCell {
 
@@ -17,23 +18,35 @@ class SearchLegislatorResultTVCell: UITableViewCell {
     @IBOutlet weak var regionLbl: UILabel!
     
     
-    func configure(rank : Int, data : SampleLegislator){
+    func configure(rank : Int, data : LegislatorSearchVOData){
         rankLbl.text = "\(rank)"
-        profileImg.image = data.profile
+        if (gsno(data.imgurl) == "0") {
+            profileImg.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.imgurl)){
+                self.profileImg.kf.setImage(with: url)
+            }
+        }
         nameLbl.text = data.name
-        rankDetailLbl.text = "호감 \(data.likeCount)위 / 비호감 \(data.dislikeCount)위"
-        regionLbl.text = data.region
+        rankDetailLbl.text = "\(data.rank)"
+        regionLbl.text = data.position
         switch data.party {
-        case .blue:
+        case .더불어민주당:
             profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyBlue)
-        case .red:
+        case .자유한국당:
             profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyRed)
-        case .yellow:
+        case .정의당:
             profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyYellow)
-        case .orange:
+        case .민중당:
             profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyOrange)
-        case .mint:
+        case .무소속:
+            profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyGray)
+        case .바른미래당:
             profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyMint)
+        case .대한애국당:
+            profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyNavy)
+        case .민주평화당:
+            profileImg.makeImgBorder(width: 2, color: ColorChip.shared().partyGreen)
         }
         
         

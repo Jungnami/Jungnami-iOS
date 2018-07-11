@@ -312,19 +312,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동글문어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7M-GO-ZV0">
-                                                    <rect key="frame" x="58" y="15" width="45" height="16"/>
+                                                    <rect key="frame" x="58" y="15.5" width="45" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1시간전" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEd-9C-kj8">
-                                                    <rect key="frame" x="58" y="36" width="37" height="14.5"/>
+                                                    <rect key="frame" x="58" y="36.5" width="37" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4n-eX-jlx">
-                                                    <rect key="frame" x="12" y="62" width="351" height="0.5"/>
+                                                    <rect key="frame" x="12" y="62.5" width="351" height="0.5"/>
                                                     <color key="backgroundColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="0.5" id="7We-i5-WKg"/>
@@ -338,7 +338,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRk-Xx-AyL">
-                                                    <rect key="frame" x="12" y="74" width="351" height="21.5"/>
+                                                    <rect key="frame" x="12" y="74.5" width="351" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -389,7 +389,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BTi-qt-42a">
-                                                    <rect key="frame" x="12" y="12" width="38" height="38"/>
+                                                    <rect key="frame" x="12" y="12.5" width="38" height="38"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="BTi-qt-42a" secondAttribute="height" multiplier="1:1" id="Nra-uN-TjO"/>
                                                     </constraints>
@@ -581,7 +581,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityTVCell" rowHeight="606" id="Ybp-a5-nvw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityResultTVCell" rowHeight="606" id="Ybp-a5-nvw" customClass="CommunityResultTVCell" customModule="Jungnami" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="74.5" width="375" height="606"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ybp-a5-nvw" id="gs0-tO-fGU">
@@ -639,7 +639,7 @@
                                             <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbD-sw-Ouo">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbD-sw-Ouo" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
                                             <rect key="frame" x="12" y="561.5" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="wbD-sw-Ouo" secondAttribute="height" multiplier="1:1" id="EOV-L5-3u7"/>
@@ -753,6 +753,18 @@
                                     <constraint firstAttribute="trailing" secondItem="B1Q-8k-qVR" secondAttribute="trailing" id="paR-pJ-Nnr"/>
                                     <constraint firstItem="s0l-bP-mlU" firstAttribute="leading" secondItem="Ybp-a5-nvw" secondAttribute="leading" id="sOK-sZ-IbC"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="commentBtn" destination="lrM-qg-pzD" id="RbH-Lh-dA1"/>
+                                    <outlet property="commentLabel" destination="fd3-IH-3Dl" id="7Rg-aZ-GfA"/>
+                                    <outlet property="contentImgView" destination="s0l-bP-mlU" id="ood-AY-khc"/>
+                                    <outlet property="contentLabel" destination="Ovo-0G-ngU" id="MU1-0L-KUU"/>
+                                    <outlet property="heartBtn" destination="wbD-sw-Ouo" id="Al5-FF-lQh"/>
+                                    <outlet property="likeLabel" destination="c1w-JD-ogF" id="Fsc-2S-uSw"/>
+                                    <outlet property="nameLabel" destination="1OL-ok-3Tz" id="aad-um-idp"/>
+                                    <outlet property="profileImgView" destination="VlF-ck-Ihw" id="EtX-xq-mcP"/>
+                                    <outlet property="scrapBtn" destination="QZd-1r-5cE" id="IJJ-dS-N1Q"/>
+                                    <outlet property="timeLabel" destination="kuf-Nx-55T" id="iyP-pg-AhY"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

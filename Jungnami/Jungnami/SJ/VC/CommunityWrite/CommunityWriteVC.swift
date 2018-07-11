@@ -293,7 +293,7 @@ UINavigationControllerDelegate  {
 }
 
 //통신
-extension CommunityWriteVC{
+extension CommunityWriteVC {
     func writeContent(url : String){
         var tempString = ""
         if contentTxtView.text == "생각을 공유해 보세요"{

@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class PartyListPageMenuVC: UIViewController {
+class PartyListPageMenuVC: UIViewController, APIService {
     
     @IBOutlet weak var containerView: UIView!
     
@@ -238,8 +238,9 @@ extension PartyListPageMenuVC : UITextFieldDelegate{
         }
         
         if let searchString_ = textField.text {
-            searchLegislator(searchString : searchString_)
+            searchLegislator(searchString : searchString_, url : url("/search/legislator/\(searchString_)"))
         }
+        
         
         return true
     }
@@ -349,5 +350,39 @@ extension PartyListPageMenuVC{
     
 }
 
-
+//통신
+extension PartyListPageMenuVC {
+    //의원검색
+    func searchLegislator(searchString : String, url : String){
+        LegislatorSearchService.shareInstance.searchLegislator(url: url) { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let legislatorData):
+                //dddddddd
+                let legislatorSearchData = legislatorData as! [LegislatorSearchVOData]
+                
+                self.toSearchResultPage(searchString: searchString, legislatorSearchData: legislatorSearchData)
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "검색 결과가 없습니다")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+        }
+    }
+    
+    func toSearchResultPage(searchString : String, legislatorSearchData : [LegislatorSearchVOData]){
+        let mainStoryboard = Storyboard.shared().mainStoryboard
+        if let searchLegislatorResultTVC = mainStoryboard.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
+            self.navSearchView.endEditing(true)
+            searchLegislatorResultTVC.legislatorSearchData = legislatorSearchData
+            searchLegislatorResultTVC.searchString = searchString
+            searchLegislatorResultTVC.viewFrom = 0
+            self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
+        }
+    }
+}
 

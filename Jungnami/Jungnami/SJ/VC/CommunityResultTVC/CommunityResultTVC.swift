@@ -7,10 +7,11 @@
 
 import UIKit
 
-class CommunityResultTVC: UITableViewController {
+class CommunityResultTVC: UITableViewController, APIService {
     
     @IBOutlet weak var searchTxtfield: UITextField!
     @IBOutlet weak var separateView: UIView!
+    var communitySearchData : [CommunitySearchVOData] = []
     var searchString : String?
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -26,8 +27,7 @@ class CommunityResultTVC: UITableViewController {
     }()
     
     var keyboardDismissGesture: UITapGestureRecognizer?
-    
-    var communityData : [CommunityVODataContent] = []
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchTxtfield.text = searchString
@@ -49,6 +49,10 @@ class CommunityResultTVC: UITableViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        searchTxtfield.resignFirstResponder()
+    }
+    
     
 }
 
@@ -57,14 +61,14 @@ extension CommunityResultTVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return communityData.count
+        return communitySearchData.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
-        
-        cell.configure(index : indexPath.row, data: communityData[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: CommunityResultTVCell.reuseIdentifier) as! CommunityResultTVCell
+       
+        cell.configure(index : indexPath.row, data: communitySearchData[indexPath.row])
         cell.delegate = self
         cell.scrapBtn.tag = indexPath.row
         cell.scrapBtn.isUserInteractionEnabled = true
@@ -104,9 +108,13 @@ extension CommunityResultTVC : UITextFieldDelegate {
             }
         }
         
-        textField.resignFirstResponder()
-        //TODO - 확인 누르면 데이터 로드하는 통신 코드
-        //있으면 리로드, 없으면 얼러트
+      //  textField.resignFirstResponder()
+       
+        //여기서 검색
+        if let searchString_ = textField.text {
+            searchCommunity(searchString : searchString_, url : url("/search/board/\(searchString_)"))
+        }
+        
         
         return true
     }
@@ -160,5 +168,29 @@ extension CommunityResultTVC :  UIGestureRecognizerDelegate, TapDelegate {
    
 }
 
+//통신
+extension CommunityResultTVC {
+    //커뮤 검색
+    func searchCommunity(searchString : String, url : String){
+        CommunitySearchService.shareInstance.searchBoard(url: url) { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let communitySearchData):
+                let communitySearchData = communitySearchData as! [CommunitySearchVOData]
+                self.communitySearchData = communitySearchData
+                self.searchTxtfield.resignFirstResponder()
+                self.tableView.reloadData()
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "검색 결과가 없습니다")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+        }
+    }
+}
 
 

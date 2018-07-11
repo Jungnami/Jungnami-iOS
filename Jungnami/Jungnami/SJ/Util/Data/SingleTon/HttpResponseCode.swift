@@ -31,6 +31,7 @@ enum NetworkResult<T> {
     case accessDenied
     case noCoin
     case noPoint
+    case failInsert
 }
 
 
