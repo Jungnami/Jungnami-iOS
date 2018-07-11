@@ -9,6 +9,11 @@ import UIKit
 
 class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var myScrapData : [MyPageVODataScrap]  = [] {
+        didSet {
+            self.collectionView?.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -21,25 +26,7 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
     
-    var data = ScrapData.sharedInstance.scraps
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -50,14 +37,14 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         
-        return data.count
+        return myScrapData.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScrapCell.reuseIdentifier, for: indexPath) as! ScrapCell
     
         //configure로
-        cell.configure(data: data[indexPath.row])
+        cell.configure(data: myScrapData[indexPath.row])
         //cell의 이미지 radius
         cell.scrapImgView.layer.cornerRadius = 10
         cell.scrapImgView.layer.masksToBounds = true
@@ -86,37 +73,5 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     }
     
 
-
-    //layout
-
-    // MARK: UICollectionViewDelegate
-
-    
-//    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-    
-
- 
-    // Uncomment this method to specify if the specified item should be selected
-//    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-
-
-    
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-//    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-//        return false
-//    }
-
-//    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-//        return false
-//    }
-
-//    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-//
-//    }
- 
 
 }

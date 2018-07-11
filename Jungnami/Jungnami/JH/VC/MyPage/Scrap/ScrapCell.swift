@@ -13,18 +13,21 @@ class ScrapCell: UICollectionViewCell {
     
     @IBOutlet weak var scrapTitleLbl: UILabel!
     @IBOutlet weak var scrapCategoryLbl: UILabel!
-    @IBOutlet weak var scrapDateLbl: UILabel!
-    
-    func configure(data : ScrapSample){
-        scrapDateLbl.text = data.scrapDate
-        scrapTitleLbl.text = data.scrapTitle
-        scrapCategoryLbl.text = data.scrapCategory
-        scrapImgView.image = data.scrapImgView
-        scrapDateLbl.text = data.scrapDate
+
+    func configure(data : MyPageVODataScrap){
+        scrapCategoryLbl.text = data.text
+        scrapTitleLbl.text = data.cTitle
+      
+       
         
-//        commentContentLbl.text = data.commentContent
-//        commentDateLbl.text = data.date
-//        commentLikeLbl.text = data.likeCount
+        if (gsno(data.thumbnail) == "0") {
+            scrapImgView.image = #imageLiteral(resourceName: "dabi")
+        } else {
+            if let url = URL(string: gsno(data.thumbnail)){
+                self.scrapImgView.kf.setImage(with: url)
+            }
+        }
+
     }
     
 }
