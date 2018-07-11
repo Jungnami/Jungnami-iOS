@@ -215,6 +215,7 @@ extension CommunityVC {
         
     }
     
+    
     @objc func like(_ sender : myHeartBtn){
         //통신
         

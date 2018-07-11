@@ -16,6 +16,7 @@ class myHeartBtn : UIButton {
     var boardIdx : Int?
     var indexPath : Int = 0
     var likeCnt : Int = 0
+    var cellFrom : Int = 0
 }
 
 class myCommentBtn : UIButton {

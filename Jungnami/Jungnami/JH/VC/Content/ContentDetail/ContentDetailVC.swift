@@ -21,15 +21,35 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
-    //likeBtn
-    @IBAction func likeBtn(_ sender: Any) {
-        //수진통신
+    var isLike = 0 {
+        didSet {
+            if isLike == 0 {
+                likeBtn.isSelected = false
+            } else {
+                 likeBtn.isSelected = true
+            }
+        }
     }
+    var likeCount = 0
     //commentBtn
     @IBAction func commentBtn(_ sender: Any) {
-        let chatVC = Storyboard.shared().communityStoryboard.instantiateViewController(withIdentifier: BoardDetailViewController.reuseIdentifier ) as! BoardDetailViewController
-        self.present(chatVC, animated: true, completion: nil)
+        let communityStoartyboard = Storyboard.shared().communityStoryboard
+        if let selectedContentId_ = self.contentIdx {
+            if let commentVC = communityStoartyboard.instantiateViewController(withIdentifier:ContentCommentVC.reuseIdentifier) as? ContentCommentVC {
+               
+                commentVC.selectedContent = selectedContentId_
+                //  commentVC.heartCount = sender.likeCnt
+                //  commentVC.commentCount = sender.commentCnt
+                
+                self.present(commentVC, animated: true)
+            }
+        }
+        
+        
     }
+    
+    
+    
     //shareBtn
     @IBAction func shareBtn(_ sender: Any) {
         //공유
@@ -43,6 +63,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     //backBtn
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     //통신
@@ -51,6 +72,13 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     var contentTitle : String?
     var writeTime : String?
     var thumnail : String?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let contentIdx_ = contentIdx {
+            contentDetailInit(url: url("/contents/cardnews/\(contentIdx_)"))
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +89,10 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         if let contentIdx_ = contentIdx {
             contentDetailInit(url: url("/contents/cardnews/\(contentIdx_)"))
         }
+        likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+        likeBtn.setImage(UIImage(named: "community_heart"), for: .normal)
+        likeBtn.setImage(UIImage(named: "community_heart_blue"), for: .selected)
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -131,8 +163,21 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+
     
 }
+
+
+extension ContentDetailVC {
+    @objc func like(_ sender : UIButton){
+        if isLike == 0 {
+            likeAction(url: url("/contents/like"))
+        } else {
+            dislikeAction(url: url("/delete/contentslike/\(contentIdx!)"))
+        }
+    }
+}
+
 //통신
 extension ContentDetailVC {
     //extension에서 이름 바꾸고
@@ -145,13 +190,15 @@ extension ContentDetailVC {
             case .networkSuccess(let contentDetail):
                 //likeCnt, commentCnt 여기서
                 let contentDetail = contentDetail as!  ContentDetailVOData
-                self.likeCountLbl.text = String(contentDetail.likeCnt)
+                self.likeCountLbl.text = "\(contentDetail.likeCnt)명"
+                self.likeCount = contentDetail.likeCnt
                 //이미지 어레이 가져오는거//
                 self.commentCountLbl.text = String(contentDetail.commentCnt)
                 self.contentImages = contentDetail.imagearray
-                self.contentTitle = contentDetail.title
+                self.contentTitle = contentDetail.subtitle
                 self.writeTime = contentDetail.text
                 self.thumnail = contentDetail.thumbnail
+                self.isLike = contentDetail.islike
                 self.detailCollectionView.reloadData()
                 break
             case .nullValue :
@@ -165,6 +212,90 @@ extension ContentDetailVC {
         })
         
     }
+    
+    
+    //하트 버튼 눌렀을 때
+    func likeAction(url : String){
+        let params : [String : Any] = [
+            "contents_id" : contentIdx!
+        ]
+
+        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                self.isLike = 1
+                //self.likeCountLbl.text = "\(self.likeCount+1)명"
+                self.simpleAlert(title: "확인", message: "좋아요 완료")
+                
+                var changed : Int = 0
+                
+                //Now change the text and background colour
+                if self.likeCountLbl.text! == "\(self.likeCount)명" {
+                   
+                    changed = self.likeCount+1
+                } else {
+                
+                    changed = self.likeCount
+                }
+                self.likeCountLbl.text = "\(changed)명"
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    //좋아요 취소
+    func dislikeAction(url : String){
+        CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                self.isLike = 0
+                self.simpleAlert(title: "확인", message: "취소 완료")
+                
+                var changed : Int = 0
+
+                //Now change the text and background colour
+                if self.likeCountLbl.text! == "\(self.likeCount)명" {
+                    changed = self.likeCount-1
+                } else {
+                    changed = self.likeCount
+                }
+                self.likeCountLbl.text = "\(changed)명"
+
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+  
 }
+
 
 

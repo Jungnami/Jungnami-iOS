@@ -60,6 +60,26 @@ class MyFeedShareCell: UITableViewCell {
             }
         }
         
+        
+        
+        commentBtn.tag = (data.bID)
+        commentBtn.likeCnt = data.likeCnt
+        commentBtn.commentCnt = data.commentCnt
+        
+        likeBtn.setImage(UIImage(named: "community_heart"), for: .normal)
+        likeBtn.setImage(UIImage(named: "community_heart_blue"), for: .selected)
+        likeBtn.likeCnt = data.likeCnt
+        likeBtn.boardIdx = data.bID
+        likeBtn.isLike = data.islike
+        likeBtn.cellFrom = 0
+        
+        if data.islike == 0 {
+            likeBtn.isSelected = false
+        } else {
+            likeBtn.isSelected = true
+        }
+        
+        
         userNameLbl.text = data.uNickname
         dateLbl.text = data.bTime
         

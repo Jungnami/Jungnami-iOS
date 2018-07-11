@@ -74,7 +74,6 @@ extension CommunityResultTVC {
          //cell.doubleTapdelegate = self
          let temp = communitySearchData[indexPath.row]
          //여기는 스크랩했냐 아니냐
-        
          cell.scrapBtn.tag = temp.id
          cell.commentBtn.tag = (temp.id)
          cell.heartBtn.boardIdx = temp.id

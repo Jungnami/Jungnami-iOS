@@ -14,7 +14,7 @@ struct ContentDetailVO: Codable {
 
 struct ContentDetailVOData: Codable {
     let title, thumbnail, text, subtitle: String
-    let type: Int
+    let type ,islike : Int
     let imagearray: [ContentDetailVODataImgArr]
     let youtube: String
     let likeCnt, commentCnt: Int

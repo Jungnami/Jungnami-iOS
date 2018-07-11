@@ -872,6 +872,9 @@
                                     <constraint firstAttribute="height" constant="21" id="nIh-9Z-EsA"/>
                                     <constraint firstAttribute="width" constant="41" id="wwO-SM-W6r"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="toNext:" destination="DEY-Zu-zKb" eventType="touchUpInside" id="vVi-U1-Cj7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btl-IE-pcl">
                                 <rect key="frame" x="99" y="147" width="41" height="21"/>

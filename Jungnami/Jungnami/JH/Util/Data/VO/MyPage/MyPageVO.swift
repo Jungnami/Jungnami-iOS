@@ -32,6 +32,7 @@ struct MyPageVODataBoard: Codable {
     let bContent, bImg: String?
     let bTime: String
     let likeCnt, commentCnt: Int
+    let islike : Int
     
     enum CodingKeys: String, CodingKey {
         case bID = "b_id"
@@ -39,6 +40,7 @@ struct MyPageVODataBoard: Codable {
         case uNickname = "u_nickname"
         case uImg = "u_img"
         case source
+        case islike
         case bContent = "b_content"
         case bImg = "b_img"
         case bTime = "b_time"
