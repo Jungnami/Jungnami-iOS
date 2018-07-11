@@ -15,12 +15,22 @@ class ContentDetailCell: UICollectionViewCell {
     @IBOutlet weak var contentDetailCategoryLbl: UILabel!
     @IBOutlet weak var contentDetailDateLbl: UILabel!
     
-    
-    func configure(index : Int, data : ContentSample){
-        contentDetailDateLbl.text = data.date
-        contentDetailTitleLbl.text = data.title
-        contentDetailCategoryLbl.text = data.category
-        contentDetailImgView.image = data.images[index]
-        
+    func configure(title : String, writeTime : String, thumnail : String){
+        contentDetailTitleLbl.isHidden = false
+        contentDetailDateLbl.isHidden = false
+        contentDetailTitleLbl.text = title
+        contentDetailDateLbl.text = writeTime
+        if let url = URL(string: gsno(thumnail)){
+            self.contentDetailImgView.kf.setImage(with: url)
+            
+        }
+    }
+    func configure2(data: ContentDetailVODataImgArr){
+        if let url = URL(string: gsno(data.imgURL)){
+            self.contentDetailImgView.kf.setImage(with: url)
+            contentDetailTitleLbl.isHidden = true
+            contentDetailDateLbl.isHidden = true
+            contentDetailCategoryLbl.isHidden = true
+        }
     }
 }

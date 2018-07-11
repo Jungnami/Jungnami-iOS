@@ -12,8 +12,12 @@ class FollowerCell: UITableViewCell {
     @IBOutlet weak var followerProfileImgView: UIImageView!
     @IBOutlet weak var followerNicknameLbl: UILabel!
     //나를 팔로우하는 사람 중 내가 팔로우하지않은 사람의 경우 팔로우 버튼
-    @IBAction func followBtn(_ sender: Any) {
-        
+    
+    
+    
+    @IBOutlet weak var followBtn: UIButton!
+    @IBAction func followBtn(_ sender: UIButton) {
+        followBtn.setImage(#imageLiteral(resourceName: "mypage_following"), for: .normal)
     }
     var delegate : TapDelegate?
     var index = 0

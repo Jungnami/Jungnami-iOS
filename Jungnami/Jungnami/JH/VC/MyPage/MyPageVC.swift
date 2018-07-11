@@ -11,8 +11,7 @@ import UIKit
 class MyPageVC: UIViewController{
     
     @IBOutlet weak var profileImgView: UIImageView!
-    @IBOutlet weak var profileuserNameLbl: UILabel!
-    
+    @IBOutlet weak var profileuserNameLbl: UILabel!    
     @IBOutlet weak var profileScrapNumLbl: UILabel!
     @IBOutlet weak var profileMyfeedNumLbl: UILabel!
     @IBOutlet weak var profileFollowingNumLbl: UILabel!
@@ -24,6 +23,10 @@ class MyPageVC: UIViewController{
     
     @IBOutlet weak var scapBtn: UIButton!
     @IBOutlet weak var feedBtn: UIButton!
+    
+    @IBAction func dismissBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func changeView(_ sender: UIButton) {
         updateView(selected: sender.tag)

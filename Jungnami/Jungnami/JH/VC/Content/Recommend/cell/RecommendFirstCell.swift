@@ -16,12 +16,19 @@ class RecommendFirstCell: UICollectionViewCell {
     @IBOutlet weak var recommendCategoryLbl: UILabel!
     @IBOutlet weak var recommendDateLbl: UILabel!
     
-    
-    func configure(data: ContentMenuSample) {
-        recommendImgView.image = data.imgView
+    func configure(data: RecommendVODataContent) {
+        //title/
         recommendTitleLbl.text = data.title
-        recommendCategoryLbl.text = data.category
-        recommendDateLbl.text = data.date
+        recommendCategoryLbl.text = data.text
+        if (gsno(data.thumbnail) == "0") {
+            recommendImgView.image = #imageLiteral(resourceName: "dabi")
+        } else {
+            
+            if let url = URL(string: gsno(data.thumbnail)){
+                self.recommendImgView.kf.setImage(with: url)
+                
+            }
+        }
         
     }
     
