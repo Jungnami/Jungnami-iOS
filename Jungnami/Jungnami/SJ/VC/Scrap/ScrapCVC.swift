@@ -17,13 +17,7 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+      
     }
 
     
@@ -35,10 +29,12 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
+        
         
         return myScrapData.count
     }
+    
+    
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScrapCell.reuseIdentifier, for: indexPath) as! ScrapCell
@@ -51,6 +47,10 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("aaaaaaaaaaaaa")
+        goToDetail(index: myScrapData[indexPath.row].cID )
+    }
     
     
      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -73,5 +73,16 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     }
     
 
+
+}
+
+//통신
+extension ScrapCVC {
+    func goToDetail(index : Int){
+        let detailVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+       
+            detailVC.contentIdx = index
+        self.present(detailVC, animated: true)
+    }
 
 }

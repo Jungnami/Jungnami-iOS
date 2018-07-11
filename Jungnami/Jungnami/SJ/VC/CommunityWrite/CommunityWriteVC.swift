@@ -37,9 +37,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     
     var imageData : Data? {
         didSet {
-            if imageData == nil {
-                removeImgView()
-            } else {
+            if imageData != nil {
                 if let imageData_ = imageData {
                     makeImgView()
                     contentImgView.image =  UIImage(data: imageData_)
@@ -48,6 +46,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
                     
                 }
             }
+ 
         }
     }
     

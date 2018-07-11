@@ -17,8 +17,8 @@ class MyFeedCell: UITableViewCell {
      @IBOutlet weak var contentImgView: UIImageView! //
       @IBOutlet weak var likeCntLbl: UILabel!
       @IBOutlet weak var commentCntLbl: UILabel!
-      @IBOutlet weak var likeBtn: UIButton!
-     @IBOutlet weak var commentBtn: UIButton!
+      @IBOutlet weak var likeBtn: myHeartBtn!
+     @IBOutlet weak var commentBtn: myCommentBtn!
     
     func configure(data : MyPageVODataBoard){
         if (gsno(data.uImg) == "0") {
@@ -35,6 +35,27 @@ class MyFeedCell: UITableViewCell {
             if let url = URL(string: gsno(data.bImg)){
                 self.contentImgView.kf.setImage(with: url)
             }
+        }
+        
+       
+       
+        
+        
+        commentBtn.tag = (data.bID)
+        commentBtn.likeCnt = data.likeCnt
+        commentBtn.commentCnt = data.commentCnt
+        
+        likeBtn.setImage(UIImage(named: "community_heart"), for: .normal)
+        likeBtn.setImage(UIImage(named: "community_heart_blue"), for: .selected)
+        likeBtn.likeCnt = data.likeCnt
+        likeBtn.boardIdx = data.bID
+        likeBtn.isLike = data.islike
+        likeBtn.cellFrom = 1
+        
+        if data.islike == 0 {
+            likeBtn.isSelected = false
+        } else {
+            likeBtn.isSelected = true
         }
         
         userNameLbl.text = data.uNickname
