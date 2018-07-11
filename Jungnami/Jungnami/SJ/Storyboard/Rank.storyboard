@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +32,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqp-tB-3JK">
                                 <rect key="frame" x="262" y="590" width="66" height="30"/>
-                                <state key="normal" title="건너뛰기 &gt;"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="건너뛰기 &gt;">
+                                    <color key="titleColor" red="0.21176470589999999" green="0.7725490196" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="withoutLogin:" destination="Fav-UM-8Rz" eventType="touchUpInside" id="CIh-jc-8uc"/>
                                 </connections>
@@ -462,7 +466,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="278.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="278" id="7JD-tf-9H7"/>
-                                                <constraint firstAttribute="width" constant="187.5" id="xFd-iU-ojk"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Content_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="lcb-tM-JcG">
@@ -592,6 +595,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <constraints>
+                                    <constraint firstItem="78D-gv-Jg7" firstAttribute="width" secondItem="t7M-4I-fEP" secondAttribute="width" multiplier="1:2" id="hPJ-Ya-Hge"/>
                                     <constraint firstItem="4WD-mB-ceF" firstAttribute="centerX" secondItem="t7M-4I-fEP" secondAttribute="centerX" id="iq2-P3-Htc"/>
                                     <constraint firstItem="4WD-mB-ceF" firstAttribute="centerY" secondItem="t7M-4I-fEP" secondAttribute="centerY" id="wHf-KG-fTj"/>
                                 </constraints>

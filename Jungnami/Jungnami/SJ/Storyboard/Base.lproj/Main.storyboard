@@ -134,7 +134,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="PartyListTVC" id="H1B-2P-JFW" customClass="PartyListTVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="egH-uQ-6l7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -237,11 +237,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="122" id="gSS-dy-dvx">
-                                        <rect key="frame" x="0.0" y="444" width="375" height="122"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="111" id="gSS-dy-dvx">
+                                        <rect key="frame" x="0.0" y="444" width="375" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gSS-dy-dvx" id="bok-yG-iJy">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="122"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="partylist_orangebox" translatesAutoresizingMaskIntoConstraints="NO" id="FHm-40-8PM">
@@ -253,10 +253,79 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="FHm-40-8PM" secondAttribute="bottom" constant="11" id="SaF-bC-I3F"/>
                                                 <constraint firstAttribute="trailing" secondItem="FHm-40-8PM" secondAttribute="trailing" id="YbH-xf-3gM"/>
                                                 <constraint firstItem="FHm-40-8PM" firstAttribute="leading" secondItem="bok-yG-iJy" secondAttribute="leading" constant="11" id="aym-6x-cva"/>
                                                 <constraint firstItem="FHm-40-8PM" firstAttribute="top" secondItem="bok-yG-iJy" secondAttribute="top" constant="10.5" id="rgB-7n-ZUZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="111" id="jLu-7f-nVC">
+                                        <rect key="frame" x="0.0" y="555" width="375" height="111"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jLu-7f-nVC" id="fKr-CD-6gb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="partylist_navybox" translatesAutoresizingMaskIntoConstraints="NO" id="Sj7-ps-pCQ">
+                                                    <rect key="frame" x="11" y="10.5" width="364" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="TyU-Ac-Pu4"/>
+                                                        <constraint firstAttribute="width" constant="364" id="o0i-rB-pNo"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Sj7-ps-pCQ" firstAttribute="top" secondItem="fKr-CD-6gb" secondAttribute="top" constant="10.5" id="5Ml-br-puz"/>
+                                                <constraint firstItem="Sj7-ps-pCQ" firstAttribute="leading" secondItem="fKr-CD-6gb" secondAttribute="leading" constant="11" id="CHR-1h-MyB"/>
+                                                <constraint firstAttribute="trailing" secondItem="Sj7-ps-pCQ" secondAttribute="trailing" id="cwz-t4-hLJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="111" id="e90-H8-dBh">
+                                        <rect key="frame" x="0.0" y="666" width="375" height="111"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e90-H8-dBh" id="TyN-tr-Qgg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="partylist_greenbox" translatesAutoresizingMaskIntoConstraints="NO" id="7lD-qQ-hIw">
+                                                    <rect key="frame" x="11" y="10.5" width="364" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="364" id="MFt-RW-vl9"/>
+                                                        <constraint firstAttribute="height" constant="100" id="SH7-Vs-Czj"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7lD-qQ-hIw" firstAttribute="leading" secondItem="TyN-tr-Qgg" secondAttribute="leading" constant="11" id="AiF-Zj-w6D"/>
+                                                <constraint firstAttribute="trailing" secondItem="7lD-qQ-hIw" secondAttribute="trailing" id="TPu-nh-AmX"/>
+                                                <constraint firstItem="7lD-qQ-hIw" firstAttribute="top" secondItem="TyN-tr-Qgg" secondAttribute="top" constant="10.5" id="g16-4y-hDE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="122" id="BT5-hu-g1d">
+                                        <rect key="frame" x="0.0" y="777" width="375" height="122"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BT5-hu-g1d" id="yoY-SQ-DxP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="122"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="partylist_graybox" translatesAutoresizingMaskIntoConstraints="NO" id="za5-lg-Cax">
+                                                    <rect key="frame" x="11" y="10.5" width="364" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="364" id="D2w-RO-vGz"/>
+                                                        <constraint firstAttribute="height" constant="100" id="Qo3-Ly-7vF"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="za5-lg-Cax" firstAttribute="leading" secondItem="yoY-SQ-DxP" secondAttribute="leading" constant="11" id="3Mq-9X-QnI"/>
+                                                <constraint firstAttribute="trailing" secondItem="za5-lg-Cax" secondAttribute="trailing" id="9dX-6Y-48C"/>
+                                                <constraint firstAttribute="bottom" secondItem="za5-lg-Cax" secondAttribute="bottom" constant="11.5" id="OKp-t7-bqI"/>
+                                                <constraint firstItem="za5-lg-Cax" firstAttribute="top" secondItem="yoY-SQ-DxP" secondAttribute="top" constant="10.5" id="giE-nw-lgF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -269,10 +338,11 @@
                             <outlet property="delegate" destination="H1B-2P-JFW" id="D7T-kL-diG"/>
                         </connections>
                     </tableView>
+                    <size key="freeformSize" width="375" height="1000"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROX-u9-8z5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="737" y="427"/>
+            <point key="canvasLocation" x="737" y="-80"/>
         </scene>
         <!--Party List Detail Page MenuVC-->
         <scene sceneID="2vu-GH-0md">
@@ -1403,7 +1473,10 @@
         <image name="legislator-detailpage_orange_bomb" width="23" height="29"/>
         <image name="legislator-detailpage_support_blue" width="80" height="28"/>
         <image name="partylist_bluebox" width="364" height="100"/>
+        <image name="partylist_graybox" width="364" height="100"/>
+        <image name="partylist_greenbox" width="364" height="100"/>
         <image name="partylist_mintbox" width="364" height="100"/>
+        <image name="partylist_navybox" width="364" height="100"/>
         <image name="partylist_orangebox" width="364" height="100"/>
         <image name="partylist_redbox" width="364" height="100"/>
         <image name="partylist_yellowbox" width="364" height="100"/>
