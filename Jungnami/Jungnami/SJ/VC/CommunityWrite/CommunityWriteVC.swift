@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class CommunityWriteVC: UIViewController, UITextViewDelegate {
+class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     
     
     @IBAction func dismissBtn(_ sender: Any) {
@@ -23,6 +23,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     var contentImgView: UIImageView = UIImageView()
     var imgURL : String = ""
+    var images : [String : Data]?
     var keyboardDismissGesture: UITapGestureRecognizer?
     let imagePicker : UIImagePickerController = UIImagePickerController()
     lazy var deleteImgBtn : UIButton = {
@@ -57,14 +58,13 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         setKeyboardSetting()
         setToolbar()
         contentTxtView.delegate = self
-        
+        doneBtn.addTarget(self, action: #selector(doneOk), for: .touchUpInside)
         if let url = URL(string: gsno(imgURL)){
             self.profileImgView.kf.setImage(with: url)
         } else {
             self.profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         }
         profileImgView.makeImageRound()
-        imageData = nil
         contentTxtView.text = "생각을 공유해 보세요"
         contentTxtView.textColor = UIColor.lightGray
     }
@@ -77,6 +77,11 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     }
     @objc public func deleteImg (_sender: UIButton) {
         removeImgView()
+    }
+    
+    @objc func doneOk(){
+        //통신
+        writeContent(url : url("/board/postcomplete"))
     }
     
 }
@@ -103,6 +108,7 @@ extension CommunityWriteVC {
     }
     
     func removeImgView(){
+        self.imageData = nil
         self.contentImgView.removeFromSuperview()
         self.deleteImgBtn.removeFromSuperview()
     }
@@ -282,6 +288,43 @@ UINavigationControllerDelegate  {
         }
         
         self.dismiss(animated: true)
+    }
+}
+
+//통신
+extension CommunityWriteVC{
+    func writeContent(url : String){
+        var tempString = ""
+        if contentTxtView.text == "생각을 공유해 보세요"{
+            tempString = ""
+        } else {
+            tempString = contentTxtView.text
+        }
+        
+        let params : [String : Any] = [
+            "shared" : 0,
+            "content" : tempString
+        ]
+        
+        if let image = imageData {
+            images = [
+                "image" : image
+            ]
+        }
+        
+        CommunityWriteCompleteService.shareInstance.registerBoard(url: url, params: params, image: images, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(_):
+                self.dismiss(animated: true, completion: nil)
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "인터넷 연결상태를 확인해주세요")
+            default :
+                break
+            }
+        })
+        
+
     }
 }
 

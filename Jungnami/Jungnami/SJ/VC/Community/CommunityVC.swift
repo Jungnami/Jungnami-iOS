@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
     
     @IBOutlet weak var badgeImg: UIImageView!
@@ -24,7 +25,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
     }()
     var communityWriteVC : CommunityWriteVC?
     var keyboardDismissGesture: UITapGestureRecognizer?
-    var sampleData : [Sample] = []
+    var communityData : [CommunityVODataContent] = []
     var login : Bool = false {
         didSet {
             communityTableView.reloadData()
@@ -49,11 +50,16 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         } else {
             login = true
         }
+        //통신
+        communityInit(url : url("/board/boardlist"))
+        
         communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC
     }
-    ////////SampleData//////
-    let badgeCount = 0
-    //////////////////
+    var badgeCount = 0 {
+        didSet {
+            alarmLbl.text = "\(badgeCount)"
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -84,13 +90,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         //refreshControl
         self.communityTableView.refreshControl = UIRefreshControl()
         self.communityTableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
-        //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-        let a = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "다비 최고야,, 형윤 최고야,, 디자인 세상에서 제일 예뻐요 선생님들,, ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
-        let b = Sample(profileUrl: #imageLiteral(resourceName: "mypage_profile_girl"), name: "제리", time: "4시간 전", content: "픽미픽미픽미업", like: 73, comment: 6020, contentImg: #imageLiteral(resourceName: "inni"), heart: false, scrap: true)
         
-        sampleData.append(a)
-        sampleData.append(b)
-        ////////////////////////////////////////////////////
         
         
     } //viewDidLoad
@@ -109,7 +109,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 1
         } else {
-            return sampleData.count
+            return communityData.count
         }
     }
     
@@ -123,6 +123,8 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionWriteTVCell.reuseIdentifier) as! CommunityFirstSectionWriteTVCell
+                
+                //cell.configure(data : )
                 cell.nextBtn.addTarget(self, action: #selector(toWrite(_:)), for: .touchUpInside)
                 
                 return cell
@@ -131,17 +133,24 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
             
-            cell.configure(index: indexPath.row, data: sampleData[indexPath.row])
+            cell.configure(index: indexPath.row, data: communityData[indexPath.row])
             cell.delegate = self
-            cell.scrapBtn.tag = indexPath.row
-            
+            //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
+            //cell.doubleTapdelegate = self
+            let temp = communityData[indexPath.row]
+            cell.scrapBtn.tag = temp.boardid
+            cell.commentBtn.tag = (temp.boardid)
+            cell.heartBtn.boardIdx = temp.boardid
+            cell.heartBtn.isLike = temp.islike
+            cell.heartBtn.indexPath = indexPath.row
             cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
+            cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
+            cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
             
             return cell
         }
         
     }
-    
     
 }
 
@@ -167,6 +176,35 @@ extension CommunityVC {
             // print(userName)
         }
     }
+    
+    @objc func comment(_ sender : myCommentBtn){
+        let communityStoartyboard = Storyboard.shared().communityStoryboard
+        
+        if let commentVC = communityStoartyboard.instantiateViewController(withIdentifier:BoardDetailViewController.reuseIdentifier) as? BoardDetailViewController {
+            
+            commentVC.selectedBoard = sender.tag
+            commentVC.heartCount = sender.likeCnt
+            commentVC.commentCount = sender.commentCnt
+            
+            self.present(commentVC, animated: true)
+        }
+        
+    }
+    
+    @objc func like(_ sender : myHeartBtn){
+        //통신
+        
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.communityTableView)
+        let indexPath: IndexPath? = self.communityTableView.indexPathForRow(at: buttonPosition)
+        let cell = self.communityTableView.cellForRow(at: indexPath!) as! CommunityTVCell
+        
+        if sender.isLike! == 0 {
+            likeAction(url: url("/board/likeboard"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
+        } else {
+            dislikeAction(url: url("/delete/boardlike/\(sender.boardIdx!)"), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+        }
+        
+    }
 }
 
 //키보드 엔터 버튼 눌렀을 때
@@ -187,15 +225,6 @@ extension CommunityVC: UITextFieldDelegate {
             }
         }
         //TODO - 확인 누르면 데이터 로드하는 통신 코드
-        
-        if let communityResultTVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityResultTVC.reuseIdentifier) as? CommunityResultTVC {
-            textField.resignFirstResponder()
-            //searchLegislatorResultTVC = self.selectedCategory
-            // communityResultTVC.searchTxtfield.text = self.searchTxtfield.text
-            communityResultTVC.searchString = self.searchTxtfield.text
-            self.navigationController?.pushViewController(communityResultTVC, animated: true)
-        }
-        
         
         return true
     }
@@ -244,23 +273,79 @@ extension CommunityVC{
 extension CommunityVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        /*let aa = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "새로고침 ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
-         sampleData.append(aa)
-         */
-        self.communityTableView.reloadData()
+        communityInit(url : url("/board/boardlist"))
         sender.endRefreshing()
     }
 }
 
 //탭제스처 레코그나이저
-extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate {
-    func myTableDelegate(index : Int) {
-        print(index)
+extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate, DoubleTapDelegate {
+    func myTableDelegate(index: Int) {
+        print("\(index)")
+    }
+    
+    
+    
+    func myDoubleTapDelegate(sender : UITapGestureRecognizer) {
+        let touch = sender.location(in: communityTableView)
+        if let indexPath = communityTableView.indexPathForRow(at: touch){
+            let cell = self.communityTableView.cellForRow(at: indexPath) as! CommunityTVCell
+            let boardIdx = cell.heartBtn.boardIdx
+            let isLike = cell.heartBtn.isLike
+            let sender = cell.heartBtn
+            let likeCount = cell.heartBtn.likeCnt
+            touchLikeAction(url: url("/board/likeboard"), boardIdx : boardIdx!, isLike : isLike!, cell : cell, sender : sender!, likeCnt: likeCount )
+            
+        }
+    }
+    
+    func heartPopup(){
+        DispatchQueue.main.asyncAfter(deadline: .now()){
+            var myPopupImgView = UIImageView()
+            myPopupImgView = self.setImgView(viewName: myPopupImgView, fileName: "community_heart_blue")
+            self.view.addSubview(myPopupImgView)
+            myPopupImgView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            myPopupImgView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            myPopupImgView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            myPopupImgView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+            myPopupImgView.contentMode = .scaleAspectFit
+            
+            
+            //self.setImageViewConstraints(myPopupImgView)
+            myPopupImgView.isHidden = false
+            myPopupImgView.expand()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                myPopupImgView.isHidden = true
+            }
+        }
     }
 }
 
 //통신
 extension CommunityVC {
+    //커뮤 들어갔을 때
+    func communityInit(url : String){
+        CommunityService.shareInstance.getCommunity(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(let communityData):
+                let communityContent = communityData as! CommunityVOData
+                self.communityData = communityContent.content
+                self.communityTableView.reloadData()
+                self.badgeCount = communityContent.alarmcnt
+                break
+            case .nullValue :
+                break
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+        
+    }
+    
     //글쓰기 눌렀을 때
     func write(url : String){
         CommunityWriteService.shareInstance.communityWrite(url: url, completion: { [weak self] (result) in
@@ -270,6 +355,8 @@ extension CommunityVC {
             case .networkSuccess(let legislatorData):
                 let img = legislatorData as! CommunityWriteVOData
                 self.communityWriteVC?.imgURL = img.imgURL
+                
+                
                 self.toCommunityWriteVC()
                 break
             case .accessDenied :
@@ -282,6 +369,102 @@ extension CommunityVC {
             
         })
         
+    }
+    
+    func touchLikeAction(url : String, boardIdx : Int, isLike : Int, cell : CommunityTVCell, sender : myHeartBtn, likeCnt : Int){
+        let params : [String : Any] = [
+            "board_id" : boardIdx
+        ]
+        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = true
+                sender.isLike = 1
+                
+                var changed : Int = 0
+                //Now change the text and background colour
+                if sender.isLike != 1 {
+                     changed = likeCnt+1
+                } else {
+                     changed = likeCnt
+                }
+                cell.likeLabel.text = "\(changed)"
+                self.heartPopup()
+                break
+            case .accessDenied :
+                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    func likeAction(url : String, boardIdx : Int, isLike : Int, cell : CommunityTVCell, sender : myHeartBtn, likeCnt : Int){
+        let params : [String : Any] = [
+            "board_id" : boardIdx
+        ]
+        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = true
+                sender.isLike = 1
+                
+                var changed : Int = 0
+                //Now change the text and background colour
+                if cell.likeLabel.text == "\(likeCnt)" {
+                    changed = likeCnt+1
+                } else {
+                    changed = likeCnt
+                }
+                cell.likeLabel.text = "\(changed)"
+                
+                break
+            case .accessDenied :
+                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    func dislikeAction(url : String, cell : CommunityTVCell, sender : myHeartBtn, likeCnt : Int){
+        CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = false
+                sender.isLike = 0
+                var changed : Int = 0
+                
+                //Now change the text and background colour
+                if cell.likeLabel.text == "\(likeCnt)" {
+                    changed = likeCnt-1
+                } else {
+                    changed = likeCnt
+                }
+                cell.likeLabel.text = "\(changed)"
+                
+                break
+            case .accessDenied :
+                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
     }
 }
 

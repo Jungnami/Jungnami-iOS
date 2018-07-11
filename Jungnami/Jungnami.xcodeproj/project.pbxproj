@@ -10,6 +10,7 @@
 		3B0475F120EEBD8D00D30A4D /* MainLikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0475F020EEBD8D00D30A4D /* MainLikeTVC.swift */; };
 		3B0475F320EEBD9B00D30A4D /* MainDislikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0475F220EEBD9B00D30A4D /* MainDislikeTVC.swift */; };
 		3B0896A120EEBA2B00BFBCBC /* MainPageMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0896A020EEBA2B00BFBCBC /* MainPageMenuVC.swift */; };
+		3B47AEAD20F54C8A0054B49A /* CommunityCommentDislikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B47AEAC20F54C8A0054B49A /* CommunityCommentDislikeService.swift */; };
 		3B6B030A20EE09F700034C9B /* PartyListDetailTVcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030920EE09F700034C9B /* PartyListDetailTVcell.swift */; };
 		3B6B030C20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030B20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift */; };
 		3B6B031920EE530000034C9B /* ColorChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B031820EE530000034C9B /* ColorChip.swift */; };
@@ -30,6 +31,9 @@
 		3B94985B20F3FCCC00BFA81E /* GetCoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985A20F3FCCC00BFA81E /* GetCoinService.swift */; };
 		3B94985D20F3FCD400BFA81E /* SupportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985C20F3FCD400BFA81E /* SupportService.swift */; };
 		3B94985F20F3FDA500BFA81E /* CoinVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985E20F3FDA500BFA81E /* CoinVO.swift */; };
+		3B94986120F4A00300BFA81E /* CommunityVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94986020F4A00300BFA81E /* CommunityVO.swift */; };
+		3B94986320F4A04400BFA81E /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94986220F4A04400BFA81E /* CommunityService.swift */; };
+		3B94986520F4C34700BFA81E /* CommunityWriteCompleteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94986420F4C34700BFA81E /* CommunityWriteCompleteService.swift */; };
 		3B97B5BA20F2006E00020A81 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B97B5B920F2006D00020A81 /* KakaoOpenSDK.framework */; };
 		3B97B5BE20F201F700020A81 /* kakaoLogin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5BC20F201F700020A81 /* kakaoLogin.cpp */; };
 		3B97B5C020F205E300020A81 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5BF20F205E300020A81 /* LoginVC.swift */; };
@@ -64,6 +68,11 @@
 		3BCF933820F16B4700E9E7F7 /* CompletePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCF933720F16B4700E9E7F7 /* CompletePopup.xib */; };
 		3BCF933A20F16F8F00E9E7F7 /* CompletePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF933920F16F8F00E9E7F7 /* CompletePopupView.swift */; };
 		3BCF933C20F1854300E9E7F7 /* SampleLegislatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF933B20F1854300E9E7F7 /* SampleLegislatorData.swift */; };
+		3BFCE31120F4D9B500C21AEB /* CommunityLikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31020F4D9B500C21AEB /* CommunityLikeService.swift */; };
+		3BFCE31320F501DF00C21AEB /* CommunityCommentVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31220F501DF00C21AEB /* CommunityCommentVO.swift */; };
+		3BFCE31520F5022900C21AEB /* CommunityCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31420F5022900C21AEB /* CommunityCommentService.swift */; };
+		3BFCE31720F51CC700C21AEB /* CommunityCommentWriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31620F51CC700C21AEB /* CommunityCommentWriteService.swift */; };
+		3BFCE31920F5251500C21AEB /* BoardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31820F5251500C21AEB /* BoardDetailViewController.swift */; };
 		430703D520F107D800D37732 /* LegislatorContentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430703D420F107D800D37732 /* LegislatorContentSample.swift */; };
 		430703D720F107E500D37732 /* LegislatorContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430703D620F107E500D37732 /* LegislatorContentData.swift */; };
 		432BA53720F3674900B33A36 /* ChargeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BA53620F3674900B33A36 /* ChargeVC.swift */; };
@@ -138,6 +147,7 @@
 		3B0475F220EEBD9B00D30A4D /* MainDislikeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDislikeTVC.swift; sourceTree = "<group>"; };
 		3B0896A020EEBA2B00BFBCBC /* MainPageMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageMenuVC.swift; sourceTree = "<group>"; };
 		3B297F6D20E8A74100B82B0B /* Jungnami.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jungnami.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B47AEAC20F54C8A0054B49A /* CommunityCommentDislikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentDislikeService.swift; sourceTree = "<group>"; };
 		3B6B030920EE09F700034C9B /* PartyListDetailTVcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailTVcell.swift; sourceTree = "<group>"; };
 		3B6B030B20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailFirstSectionTVCell.swift; sourceTree = "<group>"; };
 		3B6B031820EE530000034C9B /* ColorChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChip.swift; sourceTree = "<group>"; };
@@ -158,6 +168,9 @@
 		3B94985A20F3FCCC00BFA81E /* GetCoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoinService.swift; sourceTree = "<group>"; };
 		3B94985C20F3FCD400BFA81E /* SupportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportService.swift; sourceTree = "<group>"; };
 		3B94985E20F3FDA500BFA81E /* CoinVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinVO.swift; sourceTree = "<group>"; };
+		3B94986020F4A00300BFA81E /* CommunityVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityVO.swift; sourceTree = "<group>"; };
+		3B94986220F4A04400BFA81E /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
+		3B94986420F4C34700BFA81E /* CommunityWriteCompleteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteCompleteService.swift; sourceTree = "<group>"; };
 		3B97B5B920F2006D00020A81 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		3B97B5BB20F201F600020A81 /* Jungnami-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Jungnami-Bridging-Header.h"; sourceTree = "<group>"; };
 		3B97B5BC20F201F700020A81 /* kakaoLogin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kakaoLogin.cpp; sourceTree = "<group>"; };
@@ -194,6 +207,11 @@
 		3BCF933720F16B4700E9E7F7 /* CompletePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletePopup.xib; sourceTree = "<group>"; };
 		3BCF933920F16F8F00E9E7F7 /* CompletePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletePopupView.swift; sourceTree = "<group>"; };
 		3BCF933B20F1854300E9E7F7 /* SampleLegislatorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleLegislatorData.swift; sourceTree = "<group>"; };
+		3BFCE31020F4D9B500C21AEB /* CommunityLikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityLikeService.swift; sourceTree = "<group>"; };
+		3BFCE31220F501DF00C21AEB /* CommunityCommentVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentVO.swift; sourceTree = "<group>"; };
+		3BFCE31420F5022900C21AEB /* CommunityCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentService.swift; sourceTree = "<group>"; };
+		3BFCE31620F51CC700C21AEB /* CommunityCommentWriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentWriteService.swift; sourceTree = "<group>"; };
+		3BFCE31820F5251500C21AEB /* BoardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailViewController.swift; sourceTree = "<group>"; };
 		430703D420F107D800D37732 /* LegislatorContentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorContentSample.swift; sourceTree = "<group>"; };
 		430703D620F107E500D37732 /* LegislatorContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorContentData.swift; sourceTree = "<group>"; };
 		432BA53620F3674900B33A36 /* ChargeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeVC.swift; sourceTree = "<group>"; };
@@ -356,6 +374,8 @@
 				3B94985420F3E3A300BFA81E /* PointVO.swift */,
 				3B94985E20F3FDA500BFA81E /* CoinVO.swift */,
 				3B94985820F3EC8000BFA81E /* MessageVO.swift */,
+				3B94986020F4A00300BFA81E /* CommunityVO.swift */,
+				3BFCE31220F501DF00C21AEB /* CommunityCommentVO.swift */,
 			);
 			path = VO;
 			sourceTree = "<group>";
@@ -372,6 +392,12 @@
 				3B94985620F3EBB700BFA81E /* VoteService.swift */,
 				3B94985A20F3FCCC00BFA81E /* GetCoinService.swift */,
 				3B94985C20F3FCD400BFA81E /* SupportService.swift */,
+				3B94986220F4A04400BFA81E /* CommunityService.swift */,
+				3B94986420F4C34700BFA81E /* CommunityWriteCompleteService.swift */,
+				3BFCE31020F4D9B500C21AEB /* CommunityLikeService.swift */,
+				3B47AEAC20F54C8A0054B49A /* CommunityCommentDislikeService.swift */,
+				3BFCE31420F5022900C21AEB /* CommunityCommentService.swift */,
+				3BFCE31620F51CC700C21AEB /* CommunityCommentWriteService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -554,6 +580,7 @@
 				439D812B20EB2FE5007DAD57 /* Community */,
 				439D812220EB2FE5007DAD57 /* CommunityWrite */,
 				3BB4308620EC9437002980D9 /* CommunityResultTVC */,
+				43D1DAB520EB4F2C00B752D1 /* Comment */,
 				439D812720EB2FE5007DAD57 /* PartyList */,
 				3BB4308920ECDF5B002980D9 /* PartyListDetail */,
 				3BB1A5BD20EB958E00D4929A /* SearchLegislatorResult */,
@@ -630,7 +657,6 @@
 				43EDECB620F1C78400E0F0E9 /* Tmi */,
 				43EDECB820F1C7A200E0F0E9 /* Story */,
 				43E84BF920EE1DBD007C6C97 /* ContentDetail */,
-				43D1DAB520EB4F2C00B752D1 /* Comment */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -679,6 +705,7 @@
 			isa = PBXGroup;
 			children = (
 				43D1DAB620EB4F6600B752D1 /* CommentVC.swift */,
+				3BFCE31820F5251500C21AEB /* BoardDetailViewController.swift */,
 				43D1DAB820EB50FC00B752D1 /* CommentCell.swift */,
 			);
 			path = Comment;
@@ -1009,6 +1036,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4331B01220EFFBD500FA290C /* NoticeVC.swift in Sources */,
+				3BFCE31520F5022900C21AEB /* CommunityCommentService.swift in Sources */,
 				3B6B031B20EE530A00034C9B /* PartyList.swift in Sources */,
 				43EDECD420F20C9A00E0F0E9 /* FollowerCell.swift in Sources */,
 				430703D720F107E500D37732 /* LegislatorContentData.swift in Sources */,
@@ -1026,10 +1054,12 @@
 				43EDECCA20F2063E00E0F0E9 /* FollowerListVC.swift in Sources */,
 				439D814120EB2FE5007DAD57 /* CommunityWriteVC.swift in Sources */,
 				4351999620EFE94A00D72AAF /* OtherUserPageVC.swift in Sources */,
+				3BFCE31320F501DF00C21AEB /* CommunityCommentVO.swift in Sources */,
 				3B97B5BE20F201F700020A81 /* kakaoLogin.cpp in Sources */,
 				3B83165720F104C3001D2423 /* CommunityVC.swift in Sources */,
 				430703D520F107D800D37732 /* LegislatorContentSample.swift in Sources */,
 				3B97B5C720F25BA700020A81 /* Storyboard.swift in Sources */,
+				3B47AEAD20F54C8A0054B49A /* CommunityCommentDislikeService.swift in Sources */,
 				3BB4309120ECE952002980D9 /* PartyListDetailDislikeTVC.swift in Sources */,
 				43E5D27A20F078D50020DEBE /* LegislatorDetailVC.swift in Sources */,
 				3B8254FE20EF674D00ABCB59 /* MainFirstSectionTVCell.swift in Sources */,
@@ -1060,12 +1090,14 @@
 				43E5D27720F06EC30020DEBE /* MyPageData.swift in Sources */,
 				43EDECB420F1C6D500E0F0E9 /* ContentStoryVC.swift in Sources */,
 				43EDECCE20F2095E00E0F0E9 /* FollowListData.swift in Sources */,
+				3BFCE31120F4D9B500C21AEB /* CommunityLikeService.swift in Sources */,
 				43D1DAB720EB4F6600B752D1 /* CommentVC.swift in Sources */,
 				3B94985F20F3FDA500BFA81E /* CoinVO.swift in Sources */,
 				3BCF932E20F15CA500E9E7F7 /* SupportPopupView.swift in Sources */,
 				3BAFF97620EE845A0088F020 /* Region.swift in Sources */,
 				43537EFE20F0E9C50036435A /* LegislatorProfileCell.swift in Sources */,
 				43D5639220EEA2B3003F59B1 /* ContentMenuData.swift in Sources */,
+				3B94986120F4A00300BFA81E /* CommunityVO.swift in Sources */,
 				3BCF933220F15F6700E9E7F7 /* CustomAlert.swift in Sources */,
 				439D814920EB2FE5007DAD57 /* Sample.swift in Sources */,
 				3B6B030C20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift in Sources */,
@@ -1073,6 +1105,7 @@
 				3B97B5C020F205E300020A81 /* LoginVC.swift in Sources */,
 				43D1DAC020EB613A00B752D1 /* RecommentCell.swift in Sources */,
 				3B94985920F3EC8000BFA81E /* MessageVO.swift in Sources */,
+				3B94986520F4C34700BFA81E /* CommunityWriteCompleteService.swift in Sources */,
 				3B94985120F3BD2400BFA81E /* CommunityWriteVO.swift in Sources */,
 				43EDECC120F1CAA200E0F0E9 /* StorySecondCell.swift in Sources */,
 				43E5D27420F06D980020DEBE /* MyPageSample.swift in Sources */,
@@ -1085,6 +1118,7 @@
 				439D814C20EB2FE5007DAD57 /* RecommendFirstCell.swift in Sources */,
 				432BA53B20F367C600B33A36 /* ChangeCoinVC.swift in Sources */,
 				3BB4308D20ECE8BF002980D9 /* PartyListDetailPageMenuVC.swift in Sources */,
+				3BFCE31720F51CC700C21AEB /* CommunityCommentWriteService.swift in Sources */,
 				43D1DAC920EB9A4E00B752D1 /* CommentData.swift in Sources */,
 				3B97B5C520F2432800020A81 /* TapDelegate.swift in Sources */,
 				43D1DAC720EB989B00B752D1 /* RecommentSample.swift in Sources */,
@@ -1118,8 +1152,10 @@
 				3B94985B20F3FCCC00BFA81E /* GetCoinService.swift in Sources */,
 				3B83165920F106E0001D2423 /* CommunityFirstSectionWriteTVCell.swift in Sources */,
 				4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */,
+				3BFCE31920F5251500C21AEB /* BoardDetailViewController.swift in Sources */,
 				3B0475F320EEBD9B00D30A4D /* MainDislikeTVC.swift in Sources */,
 				3B6B031920EE530000034C9B /* ColorChip.swift in Sources */,
+				3B94986320F4A04400BFA81E /* CommunityService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

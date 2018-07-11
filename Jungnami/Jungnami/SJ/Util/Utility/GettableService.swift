@@ -37,7 +37,10 @@ extension GettableService {
         }
 
         Alamofire.request(encodedUrl, method: .get, parameters: nil, headers: headers).responseData {(res) in
+            print("encodedURK")
+            print(encodedUrl)
             switch res.result {
+                
             case .success :
                 if let value = res.result.value {
                     print("networking Here!")

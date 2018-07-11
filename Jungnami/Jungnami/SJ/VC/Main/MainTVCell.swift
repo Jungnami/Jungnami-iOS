@@ -16,7 +16,6 @@ class MainTVCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var partyLbl: UILabel!
     @IBOutlet weak var voteCountLbl: UILabel!
-    
     @IBOutlet weak var voteBtn: UIButton!
     
     let maxWidth : Double = 240.0

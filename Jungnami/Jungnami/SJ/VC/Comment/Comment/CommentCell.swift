@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CommentCell: UITableViewCell {
 
@@ -26,13 +27,26 @@ class CommentCell: UITableViewCell {
     var delegate : TapDelegate?
     var index = 0
     //----------------------------
-    func configure(data : CommentSample){
-        commentProfileImg.image = data.profile
-        commentUserLbl.text = data.userId
-        commentContentLbl.text = data.commentContent
-        commentDateLbl.text = data.date
-        commentLikeLbl.text = data.likeCount
-        index = 12 //나중에 유저 인덱스 등으로 고칠 수 있음
+    func configure(index : Int, data : CommunityCommentVOData){
+      //  commentProfileImg.image = data.userImg
+        if (gsno(data.userImg) == "0") {
+            commentProfileImg.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.userImg)){
+                self.commentProfileImg.kf.setImage(with: url)
+            }
+        }
+        
+        commentUserLbl.text = data.userNick
+        commentContentLbl.text = data.content
+        commentContentLbl.sizeToFit()
+        commentDateLbl.text = data.timeset
+        commentLikeLbl.text = "\(data.commentlikeCnt)"
+        
+        if index < 3 {
+            commentBestImg.isHidden = true
+        }
+      //  index = 12 //나중에 유저 인덱스 등으로 고칠 수 있음
     }
     
     override func awakeFromNib() {
