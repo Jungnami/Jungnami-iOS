@@ -55,6 +55,10 @@ class SearchLegislatorResultTVC: UITableViewController, APIService {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        searchTxtfield.resignFirstResponder()
+    }
+    
 }
 
 //tableview delegate, datasource
@@ -104,8 +108,8 @@ extension SearchLegislatorResultTVC : UITextFieldDelegate {
             }
         }
         
-        textField.resignFirstResponder()
-        //TODO - 확인 누르면 데이터 로드하는 통신 코드
+       // textField.resignFirstResponder()
+        
         //있으면 리로드, 없으면 얼러트
         if let searchString_ = textField.text {
             if viewFrom == 0 {
@@ -179,6 +183,7 @@ extension SearchLegislatorResultTVC {
                 //dddddddd
                 let legislatorSearchData = legislatorData as! [LegislatorSearchVOData]
                 self.legislatorSearchData = legislatorSearchData
+                self.searchTxtfield.resignFirstResponder()
                 self.tableView.reloadData()
                 break
             case .nullValue :

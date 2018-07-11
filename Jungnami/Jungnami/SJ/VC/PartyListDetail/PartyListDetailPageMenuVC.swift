@@ -129,7 +129,7 @@ extension PartyListDetailPageMenuVC {
     @objc func setDefaultNav(){
         self.navigationItem.titleView = nil
         self.navigationItem.setHidesBackButton(true, animated:true)
-        navigationItem.title = "정당"
+       // navigationItem.title = navTitle
         navigationController?.navigationBar.isTranslucent = false
         
         ////setupLeftNavItem
