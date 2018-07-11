@@ -220,23 +220,19 @@ extension MainPageMenuVC {
     @objc public func toMyPage(_sender: UIButton) {
         //1. 나중에 goFirst 했던 것처럼 해당 뷰로 exit 바로 할수 있도록 하기
         //마이페이지 통신
-        let userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
-      
-        if userToken == "-1" {
-            simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+        let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+        if (myId == "-1"){
+            self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
                 if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
                     loginVC.entryPoint = 1
                     self.present(loginVC, animated: true, completion: nil)
                 }
             })
-           
-        } else {
             
-            if let myPageVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
-
-             self.present(myPageVC, animated: true, completion: nil)
-            }
-           
+        } else {
+            //주석 풀기
+           /* mypageVC.selectedUserId = myId
+            self.present(mypageVC, animated: true, completion: nil)*/
         }
     }
     

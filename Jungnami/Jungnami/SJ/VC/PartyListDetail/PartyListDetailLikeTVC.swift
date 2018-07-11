@@ -19,10 +19,10 @@ class PartyListDetailLikeTVC: UITableViewController,APIService {
         super.viewWillAppear(animated)
         self.tableView.setContentOffset(.zero, animated: true)
         if let selectedParty_ = selectedParty {
-            legislatorLikeInit(url: url("/legislatorlist/legislatorlist/1/\(selectedParty_.rawValue)"))
+            legislatorLikeInit(url: url("/legislatorlist/groupbyparty/1/\(selectedParty_.rawValue)"))
         }
         if let selectedRegion_ = selectedRegion {
-            legislatorLikeInit(url: url("/legislatorlist/region/1/\(selectedRegion_.rawValue)"))
+            legislatorLikeInit(url: url("/legislatorlist/groupbyregion/1/\(selectedRegion_.rawValue)"))
         }
     }
     

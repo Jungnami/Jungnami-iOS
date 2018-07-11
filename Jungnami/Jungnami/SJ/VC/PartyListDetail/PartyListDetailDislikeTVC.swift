@@ -17,11 +17,11 @@ class PartyListDetailDislikeTVC: UITableViewController, APIService {
         super.viewWillAppear(animated)
         self.tableView.setContentOffset(.zero, animated: true)
         if let selectedParty_ = selectedParty {
-            legislatorDislikeInit(url: url("/legislatorlist/legislatorlist/0/\(selectedParty_.rawValue)"))
+            legislatorDislikeInit(url: url("/legislatorlist/groupbyparty/0/\(selectedParty_.rawValue)"))
         }
         
         if let selectedRegion_ = selectedRegion {
-            legislatorDislikeInit(url: url("/legislatorlist/region/0/\(selectedRegion_.rawValue)"))
+            legislatorDislikeInit(url: url("/legislatorlist/groupbyregion/0/\(selectedRegion_.rawValue)"))
         }
     }
     
