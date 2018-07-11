@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class CommunityWriteVC: UIViewController, UITextViewDelegate {
+class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     
     
     @IBAction func dismissBtn(_ sender: Any) {
@@ -20,9 +20,12 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var contentTxtView: UITextView!
-     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView!
     var contentImgView: UIImageView = UIImageView()
     var imgURL : String = ""
+    var images : [String : Data]?
+    var keyboardDismissGesture: UITapGestureRecognizer?
+    let imagePicker : UIImagePickerController = UIImagePickerController()
     lazy var deleteImgBtn : UIButton = {
         let button = UIButton()
         button.isEnabled = true
@@ -31,7 +34,6 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         button.addTarget(self, action: #selector(CommunityWriteVC.deleteImg(_sender:)), for: .touchUpInside)
         return button
     }()
-    
     
     var imageData : Data? {
         didSet {
@@ -49,24 +51,20 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
         }
     }
     
-    var keyboardDismissGesture: UITapGestureRecognizer?
-    let imagePicker : UIImagePickerController = UIImagePickerController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setKeyboardSetting()
         setToolbar()
         contentTxtView.delegate = self
-        
+        doneBtn.addTarget(self, action: #selector(doneOk), for: .touchUpInside)
         if let url = URL(string: gsno(imgURL)){
             self.profileImgView.kf.setImage(with: url)
         } else {
             self.profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         }
-       
-        
         profileImgView.makeImageRound()
-        imageData = nil
         contentTxtView.text = "생각을 공유해 보세요"
         contentTxtView.textColor = UIColor.lightGray
     }
@@ -80,7 +78,12 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate {
     @objc public func deleteImg (_sender: UIButton) {
         removeImgView()
     }
-
+    
+    @objc func doneOk(){
+        //통신
+        writeContent(url : url("/board/postcomplete"))
+    }
+    
 }
 
 //이미지뷰에 대한 추가 및 삭제
@@ -105,6 +108,7 @@ extension CommunityWriteVC {
     }
     
     func removeImgView(){
+        self.imageData = nil
         self.contentImgView.removeFromSuperview()
         self.deleteImgBtn.removeFromSuperview()
     }
@@ -153,7 +157,7 @@ extension CommunityWriteVC {
         }
     }
     
-
+    
     
     func textViewDidChange(_ textView: UITextView) {
         //TODO - 스페이스만 입력 됐을 때 처리
@@ -212,12 +216,12 @@ extension CommunityWriteVC {
         adjustKeyboardDismissGesture(isKeyboardVisible: true)
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-           let keyboardEndframe = self.view.convert(keyboardSize, from: nil)
+            let keyboardEndframe = self.view.convert(keyboardSize, from: nil)
             
             var contentInset:UIEdgeInsets = self.scrollView.contentInset
-           // contentInset.bottom = keyboardEndframe.size.height
-
-             contentInset.bottom = 170
+            // contentInset.bottom = keyboardEndframe.size.height
+            
+            contentInset.bottom = 170
             scrollView.contentInset = contentInset
             self.scrollView.layoutIfNeeded()
         }
@@ -225,7 +229,7 @@ extension CommunityWriteVC {
     
     @objc func keyboardWillHide(_ notification: Notification) {
         adjustKeyboardDismissGesture(isKeyboardVisible: false)
-  
+        
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
         self.view.layoutIfNeeded()
@@ -284,6 +288,43 @@ UINavigationControllerDelegate  {
         }
         
         self.dismiss(animated: true)
+    }
+}
+
+//통신
+extension CommunityWriteVC{
+    func writeContent(url : String){
+        var tempString = ""
+        if contentTxtView.text == "생각을 공유해 보세요"{
+            tempString = ""
+        } else {
+            tempString = contentTxtView.text
+        }
+        
+        let params : [String : Any] = [
+            "shared" : 0,
+            "content" : tempString
+        ]
+        
+        if let image = imageData {
+            images = [
+                "image" : image
+            ]
+        }
+        
+        CommunityWriteCompleteService.shareInstance.registerBoard(url: url, params: params, image: images, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(_):
+                self.dismiss(animated: true, completion: nil)
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "인터넷 연결상태를 확인해주세요")
+            default :
+                break
+            }
+        })
+        
+
     }
 }
 

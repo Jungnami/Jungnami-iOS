@@ -29,11 +29,11 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     //댓글로 돌아가기 버튼
     @IBAction func backBtn(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     ///////샘플데이터////////////
     var recommentData = RecommentData.sharedInstance.recomments
-    var commentData = CommentData.sharedInstance.comments
+    var commentData : [CommunityCommentVOData] = []
     ///////////////////////////
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,7 +149,7 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
             //cell정보들에 연결하기
             cell.delegate = self
-            cell.configure(data: commentData[indexPath.row])
+            cell.configure(index : indexPath.row, data: commentData[indexPath.row])
             return cell
         }else {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "RecommentCell", for: indexPath) as! RecommentCell

@@ -10,13 +10,13 @@ import SnapKit
 
 class MainLikeTVC: UITableViewController, APIService {
     
-    var legislatorLikeData : [Datum] = []
-    var firstData : Datum?
-    var secondData : Datum?
+    var legislatorLikeData : [LegislatorLikeVOData] = []
+    var firstData : LegislatorLikeVOData?
+    var secondData : LegislatorLikeVOData?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         legislatorLikeInit(url : url("/ranking/list/1"))
-       
+        
         //self.tableView.setContentOffset(.zero, animated: true)
     }
     
@@ -27,9 +27,6 @@ class MainLikeTVC: UITableViewController, APIService {
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         
     }
-    
-    
-    
     
     @objc func vote(_ sender : UIButton){
         getMyPoint(url : url("/legislator/voting"), index : sender.tag)
@@ -62,7 +59,7 @@ extension MainLikeTVC {
             }
             
             return cell
-          
+            
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier) as! MainTVCell
@@ -77,14 +74,12 @@ extension MainLikeTVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-        let mainStoryboard = Storyboard.shared().mainStoryboard
         
-        //        var viewController = storyboard.instantiateViewController(withIdentifier: LegislatorDetailVC.reuseIdentifier) as! LegislatorDetailVC
+        let mainStoryboard = Storyboard.shared().mainStoryboard
         
         if let legislatorDetailVC = mainStoryboard.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
-
+            
             legislatorDetailVC.selectedLegislatorIdx = self.legislatorLikeData[indexPath.row].lID
             
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
@@ -101,7 +96,7 @@ extension MainLikeTVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
         legislatorLikeInit(url : url("/ranking/list/1"))
-
+        
         self.tableView.reloadData()
         sender.endRefreshing()
     }
@@ -109,13 +104,14 @@ extension MainLikeTVC {
 //통신
 extension MainLikeTVC{
     
+    //국회의원 리스트 불러오기 (호감)
     func legislatorLikeInit(url : String){
         GetLegislatorLikeService.shareInstance.getLegislatorLike(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             
             switch result {
             case .networkSuccess(let legislatorData):
-                self.legislatorLikeData = legislatorData as! [Datum]
+                self.legislatorLikeData = legislatorData as! [LegislatorLikeVOData]
                 self.firstData = self.legislatorLikeData[0]
                 self.secondData = self.legislatorLikeData[1]
                 self.tableView.reloadData()
@@ -131,6 +127,7 @@ extension MainLikeTVC{
         
     }
     
+    //내 포인트 불러오기
     func getMyPoint(url : String, index : Int){
         GetPointService.shareInstance.getPoint(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
@@ -145,12 +142,11 @@ extension MainLikeTVC{
                         "l_id" : index,
                         "islike" : 1
                     ]
-                
                     self.voteOkAction(url: self.url("/legislator/voting"), params: params)
                 }
                 break
             case .accessDenied :
-            self.simpleAlert(title: "오류", message: "로그인해주세요")
+                self.simpleAlert(title: "오류", message: "로그인해주세요")
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :
@@ -160,7 +156,7 @@ extension MainLikeTVC{
         })
     } //getMyPoint
     
-    
+    //내 포인트 보고 '확인'했을때 통신
     func voteOkAction(url : String, params : [String : Any]) {
         VoteService.shareInstance.vote(url: url, params : params, completion: { [weak self] (result) in
             guard let `self` = self else { return }

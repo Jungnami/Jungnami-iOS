@@ -27,7 +27,7 @@ class CommunityResultTVC: UITableViewController {
     
     var keyboardDismissGesture: UITapGestureRecognizer?
     
-    var sampleData : [Sample] = []
+    var communityData : [CommunityVODataContent] = []
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchTxtfield.text = searchString
@@ -46,14 +46,6 @@ class CommunityResultTVC: UITableViewController {
             
         }
         blackView.isHidden = true
-        //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-        
-        let a = Sample(profileUrl: #imageLiteral(resourceName: "dabi"), name: "다비다비", time: "1시간 전", content: "다비 최고야,, 형윤 최고야,, 디자인 세상에서 제일 예뻐요 선생님들,, ", like: 3, comment: 5, contentImg: nil, heart: true, scrap: false)
-        let b = Sample(profileUrl: #imageLiteral(resourceName: "community_character"), name: "제리", time: "4시간 전", content: "픽미픽미픽미업", like: 73, comment: 6020, contentImg: #imageLiteral(resourceName: "inni"), heart: false, scrap: true)
-        
-        sampleData.append(a)
-        sampleData.append(b)
-        ////////////////////////////////////////////////////
         
     }
     
@@ -65,14 +57,14 @@ extension CommunityResultTVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return sampleData.count
+        return communityData.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
         
-        cell.configure(index : indexPath.row, data: sampleData[indexPath.row])
+        cell.configure(index : indexPath.row, data: communityData[indexPath.row])
         cell.delegate = self
         cell.scrapBtn.tag = indexPath.row
         cell.scrapBtn.isUserInteractionEnabled = true
@@ -165,6 +157,7 @@ extension CommunityResultTVC :  UIGestureRecognizerDelegate, TapDelegate {
     func myTableDelegate(index: Int) {
         print(index)
     }
+   
 }
 
 

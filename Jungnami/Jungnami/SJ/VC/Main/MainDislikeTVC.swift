@@ -13,9 +13,9 @@ enum MainViewType {
 
 class MainDislikeTVC: UITableViewController, APIService {
     
-   var legislatorDislikeData : [Datum] = []
-    var firstData : Datum?
-    var secondData : Datum?
+   var legislatorDislikeData : [LegislatorLikeVOData] = []
+    var firstData : LegislatorLikeVOData?
+    var secondData : LegislatorLikeVOData?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         legislatorLikeInit(url : url("/ranking/list/0"))
@@ -109,7 +109,7 @@ extension MainDislikeTVC {
             
             switch result {
             case .networkSuccess(let legislatorData):
-                self.legislatorDislikeData = legislatorData as! [Datum]
+                self.legislatorDislikeData = legislatorData as! [LegislatorLikeVOData]
                 self.firstData = self.legislatorDislikeData[0]
                 self.secondData = self.legislatorDislikeData[1]
                 self.tableView.reloadData()

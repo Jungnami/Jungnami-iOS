@@ -260,7 +260,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="b8E-fI-1zz" firstAttribute="centerY" secondItem="CmM-61-Psh" secondAttribute="centerY" id="0dn-CM-Xqr"/>
                                                 <constraint firstAttribute="width" constant="158" id="8gQ-0x-GC8"/>
@@ -278,7 +278,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="158" id="2QZ-Gm-Tn4"/>
                                                 <constraint firstItem="7rT-04-sm9" firstAttribute="leading" secondItem="hUx-TQ-hNP" secondAttribute="leading" constant="8" id="3Z5-7X-XWU"/>
@@ -471,7 +471,6 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dk5-kM-6v7">
                                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="278.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="187.5" id="lAi-yE-v79"/>
                                                 <constraint firstAttribute="height" constant="278" id="wr1-16-wgM"/>
                                             </constraints>
                                         </imageView>

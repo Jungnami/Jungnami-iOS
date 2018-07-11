@@ -46,6 +46,7 @@ extension PostableService {
             res in
             switch res.result {
             case .success:
+                print(encodedUrl)
                 print("networkPostHere")
                 print(JSON(res.result))
                 if let value = res.result.value {
@@ -80,7 +81,21 @@ extension PostableService {
     
     func delete(_ URL:String, params : [String : Any], completion : @escaping (Result<networkResult>)->Void){
         
-        Alamofire.request(URL, method: .delete, parameters: params, encoding: JSONEncoding.default, headers: nil).responseData(){
+        guard let encodedUrl = URL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            print("networking - invalid url")
+            return
+        }
+         print(encodedUrl)
+        var headers: HTTPHeaders?
+        let userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
+        
+        if userToken != "-1" {
+            headers = [
+                "authorization" : userToken
+            ]
+        }
+        Alamofire.request(encodedUrl, method: .delete, parameters: params, encoding: JSONEncoding.default, headers: headers).responseData(){
+           
             res in
             switch res.result {
             case .success:

@@ -1191,14 +1191,14 @@
                                                                     </constraints>
                                                                     <state key="normal" image="legislator-detailpage_support_blue"/>
                                                                 </button>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legislator-detailpage_medal_bronze" translatesAutoresizingMaskIntoConstraints="NO" id="zMi-8f-19b">
+                                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legislator-detailpage_medal_bronze" translatesAutoresizingMaskIntoConstraints="NO" id="zMi-8f-19b">
                                                                     <rect key="frame" x="187.5" y="18" width="22" height="28"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="28" id="Anb-jM-3SB"/>
                                                                         <constraint firstAttribute="width" constant="22" id="uOp-zi-j2N"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legislator-detailpage_orange_bomb" translatesAutoresizingMaskIntoConstraints="NO" id="6Vs-rE-kEO">
+                                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legislator-detailpage_orange_bomb" translatesAutoresizingMaskIntoConstraints="NO" id="6Vs-rE-kEO">
                                                                     <rect key="frame" x="215.5" y="13" width="23" height="29"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="29" id="RtT-pc-JN0"/>

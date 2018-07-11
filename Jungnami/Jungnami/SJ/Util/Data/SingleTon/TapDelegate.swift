@@ -9,5 +9,9 @@ import Foundation
 
 protocol TapDelegate {
     func myTableDelegate(index : Int)
+    
 }
 
+protocol DoubleTapDelegate {
+     func myDoubleTapDelegate(sender : UITapGestureRecognizer)
+}

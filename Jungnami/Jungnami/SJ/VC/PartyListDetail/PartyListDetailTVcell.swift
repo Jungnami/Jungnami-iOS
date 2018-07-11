@@ -19,7 +19,7 @@ class PartyListDetailTVcell: UITableViewCell {
     
     @IBOutlet weak var regionLbl: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
-    func configure(index : Int, data : PartyLegistorLikeVODatum){
+    func configure(index : Int, data : PartyLegistorLikeVOData){
         indexLbl.text = "\(data.rank)"
         profileImgView.image = #imageLiteral(resourceName: "dabi")
         nameLbl.text = data.name

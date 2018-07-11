@@ -16,11 +16,10 @@ class MainTVCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var partyLbl: UILabel!
     @IBOutlet weak var voteCountLbl: UILabel!
-    
     @IBOutlet weak var voteBtn: UIButton!
     
     let maxWidth : Double = 240.0
-    func configure(viewType : MainViewType, index : Int, data : Datum){
+    func configure(viewType : MainViewType, index : Int, data : LegislatorLikeVOData){
 
         profileImgView.image = #imageLiteral(resourceName: "inni")
         nameLbl.text = data.lName
