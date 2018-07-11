@@ -10,14 +10,22 @@ import UIKit
 class StoryFirstCell: UICollectionViewCell {
     
     @IBOutlet weak var storyImgView: UIImageView!
-    @IBOutlet weak var storyDateLbl: UILabel!
     @IBOutlet weak var storyTitleLbl: UILabel!
     @IBOutlet weak var storyCategoryLbl: UILabel!
     
-    func configure(data: ContentMenuSample) {
-        storyImgView.image = data.imgView
-        storyDateLbl.text = data.date
+    func configure(data: RecommendVODataContent) {
+        
         storyTitleLbl.text = data.title
-        storyCategoryLbl.text = data.category
+        storyCategoryLbl.text = data.text
+        
+        if (gsno(data.thumbnail) == "0") {
+            storyImgView.image = #imageLiteral(resourceName: "jihee")
+        } else {
+            
+            if let url = URL(string: gsno(data.thumbnail)){
+                self.storyImgView.kf.setImage(with: url)
+                
+            }
+        }
     }
 }

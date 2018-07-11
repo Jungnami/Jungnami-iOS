@@ -13,6 +13,18 @@ class FollowerListVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var followerTableView: UITableView!
     
+    
+    @IBOutlet weak var searchField: UITextField!
+    @IBAction func followerSearchField(_ sender: UITextField) {
+        if searchField.text != "" {
+            //?
+        }else {
+            simpleAlert(title: "알림", message: "검색어를 입력해주세요")
+        }
+    }
+    
+    
+    
     @IBAction func dismissBtn(_ sender: UIButton) {
         //취소버튼
         self.dismiss(animated: true, completion: nil)

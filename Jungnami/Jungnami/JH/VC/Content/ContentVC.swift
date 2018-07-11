@@ -19,7 +19,11 @@ class ContentVC: UIViewController {
     @IBOutlet weak var recommendBlueBar: UIImageView!
     @IBOutlet weak var tmiBlueBar: UIImageView!
     @IBOutlet weak var storyBlueBar: UIImageView!
-    
+    //mypageBtn
+    @IBAction func myPageBtn(_ sender: Any) {
+        let mypageVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
+        self.present(mypageVC, animated: true, completion: nil)
+    }
     private lazy var recommendVC: ContentRecommendVC = {
         
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)

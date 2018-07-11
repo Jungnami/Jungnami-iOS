@@ -14,11 +14,20 @@ class RecommendSecondCell: UICollectionViewCell {
     @IBOutlet weak var contentTitleLbl: UILabel!
     @IBOutlet weak var contentTypeLbl: UILabel!
     @IBOutlet weak var contentDate: UILabel!
-    
-    func configure(data: ContentMenuSample) {
-        contentImgView.image = data.imgView
+    func configure(data: RecommendVODataContent) {
+        
         contentTitleLbl.text = data.title
-        contentDate.text = data.date
-        contentTypeLbl.text = data.category
+        contentTypeLbl.text = data.text
+        
+        if (gsno(data.thumbnail) == "0") {
+            contentImgView.image = #imageLiteral(resourceName: "myungsun")
+        } else {
+            
+            if let url = URL(string: gsno(data.thumbnail)){
+                self.contentImgView.kf.setImage(with: url)
+                
+            }
+        }
     }
+
 }

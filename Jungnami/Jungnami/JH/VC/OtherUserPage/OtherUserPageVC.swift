@@ -26,9 +26,12 @@ class OtherUserPageVC: UIViewController {
     @IBOutlet weak var otherUserFeedBtn: UIButton!
     
     //backBtn
-    @IBAction func backBtn(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+    
+    @IBOutlet weak var dismissBtn: UIButton!
+    @IBAction func dismissBtn(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
+    
     
     
     @IBOutlet weak var containerView: UIView!
@@ -37,13 +40,38 @@ class OtherUserPageVC: UIViewController {
         updateView(selected: sender.tag)
         
     }
-    
+    //tapGesture-------------------------------
+    var keyboardDismiss: UITapGestureRecognizer?
+    var delegate : TapDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         otherUserProfileImgView.makeRounded()
         updateView(selected: 0)
+        //tapGesture
+        //make label button
+        let tapFollow = UITapGestureRecognizer(target: self, action: #selector(OtherUserPageVC.tapFollowLbl(_:)))
+        otherUserFollowingCountLbl.isUserInteractionEnabled = true
+        otherUserFollowingCountLbl.addGestureRecognizer(tapFollow)
+        
+        let tapFollower = UITapGestureRecognizer(target: self, action: #selector(OtherUserPageVC.tapFollowerLbl(_:)))
+        otherUserFollowerCountLbl.isUserInteractionEnabled = true
+        otherUserFollowerCountLbl.addGestureRecognizer(tapFollower)
     }
+    //tapGesture
+    //followLbl 터치했을 때 화면 올리기------------------------------------
+    @objc func tapFollowLbl(_ sender: UITapGestureRecognizer) {
+        let followList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowListVC.reuseIdentifier) as! FollowListVC
+        //데이터 pass하는거 어케하지~?
+        self.present(followList, animated: true, completion: nil)
+    }
+    //followerLbl 터치했을 때 화면 올리기
+    @objc func tapFollowerLbl(_ sender: UITapGestureRecognizer) {
+        let followerList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowerListVC.reuseIdentifier) as! FollowerListVC
+        self.present(followerList, animated: true, completion: nil)
+    }
+    //------------------------------------------------------------
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

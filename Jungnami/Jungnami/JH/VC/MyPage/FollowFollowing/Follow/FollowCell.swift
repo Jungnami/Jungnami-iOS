@@ -16,9 +16,10 @@ class FollowCell: UITableViewCell {
     
     @IBOutlet weak var followNickNameLbl: UILabel!
     //팔로우버튼
+    
+    @IBOutlet weak var followCancelBtn: UIButton!
     @IBAction func followBtn(_ sender: Any) {
-        //팔로우버튼 다시 눌렀을 때 팔로우버튼으로 바뀌어야 함
-        
+        followCancelBtn.setImage(#imageLiteral(resourceName: "mypage_follow"), for: .normal)
     }
     
     func configure(data: FollowListSample) {
