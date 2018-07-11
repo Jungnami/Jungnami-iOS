@@ -22,7 +22,20 @@ class ContentVC: UIViewController {
     //mypageBtn
     @IBAction func myPageBtn(_ sender: Any) {
         let mypageVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
-        self.present(mypageVC, animated: true, completion: nil)
+        let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+        if (myId == "-1"){
+            self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                    loginVC.entryPoint = 1
+                    self.present(loginVC, animated: true, completion: nil)
+                }
+            })
+            
+        } else {
+            mypageVC.selectedUserId = myId
+            self.present(mypageVC, animated: true, completion: nil)
+        }
+       
     }
     private lazy var recommendVC: ContentRecommendVC = {
         

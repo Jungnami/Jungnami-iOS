@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Kingfisher
 
-class MyPageVC: UIViewController{
+class MyPageVC: UIViewController , APIService{
     
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var profileuserNameLbl: UILabel!    
@@ -23,6 +24,7 @@ class MyPageVC: UIViewController{
     
     @IBOutlet weak var scapBtn: UIButton!
     @IBOutlet weak var feedBtn: UIButton!
+    
     
     @IBAction func dismissBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -39,6 +41,19 @@ class MyPageVC: UIViewController{
     //    var index = 0
     //셀아닌부분에서 tapGesture하려면 어떻게...?
     //------------------------------------------
+    
+    var myBoardData : [MyPageVODataBoard]  = [] {
+        didSet {
+            myFeedVC.myBoardData = myBoardData
+        }
+    }
+    var myScrapData : [MyPageVODataScrap]  = [] {
+        didSet {
+            scrapCVC.myScrapData = myScrapData
+        }
+    }
+    
+    var selectedUserId : String?
     private lazy var scrapCVC: ScrapCVC = {
         
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
@@ -56,26 +71,13 @@ class MyPageVC: UIViewController{
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
         
         var viewController = storyboard.instantiateViewController(withIdentifier: MyFeedVC.reuseIdentifier) as! MyFeedVC
-        
+        viewController.myBoardData = self.myBoardData
         self.add(asChildViewController: viewController)
         
         return viewController
     }()
-    //통신할 때 바꿔야 할 부분
-    func configure(data: MyPageSample) {
-        profileImgView.image = data.profileImg
-        profileImgView.makeImageRound()
-        profileuserNameLbl.text = data.userId
-        profileScrapNumLbl.text = data.scrapCount
-        profileMyfeedNumLbl.text = data.feedCount
-        profileFollowerNumLbl.text = data.followerCount
-        profileFollowingNumLbl.text = data.followCount
-        profileCoinCountLbl.text = data.coin
-        profileVoteCountLbl.text = data.vote
-    }
-    
-    
-    
+   
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +96,10 @@ class MyPageVC: UIViewController{
         let tapFollower = UITapGestureRecognizer(target: self, action: #selector(MyPageVC.tapFollowerLbl(_:)))
         profileFollowerNumLbl.isUserInteractionEnabled = true
         profileFollowerNumLbl.addGestureRecognizer(tapFollower)
+        if let selectedUserId_ = selectedUserId {
+             getMyPage(url: url("/user/mypage/\(selectedUserId_)"))
+        }
+       
     }
     //followLbl 터치했을 때 화면 올리기
     @objc func tapFollowLbl(_ sender: UITapGestureRecognizer) {
@@ -173,4 +179,45 @@ extension MyPageVC{
     
     
     
+}
+
+//통신
+
+extension MyPageVC {
+    func getMyPage(url : String) {
+        MypageService.shareInstance.getUserPage(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let myPageData):
+                
+            
+                let myPageData = myPageData as! MyPageVOData
+                if (self.gsno(myPageData.img) == "0") {
+                    self.profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+                } else {
+                    if let url = URL(string: self.gsno(myPageData.img)){
+                        self.profileImgView.kf.setImage(with: url)
+                    }
+                }
+                self.profileuserNameLbl.text = myPageData.nickname
+                self.profileScrapNumLbl.text = "\(myPageData.scrapcnt)"
+                self.profileMyfeedNumLbl.text = "\(myPageData.boardcnt)"
+                self.profileFollowingNumLbl.text = "\(myPageData.followingcnt)"
+                self.profileFollowerNumLbl.text = "\(myPageData.followercnt)"
+                self.profileCoinCountLbl.text = "\(myPageData.coin)"
+                self.profileVoteCountLbl.text = "\(myPageData.votingcnt)"
+                self.myBoardData = myPageData.board
+                self.myScrapData = myPageData.scrap
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "값 없음")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
 }
