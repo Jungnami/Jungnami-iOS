@@ -132,7 +132,8 @@ extension CommunityWriteVC {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         fixedSpace.width = 20
         
-        toolbar.items = [pictureBtn, fixedSpace, gifBtn, flexibleSpace]
+       // toolbar.items = [pictureBtn, fixedSpace, gifBtn, flexibleSpace]
+        toolbar.items = [pictureBtn, flexibleSpace]
         toolbar.barTintColor = .white
         toolbar.sizeToFit()
         contentTxtView.inputAccessoryView = toolbar

@@ -22,7 +22,13 @@ class LegislatorProfileCell: UICollectionViewCell {
     @IBOutlet weak var voteBtn: UIButton!
  
     func configure(data: LegislatorDetailVOData) {
-        legislatorProfileImgView.image = #imageLiteral(resourceName: "dabi")
+        if (gsno(data.profileimg) == "0") {
+            legislatorProfileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.profileimg)){
+                self.legislatorProfileImgView.kf.setImage(with: url)
+            }
+        }
         legislatorNameLbl.text = data.lName
         legislatorPartyLbl.text = data.partyName.rawValue
         legislatorRegionLbl.text = data.position

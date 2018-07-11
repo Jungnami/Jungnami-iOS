@@ -8,6 +8,7 @@
 import UIKit
 
 class MyPageVC: UIViewController {
+    
 
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var profileuserNameLbl: UILabel!
@@ -28,6 +29,10 @@ class MyPageVC: UIViewController {
         updateView(selected: sender.tag)
     }
     
+    
+    @IBAction func dismissBtn(_ sender: Any) {
+       self.dismiss(animated: true, completion: nil)
+    }
     //알림, 설정, 버튼으로 연결해야함
     var data = MyPageData.sharedInstance.myPageUsers
     //tapGesture--------------------------------

@@ -11,6 +11,7 @@
 		3B0475F320EEBD9B00D30A4D /* MainDislikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0475F220EEBD9B00D30A4D /* MainDislikeTVC.swift */; };
 		3B0896A120EEBA2B00BFBCBC /* MainPageMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0896A020EEBA2B00BFBCBC /* MainPageMenuVC.swift */; };
 		3B47AEAD20F54C8A0054B49A /* CommunityCommentDislikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B47AEAC20F54C8A0054B49A /* CommunityCommentDislikeService.swift */; };
+		3B47AEB120F5EC2D0054B49A /* Mypage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B47AEB020F5EC2D0054B49A /* Mypage.storyboard */; };
 		3B6B030A20EE09F700034C9B /* PartyListDetailTVcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030920EE09F700034C9B /* PartyListDetailTVcell.swift */; };
 		3B6B030C20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030B20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift */; };
 		3B6B031920EE530000034C9B /* ColorChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B031820EE530000034C9B /* ColorChip.swift */; };
@@ -148,6 +149,7 @@
 		3B0896A020EEBA2B00BFBCBC /* MainPageMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageMenuVC.swift; sourceTree = "<group>"; };
 		3B297F6D20E8A74100B82B0B /* Jungnami.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jungnami.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B47AEAC20F54C8A0054B49A /* CommunityCommentDislikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentDislikeService.swift; sourceTree = "<group>"; };
+		3B47AEB020F5EC2D0054B49A /* Mypage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mypage.storyboard; sourceTree = "<group>"; };
 		3B6B030920EE09F700034C9B /* PartyListDetailTVcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailTVcell.swift; sourceTree = "<group>"; };
 		3B6B030B20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailFirstSectionTVCell.swift; sourceTree = "<group>"; };
 		3B6B031820EE530000034C9B /* ColorChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChip.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 				439D811F20EB2FE5007DAD57 /* Main.storyboard */,
 				3B83165E20F137A2001D2423 /* Community.storyboard */,
 				3B83166020F138A4001D2423 /* Rank.storyboard */,
+				3B47AEB020F5EC2D0054B49A /* Mypage.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -978,6 +981,7 @@
 				439D815020EB2FE5007DAD57 /* Assets.xcassets in Resources */,
 				3BCF933820F16B4700E9E7F7 /* CompletePopup.xib in Resources */,
 				3BCF933620F1656600E9E7F7 /* SupportPopup.xib in Resources */,
+				3B47AEB120F5EC2D0054B49A /* Mypage.storyboard in Resources */,
 				439D815220EB2FE5007DAD57 /* Info.plist in Resources */,
 				439D814020EB2FE5007DAD57 /* Main.storyboard in Resources */,
 			);

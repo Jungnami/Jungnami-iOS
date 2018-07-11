@@ -123,16 +123,12 @@ extension LegislatorDetailVC {
 extension LegislatorDetailVC{
     //좋아요
     @objc func like(_sender: UIButton){
-        simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-            self.popupImgView(fileName: "area_like_popup")
-        }
+        getMyPoint(url : url("/legislator/voting"), index : selectedLegislatorIdx, isLike : 1)
     }
     
     //싫어요
     @objc func dislike(_sender: UIButton){
-        simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-            self.popupImgView(fileName: "area_hate_popup")
-        }
+        getMyPoint(url : url("/legislator/voting"), index : selectedLegislatorIdx, isLike : 0)
     }
     //후원하기
     @objc func support(_sender: UIButton){
@@ -327,7 +323,12 @@ extension LegislatorDetailVC {
                 self.showSupportPopup(myCoin: myCoin)
                 break
             case .accessDenied :
-                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :
@@ -354,5 +355,67 @@ extension LegislatorDetailVC {
             
         })
     }
+    
+    
+    //내 포인트 불러오기
+    func getMyPoint(url : String, index : Int, isLike : Int){
+        GetPointService.shareInstance.getPoint(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let pointData):
+                let data = pointData as! PointVOData
+                let myPoint = data.votingCnt
+                self.simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권: \(myPoint)개") { (_) in
+                    //확인했을때 통신
+                    let params : [String : Any] = [
+                        "l_id" : index,
+                        "islike" : isLike
+                    ]
+                    
+                    self.voteOkAction(url: self.url("/legislator/voting"), params: params, isLike : isLike)
+                }
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    } //getMyPoint
+    
+    //내 포인트 보고 '확인'했을때 통신
+    func voteOkAction(url : String, params : [String : Any], isLike : Int) {
+        VoteService.shareInstance.vote(url: url, params : params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(_):
+                if isLike == 1 {
+                    self.popupImgView(fileName: "area_like_popup")
+                } else {
+                    self.popupImgView(fileName: "area_hate_popup")
+                }
+                
+                self.viewWillAppear(false)
+                break
+            case .noPoint :
+                self.simpleAlert(title: "오류", message: "포인트가 부족합니다")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결을 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    } //voteOkAction
+    
     
 }

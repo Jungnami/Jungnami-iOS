@@ -66,7 +66,7 @@ extension PartyListDetailLikeTVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: PartyListDetailTVcell.reuseIdentifier, for: indexPath) as! PartyListDetailTVcell
             
             cell.configure(index: indexPath.row, data: legislatorLikeData[indexPath.row])
-            cell.likeBtn.tag = indexPath.row
+            cell.likeBtn.tag = legislatorLikeData[indexPath.row].id
             cell.likeBtn.isUserInteractionEnabled = true
             cell.likeBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
             return cell
@@ -89,9 +89,7 @@ extension PartyListDetailLikeTVC {
 //셀에 대한 행동 - 투표
 extension PartyListDetailLikeTVC {
     @objc func vote(_ sender : UIButton){
-        simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권") { (_) in
-            self.popupImgView(fileName: "area_like_popup")
-        }
+        getMyPoint(url : url("/legislator/voting"), index : sender.tag)
     }
 }
 
@@ -117,4 +115,61 @@ extension PartyListDetailLikeTVC {
         })
         
     }
+    
+    //내 포인트 불러오기
+    func getMyPoint(url : String, index : Int){
+        GetPointService.shareInstance.getPoint(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let pointData):
+                let data = pointData as! PointVOData
+                let myPoint = data.votingCnt
+                self.simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권: \(myPoint)개") { (_) in
+                    //확인했을때 통신
+                    let params : [String : Any] = [
+                        "l_id" : index,
+                        "islike" : 1
+                    ]
+                    
+                    self.voteOkAction(url: self.url("/legislator/voting"), params: params)
+                }
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    } //getMyPoint
+    
+    //내 포인트 보고 '확인'했을때 통신
+    func voteOkAction(url : String, params : [String : Any]) {
+        VoteService.shareInstance.vote(url: url, params : params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(_):
+                self.popupImgView(fileName: "area_like_popup")
+                self.viewWillAppear(false)
+                break
+            case .noPoint :
+                self.simpleAlert(title: "오류", message: "포인트가 부족합니다")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결을 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    } //voteOkAction
+    
+    
 }

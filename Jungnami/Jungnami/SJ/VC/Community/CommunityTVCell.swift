@@ -63,7 +63,7 @@ class CommunityTVCell: UITableViewCell {
         } else {
             heartBtn.isSelected = true
         }
-        
+        //킹피셔
         if (gsno(data.userimg) == "0") {
             profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {

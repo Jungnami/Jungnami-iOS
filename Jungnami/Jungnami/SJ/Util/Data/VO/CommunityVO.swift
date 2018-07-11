@@ -13,8 +13,14 @@ struct CommunityVO: Codable {
 }
 
 struct CommunityVOData: Codable {
+    let userImgURL : String?
     let content: [CommunityVODataContent]
     let alarmcnt: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case content, alarmcnt
+        case userImgURL = "user_img_url"
+    }
 }
 
 struct CommunityVODataContent: Codable {
