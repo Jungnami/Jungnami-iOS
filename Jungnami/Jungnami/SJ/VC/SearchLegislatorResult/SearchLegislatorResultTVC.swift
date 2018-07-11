@@ -8,10 +8,14 @@
 
 import UIKit
 
-class SearchLegislatorResultTVC: UITableViewController {
-
+class SearchLegislatorResultTVC: UITableViewController, APIService {
+    
+    //viewFrom - 300명 나와야할때 0, 정당에서 나와야할때 1, 지역에서 나와야할 때 2
+    var viewFrom : Int = 0
+    var selectedParty : PartyName?
+    var selectedRegion : Region?
     var searchString : String?
-    var sampleData : [SampleLegislator] = []
+    var legislatorSearchData : [LegislatorSearchVOData] = []
     @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var searchTxtfield: UITextField!
     @IBAction func backBtn(_ sender: Any) {
@@ -36,9 +40,9 @@ class SearchLegislatorResultTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         self.navigationItem.setHidesBackButton(true, animated:true)
-         searchTxtfield.delegate = self
-         setKeyboardSetting()
+        self.navigationItem.setHidesBackButton(true, animated:true)
+        searchTxtfield.delegate = self
+        setKeyboardSetting()
         
         self.tableView.addSubview(blackView)
         blackView.snp.makeConstraints { (make) in
@@ -49,26 +53,22 @@ class SearchLegislatorResultTVC: UITableViewController {
         }
         blackView.isHidden = true
         
-        //////////////////////뷰 보기 위한 샘플 데이터//////////////////////////
-         sampleData = SampleLegislatorData.sharedInstance.legislators
-        ////////////////////////////////////////////////////
-        
     }
-
+    
 }
 
 //tableview delegate, datasource
 extension SearchLegislatorResultTVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return sampleData.count
+        return legislatorSearchData.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchLegislatorResultTVCell.reuseIdentifier) as! SearchLegislatorResultTVCell
         let rank = indexPath.row+1
-        cell.configure(rank: rank, data: sampleData[indexPath.row])
+        cell.configure(rank: rank, data: legislatorSearchData[indexPath.row])
         return cell
         
     }
@@ -76,8 +76,8 @@ extension SearchLegislatorResultTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let legislatorDetailVC = self.storyboard?.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
-         
-           // legislatorDetailVC.selectedLegislator = self.sampleData[indexPath.row]
+            
+            legislatorDetailVC.selectedLegislatorIdx = self.legislatorSearchData[indexPath.row].id
             
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
@@ -107,6 +107,21 @@ extension SearchLegislatorResultTVC : UITextFieldDelegate {
         textField.resignFirstResponder()
         //TODO - 확인 누르면 데이터 로드하는 통신 코드
         //있으면 리로드, 없으면 얼러트
+        if let searchString_ = textField.text {
+            if viewFrom == 0 {
+                // /search/legislator/:l_name -> 300명
+                searchLegislator(searchString : searchString_, url : url("/search/legislator/\(searchString_)"))
+                
+            } else if viewFrom == 1 {
+                // /search/legislatorparty/:p_name/:l_name  -> 정당
+                
+                searchLegislator(searchString : searchString_, url : url("/search/legislatorparty/\(selectedParty!.rawValue)/\(searchString_)"))
+                
+            } else {
+                // /search/legislatorregion/:city/:l_name  -> 지역
+                searchLegislator(searchString : searchString_, url : url("/search/legislatorregion/\(selectedRegion!.rawValue)/\(searchString_)"))
+            }
+        }
         
         return true
     }
@@ -151,3 +166,34 @@ extension SearchLegislatorResultTVC{
         self.view.endEditing(true)
     }
 }
+
+//통신
+extension SearchLegislatorResultTVC {
+    //의원검색
+    func searchLegislator(searchString : String, url : String){
+        LegislatorSearchService.shareInstance.searchLegislator(url: url) { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let legislatorData):
+                //dddddddd
+                let legislatorSearchData = legislatorData as! [LegislatorSearchVOData]
+                self.legislatorSearchData = legislatorSearchData
+                self.tableView.reloadData()
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "검색 결과가 없습니다")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+        }
+    }
+    
+   
+}
+
+
+
+

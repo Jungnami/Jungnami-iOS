@@ -91,7 +91,7 @@ extension MainDislikeTVC {
 extension MainDislikeTVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        legislatorLikeInit(url : url("/ranking/list/1"))
+        legislatorLikeInit(url : url("/ranking/list/0"))
         
         self.tableView.reloadData()
         sender.endRefreshing()

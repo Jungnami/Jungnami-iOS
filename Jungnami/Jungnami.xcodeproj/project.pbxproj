@@ -23,6 +23,8 @@
 		3B83165B20F10AF9001D2423 /* CommunityFirstSectionLoginTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83165A20F10AF9001D2423 /* CommunityFirstSectionLoginTVCell.swift */; };
 		3B83165F20F137A2001D2423 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B83165E20F137A2001D2423 /* Community.storyboard */; };
 		3B83166120F138A4001D2423 /* Rank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B83166020F138A4001D2423 /* Rank.storyboard */; };
+		3B87A33320F6156700A968B8 /* LegislatorSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B87A33220F6156700A968B8 /* LegislatorSearchService.swift */; };
+		3B87A33520F6170300A968B8 /* LegislatorSearchVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B87A33420F6170300A968B8 /* LegislatorSearchVO.swift */; };
 		3B94984F20F3BC6B00BFA81E /* CommunityWriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94984E20F3BC6B00BFA81E /* CommunityWriteService.swift */; };
 		3B94985120F3BD2400BFA81E /* CommunityWriteVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985020F3BD2400BFA81E /* CommunityWriteVO.swift */; };
 		3B94985320F3E36700BFA81E /* GetPointService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985220F3E36700BFA81E /* GetPointService.swift */; };
@@ -165,6 +167,8 @@
 		3B83165A20F10AF9001D2423 /* CommunityFirstSectionLoginTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFirstSectionLoginTVCell.swift; sourceTree = "<group>"; };
 		3B83165E20F137A2001D2423 /* Community.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		3B83166020F138A4001D2423 /* Rank.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rank.storyboard; sourceTree = "<group>"; };
+		3B87A33220F6156700A968B8 /* LegislatorSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorSearchService.swift; sourceTree = "<group>"; };
+		3B87A33420F6170300A968B8 /* LegislatorSearchVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorSearchVO.swift; sourceTree = "<group>"; };
 		3B94984E20F3BC6B00BFA81E /* CommunityWriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteService.swift; sourceTree = "<group>"; };
 		3B94985020F3BD2400BFA81E /* CommunityWriteVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteVO.swift; sourceTree = "<group>"; };
 		3B94985220F3E36700BFA81E /* GetPointService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPointService.swift; sourceTree = "<group>"; };
@@ -386,6 +390,7 @@
 				3B94985820F3EC8000BFA81E /* MessageVO.swift */,
 				3B94986020F4A00300BFA81E /* CommunityVO.swift */,
 				3BFCE31220F501DF00C21AEB /* CommunityCommentVO.swift */,
+				3B87A33420F6170300A968B8 /* LegislatorSearchVO.swift */,
 			);
 			path = VO;
 			sourceTree = "<group>";
@@ -408,6 +413,7 @@
 				3B47AEAC20F54C8A0054B49A /* CommunityCommentDislikeService.swift */,
 				3BFCE31420F5022900C21AEB /* CommunityCommentService.swift */,
 				3BFCE31620F51CC700C21AEB /* CommunityCommentWriteService.swift */,
+				3B87A33220F6156700A968B8 /* LegislatorSearchService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1068,6 +1074,7 @@
 				3B97B5CB20F28C8800020A81 /* HttpResponseCode.swift in Sources */,
 				43E84BFF20EE3EAE007C6C97 /* ContentSample.swift in Sources */,
 				43E84BFB20EE2E42007C6C97 /* ContentDetailVC.swift in Sources */,
+				3B87A33520F6170300A968B8 /* LegislatorSearchVO.swift in Sources */,
 				43EDECCA20F2063E00E0F0E9 /* FollowerListVC.swift in Sources */,
 				439D814120EB2FE5007DAD57 /* CommunityWriteVC.swift in Sources */,
 				4351999620EFE94A00D72AAF /* OtherUserPageVC.swift in Sources */,
@@ -1132,6 +1139,7 @@
 				439D815120EB2FE5007DAD57 /* AppDelegate.swift in Sources */,
 				439D814520EB2FE5007DAD57 /* PartyListPageMenuVC.swift in Sources */,
 				3B97B5D520F28DF400020A81 /* LegislatorLikeVO.swift in Sources */,
+				3B87A33320F6156700A968B8 /* LegislatorSearchService.swift in Sources */,
 				439D814C20EB2FE5007DAD57 /* RecommendFirstCell.swift in Sources */,
 				43E4B7BA20F5FA0200BA68D4 /* ContentDetailService.swift in Sources */,
 				432BA53B20F367C600B33A36 /* ChangeCoinVC.swift in Sources */,

@@ -29,8 +29,11 @@ class MainLikeTVC: UITableViewController, APIService {
     }
     
     @objc func vote(_ sender : UIButton){
+
         getMyPoint(url : url("/legislator/voting"), index : sender.tag)
     }
+    
+    
     
 }
 

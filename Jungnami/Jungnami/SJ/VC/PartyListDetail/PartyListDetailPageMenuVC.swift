@@ -8,7 +8,7 @@
 import UIKit
 
 
-class PartyListDetailPageMenuVC : UIViewController{
+class PartyListDetailPageMenuVC : UIViewController, APIService{
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var likeBtn: UIButton!
@@ -229,7 +229,24 @@ extension PartyListDetailPageMenuVC : UITextFieldDelegate{
                 return false
             }
         }
-        searchLegislator()
+        
+        //정당별
+        if let selectedParty_ = selectedParty {
+            if let searchString_ = textField.text {
+                let viewFrom = 1
+                searchLegislator(searchString : searchString_, viewFrom : viewFrom,
+                       
+                url : url("/search/legislatorparty/\(selectedParty_.rawValue)/\(searchString_)"))
+            }
+        }
+        
+        if let selectedRegion_ = selectedRegion {
+            if let searchString_ = textField.text {
+               let viewFrom = 2
+                searchLegislator(searchString : searchString_, viewFrom : viewFrom, url : url("/search/legislatorregion/\(selectedRegion_.rawValue)/\(searchString_)"))
+            }
+        }
+       
         return true
     }
 }
@@ -339,4 +356,43 @@ extension PartyListDetailPageMenuVC{
     //----------------------------------------------------------------
     
     
+}
+
+
+//통신
+extension PartyListDetailPageMenuVC {
+    //의원검색
+    func searchLegislator(searchString : String, viewFrom : Int, url : String){
+        LegislatorSearchService.shareInstance.searchLegislator(url: url) { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let legislatorData):
+        
+                let legislatorSearchData = legislatorData as! [LegislatorSearchVOData]
+                
+                self.toSearchResultPage(searchString: searchString, viewFrom : viewFrom, legislatorSearchData: legislatorSearchData)
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "검색 결과가 없습니다")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+        }
+    }
+    
+    func toSearchResultPage(searchString : String, viewFrom : Int, legislatorSearchData : [LegislatorSearchVOData]){
+        let mainStoryboard = Storyboard.shared().mainStoryboard
+        if let searchLegislatorResultTVC = mainStoryboard.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
+            self.navSearchView.endEditing(true)
+            searchLegislatorResultTVC.legislatorSearchData = legislatorSearchData
+            searchLegislatorResultTVC.searchString = searchString
+            searchLegislatorResultTVC.viewFrom = viewFrom
+            searchLegislatorResultTVC.selectedParty = self.selectedParty
+            searchLegislatorResultTVC.selectedRegion = self.selectedRegion
+            self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
+        }
+    }
 }
