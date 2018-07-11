@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZNN-fj-aaj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZNN-fj-aaj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--ContentVC-->
         <scene sceneID="ysX-W3-7pK">
@@ -736,7 +731,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbb-S9-9lx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="502" y="2245"/>
+            <point key="canvasLocation" x="-687" y="1290"/>
         </scene>
         <!--알림-->
         <scene sceneID="82K-eb-pTM">
@@ -878,7 +873,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l45-He-HK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="3609"/>
+            <point key="canvasLocation" x="-687" y="2986"/>
         </scene>
         <!--ScrapCVC-->
         <scene sceneID="W8e-bn-5Im">
@@ -951,7 +946,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7nk-Ko-oGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1242" y="1753"/>
+            <point key="canvasLocation" x="52" y="798"/>
         </scene>
         <!--Content RecommendVC-->
         <scene sceneID="jni-ci-wyw">
@@ -1510,7 +1505,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0d-n7-3mi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2224.8000000000002" y="2244.8275862068967"/>
+            <point key="canvasLocation" x="1036" y="1290"/>
         </scene>
         <!--My CoinVC-->
         <scene sceneID="0FZ-A5-BaK">
@@ -1725,7 +1720,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUo-w6-vs9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2892" y="2104"/>
+            <point key="canvasLocation" x="1703" y="1149"/>
         </scene>
         <!--Change CoinVC-->
         <scene sceneID="vMM-xf-zEK">
@@ -1857,7 +1852,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LaL-XK-YqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2892" y="2785.4572713643179"/>
+            <point key="canvasLocation" x="1703" y="1831"/>
         </scene>
         <!--Follow ListVC-->
         <scene sceneID="oWn-wg-86J">
@@ -2023,7 +2018,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdX-77-48M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="4338"/>
+            <point key="canvasLocation" x="-687" y="2204"/>
         </scene>
         <!--Follower ListVC-->
         <scene sceneID="lRr-72-wTu">
@@ -2187,7 +2182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7D3-P0-Jmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1260" y="4337"/>
+            <point key="canvasLocation" x="-42" y="2203"/>
         </scene>
         <!--My FeedVC-->
         <scene sceneID="WiF-lC-aDQ">
@@ -2500,6 +2495,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="bzV-lY-8Y1" firstAttribute="leading" secondItem="zTA-PP-WFh" secondAttribute="leading" id="1DB-gR-xKM"/>
                                                                 <constraint firstItem="bKo-vg-Dlx" firstAttribute="centerY" secondItem="ZXa-SJ-y3l" secondAttribute="centerY" id="40N-D2-ncK"/>
+                                                                <constraint firstAttribute="bottom" secondItem="ZXa-SJ-y3l" secondAttribute="bottom" constant="43" id="5aJ-7r-N4z"/>
                                                                 <constraint firstItem="Z51-g9-duP" firstAttribute="leading" secondItem="TwX-Sh-qyj" secondAttribute="leading" constant="12" id="6tb-Ju-D1L"/>
                                                                 <constraint firstItem="Oq7-zG-HX7" firstAttribute="leading" secondItem="5os-op-Wlk" secondAttribute="leading" id="7qb-0b-gjj"/>
                                                                 <constraint firstItem="hAf-Sz-pfK" firstAttribute="centerY" secondItem="bzV-lY-8Y1" secondAttribute="centerY" id="Bes-f9-f4V"/>
@@ -2535,7 +2531,6 @@
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="TwX-Sh-qyj" secondAttribute="bottom" constant="8" id="EVo-hP-AHL"/>
                                                         <constraint firstItem="TwX-Sh-qyj" firstAttribute="leading" secondItem="8t6-Zg-iNV" secondAttribute="leading" id="SD0-4E-xHR"/>
-                                                        <constraint firstAttribute="height" constant="607.5" id="eZq-Kc-GPZ"/>
                                                         <constraint firstAttribute="trailing" secondItem="TwX-Sh-qyj" secondAttribute="trailing" id="ehr-Ba-LDj"/>
                                                         <constraint firstItem="TwX-Sh-qyj" firstAttribute="top" secondItem="8t6-Zg-iNV" secondAttribute="top" id="ovS-8V-OW7"/>
                                                     </constraints>

@@ -20,7 +20,12 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     
     var keyboardDismissGesture: UITapGestureRecognizer?
-    
+    //통신
+    var followListData : [FollowListVOData]?
+    /*
+     let followingID, followingNickname, followingImgURL, isMyFollowing: String
+     
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         followTableView.delegate = self
@@ -96,6 +101,35 @@ extension FollowListVC {
 //통신
 extension FollowListVC {
     func getFollwList(url : String){
+        
+    }
+}
+//followList 불러오는 VO, Service만들기
+extension FollowerListVC {
+    
+    func followerListInit(url : String){
+        FollowListService.shareInstance.getFollowList(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let recommendData):
+                //수정
+                let recommendData = recommendData as! RecommendVOData//followListVC에서 받아올 것 var followData : [] 
+//                self.contentData = recommendData.content.filter({
+//                    $0.type == 0
+//                })
+//                self.alarmCount = recommendData.alarmcnt
+//                self.contentCollectionView.reloadData()
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "값 없음")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
         
     }
 }
