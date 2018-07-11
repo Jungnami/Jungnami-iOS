@@ -49,10 +49,10 @@ class PartyListDetailTVcell: UITableViewCell {
             ColorChip.shared().partyGray.cgColor
         case .대한애국당:
             profileImgView.layer.borderColor =
-            ColorChip.shared().partyOrange.cgColor
+            ColorChip.shared().partyNavy.cgColor
         case .민주평화당:
             profileImgView.layer.borderColor =
-            ColorChip.shared().partyNavy.cgColor
+            ColorChip.shared().partyGreen.cgColor
         }
         
         if index % 2 == 1 {

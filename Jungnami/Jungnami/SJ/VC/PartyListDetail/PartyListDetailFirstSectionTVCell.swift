@@ -13,21 +13,21 @@ class PartyListDetailFirstSectionTVCell: UITableViewCell {
     func configure(selectedParty : PartyName){
         switch selectedParty {
         case .더불어민주당:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_bluebox")
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_bluebox")
         case .자유한국당:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_redbox")
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_redbox")
         case .바른미래당 :
-            partyImgView.image = #imageLiteral(resourceName: "partylist_mintbox")
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_mint")
         case .정의당:
-             partyImgView.image = #imageLiteral(resourceName: "partylist_yellowbox")
+             partyImgView.image = #imageLiteral(resourceName: "partylist_thin_yellowbox")
         case .민중당 :
-            partyImgView.image = #imageLiteral(resourceName: "partylist_orangebox")
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_orangebox")
         case .무소속:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_orangebox")
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_graybox")
         case .대한애국당:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_orangebox")
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_navybox")
         case .민주평화당:
-            partyImgView.image = #imageLiteral(resourceName: "partylist_orangebox")
+            partyImgView.image = #imageLiteral(resourceName: "partylist_thin_greenbox")
         }
        
     }

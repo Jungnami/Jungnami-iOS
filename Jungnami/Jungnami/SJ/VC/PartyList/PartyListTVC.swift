@@ -36,7 +36,7 @@ class PartyListTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return 8
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -53,6 +53,12 @@ class PartyListTVC: UITableViewController {
             selectedParty = .정의당
         case 4:
             selectedParty = .민중당
+        case 5:
+            selectedParty = .대한애국당
+        case 6:
+            selectedParty = .민주평화당
+        case 7:
+            selectedParty = .무소속
         default:
             return
         }
