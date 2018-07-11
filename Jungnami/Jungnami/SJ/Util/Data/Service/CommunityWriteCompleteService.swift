@@ -21,6 +21,11 @@ struct CommunityWriteCompleteService: PostablewithPhoto {
                 switch networkResult.resCode {
                 case 201 :
                     completion(.networkSuccess(""))
+                case 204 :
+                    completion(.failInsert)
+                case 401 :
+                    completion(.accessDenied)
+                    
                 case 500 :
                     completion(.serverErr)
                 default :

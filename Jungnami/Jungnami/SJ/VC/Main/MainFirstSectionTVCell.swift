@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
+
 class MainFirstSectionTVCell: UITableViewCell {
     
     @IBOutlet weak var firstImgView: UIImageView!
@@ -26,7 +28,24 @@ class MainFirstSectionTVCell: UITableViewCell {
     let maxWidth : Double = 150.0
     //꽉찬게 240
     func configure(first : LegislatorLikeVOData, second : LegislatorLikeVOData){
-        firstImgView.image = #imageLiteral(resourceName: "inni")
+        //firstImgView.image =
+            
+        if (gsno(first.mainimg) == "0") {
+            firstImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(first.mainimg)){
+                self.firstImgView.kf.setImage(with: url)
+            }
+        }
+        
+        if (gsno(second.mainimg) == "0") {
+            secondImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(second.mainimg)){
+                self.secondImgView.kf.setImage(with: url)
+            }
+        }
+        
         firstNameLbl.text = first.lName
         firstPartyLbl.text = first.partyName.rawValue
         firstProgressBarLbl.text = first.scoretext
@@ -52,7 +71,7 @@ class MainFirstSectionTVCell: UITableViewCell {
         firstProgressBar.snp.makeConstraints { (make) in
             make.width.equalTo(maxWidth*first.width)
         }
-        secondImgView.image = #imageLiteral(resourceName: "dabi")
+        
         secondNameLbl.text = second.lName
         secondPartyLbl.text = second.partyName.rawValue
         secondProgressBarLbl.text = second.scoretext

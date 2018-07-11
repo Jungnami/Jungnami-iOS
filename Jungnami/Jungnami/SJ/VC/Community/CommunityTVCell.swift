@@ -23,6 +23,7 @@ class myCommentBtn : UIButton {
     var commentCnt : Int = 0
 }
 
+
 class CommunityTVCell: UITableViewCell {
     
     @IBOutlet weak var profileImgView: UIImageView!

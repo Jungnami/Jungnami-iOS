@@ -141,6 +141,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
             //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
             //cell.doubleTapdelegate = self
             let temp = communityData[indexPath.row]
+            //여기는 스크랩했냐 아니냐
             cell.scrapBtn.tag = temp.boardid
             cell.commentBtn.tag = (temp.boardid)
             cell.heartBtn.boardIdx = temp.boardid
@@ -173,10 +174,10 @@ extension CommunityVC {
     }
     
     @objc func scrap(_ sender : UIButton){
-        //다른 뷰로 넘길때 userId 같이 넘기면 (나중에는 댓글에 대한 고유 인덱스가 됨) 그거 가지고 다시 통신
-        //let userName = sampleData[sender.tag].name
+        let boardIdx = sender.tag
+
         simpleAlertwithHandler(title: "스크랩", message: "스크랩하시겠습니까?") { (_) in
-            // print(userName)
+            self.scrapAction(url: self.url("/board/postcomplete"), boardIdx: boardIdx)
         }
     }
     
@@ -494,6 +495,36 @@ extension CommunityVC {
             }
             
         })
+    }
+    
+    //보드 스크랩
+    func scrapAction(url : String, boardIdx : Int){
+
+        let params : [String : Any] = [
+            "shared" : boardIdx
+        ]
+        CommunityWriteCompleteService.shareInstance.registerBoard(url: url, params: params, image: [:], completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(_):
+                self.simpleAlert(title: "성공", message: "스크랩 성공했습니다")
+            case .accessDenied :
+            self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .failInsert :
+                self.simpleAlert(title: "오류", message: "스크랩 실패했습니다")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "인터넷 연결상태를 확인해주세요")
+            default :
+                break
+            }
+        })
+        
+        
     }
 }
 
