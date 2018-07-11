@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MainTVCell: UITableViewCell {
     
@@ -20,8 +21,14 @@ class MainTVCell: UITableViewCell {
     
     let maxWidth : Double = 240.0
     func configure(viewType : MainViewType, index : Int, data : LegislatorLikeVOData){
-
-        profileImgView.image = #imageLiteral(resourceName: "inni")
+        
+        if (gsno(data.profileimg) == "0") {
+            profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.profileimg)){
+                self.profileImgView.kf.setImage(with: url)
+            }
+        }
         nameLbl.text = data.lName
         partyLbl.text = "_\(data.partyName.rawValue)"
         voteCountLbl.text = "\(String(describing: data.scoretext))"
@@ -70,6 +77,9 @@ class MainTVCell: UITableViewCell {
         
         
     }
+    
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

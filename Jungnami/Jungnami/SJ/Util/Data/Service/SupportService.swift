@@ -21,8 +21,10 @@ struct SupportService : PostableService {
                 switch networkResult.resCode{
                 case 201 :
                     completion(.networkSuccess(""))
-                case 401 :
+                case 304 :
                     completion(.noCoin)
+                case 401 :
+                    completion(.accessDenied)
                 default :
                     print("vote error")
                     break

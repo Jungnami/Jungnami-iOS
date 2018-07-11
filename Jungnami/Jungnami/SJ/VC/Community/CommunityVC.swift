@@ -31,6 +31,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
             communityTableView.reloadData()
         }
     }
+    var userIngURL : String?
     
     @IBAction func mypageBtn(_ sender: Any) {
         
@@ -123,8 +124,10 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionWriteTVCell.reuseIdentifier) as! CommunityFirstSectionWriteTVCell
-                
-                //cell.configure(data : )
+                if let userImgUrl_ = userIngURL {
+                    cell.configure(userImgUrl_)
+                }
+              
                 cell.nextBtn.addTarget(self, action: #selector(toWrite(_:)), for: .touchUpInside)
                 
                 return cell
@@ -225,6 +228,10 @@ extension CommunityVC: UITextFieldDelegate {
             }
         }
         //TODO - 확인 누르면 데이터 로드하는 통신 코드
+        
+            if let communityResultTVC = Storyboard.shared().communityStoryboard.instantiateViewController(withIdentifier:CommunityResultTVC.reuseIdentifier) as? CommunityResultTVC {
+                self.navigationController?.pushViewController(communityResultTVC, animated: true)
+            }
         
         return true
     }
@@ -333,6 +340,7 @@ extension CommunityVC {
                 self.communityData = communityContent.content
                 self.communityTableView.reloadData()
                 self.badgeCount = communityContent.alarmcnt
+                self.userIngURL = communityContent.userImgURL
                 break
             case .nullValue :
                 break
@@ -360,7 +368,12 @@ extension CommunityVC {
                 self.toCommunityWriteVC()
                 break
             case .accessDenied :
-                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
             case .networkFail :
                 self.simpleAlert(title: "network", message: "check")
             default :
@@ -394,7 +407,12 @@ extension CommunityVC {
                 self.heartPopup()
                 break
             case .accessDenied :
-                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :
@@ -425,9 +443,15 @@ extension CommunityVC {
                 }
                 cell.likeLabel.text = "\(changed)"
                 
+                
                 break
             case .accessDenied :
-                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :
@@ -457,7 +481,12 @@ extension CommunityVC {
                 
                 break
             case .accessDenied :
-                self.simpleAlert(title: "오류", message: "로그인을 해주세요")
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :

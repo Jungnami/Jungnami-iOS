@@ -9,7 +9,7 @@ import Foundation
 
 struct CoinVO: Codable {
     let message: String
-    let data: CoinVOData
+    let data: CoinVOData?
 }
 
 struct CoinVOData: Codable {

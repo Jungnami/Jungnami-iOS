@@ -208,7 +208,12 @@ extension BoardDetailViewController {
                 
                 break
             case .accessDenied :
-                self.simpleAlert(title: "오류", message: "로그인해주세요")
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
                 break
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
@@ -240,7 +245,12 @@ extension BoardDetailViewController {
                 self.temp()
                 
             case .accessDenied :
-                self.simpleAlert(title: "오류", message: "로그인해주세요")
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "인터넷 연결상태를 확인해주세요")
             default :

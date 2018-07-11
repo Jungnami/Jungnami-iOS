@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PartyListDetailTVcell: UITableViewCell {
     
@@ -21,7 +22,14 @@ class PartyListDetailTVcell: UITableViewCell {
     @IBOutlet weak var likeBtn: UIButton!
     func configure(index : Int, data : PartyLegistorLikeVOData){
         indexLbl.text = "\(data.rank)"
-        profileImgView.image = #imageLiteral(resourceName: "dabi")
+        if (gsno(data.imgurl) == "0") {
+            profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.imgurl)){
+                self.profileImgView.kf.setImage(with: url)
+            }
+        }
+      
         nameLbl.text = data.name
         rankLbl.text = data.rankInAll
         regionLbl.text = data.position

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CommunityFirstSectionWriteTVCell: UITableViewCell {
     
@@ -13,6 +14,16 @@ class CommunityFirstSectionWriteTVCell: UITableViewCell {
     
     @IBOutlet weak var nextBtn: UIButton!
     
+    func configure(_ imgURL : String){
+        if (gsno(imgURL) == "0") {
+            userImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+           
+        } else {
+            if let url = URL(string: gsno(imgURL)){
+                self.userImgView.kf.setImage(with: url)
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

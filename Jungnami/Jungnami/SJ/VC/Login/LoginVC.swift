@@ -70,9 +70,11 @@ class LoginVC: UIViewController, APIService{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //아예처음으로 들어옴
         if entryPoint == 0 {
             self.dismissBtn.isHidden = true
         } else {
+            //중간에 들어옴
             self.dismissBtn.isHidden = false
             self.nextBtn.isHidden = true
         }

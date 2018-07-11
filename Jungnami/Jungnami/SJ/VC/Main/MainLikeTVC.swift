@@ -64,7 +64,9 @@ extension MainLikeTVC {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier) as! MainTVCell
             
-            cell.configure(viewType : .like, index: indexPath.row, data: legislatorLikeData[indexPath.row])
+                cell.configure(viewType : .like, index: indexPath.row, data: legislatorLikeData[indexPath.row])
+               
+            
             cell.voteBtn.tag = legislatorLikeData[indexPath.row].lID
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
             
@@ -146,7 +148,12 @@ extension MainLikeTVC{
                 }
                 break
             case .accessDenied :
-                self.simpleAlert(title: "오류", message: "로그인해주세요")
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :
@@ -163,6 +170,7 @@ extension MainLikeTVC{
             switch result {
             case .networkSuccess(_):
                 self.popupImgView(fileName: "area_like_popup")
+                self.viewWillAppear(false)
                 break
             case .noPoint :
                 self.simpleAlert(title: "오류", message: "포인트가 부족합니다")

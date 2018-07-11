@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class LegislatorContentCell: UICollectionViewCell {
     
@@ -17,7 +18,14 @@ class LegislatorContentCell: UICollectionViewCell {
     
     var legisContents = LegislatorContentData.sharedInstance.legislatorContents
     func configure(data: LegislatorDetailVODataContent) {
-        legislatorContentImgView.image = #imageLiteral(resourceName: "dabi")
+        if (gsno(data.thumbnailURL) == "0") {
+            legislatorContentImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.thumbnailURL)){
+                
+                self.legislatorContentImgView.kf.setImage(with: url)
+            }
+        }
         legislatorTitleLbl.text = data.title
         legislatorContentDate.text = data.writingtime
         legislatorContentCategoryLbl.text = data.category
