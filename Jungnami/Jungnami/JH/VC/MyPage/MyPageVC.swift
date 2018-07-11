@@ -1,3 +1,4 @@
+
 //
 //  MyPageVC.swift
 //  Jungnami
@@ -7,9 +8,8 @@
 
 import UIKit
 
-class MyPageVC: UIViewController {
+class MyPageVC: UIViewController{
     
-
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var profileuserNameLbl: UILabel!
     
@@ -28,17 +28,12 @@ class MyPageVC: UIViewController {
     @IBAction func changeView(_ sender: UIButton) {
         updateView(selected: sender.tag)
     }
-    
-    
-    @IBAction func dismissBtn(_ sender: Any) {
-       self.dismiss(animated: true, completion: nil)
-    }
     //알림, 설정, 버튼으로 연결해야함
-    var data = MyPageData.sharedInstance.myPageUsers
+    //var data = MyPageData.sharedInstance.myPageUsers
     //tapGesture--------------------------------
     var keyboardDismiss: UITapGestureRecognizer?
-//    var delegate : TapDelegate?
-//    var index = 0
+    var delegate : TapDelegate?
+    //    var index = 0
     //셀아닌부분에서 tapGesture하려면 어떻게...?
     //------------------------------------------
     private lazy var scrapCVC: ScrapCVC = {
@@ -63,6 +58,7 @@ class MyPageVC: UIViewController {
         
         return viewController
     }()
+    //통신할 때 바꿔야 할 부분
     func configure(data: MyPageSample) {
         profileImgView.image = data.profileImg
         profileImgView.makeImageRound()
@@ -76,18 +72,41 @@ class MyPageVC: UIViewController {
     }
     
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.profileImgView.layer.cornerRadius = self.profileImgView.layer.frame.size.width / 2
-        configure(data: data[1])
+        self.profileImgView.layer.cornerRadius = self.profileImgView.layer.frame.size.width / 2
+        // configure(data: data[1]) 샘플데이터 -> 통신으로 바꾸기
         updateView(selected: 0)
+        
+        //네비게이션바 히든
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        //make label button
+        let tapFollow = UITapGestureRecognizer(target: self, action: #selector(MyPageVC.tapFollowLbl(_:)))
+        profileFollowingNumLbl.isUserInteractionEnabled = true
+        profileFollowingNumLbl.addGestureRecognizer(tapFollow)
+        
+        let tapFollower = UITapGestureRecognizer(target: self, action: #selector(MyPageVC.tapFollowerLbl(_:)))
+        profileFollowerNumLbl.isUserInteractionEnabled = true
+        profileFollowerNumLbl.addGestureRecognizer(tapFollower)
     }
-
+    //followLbl 터치했을 때 화면 올리기
+    @objc func tapFollowLbl(_ sender: UITapGestureRecognizer) {
+        let followList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowListVC.reuseIdentifier) as! FollowListVC
+        //데이터 pass하는거 어케하지~?
+        self.present(followList, animated: true, completion: nil)
+    }
+    //followerLbl 터치했을 때 화면 올리기
+    @objc func tapFollowerLbl(_ sender: UITapGestureRecognizer) {
+        let followerList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowerListVC.reuseIdentifier) as! FollowerListVC
+        self.present(followerList, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 }
 
@@ -133,17 +152,17 @@ extension MyPageVC{
     
     private func updateView(selected : Int) {
         if selected == 0 {
-        scapBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
-
+            scapBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+            
             feedBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
-        
+            
             remove(asChildViewController: myFeedVC)
             add(asChildViewController: scrapCVC)
         } else {
             feedBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
-          
+            
             scapBtn.setTitleColor(#colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1), for: .normal)
-          
+            
             remove(asChildViewController: scrapCVC)
             add(asChildViewController: myFeedVC)
         }
