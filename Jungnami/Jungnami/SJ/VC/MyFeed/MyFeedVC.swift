@@ -14,7 +14,6 @@ class MyFeedVC: UIViewController {
         didSet {
             if let myFeedTableView_ =  myFeedTableView{
                 myFeedTableView_.reloadData()
-                print("hihihihihihi")
             }
           
         }
@@ -23,7 +22,7 @@ class MyFeedVC: UIViewController {
         super.viewDidLoad()
         myFeedTableView.delegate = self
         myFeedTableView.dataSource = self
-        // Do any additional setup after loading the view.
+       
     }
 
 
@@ -38,6 +37,7 @@ extension MyFeedVC : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if myBoardData[indexPath.row].source.count == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: MyFeedCell.reuseIdentifier, for: indexPath) as! MyFeedCell
+            
             cell.configure(data: myBoardData[indexPath.row])
             return cell
         } else {

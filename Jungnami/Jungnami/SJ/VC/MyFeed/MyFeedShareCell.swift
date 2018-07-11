@@ -31,8 +31,8 @@ class MyFeedShareCell: UITableViewCell {
     @IBOutlet weak var likeCntLbl: UILabel!
     @IBOutlet weak var chatCntLbl: UILabel!
     
-    @IBOutlet weak var likeBtn: UIButton!
-    @IBOutlet weak var commentBtn: UIButton!
+    @IBOutlet weak var likeBtn: myHeartBtn!
+    @IBOutlet weak var commentBtn: myCommentBtn!
     
    
     func configure(data : MyPageVODataBoard) {
