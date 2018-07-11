@@ -59,7 +59,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         self.tabBarController?.tabBar.isHidden = true
         //통신
         if let contentIdx_ = contentIdx {
-            contentDetailInit(url: url("/contents/cardnews/62"))
+            contentDetailInit(url: url("/contents/cardnews/\(contentIdx_)"))
         }
     }
     override func viewWillDisappear(_ animated: Bool) {

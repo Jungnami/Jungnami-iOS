@@ -16,7 +16,7 @@ struct PartyLegistorLikeVOData: Codable {
     let id: Int
     let name, position: String
     let imgurl: String?
-    let rank : Int
+    let rank : String
     let rankInAll: String
     let partyName: PartyName
     

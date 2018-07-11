@@ -606,6 +606,8 @@
 				3BB1A5BD20EB958E00D4929A /* SearchLegislatorResult */,
 				43E5D27820F078B60020DEBE /* LegislatorDetail */,
 				43537F0320F0F0F50036435A /* Legislator */,
+				43E84BEC20EDE1F4007C6C97 /* MyFeed */,
+				43C5137C20ECD9870017BDD8 /* Scrap */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -697,8 +699,6 @@
 				432BA53420F3658700B33A36 /* charge */,
 				43EDECC420F204DE00E0F0E9 /* FollowFollowing */,
 				4331B01020EFFBB000FA290C /* Notice */,
-				43C5137C20ECD9870017BDD8 /* Scrap */,
-				43E84BEC20EDE1F4007C6C97 /* MyFeed */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1367,7 +1367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4PDAEX33Y3;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jungnami",
@@ -1391,7 +1391,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4PDAEX33Y3;
+				DEVELOPMENT_TEAM = Y4XABUQ539;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jungnami",

@@ -61,7 +61,7 @@ class ChargeVC: UIViewController {
 extension ChargeVC{
     
     static func viewController() -> ChargeVC {
-        return UIStoryboard.init(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! ChargeVC
+        return UIStoryboard.init(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: ChargeVC.reuseIdentifier) as! ChargeVC
     }
     
     

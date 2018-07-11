@@ -76,6 +76,8 @@ class MyFeedShareCell: UITableViewCell {
         super.awakeFromNib()
         sharedBG.layer.borderWidth = 1
         sharedBG.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
+        sharedProfileImgView.makeImageRound()
+        userProfileImg.makeImageRound()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

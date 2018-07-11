@@ -17,5 +17,5 @@ struct LegislatorSearchVOData: Codable {
     let name, position, imgurl: String
     let party : PartyName
     let rank: String
-    let voted: Bool
+    let voted : Bool
 }
