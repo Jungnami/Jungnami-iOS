@@ -9,26 +9,46 @@ import UIKit
 
 class MyFeedVC: UIViewController {
 
+    @IBOutlet weak var myFeedTableView: UITableView!
+    var myBoardData : [MyPageVODataBoard]  = [] {
+        didSet {
+            if let myFeedTableView_ =  myFeedTableView{
+                myFeedTableView_.reloadData()
+                print("hihihihihihi")
+            }
+           //
+            print("check my board")
+            print(myBoardData)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        myFeedTableView.delegate = self
+        myFeedTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+}
+
+
+extension MyFeedVC : UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myBoardData.count
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if myBoardData[indexPath.row].source.count == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MyFeedCell.reuseIdentifier, for: indexPath) as! MyFeedCell
+            cell.configure(data: myBoardData[indexPath.row])
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MyFeedShareCell.reuseIdentifier, for: indexPath) as! MyFeedShareCell
+             cell.configure(data: myBoardData[indexPath.row])
+            return cell
+        }
+        
     }
-    */
-
+    
+    
 }
