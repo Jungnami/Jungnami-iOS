@@ -14,10 +14,18 @@ class TmiFirstCell: UICollectionViewCell {
     @IBOutlet weak var tmiTitleLbl: UILabel!
     @IBOutlet weak var tmiCategoryLbl: UILabel!
     
-    func configure(data: ContentMenuSample) {
-        tmiImgView.image = data.imgView
+    func configure(data: RecommendVODataContent) {
+        
         tmiTitleLbl.text = data.title
-        tmiCategoryLbl.text = data.category
-        tmiDateLbl.text = data.date
+        tmiCategoryLbl.text = data.text
+        if (gsno(data.thumbnail) == "0") {
+            tmiImgView.image = #imageLiteral(resourceName: "yunhwan")
+        } else {
+            
+            if let url = URL(string: gsno(data.thumbnail)){
+                self.tmiImgView.kf.setImage(with: url)
+                
+            }
+        }
     }
 }

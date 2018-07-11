@@ -12,12 +12,20 @@ class StorySecondCell: UICollectionViewCell {
     @IBOutlet weak var storyImgView: UIImageView!
     @IBOutlet weak var storyTitleLbl: UILabel!
     @IBOutlet weak var storyCategoryLbl: UILabel!
-    @IBOutlet weak var storyDateLbl: UILabel!
     
-    func configure(data: ContentMenuSample) {
-        storyImgView.image = data.imgView
-        storyDateLbl.text = data.date
-        storyCategoryLbl.text = data.category
+    func configure(data: RecommendVODataContent) {
+        
+        storyCategoryLbl.text = data.text
         storyTitleLbl.text = data.title
+        
+        if (gsno(data.thumbnail) == "0") {
+            storyImgView.image = #imageLiteral(resourceName: "jihee")
+        } else {
+            
+            if let url = URL(string: gsno(data.thumbnail)){
+                self.storyImgView.kf.setImage(with: url)
+                
+            }
+        }
     }
 }

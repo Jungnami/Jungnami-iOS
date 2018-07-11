@@ -1,3 +1,4 @@
+
 //
 //  NoticeVC.swift
 //  Jungnami
@@ -8,16 +9,21 @@
 import UIKit
 
 class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-   //-------------tapGesture-------------------------
+    //-------------tapGesture-------------------------
     var keyboardDismissGesture: UITapGestureRecognizer?
     //-------------------------------------------------
     @IBOutlet weak var noticeTableView: UITableView!
+    
+    @IBAction func dismissBtn(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //print(a.noticeType.returnType(userNickName: "수진"))
-        self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)
+//        self.navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)
+        self.navigationController?.isNavigationBarHidden = true
         noticeTableView.delegate = self
         noticeTableView.dataSource = self
     }
@@ -32,11 +38,11 @@ class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notices.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NoticeCell.reuseIdentifier, for: indexPath) as! NoticeCell
         //어떻게 뽑는지 모르게따 ㅜㅡㅜ
-//        cell.configure(data: notices[indexPath.row].noticeType.returnType(userNickName: notices[indexPath.row]))
+        //        cell.configure(data: notices[indexPath.row].noticeType.returnType(userNickName: notices[indexPath.row]))
         cell.noticeProfileImgView.image = notices[indexPath.row].profileImg
         cell.noticeUserLbl.text = notices[indexPath.row].userNickname
         cell.noticeTypeLbl.text = notices[indexPath.row].noticeType.rawValue

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, APIService {
     
     @IBOutlet weak var contentCollectionView: UICollectionView!
     
@@ -15,8 +15,11 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         contentCollectionView.delegate = self
         contentCollectionView.dataSource = self
+        //통신
+        contentRecommendInit(url: url("/contents/recommend"))
     }
-
+    var contentData : [RecommendVODataContent]?
+    var alarmCount = 0
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -33,28 +36,46 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
         if section == 0 {
             return 1
         }else {
-            
-            return contentMenus.count
+            if let recommendData_ = contentData {
+                return recommendData_.count
+            }
         }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let cell = contentCollectionView.dequeueReusableCell(withReuseIdentifier: RecommendFirstCell.reuseIdentifier, for: indexPath) as! RecommendFirstCell            //cell에 데이터 연결!
-            cell.configure(data: contentMenus[indexPath.row])
+            let cell = contentCollectionView.dequeueReusableCell(withReuseIdentifier: RecommendFirstCell.reuseIdentifier, for: indexPath) as! RecommendFirstCell
+            //통신
+            if let tmicontents_ = contentData{
+                cell.configure(data: tmicontents_[indexPath.row])
+            }
             return cell
         }else {
             let cell = contentCollectionView.dequeueReusableCell(withReuseIdentifier: RecommendSecondCell.reuseIdentifier, for: indexPath) as! RecommendSecondCell
-            //cell에 데이터 연결!
-            cell.configure(data: contentMenus[indexPath.row])
+            //통신
+            if let tmiContents_ = contentData{
+                cell.configure(data: tmiContents_[indexPath.row])
+            }
             cell.contentImgView.layer.cornerRadius = 10
             cell.contentImgView.layer.masksToBounds = true
             return cell
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //item을 누르면 contentDetailVC로 pushViewController로 넘겨야 함
-        //        performSegue(withIdentifier: "goToContnetDetail", sender: AnyObject.self)
+        if indexPath.section == 0 {
+        let detailVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+        if let contentData_ = contentData {
+            detailVC.contentIdx = contentData_[indexPath.row].contentsid
+        }
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }else {
+            let detailVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+            if let contentData_ = contentData {
+                detailVC.contentIdx = contentData_[indexPath.row].contentsid
+            }
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
     
     //--------collectionView Layout
@@ -92,6 +113,35 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
 
+}
+//통신
+
+extension ContentRecommendVC {
+    
+    func contentRecommendInit(url : String){
+        RecommendService2.shareInstance.getRecommendContent(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let recommendData):
+                let recommendData = recommendData as! RecommendVOData
+                self.contentData = recommendData.content.filter({
+                    $0.type == 0
+                })
+                self.alarmCount = recommendData.alarmcnt
+                self.contentCollectionView.reloadData()
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "값 없음")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+        
+    }
 }
 
 
