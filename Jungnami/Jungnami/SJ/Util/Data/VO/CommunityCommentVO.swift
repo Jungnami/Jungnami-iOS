@@ -15,11 +15,13 @@ struct CommunityCommentVOData: Codable {
     let commentid: Int
     let timeset, content, userNick, userImg: String
     let recommentCnt, commentlikeCnt, islike: Int
+    let userId : String
     
     enum CodingKeys: String, CodingKey {
         case commentid, timeset, content
         case userNick = "user_nick"
         case userImg = "user_img"
+        case userId = "user_id"
         case recommentCnt, commentlikeCnt, islike
     }
 }
