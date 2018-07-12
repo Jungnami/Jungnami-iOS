@@ -68,8 +68,8 @@ class OtherUserPageVC: UIViewController {
     }
     //followerLbl 터치했을 때 화면 올리기
     @objc func tapFollowerLbl(_ sender: UITapGestureRecognizer) {
-        let followerList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowerListVC.reuseIdentifier) as! FollowerListVC
-        self.present(followerList, animated: true, completion: nil)
+//        let followerList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowerListVC.reuseIdentifier) as! FollowerListVC
+//        self.present(followerList, animated: true, completion: nil)
     }
     //------------------------------------------------------------
 

@@ -27,6 +27,7 @@ class FollowCell: UITableViewCell {
     
     @IBOutlet weak var followNickNameLbl: UILabel!
     //팔로우버튼
+    //스토리보드 갔다와서 여기서부터 다시
     @IBOutlet weak var followCancelBtn: followBtn!
     
   
@@ -48,6 +49,33 @@ class FollowCell: UITableViewCell {
         //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
         followCancelBtn.isFollow = data.isMyFollowing
         followCancelBtn.userIdx = data.followingID
+        if data.isMyFollowing == "팔로우" {
+            followCancelBtn.isSelected = false
+        } else if data.isMyFollowing == "팔로잉"{
+            followCancelBtn.isSelected = true
+        } else {
+            followCancelBtn.isHidden = true
+        }
+    }
+    
+    func configure2(data : FollowerListVOData){
+        if (gsno(data.followerImgURL) == "0") {
+            followImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+            
+        } else {
+            if let url = URL(string: gsno(data.followerImgURL)){
+                self.followImgView.kf.setImage(with: url)
+            }
+        }
+        
+        followNickNameLbl.text = data.followerNickname
+        
+        followCancelBtn.setImage(UIImage(named: "mypage_follow"), for: .normal)
+        followCancelBtn.setImage(UIImage(named: "mypage_following"), for: .selected)
+        //팔로우가 들어온다는 것은 아직 팔로잉 한 상태가 아니라는 것 => 그러니까 .isSelected = false
+        //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
+        followCancelBtn.isFollow = data.isMyFollowing
+        followCancelBtn.userIdx = data.followerID
         if data.isMyFollowing == "팔로우" {
             followCancelBtn.isSelected = false
         } else if data.isMyFollowing == "팔로잉"{
