@@ -113,7 +113,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     //-------------------collectionView-------------
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let contentDetails_ = contentImages {
-            return contentDetails_.count+1
+            return contentDetails_.count
         }
         return 0
     }
@@ -121,11 +121,18 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentDetailCell.reuseIdentifier, for: indexPath) as! ContentDetailCell
         if let contentDetails_ = contentImages, let title_ = contentTitle , let writeTime_ = writeTime, let thumnail_ = thumnail{
+            
+        
             if indexPath.row == 0 {
+                cell.configure(title : title_, writeTime : writeTime_, thumnail : contentDetails_[0].imgURL)
+            } else {
+                cell.configure2(data: contentDetails_[indexPath.row])
+            }
+           /* if indexPath.row == 0 {
                 cell.configure(title : title_, writeTime : writeTime_, thumnail : thumnail_)
             } else {
                 cell.configure2(data: contentDetails_[indexPath.row-1])
-            }
+            }*/
             
         }
         cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

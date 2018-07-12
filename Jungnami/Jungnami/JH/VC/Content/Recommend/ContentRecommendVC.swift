@@ -64,13 +64,13 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-        let detailVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+        let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
         if let contentData_ = contentData {
             detailVC.contentIdx = contentData_[indexPath.row].contentsid
         }
             self.navigationController?.pushViewController(detailVC, animated: true)
         }else {
-            let detailVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+            let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
             if let contentData_ = contentData {
                 detailVC.contentIdx = contentData_[indexPath.row].contentsid
             }
