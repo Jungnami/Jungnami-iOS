@@ -74,7 +74,7 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             if indexPath.section == 0 {
                 
-                let detailVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+                let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
                 //pass data
                 if let contentData_ = tmiContents {
                     detailVC.contentIdx = contentData_[indexPath.row].contentsid
@@ -82,7 +82,7 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
                 //화면전환
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }else {
-                let detailVC = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+                let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
                 //passData
                 if let contentData_ = tmiContents {
                     detailVC.contentIdx = contentData_[indexPath.row].contentsid
