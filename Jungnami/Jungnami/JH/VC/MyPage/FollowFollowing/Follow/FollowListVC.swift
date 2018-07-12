@@ -12,7 +12,18 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var followTableView: UITableView!
     @IBOutlet weak var followSearchField: UITextField!
     @IBOutlet weak var followSearchImg: UIImageView!
-    var selectedUserId : String?
+    var selectedUserId : String? {
+        didSet {
+          
+            if let selectedUserId_ = selectedUserId {
+                print("hrherehrherere12121212121212")
+                print(selectedUserId_)
+              //  followerListInit(url: url("/user/followinglist/\(selectedUserId_)"))
+                followerListInit(url: url("/user/followinglist/809253344"))
+            
+            }
+        }
+    }
     @IBAction func dismissBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -22,10 +33,20 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var keyboardDismissGesture: UITapGestureRecognizer?
     //통신
     var followListData : [FollowListVOData]?
+    
     /*
      let followingID, followingNickname, followingImgURL, isMyFollowing: String
      
      */
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selectedUserId_ = selectedUserId {
+            followerListInit(url: url("/user/followinglist/809253344"))
+        }
+        print("hihrere")
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         followTableView.delegate = self
@@ -36,7 +57,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         //keyboardDown
         hideKeyboardWhenTappedAround()
         if let selectedUserId_ = selectedUserId {
-            getFollwList(url: "/user/followinglist/\(selectedUserId_)")
+            followerListInit(url: url("/user/followinglist/809253344"))
         }
         
         //searchField
@@ -63,7 +84,10 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             return 1
         }else {
             //data로 연결
-            return data.count
+            if let followListData_ = followListData {
+                return followListData_.count
+            }
+        return 0
         }
     }
     
@@ -74,9 +98,32 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: FollowCell.reuseIdentifier, for: indexPath) as! FollowCell
-            cell.configure(data: data[indexPath.row])
+            //configure통신
             cell.delegate = self
+            if let followListData_ = followListData {
+               
+                cell.followCancelBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+                cell.configure(data: followListData_[indexPath.row])
+            }
+            
             return cell
+        }
+        
+    }
+    
+    
+    @objc func like(_ sender : followBtn){
+        //통신
+        
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.followTableView)
+        let indexPath: IndexPath? = self.followTableView.indexPathForRow(at: buttonPosition)
+        let cell = self.followTableView.cellForRow(at: indexPath!) as! FollowCell
+        // 팔로우가 들어온다는 것은 아직 팔로잉 한 상태가 아니라는 것 => 그러니까 .isSelected = false
+        //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
+        if sender.isFollow! == "팔로우" {
+            likeAction(url: url("/user/follow"), userIdx : "\(sender.userIdx!)",  cell : cell, sender : sender )
+        } else {
+            dislikeAction(url: url("/user/unfollow/\(sender.userIdx!)"), cell : cell, sender : sender )
         }
         
     }
@@ -98,23 +145,81 @@ extension FollowListVC {
     }
 }
 
-//통신
 extension FollowListVC {
-    func getFollwList(url : String){
+    //하트 버튼 눌렀을 때
+    func likeAction(url : String, userIdx : String,  cell : FollowCell, sender : followBtn){
         
+        let params : [String : Any] = [
+            "following_id" : userIdx
+        ]
+        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = true
+                sender.isFollow = "팔로잉"
+
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    //좋아요 취소
+    func dislikeAction(url : String, cell : FollowCell, sender : followBtn){
+        CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = false
+                sender.isFollow = "팔로우"
+                
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
     }
 }
-//followList 불러오는 VO, Service만들기
-extension FollowerListVC {
+//통신
+extension FollowListVC {
     
     func followerListInit(url : String){
         FollowListService.shareInstance.getFollowList(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             
             switch result {
-            case .networkSuccess(let recommendData):
+            case .networkSuccess(let followListData):
                 //수정
-                let recommendData = recommendData as! RecommendVOData//followListVC에서 받아올 것 var followData : [] 
+                let followListData_ = followListData as! [FollowListVOData]
+                self.followListData = followListData_
+                self.followTableView.reloadData()
+                print("success")
+//                //필요한 것 :
 //                self.contentData = recommendData.content.filter({
 //                    $0.type == 0
 //                })

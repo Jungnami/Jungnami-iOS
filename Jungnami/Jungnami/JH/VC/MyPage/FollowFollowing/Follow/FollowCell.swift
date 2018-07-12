@@ -6,6 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
+/*
+ "following_id": "807465239",
+ "following_nickname": "이종찬",
+ "following_img_url": "http://k.kakaocdn.net/dn/jDRoT/btqm4vFAE94/k1Zh9fVdUym2xIEZhevmFK/profile_110x110c.jpg",
+ "isMyFollowing": "나"
+ */
+class followBtn : UIButton {
+    var isFollow : String? //
+    var userIdx : String?
+}
 
 class FollowCell: UITableViewCell {
 
@@ -16,18 +27,37 @@ class FollowCell: UITableViewCell {
     
     @IBOutlet weak var followNickNameLbl: UILabel!
     //팔로우버튼
+    @IBOutlet weak var followCancelBtn: followBtn!
     
-    @IBOutlet weak var followCancelBtn: UIButton!
-    @IBAction func followBtn(_ sender: Any) {
-        followCancelBtn.setImage(#imageLiteral(resourceName: "mypage_follow"), for: .normal)
+  
+    func configure(data : FollowListVOData){
+        if (gsno(data.followingImgURL) == "0") {
+            followImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+            
+        } else {
+            if let url = URL(string: gsno(data.followingImgURL)){
+                self.followImgView.kf.setImage(with: url)
+            }
+        }
+        
+        followNickNameLbl.text = data.followingNickname
+
+        followCancelBtn.setImage(UIImage(named: "mypage_follow"), for: .normal)
+        followCancelBtn.setImage(UIImage(named: "mypage_following"), for: .selected)
+       //팔로우가 들어온다는 것은 아직 팔로잉 한 상태가 아니라는 것 => 그러니까 .isSelected = false
+        //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
+        followCancelBtn.isFollow = data.isMyFollowing
+        followCancelBtn.userIdx = data.followingID
+        if data.isMyFollowing == "팔로우" {
+            followCancelBtn.isSelected = false
+        } else if data.isMyFollowing == "팔로잉"{
+            followCancelBtn.isSelected = true
+        } else {
+            followCancelBtn.isHidden = true
+        }
     }
-    
-    func configure(data: FollowListSample) {
-        followImgView.image = data.profileImg
-        followNickNameLbl.text = data.nickName
-    }
-    
-    override func awakeFromNib() {
+   
+        override func awakeFromNib() {
         super.awakeFromNib()
         //이미지 깎기
         followImgView.makeImageRound()
@@ -48,10 +78,10 @@ class FollowCell: UITableViewCell {
         delegate?.myTableDelegate(index : index)
     }
 
+    //선택됐을 때
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
     }
 
 }
