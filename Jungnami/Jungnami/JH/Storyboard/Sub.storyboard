@@ -2008,6 +2008,7 @@
                         <outlet property="followSearchField" destination="nXN-KK-0zT" id="UDW-IV-WMs"/>
                         <outlet property="followSearchImg" destination="zAk-l2-79c" id="tFZ-ol-vU8"/>
                         <outlet property="followTableView" destination="fRL-Ak-cKs" id="8OM-po-XDe"/>
+                        <outlet property="navTitleLbl" destination="iic-yg-rck" id="ns3-uN-5n1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdX-77-48M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2109,7 +2110,7 @@
                                             <outlet property="fixedLbl" destination="Po3-G1-jfi" id="AAV-dX-OLI"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowerCell" rowHeight="73" id="dot-VX-ZFk" customClass="FollowerCell" customModule="Jungnami" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowCell" rowHeight="73" id="dot-VX-ZFk" customClass="FollowCell" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="69" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dot-VX-ZFk" id="5qL-He-fKS">
@@ -2129,12 +2130,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qc7-o8-UgS">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qc7-o8-UgS" customClass="followBtn" customModule="Jungnami" customModuleProvider="target">
                                                     <rect key="frame" x="274" y="21" width="87" height="30"/>
                                                     <state key="normal" image="mypage_follow"/>
-                                                    <connections>
-                                                        <action selector="followBtn:" destination="dot-VX-ZFk" eventType="touchUpInside" id="QzU-SK-Xuu"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -2148,9 +2146,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="followBtn" destination="qc7-o8-UgS" id="7bv-JU-ZWc"/>
-                                            <outlet property="followerNicknameLbl" destination="K2J-3s-T2W" id="e0n-Ca-MFL"/>
-                                            <outlet property="followerProfileImgView" destination="ST2-sW-mL5" id="Ebe-dL-djy"/>
+                                            <outlet property="followImgView" destination="ST2-sW-mL5" id="bxU-Y9-vfp"/>
+                                            <outlet property="followNickNameLbl" destination="K2J-3s-T2W" id="0IQ-eX-NrI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
