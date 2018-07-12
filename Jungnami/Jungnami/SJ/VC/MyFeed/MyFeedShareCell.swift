@@ -53,7 +53,7 @@ class MyFeedShareCell: UITableViewCell {
         }
         
         if (gsno(data.source[0].bImg) == "0") {
-            sharedContentImgView.image = #imageLiteral(resourceName: "dabi")
+            sharedContentImgView.image = #imageLiteral(resourceName: "community_default_img")
         } else {
             if let url = URL(string: gsno(data.source[0].bImg)){
                 self.sharedContentImgView.kf.setImage(with: url)
