@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NoticeCell: UITableViewCell {
     //----tapGesture--------------
@@ -18,26 +19,52 @@ class NoticeCell: UITableViewCell {
     @IBOutlet weak var noticeTypeLbl: UILabel!
     @IBOutlet weak var noticeDateLbl: UILabel!
     
-    @IBOutlet weak var followBtn: UIButton!
+    @IBOutlet weak var followBtn: followBtn!
     
-    @IBOutlet weak var noticeTypeImgView: UIImageView!
     //type에 따라서 이미지 바뀌어야 함
     
     var check: Bool = true // ?
-    @IBAction func noticeFollowBtn(_ sender: Any) {
-        if check { //check상태이면
-            followBtn.setImage(#imageLiteral(resourceName: "mypage_follow"), for: .selected)
-        }else {
-            followBtn.setImage(#imageLiteral(resourceName: "mypage_following"), for: .selected)
+   
+    func configure(data: AlarmVOData) {
+       
+        if (gsno(data.imgURL) == "0") {
+            noticeProfileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.imgURL)){
+                self.noticeProfileImgView.kf.setImage(with: url)
+            }
         }
+        noticeUserLbl.text = data.actionname
+        noticeTypeLbl.text = data.actionmessage
+        noticeDateLbl.text = data.time
         
-        //투두 - 버튼 다시 눌렀을 때 팔로우로 바뀌어야 함
-    }
-    func configure(data: NoticeSample) {
-        noticeProfileImgView.image = data.profileImg
-        noticeUserLbl.text = data.userNickname
-        noticeTypeLbl.text = data.noticeType.rawValue
-        noticeDateLbl.text = data.date
+        let followType = data.button
+      
+        
+        followBtn.setImage(UIImage(named: "mypage_follow"), for: .normal)
+        followBtn.setImage(UIImage(named: "mypage_following"), for: .selected)
+        //팔로우가 들어온다는 것은 아직 팔로잉 한 상태가 아니라는 것 => 그러니까 .isSelected = false
+        //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
+        followBtn.isFollow = data.button
+        followBtn.userIdx = data.id
+        
+        if followType == "팔로우" {
+            followBtn.isSelected = false
+            
+        } else if followType == "팔로잉" {
+            followBtn.isSelected = true
+           
+        } else {
+            followBtn.isHidden = true
+        }
+       
+        //나중에 id 넘겨서 딜리게이트로 넘겨야함
+        if data.ischecked == 0 {
+            //체크 안한거
+            self.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9882352941, blue: 1, alpha: 1)
+        } else {
+            //체크 한거
+        }
         
     }
 
@@ -45,7 +72,7 @@ class NoticeCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        noticeProfileImgView.layer.cornerRadius = noticeProfileImgView.layer.frame.size.width / 2
+        noticeProfileImgView.makeImageRound()
         //tapGesture-----------------------------------------
         noticeProfileImgView.isUserInteractionEnabled = true
         noticeUserLbl.isUserInteractionEnabled = true
