@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ContentVC: UIViewController {
+class ContentVC: UIViewController, AlarmProtocol{
+
+    
     
     @IBOutlet weak var recommendBtn: UIButton!
     @IBOutlet weak var tmiBtn: UIButton!
@@ -19,6 +21,27 @@ class ContentVC: UIViewController {
     @IBOutlet weak var recommendBlueBar: UIImageView!
     @IBOutlet weak var tmiBlueBar: UIImageView!
     @IBOutlet weak var storyBlueBar: UIImageView!
+    
+    @IBOutlet weak var alarmCountLbl: UILabel!
+    
+    @IBOutlet weak var alarmBG: UIImageView!
+    
+    @IBOutlet weak var alarmBtn: UIButton!
+    
+    
+    func getAlarm(alarmCount: Int) {
+        if alarmCount == 0 {
+            alarmCountLbl.isHidden = true
+            alarmBG.isHidden = true
+        } else {
+            alarmCountLbl.isHidden = false
+            alarmBG.isHidden = false
+            alarmCountLbl.text = "\(alarmCount)"
+        }
+       
+    }
+    
+  
     //mypageBtn
     @IBAction func myPageBtn(_ sender: Any) {
         let mypageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
@@ -43,7 +66,7 @@ class ContentVC: UIViewController {
         
         var viewController = storyboard.instantiateViewController(withIdentifier: ContentRecommendVC.reuseIdentifier) as! ContentRecommendVC
         
-        
+        viewController.alarmDelegate = self
         self.add(asChildViewController: viewController)
         
         return viewController
@@ -53,7 +76,7 @@ class ContentVC: UIViewController {
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
 
         var viewController = storyboard.instantiateViewController(withIdentifier: ContentTmiVC.reuseIdentifier) as! ContentTmiVC
-
+         viewController.alarmDelegate = self
         self.add(asChildViewController: viewController)
 
         return viewController
@@ -63,17 +86,20 @@ class ContentVC: UIViewController {
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
         
         var viewController = storyboard.instantiateViewController(withIdentifier: ContentStoryVC.reuseIdentifier) as! ContentStoryVC
-        
+         viewController.alarmDelegate = self
         self.add(asChildViewController: viewController)
         
         return viewController
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationController?.navigationBar.shadowImage = UIImage()
          self.navigationController?.setNavigationBarHidden(true, animated: false)
         //        addNavBarImage()
+        
         updateView(selected: 0)
+         alarmBtn.addTarget(self, action:  #selector(toAlarmVC(_sender:)), for: .touchUpInside)
     }
     
     
@@ -172,6 +198,27 @@ extension ContentVC{
             remove(asChildViewController: tmiVC)
             remove(asChildViewController: recommendVC)
             add(asChildViewController: storyVC)
+        }
+    }
+}
+
+extension ContentVC {
+    @objc func toAlarmVC(_sender: UIButton){
+        if let noticeVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:NoticeVC.reuseIdentifier) as? NoticeVC {
+            
+            let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+            if (myId == "-1"){
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+                
+            } else {
+                self.present(noticeVC, animated : true)
+            }
+            
         }
     }
 }

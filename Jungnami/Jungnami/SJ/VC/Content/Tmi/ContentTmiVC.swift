@@ -32,7 +32,16 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
     }
     
     var tmiContents: [RecommendVODataContent]?
-    var alarmCount = 0
+     var alarmDelegate  : AlarmProtocol?
+    var alarmCount : Int? {
+        didSet {
+            if let alarmCount_ = alarmCount {
+                print("alarmCount changed!")
+                print(alarmCount_)
+                self.alarmDelegate?.getAlarm(alarmCount: alarmCount_)
+            }
+        }
+    }
     //var contentMenus = ContentMenuData.sharedInstance.contentMenus
     //----------------collectionView------------------
     func numberOfSections(in collectionView: UICollectionView) -> Int {
