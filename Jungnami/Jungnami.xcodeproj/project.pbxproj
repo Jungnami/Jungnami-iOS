@@ -417,9 +417,9 @@
 				3B94985E20F3FDA500BFA81E /* CoinVO.swift */,
 				3B94985820F3EC8000BFA81E /* MessageVO.swift */,
 				3B94986020F4A00300BFA81E /* CommunityVO.swift */,
+				3B87A33820F639C200A968B8 /* CommunitySearchVO.swift */,
 				3BFCE31220F501DF00C21AEB /* CommunityCommentVO.swift */,
 				3B87A33420F6170300A968B8 /* LegislatorSearchVO.swift */,
-				3B87A33820F639C200A968B8 /* CommunitySearchVO.swift */,
 				3B87A34020F7816200A968B8 /* AlarmVO.swift */,
 			);
 			path = VO;
