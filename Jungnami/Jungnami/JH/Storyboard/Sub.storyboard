@@ -791,8 +791,9 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xP-Tx-qct">
-                                                    <rect key="frame" x="0.0" y="130" width="24.5" height="36"/>
+                                                    <rect key="frame" x="0.0" y="130" width="170" height="36"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="170" id="Yev-NQ-clR"/>
                                                         <constraint firstAttribute="height" constant="36" id="azg-bs-5J1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -842,7 +843,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xtJ-ey-b47" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="-1563"/>
+            <point key="canvasLocation" x="12" y="-1563.8680659670167"/>
         </scene>
         <!--Content TmiVC-->
         <scene sceneID="S1p-ch-RZ9">
@@ -883,8 +884,8 @@
                                                         <constraint firstAttribute="height" constant="257" id="gEt-Tx-GJo"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oA-xZ-v3l">
-                                                    <rect key="frame" x="17" y="190" width="32" height="23"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oA-xZ-v3l">
+                                                    <rect key="frame" x="17" y="190" width="349" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -898,6 +899,7 @@
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="7oA-xZ-v3l" secondAttribute="trailing" constant="9" id="2AA-8w-8LR"/>
                                             <constraint firstItem="cQE-jB-4Xe" firstAttribute="top" secondItem="7oA-xZ-v3l" secondAttribute="bottom" constant="11" id="6ZC-ZJ-O9j"/>
                                             <constraint firstItem="7oA-xZ-v3l" firstAttribute="leading" secondItem="b0n-fH-FGD" secondAttribute="leadingMargin" constant="9" id="CkC-8m-VZY"/>
                                             <constraint firstItem="IWO-gn-xvI" firstAttribute="top" secondItem="b0n-fH-FGD" secondAttribute="top" id="JgK-tH-unM"/>
@@ -933,8 +935,9 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbN-vM-gM9">
-                                                    <rect key="frame" x="0.0" y="130" width="24.5" height="36"/>
+                                                    <rect key="frame" x="0.0" y="130" width="170" height="36"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="170" id="N46-iL-8d9"/>
                                                         <constraint firstAttribute="height" constant="36" id="mYe-uS-f8O"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -984,7 +987,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rgf-3M-UlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="-826"/>
+            <point key="canvasLocation" x="12" y="-826.23688155922048"/>
         </scene>
         <!--Content StoryVC-->
         <scene sceneID="h39-Id-km4">
@@ -1074,9 +1077,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gya-6q-ctO">
-                                                    <rect key="frame" x="0.0" y="130" width="24.5" height="36"/>
+                                                    <rect key="frame" x="0.0" y="130" width="170" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="Lh3-j6-gyG"/>
+                                                        <constraint firstAttribute="width" constant="170" id="hRg-4y-0vX"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
@@ -1125,7 +1129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLh-ZA-MyE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="-90"/>
+            <point key="canvasLocation" x="12" y="-90.404797601199405"/>
         </scene>
         <!--ChargeVC-->
         <scene sceneID="lZP-dx-pym">
@@ -2228,7 +2232,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WXL-RL-lCm">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ContentSearchResultCell" id="WXL-RL-lCm" customClass="ContentSearchResultCell" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="187"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -2241,7 +2245,7 @@
                                                         <constraint firstAttribute="height" constant="117" id="OiK-Bg-bTB"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnR-MU-070">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnR-MU-070">
                                                     <rect key="frame" x="0.0" y="130" width="170" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="7Yx-qS-Tlb"/>
@@ -2270,6 +2274,11 @@
                                             <constraint firstAttribute="trailing" secondItem="rky-Gh-lwU" secondAttribute="trailing" id="j03-ij-t2u"/>
                                         </constraints>
                                         <size key="customSize" width="170" height="187"/>
+                                        <connections>
+                                            <outlet property="contentImgView" destination="7py-EJ-ee2" id="6o6-gx-fwk"/>
+                                            <outlet property="contentInfoLbl" destination="rky-Gh-lwU" id="UUF-78-i3h"/>
+                                            <outlet property="contentTitleLbl" destination="qnR-MU-070" id="1ef-GE-XFN"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
