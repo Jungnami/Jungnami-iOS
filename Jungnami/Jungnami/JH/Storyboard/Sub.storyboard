@@ -213,10 +213,10 @@
             </objects>
             <point key="canvasLocation" x="-810.39999999999998" y="-826.23688155922048"/>
         </scene>
-        <!--Content DetailVC-->
+        <!--View Controller-->
         <scene sceneID="9b8-Rn-oGJ">
             <objects>
-                <viewController storyboardIdentifier="ContentDetailVC" id="oGt-IY-asa" customClass="ContentDetailVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oGt-IY-asa" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OBK-ie-JYi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

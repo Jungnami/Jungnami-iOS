@@ -79,7 +79,7 @@ class ScrapCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 //통신
 extension ScrapCVC {
     func goToDetail(index : Int){
-        let detailVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+        let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
        
             detailVC.contentIdx = index
         self.present(detailVC, animated: true)
