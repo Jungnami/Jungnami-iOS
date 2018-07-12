@@ -17,6 +17,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
     @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var communityTableView: UITableView!
     
+    
     lazy var blackView : UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -31,7 +32,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
             communityTableView.reloadData()
         }
     }
-    var userIngURL : String?
+    var userImgURL : String?
     
     @IBAction func mypageBtn(_ sender: Any) {
         //마이페이지 통신
@@ -87,6 +88,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         self.communityTableView.addSubview(blackView)
         setKeyboardSetting()
         blackView.isHidden = true
+        //constraint-----------------------------------------
         blackView.snp.makeConstraints { (make) in
             make.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
             make.top.equalTo(separateView.snp.top)
@@ -103,6 +105,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
             }
             
         }
+        //----------------------------------------------------
         //refreshControl
         self.communityTableView.refreshControl = UIRefreshControl()
         self.communityTableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
@@ -143,7 +146,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionWriteTVCell.reuseIdentifier) as! CommunityFirstSectionWriteTVCell
-                if let userImgUrl_ = userIngURL {
+                if let userImgUrl_ = userImgURL {
                     cell.configure(userImgUrl_)
                 }
                 
@@ -155,7 +158,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
             
-            //여기고치기
+     
             cell.configure(index: indexPath.row, data: communityData[indexPath.row])
             cell.delegate = self
             //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
@@ -311,11 +314,19 @@ extension CommunityVC{
 }
 
 //탭제스처 레코그나이저
-extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate, DoubleTapDelegate {
-    func myTableDelegate(index: Int) {
-        print("\(index)")
+extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate2, DoubleTapDelegate {
+    func myTableDelegate(sender : UITapGestureRecognizer) {
+        let touch = sender.location(in: communityTableView)
+        if let indexPath = communityTableView.indexPathForRow(at: touch){
+            let cell = self.communityTableView.cellForRow(at: indexPath) as! CommunityTVCell
+            let userId = cell.profileImgView.userId
+            if let myPageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
+                myPageVC.selectedUserId = userId
+                self.present(myPageVC, animated: true, completion: nil)
+            }
+            
+        }
     }
-    
     
     
     func myDoubleTapDelegate(sender : UITapGestureRecognizer) {
@@ -365,7 +376,7 @@ extension CommunityVC {
                 self.communityData = communityContent.content
                 self.communityTableView.reloadData()
                 self.badgeCount = communityContent.alarmcnt
-                self.userIngURL = communityContent.userImgURL
+                self.userImgURL = communityContent.userImgURL
                 break
             case .nullValue :
                 break

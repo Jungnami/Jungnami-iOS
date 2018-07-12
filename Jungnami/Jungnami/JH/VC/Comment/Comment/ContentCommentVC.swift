@@ -78,6 +78,7 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
         if let commentData_ = commentData {
              cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+            cell.delegate = self
             cell.configure(index : indexPath.row ,data: commentData_[indexPath.row])
         }
         
@@ -165,9 +166,18 @@ extension ContentCommentVC {
 }
 
 //tapGesture
-extension ContentCommentVC : TapDelegate, UIGestureRecognizerDelegate {
-    func myTableDelegate(index: Int) {
-        print(index)
+extension ContentCommentVC : TapDelegate2, UIGestureRecognizerDelegate {
+    func myTableDelegate(sender : UITapGestureRecognizer) {
+        let touch = sender.location(in: detailTableView)
+        if let indexPath = detailTableView.indexPathForRow(at: touch){
+            let cell = self.detailTableView.cellForRow(at: indexPath) as! CommentCell
+            let userId = cell.commentUserLbl.userId
+            if let myPageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
+                myPageVC.selectedUserId = userId
+                self.present(myPageVC, animated: true, completion: nil)
+            }
+            
+        }
     }
     
 }

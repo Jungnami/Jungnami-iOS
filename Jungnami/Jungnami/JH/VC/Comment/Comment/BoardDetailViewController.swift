@@ -80,7 +80,7 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
             cell.configure(index : indexPath.row ,data: commentData_[indexPath.row])
         }
         
-       // cell.delegate = self
+        cell.delegate = self
         return cell
     }
  
@@ -161,9 +161,19 @@ extension BoardDetailViewController {
 }
 
 //tapGesture
-extension BoardDetailViewController : TapDelegate, UIGestureRecognizerDelegate {
-    func myTableDelegate(index: Int) {
-        print(index)
+extension BoardDetailViewController : TapDelegate2, UIGestureRecognizerDelegate {
+
+    func myTableDelegate(sender : UITapGestureRecognizer) {
+        let touch = sender.location(in: detailTableView)
+        if let indexPath = detailTableView.indexPathForRow(at: touch){
+            let cell = self.detailTableView.cellForRow(at: indexPath) as! CommentCell
+            let userId = cell.commentUserLbl.userId
+            if let myPageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
+               myPageVC.selectedUserId = userId
+                self.present(myPageVC, animated: true, completion: nil)
+            }
+            
+        }
     }
   
 }

@@ -212,11 +212,19 @@ extension CommunityResultTVC{
 }
 
 //탭제스처 레코그나이저
-extension CommunityResultTVC :  UIGestureRecognizerDelegate, TapDelegate {
-    func myTableDelegate(index: Int) {
-        print(index)
+extension CommunityResultTVC :  UIGestureRecognizerDelegate, TapDelegate2 {
+    func myTableDelegate(sender : UITapGestureRecognizer) {
+        let touch = sender.location(in: self.tableView)
+        if let indexPath = self.tableView.indexPathForRow(at: touch){
+            let cell = self.tableView.cellForRow(at: indexPath) as! CommunityResultTVCell
+            let userId = cell.profileImgView.userId
+            if let myPageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
+                myPageVC.selectedUserId = userId
+                self.present(myPageVC, animated: true, completion: nil)
+            }
+            
+        }
     }
-   
 }
 
 //통신
