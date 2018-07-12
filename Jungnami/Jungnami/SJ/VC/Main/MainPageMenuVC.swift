@@ -180,7 +180,7 @@ extension MainPageMenuVC {
     
     @objc func setDefaultNav(){
         //setupTitleNavImg
-        let titleImageView = UIImageView(image: #imageLiteral(resourceName: "partylist_logo"))
+        let titleImageView = UIImageView(image: #imageLiteral(resourceName: "app_logo"))
         titleImageView.contentMode = .scaleAspectFit
         titleImageView.snp.makeConstraints { (make) in
             make.height.equalTo(21)

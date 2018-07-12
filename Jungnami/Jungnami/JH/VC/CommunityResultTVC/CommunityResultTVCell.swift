@@ -61,7 +61,7 @@ class CommunityResultTVCell: UITableViewCell {
       
         if (gsno(data.imgURL) == "0") {
            
-            contentImgView.image = #imageLiteral(resourceName: "dabi")
+            contentImgView.image = #imageLiteral(resourceName: "community_default_img")
            
         } else {
             if let url = URL(string: gsno(data.imgURL)){
