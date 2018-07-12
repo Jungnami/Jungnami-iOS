@@ -15,3 +15,7 @@ protocol TapDelegate {
 protocol DoubleTapDelegate {
      func myDoubleTapDelegate(sender : UITapGestureRecognizer)
 }
+
+protocol TapDelegate2 {
+    func myTableDelegate(sender : UITapGestureRecognizer)
+}

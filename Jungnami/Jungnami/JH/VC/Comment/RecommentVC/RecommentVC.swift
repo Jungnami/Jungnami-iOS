@@ -148,7 +148,7 @@ class RecommentVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
             //cell정보들에 연결하기
-            cell.delegate = self
+            //cell.delegate = self
             cell.configure(index : indexPath.row, data: commentData[indexPath.row])
             return cell
         }else {

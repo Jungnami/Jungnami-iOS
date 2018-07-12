@@ -31,8 +31,9 @@ class myScrapBtn : UIButton {
 
 class CommunityTVCell: UITableViewCell {
     
-    @IBOutlet weak var profileImgView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileImgView: myTouchImg!
+    @IBOutlet weak var nameLabel: myTouchLbl!
+    //스토리보드에서 imgView, Lbl에서 class myTouchImg, myTouchLbl로 바꾸기!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
@@ -42,12 +43,12 @@ class CommunityTVCell: UITableViewCell {
     @IBOutlet weak var commentBtn : myCommentBtn!
     @IBOutlet weak var scrapBtn : UIButton!
     
-    var delegate: TapDelegate?
+    //tapGesture-------------------------------
+    var index = 0
+    var delegate: TapDelegate2?
     var doubleTapdelegate: DoubleTapDelegate?
-
-    
-    
-    var index : Int = 0
+    //-----------------------------------------
+  
     func configure(index : Int, data : CommunityVODataContent){
         self.index = index
 
@@ -87,6 +88,15 @@ class CommunityTVCell: UITableViewCell {
                 self.contentImgView.kf.setImage(with: url)
             }
         }
+        //수지나 도와져
+        //여기 고치기
+        /*
+         profileImgView.userId = data.userId
+         nameLabel.userId = data.userId
+         였는데 에러나서 이렇게 바꿨는데 ㅠ
+         */
+       // profileImgView.userId = data.
+        //nameLabel.userId = data.userimg!
     }
     
     override func awakeFromNib() {
@@ -95,8 +105,11 @@ class CommunityTVCell: UITableViewCell {
         //탭제스처 레코그나이저
         profileImgView.isUserInteractionEnabled = true
         nameLabel.isUserInteractionEnabled = true
+        
         let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(CommunityTVCell.imgTap(sender:)))
+        
         let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(CommunityTVCell.lblTap(sender:)))
+        
         self.nameLabel.addGestureRecognizer(lblTapGesture)
         self.profileImgView.addGestureRecognizer(imgTapGesture)
 
@@ -106,23 +119,21 @@ class CommunityTVCell: UITableViewCell {
         contentImgView.addGestureRecognizer(tap)
     
     }
-    
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-     
-    }
-    
+    //tapGesture
     @objc func imgTap(sender: UITapGestureRecognizer) {
-        delegate?.myTableDelegate(index : index)
+        delegate?.myTableDelegate(sender : sender)
         
     }
     @objc func lblTap(sender: UITapGestureRecognizer) {
-        delegate?.myTableDelegate(index : index)
+        delegate?.myTableDelegate(sender : sender)
     }
     
     @objc func doubleTapped(sender : UITapGestureRecognizer) {
          doubleTapdelegate?.myDoubleTapDelegate(sender : sender)
+    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
     }
     
 }

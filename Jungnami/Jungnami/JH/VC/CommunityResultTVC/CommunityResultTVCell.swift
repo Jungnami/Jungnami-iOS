@@ -12,8 +12,8 @@ import SnapKit
 
 class CommunityResultTVCell: UITableViewCell {
     
-    @IBOutlet weak var profileImgView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileImgView: myTouchImg!
+    @IBOutlet weak var nameLabel: myTouchLbl!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
@@ -23,7 +23,7 @@ class CommunityResultTVCell: UITableViewCell {
     @IBOutlet weak var commentBtn : myCommentBtn!
     @IBOutlet weak var scrapBtn : UIButton!
     
-    var delegate: TapDelegate?
+    var delegate: TapDelegate2?
     var doubleTapdelegate: DoubleTapDelegate?
 
     var index : Int = 0
@@ -41,6 +41,9 @@ class CommunityResultTVCell: UITableViewCell {
         contentLabel.sizeToFit()
         likeLabel.text = "\(data.likecnt)"
         commentLabel.text = "\(data.commentcnt)"
+        //고치기 - 유저 아이디
+        nameLabel.userId = "\(data.id)"
+        profileImgView.userId = "\(data.id)"
         if data.islike == 0 {
             heartBtn.isSelected = false
         } else {
@@ -93,11 +96,11 @@ class CommunityResultTVCell: UITableViewCell {
     }
     
     @objc func imgTap(sender: UITapGestureRecognizer) {
-        delegate?.myTableDelegate(index : index)
+          delegate?.myTableDelegate(sender : sender)
         
     }
     @objc func lblTap(sender: UITapGestureRecognizer) {
-        delegate?.myTableDelegate(index : index)
+          delegate?.myTableDelegate(sender : sender)
     }
     
     @objc func doubleTapped(sender : UITapGestureRecognizer) {

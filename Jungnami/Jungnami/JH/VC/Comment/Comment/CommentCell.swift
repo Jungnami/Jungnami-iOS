@@ -9,12 +9,20 @@
 import UIKit
 import Kingfisher
 
+class myTouchLbl : UILabel {
+    var userId : String = ""
+}
+
+class myTouchImg  : UIImageView {
+    var userId : String = ""
+}
+
 class CommentCell: UITableViewCell {
 
     
     //comment
-    @IBOutlet weak var commentProfileImg: UIImageView!
-    @IBOutlet weak var commentUserLbl: UILabel!
+    @IBOutlet weak var commentProfileImg: myTouchImg!
+    @IBOutlet weak var commentUserLbl: myTouchLbl!
     @IBOutlet weak var commentContentLbl: UILabel!
     @IBOutlet weak var commentDateLbl: UILabel!
     @IBOutlet weak var commentLikeLbl: UILabel!
@@ -25,11 +33,11 @@ class CommentCell: UITableViewCell {
     //댓글 좋아요 Btn
     @IBOutlet weak var commentLikeBtn: myHeartBtn!
     //---------tapGesture--------
-    var delegate : TapDelegate?
+    var delegate : TapDelegate2?
     var index = 0
     //----------------------------
     func configure(index : Int, data : CommunityCommentVOData){
-      //  commentProfileImg.image = data.userImg
+      
         if (gsno(data.userImg) == "0") {
             commentProfileImg.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
@@ -58,7 +66,11 @@ class CommentCell: UITableViewCell {
         if index < 3 {
             commentBestImg.isHidden = true
         }
+        
+        
       //  index = 12 //나중에 유저 인덱스 등으로 고칠 수 있음
+        commentUserLbl.userId = data.userId
+        commentProfileImg.userId = data.userId
     }
     
     override func awakeFromNib() {
@@ -77,10 +89,10 @@ class CommentCell: UITableViewCell {
     }
 
     @objc func imgTap(sender: UITapGestureRecognizer) {
-        delegate?.myTableDelegate(index : index)
+        delegate?.myTableDelegate(sender: sender)
     }
     @objc func lblTap(sender: UITapGestureRecognizer) {
-        delegate?.myTableDelegate(index : index)
+        delegate?.myTableDelegate(sender : sender)
     }
     //-----------------------------------------------
     override func setSelected(_ selected: Bool, animated: Bool) {
