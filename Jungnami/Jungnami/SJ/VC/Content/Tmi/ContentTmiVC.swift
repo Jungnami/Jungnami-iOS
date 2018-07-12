@@ -21,6 +21,8 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tmiCollectionView.refreshControl = UIRefreshControl()
+        self.tmiCollectionView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         tmiCollectionView.delegate = self
         tmiCollectionView.dataSource = self
         
@@ -97,7 +99,8 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
                     detailVC.contentIdx = contentData_[indexPath.row].contentsid
                 }
                 //화면전환
-                self.navigationController?.pushViewController(detailVC, animated: true)
+            self.navigationController?.pushViewController(detailVC, animated: true)
+
             }
         }
         
@@ -137,6 +140,19 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
     
     
 }
+
+//리프레시
+extension ContentTmiVC {
+    
+    @objc func startReloadTableView(_ sender: UIRefreshControl){
+        contentTmidInit(url: url("/contents/main/TMI"))
+        
+        self.tmiCollectionView.reloadData()
+        sender.endRefreshing()
+    }
+}
+
+
 extension ContentTmiVC {
     //extension에서 이름 바꾸고
     

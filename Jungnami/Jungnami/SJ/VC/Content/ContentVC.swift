@@ -38,9 +38,13 @@ class ContentVC: UIViewController, AlarmProtocol{
         } else {
             alarmCountLbl.isHidden = false
             alarmBG.isHidden = false
-            alarmCountLbl.text = "\(alarmCount)"
+            if alarmCount > 99 {
+                alarmCountLbl.text = "99+"
+            } else {
+                alarmCountLbl.text = "\(alarmCount)"
+            }
+            
         }
-       
     }
     
   

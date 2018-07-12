@@ -14,6 +14,8 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         storyCollectionView.dataSource = self
         storyCollectionView.delegate = self
+        self.storyCollectionView.refreshControl = UIRefreshControl()
+        self.storyCollectionView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         let story = "스토리"
         contentStorydInit(url: url("/contents/main/\(story)"))
     }
@@ -124,6 +126,18 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
     }
     
 }
+
+//리프레시
+extension ContentStoryVC {
+    
+    @objc func startReloadTableView(_ sender: UIRefreshControl){
+       contentStorydInit(url: url("/contents/main/스토리"))
+        
+        self.storyCollectionView.reloadData()
+        sender.endRefreshing()
+    }
+}
+
 extension ContentStoryVC {
     //extension에서 이름 바꾸고
     

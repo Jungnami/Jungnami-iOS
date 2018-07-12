@@ -16,7 +16,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
     @IBOutlet weak var searchTxtfield: UITextField!
     @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var communityTableView: UITableView!
-    
+    @IBOutlet weak var alarmBtn: UIButton!
     
     lazy var blackView : UIView = {
         let view = UIView()
@@ -51,9 +51,24 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
             self.present(mypageVC, animated: true, completion: nil)
         }
     }
-    
-    @IBAction func alarmBtn(_ sender: Any) {
+
+    func getAlarm(alarmCount: Int) {
+        if alarmCount == 0 {
+            alarmLbl.isHidden = true
+            badgeImg.isHidden = true
+        } else {
+            alarmLbl.isHidden = false
+            badgeImg.isHidden = false
+            if alarmCount > 99 {
+                alarmLbl.text = "99+"
+            } else {
+                  alarmLbl.text = "\(alarmCount)"
+            }
+
+        }
     }
+    
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,11 +87,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         
         communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC
     }
-    var badgeCount = 0 {
-        didSet {
-            alarmLbl.text = "\(badgeCount)"
-        }
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -86,6 +97,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         alarmLbl.sizeToFit()
         searchTxtfield.enablesReturnKeyAutomatically = false
         self.communityTableView.addSubview(blackView)
+        alarmBtn.addTarget(self, action:  #selector(toAlarmVC(_sender:)), for: .touchUpInside)
         setKeyboardSetting()
         blackView.isHidden = true
         //constraint-----------------------------------------
@@ -94,15 +106,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
             make.top.equalTo(separateView.snp.top)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             alarmLbl.adjustsFontSizeToFitWidth = true
-            if(badgeCount > 99){
-                badgeImg.isHidden = false
-                alarmLbl.text = "99+"
-            } else if badgeCount == 0 {
-                badgeImg.isHidden = true
-            } else {
-                badgeImg.isHidden = false
-                alarmLbl.text = "\(badgeCount)"
-            }
+           
             
         }
         //----------------------------------------------------
@@ -364,6 +368,29 @@ extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate2 {
     }
 }
 
+
+extension CommunityVC {
+    @objc func toAlarmVC(_sender: UIButton){
+        if let noticeVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:NoticeVC.reuseIdentifier) as? NoticeVC {
+            
+            let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+            if (myId == "-1"){
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+                
+            } else {
+                self.present(noticeVC, animated : true)
+            }
+            
+        }
+    }
+}
+
+
 //통신
 extension CommunityVC {
     //커뮤 들어갔을 때
@@ -375,8 +402,9 @@ extension CommunityVC {
                 let communityContent = communityData as! CommunityVOData
                 self.communityData = communityContent.content
                 self.communityTableView.reloadData()
-                self.badgeCount = communityContent.alarmcnt
+               
                 self.userImgURL = communityContent.userImgURL
+                self.getAlarm(alarmCount: communityContent.alarmcnt)
                 break
             case .nullValue :
                 break
@@ -595,5 +623,7 @@ extension CommunityVC {
         }
     }
 }
+
+
 
 

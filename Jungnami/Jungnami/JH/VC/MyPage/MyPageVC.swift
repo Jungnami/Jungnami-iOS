@@ -25,6 +25,10 @@ class MyPageVC: UIViewController , APIService{
     @IBOutlet weak var scapBtn: UIButton!
     @IBOutlet weak var feedBtn: UIButton!
     
+    @IBOutlet weak var alarmBtn: UIButton!
+    
+    @IBOutlet weak var alarmCountLbl: UILabel!
+    @IBOutlet weak var alarmBG: UIImageView!
     
     @IBAction func dismissBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -33,6 +37,24 @@ class MyPageVC: UIViewController , APIService{
     @IBAction func changeView(_ sender: UIButton) {
         updateView(selected: sender.tag)
     }
+    
+    
+    func getAlarm(alarmCount: Int) {
+        if alarmCount == 0 {
+            alarmCountLbl.isHidden = true
+            alarmBG.isHidden = true
+        } else {
+            alarmCountLbl.isHidden = false
+            alarmBG.isHidden = false
+            if alarmCount > 99 {
+                alarmCountLbl.text = "99+"
+            } else {
+                alarmCountLbl.text = "\(alarmCount)"
+            }
+            
+        }
+    }
+    
     //알림, 설정, 버튼으로 연결해야함
     //var data = MyPageData.sharedInstance.myPageUsers
     //tapGesture--------------------------------
@@ -84,10 +106,11 @@ class MyPageVC: UIViewController , APIService{
             getMyPage(url: url("/user/mypage/\(selectedUserId_)"))
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         profileImgView.makeImageRound()
-        
+        self.alarmBtn.addTarget(self, action:  #selector(toAlarmVC(_sender:)), for: .touchUpInside)
         updateView(selected: 0)
         
         //네비게이션바 히든
@@ -194,6 +217,27 @@ extension MyPageVC{
     
     
 }
+//알림페이지로 가게
+extension MyPageVC {
+    @objc func toAlarmVC(_sender: UIButton){
+        if let noticeVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:NoticeVC.reuseIdentifier) as? NoticeVC {
+            
+            let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+            if (myId == "-1"){
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+                
+            } else {
+                self.present(noticeVC, animated : true)
+            }
+            
+        }
+    }
+}
 
 //통신
 
@@ -204,7 +248,7 @@ extension MyPageVC {
             
             switch result {
             case .networkSuccess(let myPageData):
-                
+
             
                 let myPageData = myPageData as! MyPageVOData
                 if (self.gsno(myPageData.img) == "0") {
@@ -223,6 +267,7 @@ extension MyPageVC {
                 self.profileVoteCountLbl.text = "\(myPageData.votingcnt)"
                 self.myBoardData = myPageData.board
                 self.myScrapData = myPageData.scrap
+                self.getAlarm(alarmCount: myPageData.pushcnt)
                 break
             case .nullValue :
                 self.simpleAlert(title: "오류", message: "값 없음")
@@ -235,3 +280,4 @@ extension MyPageVC {
         })
     }
 }
+
