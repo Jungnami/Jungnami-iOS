@@ -107,6 +107,7 @@ class MyPageVC: UIViewController , APIService{
         
         if let followListVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:FollowListVC.reuseIdentifier) as? FollowListVC {
             followListVC.selectedUserId = selectedUserId
+          
             self.present(followListVC, animated: true, completion: nil)
         }
     }

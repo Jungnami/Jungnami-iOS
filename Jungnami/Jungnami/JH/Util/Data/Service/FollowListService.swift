@@ -17,17 +17,6 @@ struct FollowListService : GettableService {
             switch result {
             case .success(let networkResult):
                 switch networkResult.resCode {
-                /*
-                     // status:300
-                     {
-                     message: "No Data"
-                     }
-                     
-                     // status:500
-                     {
-                     message : "Internal Server Error"
-                     }
-                */
                 //여기
                 case 200 :
                     completion(.networkSuccess(networkResult.resResult.data))
