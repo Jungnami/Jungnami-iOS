@@ -11,22 +11,35 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     
     //투두 - 타이틀이랑 데이트 여기 밖으로 빼내서 연결
     @IBOutlet weak var likeCountLbl: UILabel!
-    
     @IBOutlet weak var commentCountLbl: UILabel!
-    
     @IBOutlet weak var pageLbl: UILabel!
     @IBOutlet weak var detailCollectionView: UICollectionView!
-    
-    
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var scarpBtn: UIButton!
+    var contentIdx : Int? // contentDetail
+    var contentImages: [ContentDetailVODataImgArr]?
+    var contentTitle : String?
+    var writeTime : String?
+    var thumnail : String?
+    
     var isLike = 0 {
         didSet {
             if isLike == 0 {
                 likeBtn.isSelected = false
             } else {
                  likeBtn.isSelected = true
+            }
+        }
+    }
+    
+    var isScrap = 0 {
+        didSet {
+            if isScrap == 0 {
+                scarpBtn.isSelected = false
+            } else {
+                scarpBtn.isSelected = true
             }
         }
     }
@@ -54,10 +67,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBAction func shareBtn(_ sender: Any) {
         //공유
     }
-    //scrapBtn
-    @IBAction func scrapBtn(_ sender: Any) {
-        //수진!
-    }
+    
     
     
     //backBtn
@@ -66,16 +76,12 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         self.dismiss(animated: true, completion: nil)
     }
     
-    //통신
-    var contentIdx : Int? // contentDetail
-    var contentImages: [ContentDetailVODataImgArr]?
-    var contentTitle : String?
-    var writeTime : String?
-    var thumnail : String?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let contentIdx_ = contentIdx {
+            
+            print("abcdefg")
             contentDetailInit(url: url("/contents/cardnews/\(contentIdx_)"))
         }
     }
@@ -90,8 +96,11 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
             contentDetailInit(url: url("/contents/cardnews/\(contentIdx_)"))
         }
         likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-        likeBtn.setImage(UIImage(named: "community_heart"), for: .normal)
+        likeBtn.setImage(UIImage(named: "content_heart"), for: .normal)
         likeBtn.setImage(UIImage(named: "community_heart_blue"), for: .selected)
+        scarpBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
+        scarpBtn.setImage(UIImage(named: "content_scrap"), for: .normal)
+        scarpBtn.setImage(UIImage(named: "content_scrap_blue"), for: .selected)
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -183,6 +192,14 @@ extension ContentDetailVC {
             dislikeAction(url: url("/delete/contentslike/\(contentIdx!)"))
         }
     }
+    
+    @objc func scrap(_ sender : UIButton){
+        if isScrap == 0 {
+            scrapAction(url: url("/contents/scrap"))
+        } else {
+            scrapCancelAction(url: url("/delete/scrap/\(contentIdx!)"))
+        }
+    }
 }
 
 //통신
@@ -206,6 +223,7 @@ extension ContentDetailVC {
                 self.writeTime = contentDetail.text
                 self.thumnail = contentDetail.thumbnail
                 self.isLike = contentDetail.islike
+                self.isScrap = contentDetail.isscrap
                 self.detailCollectionView.reloadData()
                 break
             case .nullValue :
@@ -298,6 +316,70 @@ extension ContentDetailVC {
             
         })
     }
+    
+    
+    
+    
+    
+    //스크랩 눌렀을 때
+    func scrapAction(url : String){
+        
+        let params : [String : Any] = [
+            "contentsid" : contentIdx!
+        ]
+        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+            
+                self.isScrap = 1
+                
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    //스크랩 취소
+    func scrapCancelAction(url : String){
+        CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                 self.isScrap = 0
+                
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
   
 }
 
