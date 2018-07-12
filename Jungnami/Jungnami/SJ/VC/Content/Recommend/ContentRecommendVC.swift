@@ -39,7 +39,6 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
         // Dispose of any resources that can be recreated.
     }
     
-    var contentMenus = ContentMenuData.sharedInstance.contentMenus
     
     //-------------------collectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
