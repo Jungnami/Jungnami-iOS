@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AlarmProtocol {
+    func getAlarm(alarmCount : Int)
+}
+
 class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, APIService {
     
     @IBOutlet weak var contentCollectionView: UICollectionView!
@@ -17,9 +21,19 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
         contentCollectionView.dataSource = self
         //통신
         contentRecommendInit(url: url("/contents/recommend"))
+        
     }
     var contentData : [RecommendVODataContent]?
-    var alarmCount = 0
+    var alarmDelegate  : AlarmProtocol?
+    var alarmCount : Int? {
+        didSet {
+            if let alarmCount_ = alarmCount {
+                print("alarmCount changed!")
+                print(alarmCount_)
+                self.alarmDelegate?.getAlarm(alarmCount: alarmCount_)
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

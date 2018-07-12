@@ -26,7 +26,16 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var storyCollectionView: UICollectionView!
     
     var storyData: [RecommendVODataContent]?
-    var alarm = 0
+    var alarmDelegate  : AlarmProtocol?
+    var alarmCount : Int? {
+        didSet {
+            if let alarmCount_ = alarmCount {
+                print("alarmCount changed!")
+                print(alarmCount_)
+                self.alarmDelegate?.getAlarm(alarmCount: alarmCount_)
+            }
+        }
+    }
     
     //-------------------collectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -128,7 +137,7 @@ extension ContentStoryVC {
                 self.storyData = storyData.content.filter({
                     $0.type == 0
                 })
-                self.alarm = storyData.alarmcnt // 알림 lbl
+                self.alarmCount = storyData.alarmcnt // 알림 lbl
                 self.storyCollectionView.reloadData()
                 break
             case .nullValue :
