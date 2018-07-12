@@ -77,6 +77,7 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
         if let commentData_ = commentData {
+             cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
             cell.configure(index : indexPath.row ,data: commentData_[indexPath.row])
         }
         
@@ -84,6 +85,23 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    
+    @objc func like(_ sender : myHeartBtn){
+        //통신
+        
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.detailTableView)
+        let indexPath: IndexPath? = self.detailTableView.indexPathForRow(at: buttonPosition)
+        let cell = self.detailTableView.cellForRow(at: indexPath!) as! CommentCell
+        
+        if sender.isLike! == 0 {
+            
+            likeAction(url: url("/contents/likecomment"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
+        } else {
+            
+            dislikeAction(url: url("/delete/contentscommentlike/\(sender.boardIdx!)"), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+        }
+        
+    }
     
     
 }
@@ -219,6 +237,68 @@ extension ContentCommentVC {
         
         
     }
+    
+    //하트 버튼 눌렀을 때
+    func likeAction(url : String, boardIdx : Int, isLike : Int, cell : CommentCell, sender : myHeartBtn, likeCnt : Int){
+        
+        let params : [String : Any] = [
+            "comment_id" : boardIdx
+        ]
+        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = true
+                sender.isLike = 1
+              
+
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    //좋아요 취소
+    func dislikeAction(url : String, cell : CommentCell, sender : myHeartBtn, likeCnt : Int){
+        CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = false
+                sender.isLike = 0
+               
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    
     
 }
 
