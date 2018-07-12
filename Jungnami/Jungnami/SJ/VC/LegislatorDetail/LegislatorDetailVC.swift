@@ -95,9 +95,7 @@ extension LegislatorDetailVC {
             
             cell.likeBtn.addTarget(self, action: #selector(like(_sender:)), for: .touchUpInside)
             cell.dislikeBtn.addTarget(self, action: #selector(dislike(_sender:)), for: .touchUpInside)
-            
-            
-            
+
             return cell
         } else if indexPath.section == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorRelatedCell.reuseIdentifier, for: indexPath) as! LegislatorRelatedCell
@@ -116,6 +114,18 @@ extension LegislatorDetailVC {
             return cell
         }
         
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            if let contents_ = contents {
+               let contentIdx = contents_[indexPath.row].id
+                let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+
+                detailVC.contentIdx = contentIdx
+                self.present(detailVC, animated: true)
+            }
+        }
     }
 }
 

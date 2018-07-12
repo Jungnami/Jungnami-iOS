@@ -43,7 +43,6 @@ class ContentVC: UIViewController, AlarmProtocol{
             } else {
                 alarmCountLbl.text = "\(alarmCount)"
             }
-            
         }
     }
     

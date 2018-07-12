@@ -15,7 +15,7 @@ class LegislatorContentCell: UICollectionViewCell {
     @IBOutlet weak var legislatorContentCategoryLbl: UILabel!
     
     
-    var legisContents = LegislatorContentData.sharedInstance.legislatorContents
+    
     func configure(data: LegislatorDetailVODataContent) {
         if (gsno(data.thumbnailURL) == "0") {
             legislatorContentImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
@@ -28,5 +28,6 @@ class LegislatorContentCell: UICollectionViewCell {
         legislatorTitleLbl.text = data.title
        
         legislatorContentCategoryLbl.text = data.text
+      
     }
 }
