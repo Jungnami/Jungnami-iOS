@@ -7,19 +7,33 @@
 
 import UIKit
 
-class ContentSearchResultVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ContentSearchResultVC: UIViewController {
+    
+    
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var contentSearchResultCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
+//        contentSearchResultCollectionView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
+        // Dispose of any resources that can be recreated.
     }
     
-
 }
+
+//extension ContentSearchResultVC: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+//
+//
+//}

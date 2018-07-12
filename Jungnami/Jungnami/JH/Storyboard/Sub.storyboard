@@ -2287,7 +2287,7 @@
                         <viewLayoutGuide key="safeArea" id="2Bq-Sx-AMc"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="2sz-Qg-Ee6" id="oi5-eU-l8D"/>
+                        <outlet property="contentSearchResultCollectionView" destination="2sz-Qg-Ee6" id="f0K-uk-JOO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TkS-YM-ghh" userLabel="First Responder" sceneMemberID="firstResponder"/>
