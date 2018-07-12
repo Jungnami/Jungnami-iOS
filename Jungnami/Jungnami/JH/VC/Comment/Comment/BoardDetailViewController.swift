@@ -83,6 +83,23 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
         cell.delegate = self
         return cell
     }
+    
+    
+     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let selectedComment = commentData![indexPath.row]
+        let deleteAction = UITableViewRowAction(style: .normal, title: "삭제") { (rowAction, indexPath) in
+            let commentIdx = selectedComment.commentid
+            //삭제 url 넣기
+          
+            
+            self.deleteComment(url: self.url("/delete/boardcomment/\(commentIdx)"))
+            //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
+        }
+        deleteAction.backgroundColor = .red
+        return [deleteAction]
+    }
+    
+    
  
     @objc func like(_ sender : myHeartBtn){
         //통신
@@ -241,6 +258,27 @@ extension BoardDetailViewController {
         })
         
         
+    }
+    
+    //댓글 삭제
+    func deleteComment(url : String){
+        CommentDeleteService.shareInstance.deleteComment(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(_):
+                self.simpleAlert(title: "성공", message: "댓글 삭제 완료")
+                self.temp()
+                break
+            case .accessDenied :
+                self.simpleAlert(title: "오류", message: "삭제 권한이 없습니다")
+                break
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
     }
     
     //하트 버튼 눌렀을 때

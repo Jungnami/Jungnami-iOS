@@ -31,6 +31,7 @@
 		3B87A33D20F6B21100A968B8 /* ContentCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B87A33C20F6B21100A968B8 /* ContentCommentVC.swift */; };
 		3B87A34120F7816200A968B8 /* AlarmVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B87A34020F7816200A968B8 /* AlarmVO.swift */; };
 		3B87A34320F7956F00A968B8 /* AlarmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B87A34220F7956E00A968B8 /* AlarmService.swift */; };
+		3B87A34520F7F39A00A968B8 /* CommentDeleteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B87A34420F7F39A00A968B8 /* CommentDeleteService.swift */; };
 		3B94984F20F3BC6B00BFA81E /* CommunityWriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94984E20F3BC6B00BFA81E /* CommunityWriteService.swift */; };
 		3B94985120F3BD2400BFA81E /* CommunityWriteVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985020F3BD2400BFA81E /* CommunityWriteVO.swift */; };
 		3B94985320F3E36700BFA81E /* GetPointService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94985220F3E36700BFA81E /* GetPointService.swift */; };
@@ -177,6 +178,7 @@
 		3B87A33C20F6B21100A968B8 /* ContentCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCommentVC.swift; sourceTree = "<group>"; };
 		3B87A34020F7816200A968B8 /* AlarmVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmVO.swift; sourceTree = "<group>"; };
 		3B87A34220F7956E00A968B8 /* AlarmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmService.swift; sourceTree = "<group>"; };
+		3B87A34420F7F39A00A968B8 /* CommentDeleteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDeleteService.swift; sourceTree = "<group>"; };
 		3B94984E20F3BC6B00BFA81E /* CommunityWriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteService.swift; sourceTree = "<group>"; };
 		3B94985020F3BD2400BFA81E /* CommunityWriteVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWriteVO.swift; sourceTree = "<group>"; };
 		3B94985220F3E36700BFA81E /* GetPointService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPointService.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				3B87A33220F6156700A968B8 /* LegislatorSearchService.swift */,
 				3B87A33620F6395F00A968B8 /* CommunitySearchService.swift */,
 				3B87A34220F7956E00A968B8 /* AlarmService.swift */,
+				3B87A34420F7F39A00A968B8 /* CommentDeleteService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1160,6 +1163,7 @@
 				4353B95020F66F0C00C88214 /* MypageService.swift in Sources */,
 				3B94985B20F3FCCC00BFA81E /* GetCoinService.swift in Sources */,
 				3B83165920F106E0001D2423 /* CommunityFirstSectionWriteTVCell.swift in Sources */,
+				3B87A34520F7F39A00A968B8 /* CommentDeleteService.swift in Sources */,
 				4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */,
 				43E4B7B620F5F9C900BA68D4 /* ContentsVO.swift in Sources */,
 				3BFCE31920F5251500C21AEB /* BoardDetailViewController.swift in Sources */,
