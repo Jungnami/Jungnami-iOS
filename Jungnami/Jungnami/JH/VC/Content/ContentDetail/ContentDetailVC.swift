@@ -226,8 +226,7 @@ extension ContentDetailVC {
             switch result {
             case .networkSuccess(_):
                 self.isLike = 1
-                //self.likeCountLbl.text = "\(self.likeCount+1)명"
-                self.simpleAlert(title: "확인", message: "좋아요 완료")
+
                 
                 var changed : Int = 0
                 
@@ -266,8 +265,6 @@ extension ContentDetailVC {
             switch result {
             case .networkSuccess(_):
                 self.isLike = 0
-                self.simpleAlert(title: "확인", message: "취소 완료")
-                
                 var changed : Int = 0
 
                 //Now change the text and background colour
