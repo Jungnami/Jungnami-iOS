@@ -613,10 +613,7 @@
 				3B97B5C320F22B8900020A81 /* Tabbar */,
 				3B97B5B820F1FAD200020A81 /* Login */,
 				3B08969D20EEB53A00BFBCBC /* Main */,
-				439D812B20EB2FE5007DAD57 /* Community */,
 				439D812220EB2FE5007DAD57 /* CommunityWrite */,
-				3BB4308620EC9437002980D9 /* CommunityResultTVC */,
-				43D1DAB520EB4F2C00B752D1 /* Comment */,
 				439D812720EB2FE5007DAD57 /* PartyList */,
 				3BB4308920ECDF5B002980D9 /* PartyListDetail */,
 				3BB1A5BD20EB958E00D4929A /* SearchLegislatorResult */,
@@ -624,6 +621,7 @@
 				43537F0320F0F0F50036435A /* Legislator */,
 				43E84BEC20EDE1F4007C6C97 /* MyFeed */,
 				43C5137C20ECD9870017BDD8 /* Scrap */,
+				439D813520EB2FE5007DAD57 /* Content */,
 				43E84BF920EE1DBD007C6C97 /* ContentDetail */,
 			);
 			path = VC;
@@ -681,9 +679,11 @@
 		439D813420EB2FE5007DAD57 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				439D812B20EB2FE5007DAD57 /* Community */,
+				3BB4308620EC9437002980D9 /* CommunityResultTVC */,
+				43D1DAB520EB4F2C00B752D1 /* Comment */,
 				4351999420EFE92600D72AAF /* OtherUserPage */,
 				43C5137920ECD7E90017BDD8 /* MyPage */,
-				439D813520EB2FE5007DAD57 /* Content */,
 			);
 			path = VC;
 			sourceTree = "<group>";
