@@ -9,46 +9,62 @@ import UIKit
 
 class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, APIService {
     
+     var keyboardDismissGesture: UITapGestureRecognizer?
+    
+    @IBOutlet weak var navTitleLbl: UILabel!
     @IBOutlet weak var followTableView: UITableView!
     @IBOutlet weak var followSearchField: UITextField!
     @IBOutlet weak var followSearchImg: UIImageView!
     var selectedUserId : String? {
         didSet {
-          
-            if let selectedUserId_ = selectedUserId {
-                print("hrherehrherere12121212121212")
-                print(selectedUserId_)
-              //  followerListInit(url: url("/user/followinglist/\(selectedUserId_)"))
-                followerListInit(url: url("/user/followinglist/809253344"))
-            
-            }
+         getList()
         }
     }
     @IBAction func dismissBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    var keyboardDismissGesture: UITapGestureRecognizer?
+   
     //통신
-    var followListData : [FollowListVOData]?
-    
-    /*
-     let followingID, followingNickname, followingImgURL, isMyFollowing: String
-     
-     */
-    
+    var followListData : [FollowListVOData]? {
+        didSet {
+            if let _ = followerListData {
+                self.followTableView.reloadData()
+            }
+        }
+    }
+    var followerListData : [FollowerListVOData]? {
+        didSet {
+            if let _ = followerListData {
+      
+                self.followTableView.reloadData()
+            }
+        }
+    }
+    var entryPoint : Int?
+    var navTitle : String?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let selectedUserId_ = selectedUserId {
-            followerListInit(url: url("/user/followinglist/809253344"))
-        }
-        print("hihrere")
+         getList()
         
+        if let navTitle_ = navTitle {
+            self.navTitleLbl.text = navTitle_
+        }
+    }
+    
+    func getList(){
+        if let selectedUserId_ = selectedUserId, let entryPoint_ = entryPoint {
+            if entryPoint_ == 0 {
+                followingListInit(url: url("/user/followinglist/\(selectedUserId_)"))
+            } else {
+                followerListInit(url: url("/user/followerlist/\(selectedUserId_)"))
+            }
+            
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         followTableView.delegate = self
         followTableView.dataSource = self
         //네비게이션바 히든
@@ -56,9 +72,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         //keyboardDown
         hideKeyboardWhenTappedAround()
-        if let selectedUserId_ = selectedUserId {
-            followerListInit(url: url("/user/followinglist/809253344"))
-        }
+        getList()
         
         //searchField
         //        if followSearchField.text != "" {
@@ -74,7 +88,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
-    var data = FollowListData.sharedInstance.followers
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -83,9 +97,14 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if section == 0 {
             return 1
         }else {
+            
             //data로 연결
             if let followListData_ = followListData {
                 return followListData_.count
+            }
+            
+            if let followerListData_ = followerListData {
+               return followerListData_.count
             }
         return 0
         }
@@ -100,10 +119,17 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             let cell = tableView.dequeueReusableCell(withIdentifier: FollowCell.reuseIdentifier, for: indexPath) as! FollowCell
             //configure통신
             cell.delegate = self
+            
             if let followListData_ = followListData {
-               
+                //여기서부터
                 cell.followCancelBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
                 cell.configure(data: followListData_[indexPath.row])
+            }
+            
+            if let followerListData_ = followerListData {
+        
+                cell.followCancelBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+                cell.configure2(data: followerListData_[indexPath.row])
             }
             
             return cell
@@ -208,8 +234,8 @@ extension FollowListVC {
 //통신
 extension FollowListVC {
     
-    func followerListInit(url : String){
-        FollowListService.shareInstance.getFollowList(url: url, completion: { [weak self] (result) in
+    func followingListInit(url : String){
+        FollowingListService.shareInstance.getFollowingList(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             
             switch result {
@@ -225,6 +251,28 @@ extension FollowListVC {
 //                })
 //                self.alarmCount = recommendData.alarmcnt
 //                self.contentCollectionView.reloadData()
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "값 없음")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+        
+    }
+    
+    func followerListInit(url : String){
+        FollowerListService.shareInstance.getFollowerList(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let followListData):
+                //수정
+                let followListData_ = followListData as! [FollowerListVOData]
+                self.followerListData = followListData_
                 break
             case .nullValue :
                 self.simpleAlert(title: "오류", message: "값 없음")

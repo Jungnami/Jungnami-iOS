@@ -78,7 +78,12 @@ class MyPageVC: UIViewController , APIService{
     }()
    
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selectedUserId_ = selectedUserId {
+            getMyPage(url: url("/user/mypage/\(selectedUserId_)"))
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         profileImgView.makeImageRound()
@@ -107,14 +112,19 @@ class MyPageVC: UIViewController , APIService{
         
         if let followListVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:FollowListVC.reuseIdentifier) as? FollowListVC {
             followListVC.selectedUserId = selectedUserId
-          
+            followListVC.entryPoint = 0
+            followListVC.navTitle = "팔로잉"
             self.present(followListVC, animated: true, completion: nil)
         }
     }
     //followerLbl 터치했을 때 화면 올리기
     @objc func tapFollowerLbl(_ sender: UITapGestureRecognizer) {
-        let followerList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowerListVC.reuseIdentifier) as! FollowerListVC
-        self.present(followerList, animated: true, completion: nil)
+        if let followListVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:FollowListVC.reuseIdentifier) as? FollowListVC {
+            followListVC.selectedUserId = selectedUserId
+            followListVC.entryPoint = 1
+            followListVC.navTitle = "팔로워"
+            self.present(followListVC, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
