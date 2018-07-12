@@ -605,7 +605,7 @@
 				3B83166020F138A4001D2423 /* Rank.storyboard */,
 				3B47AEB020F5EC2D0054B49A /* Mypage.storyboard */,
 				4353B95520F7549F00C88214 /* Content.storyboard */,
-				439D813320EB2FE5007DAD57 /* Sub.storyboard */,
+				3B83165E20F137A2001D2423 /* Community.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -674,7 +674,7 @@
 		439D813220EB2FE5007DAD57 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				3B83165E20F137A2001D2423 /* Community.storyboard */,
+				439D813320EB2FE5007DAD57 /* Sub.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
