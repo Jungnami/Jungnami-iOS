@@ -43,7 +43,7 @@
                                                     <constraint firstAttribute="height" constant="24" id="Y5K-Se-dZf"/>
                                                     <constraint firstAttribute="width" constant="24" id="rws-bF-que"/>
                                                 </constraints>
-                                                <state key="normal" image="mypage_x"/>
+                                                <state key="normal" image="content_x"/>
                                                 <connections>
                                                     <action selector="dismissBtn:" destination="jlK-Af-rQf" eventType="touchUpInside" id="5Lp-OJ-AYX"/>
                                                 </connections>
@@ -434,11 +434,11 @@
     </scenes>
     <resources>
         <image name="community_bell_blue_circle" width="16" height="16"/>
+        <image name="content_x" width="24" height="24"/>
         <image name="mypage_bell" width="24" height="24"/>
         <image name="mypage_coin" width="16" height="16"/>
         <image name="mypage_namefield" width="152" height="26"/>
         <image name="mypage_setup" width="41" height="26"/>
         <image name="mypage_vote" width="16" height="16"/>
-        <image name="mypage_x" width="24" height="24"/>
     </resources>
 </document>

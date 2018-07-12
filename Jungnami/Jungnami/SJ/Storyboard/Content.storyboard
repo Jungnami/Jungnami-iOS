@@ -166,7 +166,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecl-wN-k5I" userLabel="backBtn">
-                                        <rect key="frame" x="5" y="31" width="24" height="24"/>
+                                        <rect key="frame" x="16" y="31" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="PYR-kv-1gz"/>
                                             <constraint firstAttribute="height" constant="24" id="R38-Jj-3cf"/>
@@ -191,7 +191,7 @@
                                     <constraint firstItem="yff-QO-K7T" firstAttribute="centerX" secondItem="Myz-W6-AfC" secondAttribute="centerX" id="BNR-Q3-V40"/>
                                     <constraint firstAttribute="trailing" secondItem="GMc-Av-Fof" secondAttribute="trailing" constant="23.5" id="Ejt-Tz-rMR"/>
                                     <constraint firstItem="ecl-wN-k5I" firstAttribute="top" secondItem="Myz-W6-AfC" secondAttribute="top" constant="31" id="GZi-9t-qhJ"/>
-                                    <constraint firstItem="ecl-wN-k5I" firstAttribute="leading" secondItem="Myz-W6-AfC" secondAttribute="leading" constant="5" id="H5q-Q6-iOJ"/>
+                                    <constraint firstItem="ecl-wN-k5I" firstAttribute="leading" secondItem="Myz-W6-AfC" secondAttribute="leading" constant="16" id="H5q-Q6-iOJ"/>
                                     <constraint firstItem="ZgP-DJ-Kd7" firstAttribute="leading" secondItem="Myz-W6-AfC" secondAttribute="leading" constant="12" id="HUD-QG-aAc"/>
                                     <constraint firstItem="yff-QO-K7T" firstAttribute="top" secondItem="Myz-W6-AfC" secondAttribute="top" constant="118" id="PaJ-rc-oa8"/>
                                     <constraint firstAttribute="trailing" secondItem="yff-QO-K7T" secondAttribute="trailing" id="T7p-75-NA0"/>

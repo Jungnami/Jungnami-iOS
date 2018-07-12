@@ -20,6 +20,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
          getList()
         }
     }
+    
     @IBAction func dismissBtn(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -69,12 +70,12 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         followTableView.dataSource = self
         //네비게이션바 히든
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
+        self.followSearchField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         //keyboardDown
         hideKeyboardWhenTappedAround()
         getList()
         
-        
+        followSearchField.delegate = self
         followTableView.tableFooterView = UIView(frame : .zero)
         //searchField
         //        if followSearchField.text != "" {
@@ -156,6 +157,45 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
 }
+
+
+extension FollowListVC : UITextFieldDelegate {
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        print("aa")
+        guard let entryPoint_ = entryPoint else { return }
+        guard let selectedUserId_ = selectedUserId else {return}
+       //여기 확인
+        
+        if textField.text == "" {
+            if entryPoint_ == 0 {
+                self.followingListInit(url: url("/user/followinglist/\(selectedUserId_)"))
+            } else {
+                self.followerListInit(url: url("/user/followerlist/\(selectedUserId_)"))
+            }
+            return
+        }
+        
+        
+        if let searchString_ = textField.text {
+            if entryPoint_ == 0 {
+                //팔로잉 검색
+                print("팔로잉 검색어는 \(searchString_)")
+                self.followingListInit(url: url("/search/following/\(selectedUserId_)/\(searchString_)"))
+            } else {
+                //팔로워 검색
+                 print("팔로워 검색어는 \(searchString_)")
+                self.followerListInit(url: url("/search/follower/\(selectedUserId_)/\(searchString_)"))
+            }
+        }
+      
+       
+
+    }
+    
+    
+}
+
 extension FollowListVC : TapDelegate, UIGestureRecognizerDelegate {
     func myTableDelegate(index: Int) {
         print(index)
@@ -247,12 +287,6 @@ extension FollowListVC {
                 self.followListData = followListData_
                 self.followTableView.reloadData()
                 print("success")
-//                //필요한 것 :
-//                self.contentData = recommendData.content.filter({
-//                    $0.type == 0
-//                })
-//                self.alarmCount = recommendData.alarmcnt
-//                self.contentCollectionView.reloadData()
                 break
             case .nullValue :
                 self.simpleAlert(title: "오류", message: "값 없음")
@@ -277,7 +311,8 @@ extension FollowListVC {
                 self.followerListData = followListData_
                 break
             case .nullValue :
-                self.simpleAlert(title: "오류", message: "값 없음")
+                break
+                //self.simpleAlert(title: "오류", message: "값 없음")
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :

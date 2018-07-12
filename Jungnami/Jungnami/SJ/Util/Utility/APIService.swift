@@ -11,7 +11,7 @@ protocol APIService {}
 
 extension APIService {
     func url(_ path: String) -> String {
-        return "http://13.124.216.2:3000" + path
+        return "https://jungnami.ml" + path
     }
     
     func gsno(_ value : String?) -> String{
