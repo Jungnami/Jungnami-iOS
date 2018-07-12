@@ -172,7 +172,20 @@ extension PartyListPageMenuVC {
 //기본 네비게이션 바에서 오른쪽/왼쪽 아이템에 대한 행동
 extension PartyListPageMenuVC {
     @objc public func toMyPage(_sender: UIButton) {
-        //1. 나중에 goFirst 했던 것처럼 해당 뷰로 exit 바로 할수 있도록 하기
+        let mypageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
+        let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+        if (myId == "-1"){
+            self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                    loginVC.entryPoint = 1
+                    self.present(loginVC, animated: true, completion: nil)
+                }
+            })
+            
+        } else {
+            mypageVC.selectedUserId = myId
+            self.present(mypageVC, animated: true, completion: nil)
+        }
     }
     
     @objc public func search(_sender: UIButton) {

@@ -23,6 +23,10 @@ class myCommentBtn : UIButton {
     var likeCnt : Int = 0
     var commentCnt : Int = 0
 }
+class myScrapBtn : UIButton {
+    var isScrap : Int?
+    var contentIdx : Int?
+}
 
 
 class CommunityTVCell: UITableViewCell {
