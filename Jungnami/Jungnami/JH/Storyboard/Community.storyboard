@@ -311,7 +311,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="430"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동글문어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7M-GO-ZV0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="동글문어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7M-GO-ZV0" customClass="myTouchLbl" customModule="Jungnami" customModuleProvider="target">
                                                     <rect key="frame" x="58" y="15.5" width="45" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -388,7 +388,7 @@
                                                         <constraint firstAttribute="height" constant="375" id="r3w-a7-MQW"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BTi-qt-42a">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BTi-qt-42a" customClass="myTouchImg" customModule="Jungnami" customModuleProvider="target">
                                                     <rect key="frame" x="12" y="12.5" width="38" height="38"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="BTi-qt-42a" secondAttribute="height" multiplier="1:1" id="Nra-uN-TjO"/>

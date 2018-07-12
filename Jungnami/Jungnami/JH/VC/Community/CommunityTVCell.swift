@@ -88,13 +88,12 @@ class CommunityTVCell: UITableViewCell {
                 self.contentImgView.kf.setImage(with: url)
             }
         }
-        //수지나 도와져
+    
         //여기 고치기
-        /*
+    
          profileImgView.userId = data.userId
          nameLabel.userId = data.userId
-         였는데 에러나서 이렇게 바꿨는데 ㅠ
-         */
+       
        // profileImgView.userId = data.
         //nameLabel.userId = data.userimg!
     }

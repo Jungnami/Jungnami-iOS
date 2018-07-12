@@ -42,8 +42,8 @@ class CommunityResultTVCell: UITableViewCell {
         likeLabel.text = "\(data.likecnt)"
         commentLabel.text = "\(data.commentcnt)"
         //고치기 - 유저 아이디
-        nameLabel.userId = "\(data.id)"
-        profileImgView.userId = "\(data.id)"
+        nameLabel.userId = "\(data.userId)"
+        profileImgView.userId = "\(data.userId)"
         if data.islike == 0 {
             heartBtn.isSelected = false
         } else {
