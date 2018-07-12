@@ -1415,12 +1415,6 @@
                                                     <color key="textColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNd-8m-mFF">
-                                                    <rect key="frame" x="57" y="172" width="26" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -1430,16 +1424,13 @@
                                             <constraint firstAttribute="bottom" secondItem="2Si-31-ck6" secondAttribute="bottom" id="LJA-wD-cAr"/>
                                             <constraint firstAttribute="trailing" secondItem="iCE-TI-CCw" secondAttribute="trailing" id="NfT-MG-XNQ"/>
                                             <constraint firstItem="Noz-Kc-goS" firstAttribute="leading" secondItem="npp-vF-fYd" secondAttribute="leading" id="RND-1m-aaM"/>
-                                            <constraint firstItem="cNd-8m-mFF" firstAttribute="bottom" secondItem="2Si-31-ck6" secondAttribute="bottom" id="bNm-Wk-X7e"/>
                                             <constraint firstItem="iCE-TI-CCw" firstAttribute="top" secondItem="npp-vF-fYd" secondAttribute="top" id="cBf-hc-JTb"/>
                                             <constraint firstAttribute="trailing" secondItem="Noz-Kc-goS" secondAttribute="trailing" id="j8A-aC-Mw3"/>
                                             <constraint firstItem="2Si-31-ck6" firstAttribute="top" secondItem="Noz-Kc-goS" secondAttribute="bottom" constant="6" id="jdG-oQ-4xe"/>
-                                            <constraint firstItem="cNd-8m-mFF" firstAttribute="leading" secondItem="2Si-31-ck6" secondAttribute="trailing" constant="7" id="phB-Pn-kjH"/>
                                         </constraints>
                                         <size key="customSize" width="170" height="187"/>
                                         <connections>
                                             <outlet property="legislatorContentCategoryLbl" destination="2Si-31-ck6" id="yTY-MH-OE7"/>
-                                            <outlet property="legislatorContentDate" destination="cNd-8m-mFF" id="9EV-5c-M88"/>
                                             <outlet property="legislatorContentImgView" destination="iCE-TI-CCw" id="3os-Fz-Let"/>
                                             <outlet property="legislatorTitleLbl" destination="Noz-Kc-goS" id="EYB-UA-GBI"/>
                                         </connections>

@@ -14,7 +14,6 @@ class LegislatorContentCell: UICollectionViewCell {
     @IBOutlet weak var legislatorTitleLbl: UILabel!
     @IBOutlet weak var legislatorContentCategoryLbl: UILabel!
     
-    @IBOutlet weak var legislatorContentDate: UILabel!
     
     var legisContents = LegislatorContentData.sharedInstance.legislatorContents
     func configure(data: LegislatorDetailVODataContent) {
@@ -27,7 +26,7 @@ class LegislatorContentCell: UICollectionViewCell {
             }
         }
         legislatorTitleLbl.text = data.title
-        legislatorContentDate.text = data.writingtime
-        legislatorContentCategoryLbl.text = data.category
+       
+        legislatorContentCategoryLbl.text = data.text
     }
 }
