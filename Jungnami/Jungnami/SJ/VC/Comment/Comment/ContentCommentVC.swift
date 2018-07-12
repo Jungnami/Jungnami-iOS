@@ -279,8 +279,7 @@ extension ContentCommentVC {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isLike = 0
-               
-                
+
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
