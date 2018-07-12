@@ -184,9 +184,6 @@
                                             <constraint firstAttribute="width" secondItem="Obp-JO-oFS" secondAttribute="height" multiplier="1:1" id="HIZ-Nr-7hD"/>
                                         </constraints>
                                         <state key="normal" image="community_bell"/>
-                                        <connections>
-                                            <action selector="alarmBtn:" destination="cOa-MV-PT1" eventType="touchUpInside" id="vzN-hi-EL2"/>
-                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="community_bell_blue_circle" translatesAutoresizingMaskIntoConstraints="NO" id="fYB-I1-Mq0">
                                         <rect key="frame" x="332" y="9" width="16" height="16"/>
@@ -501,6 +498,7 @@
                     <navigationItem key="navigationItem" id="1Ny-gt-PZc"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="alarmBtn" destination="Obp-JO-oFS" id="knc-IY-LM8"/>
                         <outlet property="alarmLbl" destination="NXh-V4-7d2" id="NpH-LP-11F"/>
                         <outlet property="badgeImg" destination="fYB-I1-Mq0" id="2cp-It-02L"/>
                         <outlet property="communityTableView" destination="dcn-2g-2YN" id="tzx-fV-mK3"/>

@@ -48,10 +48,6 @@
                                                     <action selector="dismissBtn:" destination="jlK-Af-rQf" eventType="touchUpInside" id="5Lp-OJ-AYX"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qY-iE-kby">
-                                                <rect key="frame" x="329" y="28" width="30" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSg-ly-eZi" userLabel="bellBtn">
                                                 <rect key="frame" x="339" y="31" width="24" height="24"/>
                                                 <constraints>
@@ -60,14 +56,14 @@
                                                 </constraints>
                                                 <state key="normal" image="mypage_bell"/>
                                             </button>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="community_bell_blue_circle" translatesAutoresizingMaskIntoConstraints="NO" id="jcu-5e-VfZ">
+                                            <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="community_bell_blue_circle" translatesAutoresizingMaskIntoConstraints="NO" id="jcu-5e-VfZ">
                                                 <rect key="frame" x="333" y="29" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="16" id="9Bo-dE-v9x"/>
                                                     <constraint firstAttribute="height" constant="16" id="ASB-0g-72S"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7f-xZ-MoV">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7f-xZ-MoV">
                                                 <rect key="frame" x="335" y="32" width="12" height="11"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -415,6 +411,9 @@
                         <viewLayoutGuide key="safeArea" id="u9a-fB-G5a"/>
                     </view>
                     <connections>
+                        <outlet property="alarmBG" destination="jcu-5e-VfZ" id="PJp-rQ-Tdl"/>
+                        <outlet property="alarmBtn" destination="iSg-ly-eZi" id="Rng-q1-q4p"/>
+                        <outlet property="alarmCountLbl" destination="n7f-xZ-MoV" id="s51-bG-enk"/>
                         <outlet property="containerView" destination="1Va-Gy-sev" id="kfw-D1-zni"/>
                         <outlet property="feedBtn" destination="kH4-zD-FdP" id="Zzb-qY-tG5"/>
                         <outlet property="profileCoinCountLbl" destination="E1M-zz-XPy" id="uf5-Ya-5GX"/>
