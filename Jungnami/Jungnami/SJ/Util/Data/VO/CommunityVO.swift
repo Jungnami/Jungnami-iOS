@@ -28,6 +28,15 @@ struct CommunityVODataContent: Codable {
     let nickname: String
     let userimg : String?
     let img : String
+    let userId : String
     let writingtime, content: String
     let islike, likecnt, commentcnt: Int
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case boardid, nickname, userimg, img
+        case writingtime, content
+        case islike, likecnt, commentcnt
+        case userId = "user_id"
+    }
 }

@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import SnapKit
 
 class ContentVC: UIViewController, AlarmProtocol{
 
-    
-    
     @IBOutlet weak var recommendBtn: UIButton!
     @IBOutlet weak var tmiBtn: UIButton!
     @IBOutlet weak var storyBtn: UIButton!
@@ -27,7 +26,10 @@ class ContentVC: UIViewController, AlarmProtocol{
     @IBOutlet weak var alarmBG: UIImageView!
     
     @IBOutlet weak var alarmBtn: UIButton!
+    @IBOutlet weak var searchTxtField: UITextField!
     
+    @IBOutlet weak var menuBarView: UIView!
+    var keyboardDismissGesture: UITapGestureRecognizer?
     
     func getAlarm(alarmCount: Int) {
         if alarmCount == 0 {
@@ -91,14 +93,30 @@ class ContentVC: UIViewController, AlarmProtocol{
         
         return viewController
     }()
+    
+    lazy var blackView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0.4
+        return view
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.shadowImage = UIImage()
          self.navigationController?.setNavigationBarHidden(true, animated: false)
         //        addNavBarImage()
-        
+        setKeyboardSetting()
         updateView(selected: 0)
+        searchTxtField.delegate = self
+        blackView.isHidden = true
+        self.view.addSubview(blackView)
+        blackView.snp.makeConstraints { (make) in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(menuBarView.snp.bottom)
+        }
          alarmBtn.addTarget(self, action:  #selector(toAlarmVC(_sender:)), for: .touchUpInside)
     }
     
@@ -223,3 +241,73 @@ extension ContentVC {
     }
 }
 
+
+//txtField Delegate (엔터버튼 클릭시)
+extension ContentVC : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text == "" {
+            simpleAlert(title: "오류", message: "검색어 입력")
+            return false
+        }
+        
+        if let myString = textField.text {
+            let emptySpacesCount = myString.components(separatedBy: " ").count-1
+            
+            if emptySpacesCount == myString.count {
+                simpleAlert(title: "오류", message: "검색어 입력")
+                return false
+            }
+        }
+        
+        if let searchString_ = textField.text {
+            //여기서 통신
+            //searchLegislator(searchString : searchString_, url : url("/search/legislator/\(searchString_)"))
+            print("aa")
+        }
+        
+        
+        return true
+    }
+}
+
+//키보드 대응
+extension ContentVC{
+    func setKeyboardSetting() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        blackView.isHidden = false
+        adjustKeyboardDismissGesture(isKeyboardVisible: true)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        blackView.isHidden = true
+        searchTxtField.text = ""
+        // setDefaultNav()
+        adjustKeyboardDismissGesture(isKeyboardVisible: false)
+        
+    }
+    
+    //화면 바깥 터치했을때 키보드 없어지는 코드
+    func adjustKeyboardDismissGesture(isKeyboardVisible: Bool) {
+        if isKeyboardVisible {
+            if keyboardDismissGesture == nil {
+                keyboardDismissGesture = UITapGestureRecognizer(target: self, action: #selector(tapBackground))
+                view.addGestureRecognizer(keyboardDismissGesture!)
+            }
+        } else {
+            if keyboardDismissGesture != nil {
+                view.removeGestureRecognizer(keyboardDismissGesture!)
+                keyboardDismissGesture = nil
+            }
+        }
+    }
+    
+    @objc func tapBackground() {
+        self.view.endEditing(true)
+    }
+    
+    
+}
