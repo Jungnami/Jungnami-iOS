@@ -93,10 +93,10 @@ class FollowCell: UITableViewCell {
         followImgView.isUserInteractionEnabled = true
         followNickNameLbl.isUserInteractionEnabled = true
         
-        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.imgTap(sender:)))
-        let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.lblTap(sender:)))
-        self.followNickNameLbl.addGestureRecognizer(lblTapGesture)
-        self.followImgView.addGestureRecognizer(imgTapGesture)
+//        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.imgTap(sender:)))
+//        let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.lblTap(sender:)))
+//        self.followNickNameLbl.addGestureRecognizer(lblTapGesture)
+//        self.followImgView.addGestureRecognizer(imgTapGesture)
         
     }
     @objc func imgTap(sender: UITapGestureRecognizer) {
