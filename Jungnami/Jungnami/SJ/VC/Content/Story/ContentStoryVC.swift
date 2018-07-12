@@ -132,8 +132,6 @@ extension ContentStoryVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
        contentStorydInit(url: url("/contents/main/스토리"))
-        
-        self.storyCollectionView.reloadData()
         sender.endRefreshing()
     }
 }

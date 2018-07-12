@@ -146,8 +146,7 @@ extension ContentTmiVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
         contentTmidInit(url: url("/contents/main/TMI"))
-        
-        self.tmiCollectionView.reloadData()
+    
         sender.endRefreshing()
     }
 }
