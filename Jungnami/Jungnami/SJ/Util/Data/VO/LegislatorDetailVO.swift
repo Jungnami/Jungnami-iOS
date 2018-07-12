@@ -28,13 +28,15 @@ struct LegislatorDetailVOData: Codable {
     }
 }
 
+//category, writingtime
 struct LegislatorDetailVODataContent: Codable {
     let id: Int
-    let title, category, writingtime: String
+    let title, text : String
     let thumbnailURL : String?
     enum CodingKeys: String, CodingKey {
-        case id
-        case thumbnailURL = "thumbnail_url"
-        case title, category, writingtime
+        case id = "c_id"
+        case thumbnailURL = "thumbnail"
+        case title = "c_title"
+        case text
     }
 }
