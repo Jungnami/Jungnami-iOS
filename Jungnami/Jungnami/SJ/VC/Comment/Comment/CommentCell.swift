@@ -11,6 +11,7 @@ import Kingfisher
 
 class CommentCell: UITableViewCell {
 
+    
     //comment
     @IBOutlet weak var commentProfileImg: UIImageView!
     @IBOutlet weak var commentUserLbl: UILabel!
@@ -22,7 +23,7 @@ class CommentCell: UITableViewCell {
  
     @IBOutlet weak var commentBestImg: UIImageView!
     //댓글 좋아요 Btn
-    @IBOutlet weak var commentLikeBtn: UIButton!
+    @IBOutlet weak var commentLikeBtn: myHeartBtn!
     //---------tapGesture--------
     var delegate : TapDelegate?
     var index = 0
@@ -36,12 +37,23 @@ class CommentCell: UITableViewCell {
                 self.commentProfileImg.kf.setImage(with: url)
             }
         }
-        
+        commentLikeBtn.setImage(UIImage(named: "community_heart"), for: .normal)
+        commentLikeBtn.setImage(UIImage(named: "community_heart_blue"), for: .selected)
         commentUserLbl.text = data.userNick
         commentContentLbl.text = data.content
         commentContentLbl.sizeToFit()
         commentDateLbl.text = data.timeset
         commentLikeLbl.text = "\(data.commentlikeCnt)"
+        
+        
+        commentLikeBtn.boardIdx = data.commentid
+        commentLikeBtn.isLike = data.islike
+        if data.islike == 0 {
+            commentLikeBtn.isSelected = false
+        } else {
+            commentLikeBtn.isSelected = true
+        }
+        
         
         if index < 3 {
             commentBestImg.isHidden = true

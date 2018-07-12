@@ -105,6 +105,7 @@ extension PostableService {
                     let decoder = JSONDecoder()
                     
                     do {
+                        print(JSON(value))
                         let resCode = self.gino(res.response?.statusCode)
                         let data = try decoder.decode(NetworkData.self, from: value)
                         

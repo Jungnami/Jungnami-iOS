@@ -37,7 +37,7 @@ class BoardDetailViewController: UIViewController, APIService {
     
     @IBAction func writeCommentBtn(_ sender: Any) {
        writeComment(url : url("/board/makecomment"))
-    commentTxt.text = ""
+        commentTxt.text = ""
     }
     
     
@@ -60,34 +60,7 @@ class BoardDetailViewController: UIViewController, APIService {
         commentTxt.clipsToBounds = true 
         
     }
-    
-    //comment댓글 글자 수 제한
-  /*  @objc func canCommentSend() {
-        if commentWriteField.text == "" { //입력안됐을때
-            //버튼 활성화 안되고 유저 인터렉션 불가
-            commentSendBtn.isUserInteractionEnabled = false
-            simpleAlert(title: "오류", message: "댓글을 입력해주세요")
-            //commentSendBtn.isEnabled = false// 아님//
-        } else if ((commentWriteField.text?.count)! < 100){
-            //버튼 활성화 되고 유저 인터렉션 가능
-            commentSendBtn.isUserInteractionEnabled = true
-            //버튼 활성화, 이미지 색 바꾸기
-            commentSendBtn.tintColor = #colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)
-            commentSendBtn.isEnabled = true
-        } else {
-            guard let commentTxt = commentWriteField.text else {return}
-            simpleAlert(title: "오류", message: "100글자 초과")
-            commentWriteField.text = String(describing: commentTxt.prefix(99))
-            //버튼 활성화 되고 유저 인터렉션 가능
-            commentSendBtn.isUserInteractionEnabled = true
-            //버튼 활성화, 이미지 색 바꾸기
-            commentSendBtn.tintColor = #colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1)
-            commentSendBtn.isEnabled = true
-        }
-    }*/
-    
- 
-    
+
 }
 
 extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate {
@@ -102,30 +75,29 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
         if let commentData_ = commentData {
+            
+            cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
             cell.configure(index : indexPath.row ,data: commentData_[indexPath.row])
         }
         
        // cell.delegate = self
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        if indexPath.section == 0{
-//            return false
-//        }
-//        return true
-//    }
-    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if (editingStyle == .delete) {
-//            let selectedComment = self.comments[indexPath.row]
-//            let commentIdx = selectedComment.comment_idx
-//            let userIdx = LoginUserData.shared().data?.user_idx
-//            let commentModel = CommentModel(self)
-//            commentModel.deleteComment(userIdx: userIdx!, commentIdx: commentIdx!)
-//        }
-//    }
-    
+ 
+    @objc func like(_ sender : myHeartBtn){
+        //통신
+        
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.detailTableView)
+        let indexPath: IndexPath? = self.detailTableView.indexPathForRow(at: buttonPosition)
+        let cell = self.detailTableView.cellForRow(at: indexPath!) as! CommentCell
+        
+        if sender.isLike! == 0 {
+            likeAction(url: url("/board/likecomment"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
+        } else {
+            dislikeAction(url: url("/delete/boardcommentlike/\(sender.boardIdx!)"), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+        }
+        
+    }
     
     
 }
@@ -259,6 +231,66 @@ extension BoardDetailViewController {
         })
         
         
+    }
+    
+    //하트 버튼 눌렀을 때
+    func likeAction(url : String, boardIdx : Int, isLike : Int, cell : CommentCell, sender : myHeartBtn, likeCnt : Int){
+       
+        let params : [String : Any] = [
+            "comment_id" : boardIdx
+        ]
+        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = true
+                sender.isLike = 1
+              
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    //좋아요 취소
+    func dislikeAction(url : String, cell : CommentCell, sender : myHeartBtn, likeCnt : Int){
+        CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = false
+                sender.isLike = 0
+              
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
     }
     
 }
