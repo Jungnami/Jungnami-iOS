@@ -314,7 +314,7 @@ extension CommunityVC{
 }
 
 //탭제스처 레코그나이저
-extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate2, DoubleTapDelegate {
+extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate2 {
     func myTableDelegate(sender : UITapGestureRecognizer) {
         let touch = sender.location(in: communityTableView)
         if let indexPath = communityTableView.indexPathForRow(at: touch){
@@ -329,7 +329,7 @@ extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate2, DoubleTapDel
     }
     
     
-    func myDoubleTapDelegate(sender : UITapGestureRecognizer) {
+   /* func myDoubleTapDelegate(sender : UITapGestureRecognizer) {
         let touch = sender.location(in: communityTableView)
         if let indexPath = communityTableView.indexPathForRow(at: touch){
             let cell = self.communityTableView.cellForRow(at: indexPath) as! CommunityTVCell
@@ -341,7 +341,7 @@ extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate2, DoubleTapDel
             
         }
     }
-    
+    */
     func heartPopup(){
         DispatchQueue.main.asyncAfter(deadline: .now()){
             var myPopupImgView = UIImageView()

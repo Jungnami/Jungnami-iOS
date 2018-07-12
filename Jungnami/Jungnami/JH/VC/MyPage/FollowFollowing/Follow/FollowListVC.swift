@@ -74,6 +74,8 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         hideKeyboardWhenTappedAround()
         getList()
         
+        
+        followTableView.tableFooterView = UIView(frame : .zero)
         //searchField
         //        if followSearchField.text != "" {
         //            followSearchImg.isHidden = true
