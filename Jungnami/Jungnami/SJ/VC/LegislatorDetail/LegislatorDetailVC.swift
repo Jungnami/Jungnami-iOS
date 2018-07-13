@@ -13,6 +13,7 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var legislatorCollectionView: UICollectionView!
     var selectedLegislatorIdx : Int = 0
     var selectedLegislator : LegislatorDetailVOData?
+    var selectedLegislatorName : String = ""
     var contents : [LegislatorDetailVODataContent]?
     var supportAlert : CustomAlert?
     var completeAlert : CustomAlert?
@@ -198,7 +199,9 @@ extension LegislatorDetailVC : UITextFieldDelegate{
         let completePopupView = CompletePopupView.instanceFromNib()
         //completePopupView.nameLbl.text = selectedLegislator?.name
         completePopupView.coinLbl.text = "\(gsno(supportPopupView.inputTxtField.text))원"
+        completePopupView.nameLbl.text = "\(selectedLegislatorName)"
         completePopupView.okBtn.addTarget(self, action:#selector(self.completeOk(_sender:)), for: .touchUpInside)
+        
         supportAlert?.dismiss(animated: false)
         completeAlert = CustomAlert(view : completePopupView, width : 263, height : 331)
         completeAlert?.show(animated: false)
