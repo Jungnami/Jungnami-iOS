@@ -149,9 +149,7 @@ extension ContentStoryVC {
             switch result {
             case .networkSuccess(let storyData):
                 let storyData = storyData as! RecommendVOData
-                self.storyData = storyData.content.filter({
-                    $0.type == 0
-                })
+                self.storyData = storyData.content
                 self.alarmCount = storyData.alarmcnt // 알림 lbl
                 self.storyCollectionView.reloadData()
                 break

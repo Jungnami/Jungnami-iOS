@@ -150,9 +150,7 @@ extension ContentRecommendVC {
             switch result {
             case .networkSuccess(let recommendData):
                 let recommendData = recommendData as! RecommendVOData
-                self.contentData = recommendData.content.filter({
-                    $0.type == 0
-                })
+                self.contentData = recommendData.content
                 self.alarmCount = recommendData.alarmcnt
                 self.contentCollectionView.reloadData()
                 break

@@ -162,9 +162,7 @@ extension ContentTmiVC {
             switch result {
             case .networkSuccess(let tmiData):
                 let recommendData = tmiData as! RecommendVOData
-                self.tmiContents = recommendData.content.filter({
-                    $0.type == 0
-                })
+                self.tmiContents = recommendData.content
                 self.alarmCount = recommendData.alarmcnt // 알림 lbl
                 self.tmiCollectionView.reloadData()
                 break

@@ -216,17 +216,28 @@ extension ContentDetailVC {
             case .networkSuccess(let contentDetail):
                 //likeCnt, commentCnt 여기서
                 let contentDetail = contentDetail as!  ContentDetailVOData
-                self.likeCountLbl.text = "\(contentDetail.likeCnt)명"
-                self.likeCount = contentDetail.likeCnt
-                //이미지 어레이 가져오는거//
-                self.commentCountLbl.text = String(contentDetail.commentCnt)
-                self.contentImages = contentDetail.imagearray
-                self.contentTitle = contentDetail.subtitle
-                self.text = contentDetail.text
-                self.thumnail = contentDetail.thumbnail
-                self.isLike = contentDetail.islike
-                self.isScrap = contentDetail.isscrap
-                self.detailCollectionView.reloadData()
+                if contentDetail.youtube != "0" {
+                    
+                    UIApplication.shared.open(URL(string : "https://youtu.be/\(contentDetail.youtube)")! as URL, options: [:], completionHandler: { (_) in
+                        self.dismiss(animated: true)
+                        self.navigationController?.popViewController(animated: true)
+                        
+                    })
+                    
+                } else {
+                    self.likeCountLbl.text = "\(contentDetail.likeCnt)명"
+                    self.likeCount = contentDetail.likeCnt
+                    //이미지 어레이 가져오는거//
+                    self.commentCountLbl.text = String(contentDetail.commentCnt)
+                    self.contentImages = contentDetail.imagearray
+                    self.contentTitle = contentDetail.subtitle
+                    self.text = contentDetail.text
+                    self.thumnail = contentDetail.thumbnail
+                    self.isLike = contentDetail.islike
+                    self.isScrap = contentDetail.isscrap
+                    self.detailCollectionView.reloadData()
+                    
+                }
                 break
             case .nullValue :
                 self.simpleAlert(title: "오류", message: "값 없음")
