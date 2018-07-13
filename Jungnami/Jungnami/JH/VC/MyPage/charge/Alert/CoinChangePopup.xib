@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CoinChangePopupView" customModule="Jungnami" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="255" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="charge_exchange_popup" translatesAutoresizingMaskIntoConstraints="NO" id="I2t-D5-3ET">
+                    <rect key="frame" x="0.0" y="0.0" width="255" height="300"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-28코인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilH-nZ-VrX">
+                    <rect key="frame" x="181" y="165" width="39" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="0.21176470589999999" green="0.7725490196" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DyX-dN-ttO">
+                    <rect key="frame" x="196.5" y="198.5" width="23.5" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="0.21176470589999999" green="0.7725490196" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8g-by-BMm">
+                    <rect key="frame" x="34" y="227" width="89" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="89" id="D8g-PV-ebE"/>
+                        <constraint firstAttribute="height" constant="31" id="FOV-tN-YJs"/>
+                    </constraints>
+                    <state key="normal" image="charge_cancle"/>
+                </button>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-DI-OtT">
+                    <rect key="frame" x="137" y="227" width="89" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="89" id="2xo-Cp-X2h"/>
+                        <constraint firstAttribute="height" constant="31" id="Hye-hu-JQ4"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="charge_confirm"/>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="ilH-nZ-VrX" firstAttribute="leading" secondItem="I2t-D5-3ET" secondAttribute="trailing" constant="-74" id="7Yv-0T-B18"/>
+                <constraint firstItem="I2t-D5-3ET" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="IM6-M5-ACe"/>
+                <constraint firstItem="DyX-dN-ttO" firstAttribute="top" secondItem="ilH-nZ-VrX" secondAttribute="bottom" constant="20" id="OaO-TY-ieE"/>
+                <constraint firstItem="RLb-DI-OtT" firstAttribute="leading" secondItem="Q8g-by-BMm" secondAttribute="trailing" constant="14" id="QgU-Qg-w5B"/>
+                <constraint firstItem="ilH-nZ-VrX" firstAttribute="top" secondItem="I2t-D5-3ET" secondAttribute="bottom" constant="-135" id="ZqJ-Pi-53O"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="I2t-D5-3ET" secondAttribute="bottom" id="aFp-Oi-Xls"/>
+                <constraint firstItem="RLb-DI-OtT" firstAttribute="centerY" secondItem="Q8g-by-BMm" secondAttribute="centerY" id="aPZ-cs-f2w"/>
+                <constraint firstItem="RLb-DI-OtT" firstAttribute="top" secondItem="Q8g-by-BMm" secondAttribute="top" id="bXL-gW-n0b"/>
+                <constraint firstItem="I2t-D5-3ET" firstAttribute="leading" secondItem="Q8g-by-BMm" secondAttribute="trailing" constant="-123" id="brD-mU-y9Y"/>
+                <constraint firstItem="DyX-dN-ttO" firstAttribute="trailing" secondItem="ilH-nZ-VrX" secondAttribute="trailing" id="dTe-1N-MtL"/>
+                <constraint firstItem="Q8g-by-BMm" firstAttribute="top" secondItem="I2t-D5-3ET" secondAttribute="bottom" constant="-73" id="iAD-p8-Biq"/>
+                <constraint firstItem="I2t-D5-3ET" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="tgA-ju-srQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="I2t-D5-3ET" secondAttribute="trailing" id="zcv-f4-bYk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="cancleBtn" destination="Q8g-by-BMm" id="GND-Lq-GMc"/>
+                <outlet property="changePopupImgView" destination="I2t-D5-3ET" id="v9u-Z0-yms"/>
+                <outlet property="deleteCoinLbtl" destination="ilH-nZ-VrX" id="YNq-Gx-wo4"/>
+                <outlet property="myCoinLbtl" destination="DyX-dN-ttO" id="Lck-Sa-BQ1"/>
+                <outlet property="okBtn" destination="RLb-DI-OtT" id="DhD-HM-uXx"/>
+            </connections>
+            <point key="canvasLocation" x="23.5" y="215"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="charge_cancle" width="89" height="31"/>
+        <image name="charge_confirm" width="89" height="31"/>
+        <image name="charge_exchange_popup" width="255" height="300"/>
+    </resources>
+</document>

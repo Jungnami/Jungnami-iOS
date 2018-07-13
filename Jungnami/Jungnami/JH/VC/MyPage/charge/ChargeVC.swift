@@ -24,9 +24,12 @@ class ChargeVC: UIViewController {
     @IBOutlet weak var chargeCoinBar: UIView!
     @IBOutlet weak var chargeVoteBar: UIView!
     
+    
     @IBAction func dismissBtn(_ sender: UIButton) {
         self.dismiss(animated: false, completion: nil)
     }
+    
+    
     
     //--------------containerView-----------------------
     private lazy var myCoinVC: MyCoinVC = {
@@ -102,27 +105,24 @@ extension ChargeVC{
             chargeCoinBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
             
             chargeVoteBtn.setTitleColor(#colorLiteral(red: 0.8510189652, green: 0.85114187, blue: 0.8509921432, alpha: 1), for: .normal)
-            
-            chargeVoteBar.isHidden = true
+            chargeCoinBtn.setTitleColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1), for: .normal)
             chargeCoinBar.isHidden = false
+            chargeVoteBar.isHidden = true
             
             remove(asChildViewController: changeCoinVC)
             add(asChildViewController: myCoinVC)
         } else {
             chargeVoteBtn.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+            chargeCoinBtn.setTitleColor(#colorLiteral(red: 0.8510189652, green: 0.85114187, blue: 0.8509921432, alpha: 1), for: .normal)
+            chargeVoteBtn.setTitleColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1), for: .normal)
             
-            chargeCoinBtn.setTitleColor(#colorLiteral(red: 0.2117647059, green: 0.7725490196, blue: 0.9450980392, alpha: 1), for: .normal)
-            
-            chargeVoteBar.isHidden = false
             chargeCoinBar.isHidden = true
+            chargeVoteBar.isHidden = false
             
             remove(asChildViewController: myCoinVC)
             add(asChildViewController: changeCoinVC)
         }
     }
-    
-    
-    
 }
 
 
