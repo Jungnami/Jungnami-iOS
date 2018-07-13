@@ -155,6 +155,7 @@ extension LegislatorDetailVC : UITextFieldDelegate{
         supportPopupView.inputTxtField.keyboardType = UIKeyboardType.decimalPad
         supportPopupView.inputTxtField.text = ""
         supportPopupView.inputTxtField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
         supportPopupView.inputTxtField.delegate = self
         supportPopupView.cancleBtn.addTarget(self, action:#selector(self.cancle(_sender:)), for: .touchUpInside)
         supportPopupView.okBtn.isEnabled = false

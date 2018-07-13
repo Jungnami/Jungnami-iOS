@@ -21,15 +21,17 @@ class ChangeCoinVC: UIViewController, UITextFieldDelegate, APIService {
             userCoinLbl.text = "\(myCoin)개"
         }
     }
+    var buyCount = 0
     let coinChangePopupView = CoinChangePopupView.instanceFromNib()
     var supportAlert : CustomAlert?
     var completeAlert : CustomAlert?
     
-    
+    @IBOutlet weak var okBtn1: UIButton!
     @IBAction func okBtn(_ sender: Any) {
-        print("aaaaa")
-        showSupportPopup(myCoin: "-10")
-
+        
+        
+        
+        showSupportPopup(myCoin: voteField.text!)
     }
     
     var keyboard: UITapGestureRecognizer?
@@ -43,6 +45,9 @@ class ChangeCoinVC: UIViewController, UITextFieldDelegate, APIService {
         super.viewDidLoad()
         voteField.delegate = self
         voteField.keyboardType = .numberPad
+        okBtn1.isEnabled = false
+        okBtn1.setTitleColor(.lightGray, for: .normal)
+        voteField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
          self.hideKeyboardWhenTappedAround()
     }
 
@@ -74,6 +79,32 @@ extension ChangeCoinVC {
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
     }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+        if gsno(textField.text) == "" {
+            okBtn1.isEnabled = false
+            okBtn1.setTitleColor(.lightGray, for: .normal)
+            return
+        }
+       
+        if let coin = Int(gsno(textField.text)) {
+            if coin > 0 && coin <= myCoin {
+               buyCount = coin
+                okBtn1.isEnabled = true
+                okBtn1.setTitleColor(ColorChip.shared().mainColor, for: .normal)
+             
+            } else {
+                
+                okBtn1.isEnabled = false
+                okBtn1.setTitleColor(.lightGray, for: .normal)
+               
+            }
+        }
+        
+    }
+    
+    
 }
 
 
@@ -104,11 +135,9 @@ extension ChangeCoinVC {
     
     func showSupportPopup(myCoin : String){
         coinChangePopupView.myCoinLbtl.text = myCoin
-        coinChangePopupView.deleteCoinLbtl.text = "10"
+        coinChangePopupView.deleteCoinLbtl.text = "-\(myCoin)"
         
         coinChangePopupView.cancleBtn.addTarget(self, action:#selector(self.cancle(_sender:)), for: .touchUpInside)
-        coinChangePopupView.okBtn.isEnabled = false
-        coinChangePopupView.okBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_confirm_gray"), for: .normal)
         coinChangePopupView.okBtn.addTarget(self, action:#selector(self.supportOk(_sender:)), for: .touchUpInside)
         
         supportAlert = CustomAlert(view : coinChangePopupView, width : 255, height : 300)
@@ -121,39 +150,24 @@ extension ChangeCoinVC {
     
     @objc func supportOk(_sender: UIButton){
         let params : [String : Any] = [
-            "coin" : 12
+            "coin" : buyCount
         ]
         
-        // supportOkAction(url: url("/user/addvote"), params: params)
+         supportOkAction(url: url("/user/addvote"), params: params)
     }
     
     
-    /* @objc func textFieldDidChange(_ textField: UITextField) {
-     
-     supportPopupView.okBtn.isEnabled = false
-     supportPopupView.okBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_confirm_gray"), for: .normal)
-     
-     if let coin = Int(gsno(textField.text)) {
-     if coin > 0 {
-     supportPopupView.okBtn.isEnabled = true
-     supportPopupView.okBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_confirm_blue"), for: .normal)
-     }
-     }
-     
-     }*/
-    
     func showCompletePopup(){
-        let completePopupView = CompletePopupView.instanceFromNib()
-        //completePopupView.nameLbl.text = selectedLegislator?.name
-        // completePopupView.coinLbl.text = "\(gsno(supportPopupView.inputTxtField.text))원"
+        let completePopupView = CoinChangeCompletePopupView.instanceFromNib()
         completePopupView.okBtn.addTarget(self, action:#selector(self.completeOk(_sender:)), for: .touchUpInside)
         supportAlert?.dismiss(animated: false)
-        completeAlert = CustomAlert(view : completePopupView, width : 263, height : 331)
+        completeAlert = CustomAlert(view : completePopupView, width : 257, height : 312)
         completeAlert?.show(animated: false)
     }
     
     @objc func completeOk(_sender: UIButton){
         completeAlert?.dismiss(animated: false)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -167,8 +181,6 @@ extension ChangeCoinVC {
             case .networkSuccess(_):
                 self.showCompletePopup()
                 break
-            case .noCoin :
-                self.simpleAlert(title: "오류", message: "코인 부족합니다")
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결을 확인해주세요")
             default :
