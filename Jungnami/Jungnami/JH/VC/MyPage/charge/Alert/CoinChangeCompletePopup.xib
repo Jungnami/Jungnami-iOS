@@ -27,7 +27,6 @@
                     <state key="normal" image="charge_confirm"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4Dg-Nd-Wgi" secondAttribute="bottom" id="8ME-fR-KeL"/>
                 <constraint firstItem="4Dg-Nd-Wgi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="BKo-L7-LPw"/>
