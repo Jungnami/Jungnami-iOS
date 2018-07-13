@@ -68,6 +68,7 @@ extension MainDislikeTVC {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier, for: indexPath) as! MainTVCell
            // cell.selectedLegislator = legislatorDislikeData[indexPath.row]
+           
            cell.configure(viewType : .dislike, index: indexPath.row, data: legislatorDislikeData[indexPath.row])
             cell.voteBtn.tag = legislatorDislikeData[indexPath.row].lID
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)

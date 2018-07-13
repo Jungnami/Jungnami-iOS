@@ -36,8 +36,13 @@ class MainTVCell: UITableViewCell {
         profileImgView.makeImageRound()
     
         progressBar.snp.makeConstraints { (make) in
-            make.width.equalTo(maxWidth*data.width)
-           // make.width.equalTo(240)
+            
+            if maxWidth*data.width < 18 {
+                 make.width.equalTo(18)
+            } else {
+                make.width.equalTo(maxWidth*data.width)
+            }
+    
             make.height.equalTo(12)
             make.leading.equalTo(profileImgView.snp.trailing).offset(-15)
             make.bottom.equalTo(profileImgView.snp.bottom).offset(-7)
@@ -70,6 +75,8 @@ class MainTVCell: UITableViewCell {
         
         if index > 2 {
             medalImgView.isHidden = true
+        } else {
+            medalImgView.isHidden = false
         }
         
         if(index % 2 == 1){
@@ -84,7 +91,7 @@ class MainTVCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+        progressBar.deactivateAllConstraints()
         
     }
     
