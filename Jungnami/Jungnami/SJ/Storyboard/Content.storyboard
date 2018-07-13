@@ -63,9 +63,6 @@
                                                                 <constraint firstAttribute="height" constant="375" id="IDO-Ec-ze9"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contentGradientg" translatesAutoresizingMaskIntoConstraints="NO" id="fRD-f2-xKH">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정나미 : 정치는 나의 미래다" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZo-83-3bc">
                                                             <rect key="frame" x="12" y="401" width="351" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -76,17 +73,13 @@
                                                 </view>
                                                 <constraints>
                                                     <constraint firstItem="vrs-Yr-le8" firstAttribute="leading" secondItem="6m7-wz-eR1" secondAttribute="leading" id="0Y7-vI-ApM"/>
-                                                    <constraint firstItem="fRD-f2-xKH" firstAttribute="bottom" secondItem="vrs-Yr-le8" secondAttribute="bottom" id="RDY-o5-aaf"/>
                                                     <constraint firstAttribute="bottom" secondItem="QFO-HG-odi" secondAttribute="bottom" constant="81.5" id="RG1-By-eeK"/>
                                                     <constraint firstItem="vrs-Yr-le8" firstAttribute="centerX" secondItem="6m7-wz-eR1" secondAttribute="centerX" id="RNa-mm-C9L"/>
-                                                    <constraint firstItem="fRD-f2-xKH" firstAttribute="leading" secondItem="vrs-Yr-le8" secondAttribute="leading" id="WTl-Wd-4Bm"/>
                                                     <constraint firstItem="QFO-HG-odi" firstAttribute="top" secondItem="CZo-83-3bc" secondAttribute="bottom" constant="6" id="cg9-Tx-Quk"/>
                                                     <constraint firstItem="QFO-HG-odi" firstAttribute="leading" secondItem="CZo-83-3bc" secondAttribute="leading" id="cmg-bA-LDd"/>
                                                     <constraint firstItem="vrs-Yr-le8" firstAttribute="top" secondItem="6m7-wz-eR1" secondAttribute="top" id="eC2-mb-IGg"/>
                                                     <constraint firstAttribute="trailing" secondItem="CZo-83-3bc" secondAttribute="trailing" constant="12" id="ljZ-1h-YYb"/>
                                                     <constraint firstAttribute="trailing" secondItem="vrs-Yr-le8" secondAttribute="trailing" id="oj1-fM-koA"/>
-                                                    <constraint firstItem="fRD-f2-xKH" firstAttribute="trailing" secondItem="vrs-Yr-le8" secondAttribute="trailing" id="sGK-CU-tKv"/>
-                                                    <constraint firstItem="fRD-f2-xKH" firstAttribute="top" secondItem="vrs-Yr-le8" secondAttribute="top" id="vmY-OC-Dda"/>
                                                     <constraint firstItem="CZo-83-3bc" firstAttribute="leading" secondItem="6m7-wz-eR1" secondAttribute="leading" constant="12" id="wEB-B8-2WM"/>
                                                 </constraints>
                                                 <size key="customSize" width="375" height="527"/>
@@ -100,7 +93,7 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cJy-c5-19p" userLabel="buttonNotCell">
-                                        <rect key="frame" x="13" y="631" width="62" height="24"/>
+                                        <rect key="frame" x="13" y="631" width="98" height="24"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MF9-mu-fzT">
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -113,8 +106,8 @@
                                                     <action selector="commentBtn:" destination="HxA-wi-rS3" eventType="touchUpInside" id="MUP-oi-CeA"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHz-fn-AUk">
-                                                <rect key="frame" x="62" y="0.0" width="0.0" height="24"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHz-fn-AUk">
+                                                <rect key="frame" x="77" y="0.0" width="21" height="24"/>
                                                 <state key="normal" image="content_share"/>
                                                 <connections>
                                                     <action selector="shareBtn:" destination="HxA-wi-rS3" eventType="touchUpInside" id="hvs-iY-pXp"/>
@@ -250,7 +243,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="contentGradientg" width="187" height="333"/>
         <image name="content_chat" width="23" height="23"/>
         <image name="content_chat_smallbubble" width="15" height="15"/>
         <image name="content_heart" width="24" height="24"/>

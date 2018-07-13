@@ -35,6 +35,7 @@ class MainLikeTVC: UITableViewController, APIService {
         let indexPath: IndexPath? = self.tableView.indexPathForRow(at: buttonPosition)
         
         let cell = self.tableView.cellForRow(at: indexPath!) as! MainTVCell
+        print("like click envet happed!")
         getMyPoint(url : url("/legislator/voting"), index : sender.tag, cell : cell)
     }
     
