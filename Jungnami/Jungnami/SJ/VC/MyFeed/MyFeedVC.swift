@@ -25,7 +25,7 @@ class MyFeedVC: UIViewController, APIService {
         super.viewDidLoad()
         myFeedTableView.delegate = self
         myFeedTableView.dataSource = self
-       
+        myFeedTableView.tableFooterView = UIView(frame : .zero)
     }
 
 
