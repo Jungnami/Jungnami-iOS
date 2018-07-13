@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZNN-fj-aaj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZNN-fj-aaj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--ContentVC-->
         <scene sceneID="ysX-W3-7pK">
@@ -286,7 +281,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Bti-mU-1JO">
-                                        <rect key="frame" x="111.5" y="155" width="152" height="26"/>
+                                        <rect key="frame" x="89.5" y="155" width="152" height="26"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="mypage_namefield" translatesAutoresizingMaskIntoConstraints="NO" id="JCi-WF-AZN">
                                                 <rect key="frame" x="0.0" y="0.0" width="152" height="26"/>
@@ -298,7 +293,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쁜쁜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFX-o1-rCy">
-                                        <rect key="frame" x="176" y="160" width="24.5" height="17"/>
+                                        <rect key="frame" x="154" y="160" width="24.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -376,16 +371,23 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hms-Ck-Veb">
+                                        <rect key="frame" x="246" y="155" width="41" height="26"/>
+                                        <state key="normal" image="other-user-page_add_user"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="CVZ-N5-luY" firstAttribute="top" secondItem="isc-ig-eLI" secondAttribute="top" id="0z1-l3-psD"/>
                                     <constraint firstItem="mFX-o1-rCy" firstAttribute="centerY" secondItem="JCi-WF-AZN" secondAttribute="centerY" id="1nD-ZN-5Yy"/>
-                                    <constraint firstItem="Bti-mU-1JO" firstAttribute="centerX" secondItem="isc-ig-eLI" secondAttribute="centerX" id="5Rv-qO-C4f"/>
+                                    <constraint firstItem="JCi-WF-AZN" firstAttribute="leading" secondItem="isc-ig-eLI" secondAttribute="leading" constant="89.5" id="5Eo-rQ-DFN"/>
                                     <constraint firstItem="HQ1-jd-sJH" firstAttribute="top" secondItem="Bti-mU-1JO" secondAttribute="bottom" constant="11" id="6rH-Cb-OEu"/>
-                                    <constraint firstItem="HQ1-jd-sJH" firstAttribute="centerX" secondItem="Bti-mU-1JO" secondAttribute="centerX" id="GCY-VU-IY5"/>
+                                    <constraint firstItem="hms-Ck-Veb" firstAttribute="leading" secondItem="JCi-WF-AZN" secondAttribute="trailing" constant="4.5" id="GeW-ck-e4j"/>
+                                    <constraint firstAttribute="trailing" secondItem="hms-Ck-Veb" secondAttribute="trailing" constant="88" id="Wuq-sJ-akw"/>
                                     <constraint firstItem="CVZ-N5-luY" firstAttribute="leading" secondItem="isc-ig-eLI" secondAttribute="leading" id="Y5m-Ui-QG1"/>
+                                    <constraint firstItem="HQ1-jd-sJH" firstAttribute="centerX" secondItem="isc-ig-eLI" secondAttribute="centerX" id="hW2-jO-lbb"/>
                                     <constraint firstItem="mFX-o1-rCy" firstAttribute="centerX" secondItem="JCi-WF-AZN" secondAttribute="centerX" id="mq2-vQ-Njd"/>
+                                    <constraint firstItem="hms-Ck-Veb" firstAttribute="centerY" secondItem="JCi-WF-AZN" secondAttribute="centerY" id="oev-iw-F3B"/>
                                     <constraint firstItem="Bti-mU-1JO" firstAttribute="top" secondItem="bEk-zE-oQk" secondAttribute="bottom" constant="13" id="pYv-S4-3IM"/>
                                     <constraint firstAttribute="height" constant="232" id="pa4-8Y-w4K"/>
                                     <constraint firstAttribute="trailing" secondItem="CVZ-N5-luY" secondAttribute="trailing" id="zBD-dJ-LPL"/>
@@ -480,6 +482,7 @@
                         <outlet property="dismissBtn" destination="2Jp-JH-hcV" id="lEL-bK-7cM"/>
                         <outlet property="otherUserFeedBtn" destination="goK-cW-7hi" id="fGo-cz-4Eg"/>
                         <outlet property="otherUserFeedCountLbl" destination="wO3-6t-Adq" id="qha-33-LTh"/>
+                        <outlet property="otherUserFollowBtn" destination="hms-Ck-Veb" id="yws-6W-af7"/>
                         <outlet property="otherUserFollowerCountLbl" destination="Uss-hd-TPR" id="AKN-Rv-146"/>
                         <outlet property="otherUserFollowingCountLbl" destination="KQT-si-waw" id="tix-MK-tRM"/>
                         <outlet property="otherUserNameLbl" destination="mFX-o1-rCy" id="Ags-Hh-zOL"/>
@@ -2342,5 +2345,6 @@
         <image name="mypage_search" width="15" height="15"/>
         <image name="mypage_search_field" width="351" height="31"/>
         <image name="mypage_x" width="24" height="24"/>
+        <image name="other-user-page_add_user" width="41" height="26"/>
     </resources>
 </document>

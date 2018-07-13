@@ -39,6 +39,8 @@ class OtherUserPageVC: UIViewController, APIService {
         updateView(selected: sender.tag)
         
     }
+    //수진 여기 버튼 연결!
+    @IBOutlet weak var otherUserFollowBtn: UIButton!
     
     
     //알림, 설정, 버튼으로 연결해야함
