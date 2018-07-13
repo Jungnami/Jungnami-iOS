@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ContentSearchResultVC: UIViewController, APIService {
+class ContentSearchResultVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, APIService {
     
     
     var contendSearchData : [ContentSearchVOData]?
@@ -60,24 +60,21 @@ class ContentSearchResultVC: UIViewController, APIService {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.searchTxtField.resignFirstResponder()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-}
-
-extension ContentSearchResultVC:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let contendSearchData_ = contendSearchData {
             return contendSearchData_.count
         }
         return 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = contentSearchResultCollectionView.dequeueReusableCell(withReuseIdentifier: ContentSearchResultCell.reuseIdentifier, for: indexPath) as! ContentSearchResultCell
         
@@ -89,6 +86,8 @@ extension ContentSearchResultVC:  UICollectionViewDelegate, UICollectionViewData
              cell.configure(data: contendSearchData_[indexPath.row])
             
         }
+        
+        
         return cell
     }
     
@@ -117,6 +116,7 @@ extension ContentSearchResultVC:  UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
+    
 }
 
 //키보드 엔터 버튼 눌렀을 때
