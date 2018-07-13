@@ -24,8 +24,8 @@ class MyPageVC: UIViewController , APIService{
     @IBOutlet weak var profileFollowingNumLbl: UILabel!
     @IBOutlet weak var profileFollowerNumLbl: UILabel!
     
-    @IBOutlet weak var profileCoinCountLbl: UILabel!
-    @IBOutlet weak var profileVoteCountLbl: UILabel!
+    @IBOutlet weak var profileCoinCountLbl: myTouchLbl!
+    @IBOutlet weak var profileVoteCountLbl: myTouchLbl!
     @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var scapBtn: UIButton!
@@ -65,7 +65,7 @@ class MyPageVC: UIViewController , APIService{
     //var data = MyPageData.sharedInstance.myPageUsers
     //tapGesture--------------------------------
     var keyboardDismiss: UITapGestureRecognizer?
-    var delegate : TapDelegate?
+   // var delegate : TapDelegate2?
     //    var index = 0
     //셀아닌부분에서 tapGesture하려면 어떻게...?
     //------------------------------------------
@@ -135,8 +135,23 @@ class MyPageVC: UIViewController , APIService{
         if let selectedUserId_ = selectedUserId {
              getMyPage(url: url("/user/mypage/\(selectedUserId_)"))
         }
+        
+        let tapAction1 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
+          let tapAction2 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
+        profileCoinCountLbl?.isUserInteractionEnabled = true
+        profileCoinCountLbl?.addGestureRecognizer(tapAction1)
+        profileVoteCountLbl?.isUserInteractionEnabled = true
+        profileVoteCountLbl?.addGestureRecognizer(tapAction2)
        
     }
+    
+    @objc func actionTapped(_ sender: UITapGestureRecognizer) {
+        if let chargeVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:ChargeVC.reuseIdentifier) as? ChargeVC {
+            
+            self.present(chargeVC, animated: true, completion: nil)
+        }
+    }
+    
     //followLbl 터치했을 때 화면 올리기
     @objc func tapFollowLbl(_ sender: UITapGestureRecognizer) {
         
