@@ -56,11 +56,14 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+      
+        
+
         if indexPath.section == 0 {
             let cell = storyCollectionView.dequeueReusableCell(withReuseIdentifier: StoryFirstCell.reuseIdentifier, for: indexPath) as! StoryFirstCell            //cell에 데이터 연결!
             //통신
             if let storyContents_ = storyData{
-                cell.configure(data: storyContents_[indexPath.row])
+                cell.configure(data: storyContents_[0])
             }
             return cell
         }else {
