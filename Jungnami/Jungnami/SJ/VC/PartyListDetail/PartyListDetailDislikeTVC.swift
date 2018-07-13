@@ -84,7 +84,7 @@ extension PartyListDetailDislikeTVC{
         if let legislatorDetailVC = self.storyboard?.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
             legislatorDetailVC.selectedLegislatorIdx = self.legislatorDislikeData[indexPath.row].id
-            
+            legislatorDetailVC.selectedLegislatorName = self.legislatorDislikeData[indexPath.row].name
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
         

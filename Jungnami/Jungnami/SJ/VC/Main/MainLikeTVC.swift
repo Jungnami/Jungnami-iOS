@@ -91,6 +91,7 @@ extension MainLikeTVC {
             
             
             legislatorDetailVC.selectedLegislatorIdx = self.legislatorLikeData[indexPath.row].lID
+            legislatorDetailVC.selectedLegislatorName = self.legislatorLikeData[indexPath.row].lName
             
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }

@@ -83,7 +83,7 @@ extension SearchLegislatorResultTVC {
         if let legislatorDetailVC = self.storyboard?.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
             legislatorDetailVC.selectedLegislatorIdx = self.legislatorSearchData[indexPath.row].id
-            
+            legislatorDetailVC.selectedLegislatorName = self.legislatorSearchData[indexPath.row].name
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
         
