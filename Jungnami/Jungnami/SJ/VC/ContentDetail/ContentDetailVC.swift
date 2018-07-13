@@ -21,7 +21,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     var contentIdx : Int? // contentDetail
     var contentImages: [ContentDetailVODataImgArr]?
     var contentTitle : String?
-    var writeTime : String?
+    var text : String?
     var thumnail : String?
     
     var isLike = 0 {
@@ -129,11 +129,11 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentDetailCell.reuseIdentifier, for: indexPath) as! ContentDetailCell
-        if let contentDetails_ = contentImages, let title_ = contentTitle , let writeTime_ = writeTime, let thumnail_ = thumnail{
+        if let contentDetails_ = contentImages, let title_ = contentTitle , let text_ = text, let thumnail_ = thumnail{
             
         
             if indexPath.row == 0 {
-                cell.configure(title : title_, writeTime : writeTime_, thumnail : contentDetails_[0].imgURL)
+                cell.configure(title : title_, text : text_, thumnail : contentDetails_[0].imgURL)
             } else {
                 cell.configure2(data: contentDetails_[indexPath.row])
             }
@@ -220,7 +220,7 @@ extension ContentDetailVC {
                 self.commentCountLbl.text = String(contentDetail.commentCnt)
                 self.contentImages = contentDetail.imagearray
                 self.contentTitle = contentDetail.subtitle
-                self.writeTime = contentDetail.text
+                self.text = contentDetail.text
                 self.thumnail = contentDetail.thumbnail
                 self.isLike = contentDetail.islike
                 self.isScrap = contentDetail.isscrap

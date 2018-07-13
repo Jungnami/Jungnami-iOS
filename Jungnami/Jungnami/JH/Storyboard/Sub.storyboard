@@ -539,7 +539,7 @@
                                         <rect key="frame" x="0.0" y="74" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iQu-Yu-c9I" id="eUV-ds-nwI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Gk-Rs-Tsd">
@@ -1687,7 +1687,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SND-8F-gCx" id="oBa-7t-bmo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h89-Uz-cjR">
@@ -1710,7 +1710,7 @@
                                         <rect key="frame" x="0.0" y="69" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="68F-Sx-L7J" id="Hgq-ba-VQF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i2d-8D-ugn">
@@ -1790,7 +1790,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="653"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ztv-nH-Ia3" id="aOA-1i-OLm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="652.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="653"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYh-Yh-LfX" userLabel="배경회색">
@@ -1988,7 +1988,7 @@
                                         <rect key="frame" x="0.0" y="681" width="375" height="608"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xoA-qk-3xL" id="Lol-Qh-uZA">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="607.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8t6-Zg-iNV" userLabel="배경회색">
@@ -2193,6 +2193,9 @@
                                             <constraint firstAttribute="height" constant="24" id="Ofw-A4-TcE"/>
                                         </constraints>
                                         <state key="normal" image="mypage_left_arrow"/>
+                                        <connections>
+                                            <action selector="backBtn:" destination="hE0-8N-kb6" eventType="touchUpInside" id="hAP-c4-6RS"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="찾고싶은 글을 검색해보세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XZb-fy-QQo">
                                         <rect key="frame" x="85" y="14.5" width="267" height="17"/>
@@ -2299,6 +2302,8 @@
                     </view>
                     <connections>
                         <outlet property="contentSearchResultCollectionView" destination="2sz-Qg-Ee6" id="f0K-uk-JOO"/>
+                        <outlet property="navView" destination="I1O-gc-Y3L" id="V4U-jN-8Vk"/>
+                        <outlet property="searchTxtField" destination="XZb-fy-QQo" id="7Dt-EO-iya"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TkS-YM-ghh" userLabel="First Responder" sceneMemberID="firstResponder"/>

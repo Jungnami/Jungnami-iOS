@@ -216,15 +216,14 @@ extension CommunityResultTVC :  UIGestureRecognizerDelegate, TapDelegate2 {
            let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
             if (myId == userId ){
                 //내걸로
-                print("checkehcekchek")
-              
+               
                 if let myPageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
                     myPageVC.selectedUserId = userId
                     self.present(myPageVC, animated: true, completion: nil)
                 }
             } else {
                 //남의걸로
-                 print("checkehcekchek22222")
+               
                 if let otherUserPageVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:OtherUserPageVC.reuseIdentifier) as? OtherUserPageVC {
                     otherUserPageVC.selectedUserId = userId
                     self.present(otherUserPageVC, animated: true, completion: nil)

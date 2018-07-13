@@ -83,6 +83,7 @@ class PartyListPageMenuVC: UIViewController, APIService {
         setKeyboardSetting()
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTxtField.delegate = self

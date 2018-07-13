@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ContentSearchResultCell: UICollectionViewCell {
     
@@ -13,10 +14,16 @@ class ContentSearchResultCell: UICollectionViewCell {
     @IBOutlet weak var contentTitleLbl: UILabel!
     @IBOutlet weak var contentInfoLbl: UILabel!
     //수진님 통신 - ContentSearchResultData 여기 통신데이터로 바꿔주세욤
-    func configure(data: ContentsearchResultSample) {
-        contentImgView.image = data.img
+    func configure(data: ContentSearchVOData) {
+        if (gsno(data.thumbnail) == "0") {
+            contentImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.thumbnail)){
+                self.contentImgView.kf.setImage(with: url)
+            }
+        }
         contentTitleLbl.text = data.title
-        contentInfoLbl.text = data.info
+        contentInfoLbl.text = data.text
     }
     
 }

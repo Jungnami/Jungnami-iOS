@@ -15,11 +15,11 @@ class ContentDetailCell: UICollectionViewCell {
     @IBOutlet weak var contentDetailCategoryLbl: UILabel!
     @IBOutlet weak var contentDetailDateLbl: UILabel!
     
-    func configure(title : String, writeTime : String, thumnail : String){
+    func configure(title : String, text : String, thumnail : String){
         contentDetailTitleLbl.isHidden = false
-        contentDetailDateLbl.isHidden = false
-        contentDetailTitleLbl.text = title
-        contentDetailDateLbl.text = writeTime
+        contentDetailDateLbl.isHidden = true
+        contentDetailCategoryLbl.text = text
+        //contentDetailDateLbl.text = writeTime
         if let url = URL(string: gsno(thumnail)){
             self.contentDetailImgView.kf.setImage(with: url)
             
