@@ -78,8 +78,10 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  
         if indexPath.section == 0 {
         let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+            
         if let contentData_ = contentData {
             detailVC.contentIdx = contentData_[indexPath.row].contentsid
         }
@@ -150,9 +152,7 @@ extension ContentRecommendVC {
             switch result {
             case .networkSuccess(let recommendData):
                 let recommendData = recommendData as! RecommendVOData
-                self.contentData = recommendData.content.filter({
-                    $0.type == 0
-                })
+                self.contentData = recommendData.content
                 self.alarmCount = recommendData.alarmcnt
                 self.contentCollectionView.reloadData()
                 break
