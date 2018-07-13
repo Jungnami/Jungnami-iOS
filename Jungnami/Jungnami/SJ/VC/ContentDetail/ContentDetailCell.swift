@@ -18,6 +18,7 @@ class ContentDetailCell: UICollectionViewCell {
     func configure(title : String, text : String, thumnail : String){
         contentDetailTitleLbl.isHidden = false
         contentDetailDateLbl.isHidden = true
+        contentDetailTitleLbl.text = title
         contentDetailCategoryLbl.text = text
         //contentDetailDateLbl.text = writeTime
         if let url = URL(string: gsno(thumnail)){

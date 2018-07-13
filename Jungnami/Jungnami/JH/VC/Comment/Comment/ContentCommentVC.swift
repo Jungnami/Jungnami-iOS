@@ -124,7 +124,7 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
 
 extension ContentCommentVC {
     
-    
+  
     func setKeyboardSetting() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -140,7 +140,9 @@ extension ContentCommentVC {
             detailTableView.contentInset = contentInset
             ////////
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 위로 이동시킴 ////////
+            
             commentSendView.frame.origin.y -= keyboardSize.height
+            
             ////////
             self.view.layoutIfNeeded()
         }
@@ -154,7 +156,10 @@ extension ContentCommentVC {
             contentInset.bottom = 0
             detailTableView.contentInset = contentInset
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 아래로 이동시킴 ////////
+            
             commentSendView.frame.origin.y += keyboardSize.height
+            
+            
             ////////
             self.view.layoutIfNeeded()
         }
@@ -279,13 +284,17 @@ extension ContentCommentVC {
             switch result {
             case .networkSuccess(_):
                 self.simpleAlert(title: "성공", message: "댓글 삭제 완료")
+              
                 self.temp()
+                
                 break
             case .accessDenied :
                 self.simpleAlert(title: "오류", message: "삭제 권한이 없습니다")
+                
                 break
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+        
             default :
                 break
             }

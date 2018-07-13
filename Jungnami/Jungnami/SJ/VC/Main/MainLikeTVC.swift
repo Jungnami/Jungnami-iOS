@@ -18,7 +18,7 @@ class MainLikeTVC: UITableViewController, APIService {
         super.viewWillAppear(animated)
          self.tableView.setContentOffset(.zero, animated: true)
         legislatorLikeInit(url : url("/ranking/list/1"))
-        
+    
        
     }
     
@@ -71,8 +71,7 @@ extension MainLikeTVC {
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier) as! MainTVCell
-            
-           // cell.selectedLegislator = legislatorLikeData[indexPath.row]
+         
                 cell.configure(viewType : .like, index: indexPath.row, data: legislatorLikeData[indexPath.row])
             
             cell.voteBtn.tag = legislatorLikeData[indexPath.row].lID
@@ -173,6 +172,9 @@ extension MainLikeTVC{
     
    
     
+    func temp(){
+        legislatorLikeInit(url : url("/ranking/list/1"))
+    }
     
     
     //내 포인트 보고 '확인'했을때 통신
@@ -182,7 +184,7 @@ extension MainLikeTVC{
             switch result {
             case .networkSuccess(_):
                self.voteDelegate?.myVoteDelegate(isLike: 1)
-               self.viewWillAppear(false)
+               self.temp()
                 break
             case .noPoint :
                 self.simpleAlert(title: "오류", message: "포인트가 부족합니다")

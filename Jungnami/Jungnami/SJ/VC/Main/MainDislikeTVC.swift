@@ -67,8 +67,7 @@ extension MainDislikeTVC {
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier, for: indexPath) as! MainTVCell
-           // cell.selectedLegislator = legislatorDislikeData[indexPath.row]
-           
+          
            cell.configure(viewType : .dislike, index: indexPath.row, data: legislatorDislikeData[indexPath.row])
             cell.voteBtn.tag = legislatorDislikeData[indexPath.row].lID
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
@@ -161,6 +160,10 @@ extension MainDislikeTVC {
         })
     } //getMyPoint
     
+    func temp(){
+        legislatorLikeInit(url : url("/ranking/list/0"))
+    }
+    
     //내 포인트 보고 '확인'했을때 통신
     func voteOkAction(url : String, params : [String : Any]) {
         VoteService.shareInstance.vote(url: url, params : params, completion: { [weak self] (result) in
@@ -168,7 +171,7 @@ extension MainDislikeTVC {
             switch result {
             case .networkSuccess(_):
                self.voteDelegate?.myVoteDelegate(isLike: 0)
-                self.viewWillAppear(false)
+               self.temp()
                 break
             case .noPoint :
                 self.simpleAlert(title: "오류", message: "포인트가 부족합니다")
