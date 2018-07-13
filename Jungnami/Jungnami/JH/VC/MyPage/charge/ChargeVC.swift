@@ -24,9 +24,12 @@ class ChargeVC: UIViewController {
     @IBOutlet weak var chargeCoinBar: UIView!
     @IBOutlet weak var chargeVoteBar: UIView!
     
+    
     @IBAction func dismissBtn(_ sender: UIButton) {
         self.dismiss(animated: false, completion: nil)
     }
+    
+    
     
     //--------------containerView-----------------------
     private lazy var myCoinVC: MyCoinVC = {
@@ -120,9 +123,6 @@ extension ChargeVC{
             add(asChildViewController: changeCoinVC)
         }
     }
-    
-    
-    
 }
 
 
