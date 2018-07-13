@@ -352,9 +352,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3x-N1-ThG">
-                                <rect key="frame" x="0.0" y="62" width="375" height="605"/>
-                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2f-ps-b6g">
                                 <rect key="frame" x="0.0" y="20" width="375" height="42"/>
                                 <subviews>
@@ -414,6 +411,9 @@
                                     <constraint firstItem="NC1-7f-lzM" firstAttribute="leading" secondItem="o2f-ps-b6g" secondAttribute="leading" id="zVu-s1-34P"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3x-N1-ThG">
+                                <rect key="frame" x="0.0" y="62" width="375" height="605"/>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

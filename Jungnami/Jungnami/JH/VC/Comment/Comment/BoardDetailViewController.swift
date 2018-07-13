@@ -138,7 +138,9 @@ extension BoardDetailViewController {
             detailTableView.contentInset = contentInset
             ////////
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 위로 이동시킴 ////////
-            commentSendView.frame.origin.y -= keyboardSize.height
+        
+                commentSendView.frame.origin.y -= keyboardSize.height
+            
             ////////
             self.view.layoutIfNeeded()
         }
@@ -152,7 +154,10 @@ extension BoardDetailViewController {
             contentInset.bottom = 0
             detailTableView.contentInset = contentInset
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 아래로 이동시킴 ////////
-            commentSendView.frame.origin.y += keyboardSize.height
+           
+               commentSendView.frame.origin.y += keyboardSize.height
+            
+            
             ////////
             self.view.layoutIfNeeded()
         }
@@ -276,7 +281,9 @@ extension BoardDetailViewController {
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
+             
                 self.simpleAlert(title: "성공", message: "댓글 삭제 완료")
+              
                 self.temp()
                 break
             case .accessDenied :

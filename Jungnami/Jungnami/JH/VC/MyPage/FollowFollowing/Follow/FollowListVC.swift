@@ -213,6 +213,8 @@ extension FollowListVC {
     }
 }
 
+
+//통신
 extension FollowListVC {
     //하트 버튼 눌렀을 때
     func likeAction(url : String, userIdx : String,  cell : FollowCell, sender : followBtn){

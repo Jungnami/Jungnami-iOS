@@ -15,13 +15,13 @@ struct MyPageVO: Codable {
 struct MyPageVOData: Codable {
     let mypageID, nickname, img: String
     let scrapcnt, boardcnt, followingcnt, followercnt: Int
-    let coin, votingcnt, pushcnt: Int
+    let coin, votingcnt, pushcnt, isfollow: Int
     let scrap: [MyPageVODataScrap]
     let board: [MyPageVODataBoard]
     
     enum CodingKeys: String, CodingKey {
         case mypageID = "mypage_id"
-        case nickname, img, scrapcnt, boardcnt, followingcnt, followercnt, coin, votingcnt, pushcnt, scrap, board
+        case nickname, img, scrapcnt, boardcnt, followingcnt, followercnt, coin, votingcnt, pushcnt, scrap, board, isfollow
     }
 }
 

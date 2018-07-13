@@ -40,7 +40,7 @@ class OtherUserPageVC: UIViewController, APIService {
         
     }
     //수진 여기 버튼 연결!
-    @IBOutlet weak var otherUserFollowBtn: UIButton!
+    @IBOutlet weak var otherUserFollowBtn: followBtn!
     
     
     //알림, 설정, 버튼으로 연결해야함
@@ -99,6 +99,13 @@ class OtherUserPageVC: UIViewController, APIService {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        otherUserFollowBtn.setImage(UIImage(named: "other-user-page_add_user"), for: .normal)
+        otherUserFollowBtn.setImage(UIImage(named: "other-user-page_user_blue"), for: .selected)
+        otherUserFollowBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+        
+        
         otherUserProfileImgView.makeImageRound()
        
         updateView(selected: 0)
@@ -138,6 +145,16 @@ class OtherUserPageVC: UIViewController, APIService {
             followListVC.navTitle = "팔로워"
             self.present(followListVC, animated: true, completion: nil)
         }
+    }
+    
+    @objc func like(_ sender : followBtn){
+        //통신
+        if sender.isFollow! == "팔로우" {
+            likeAction(url: url("/user/follow"), userIdx : "\(selectedUserId!)", sender : sender )
+        } else {
+            dislikeAction(url: url("/user/unfollow/\(selectedUserId!)"), sender : sender )
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -251,12 +268,85 @@ extension OtherUserPageVC {
                 self.otherUserFollowingCountLbl.text = "\(myPageData.followingcnt)"
                 self.otherUserFollowerCountLbl.text = "\(myPageData.followercnt)"
                
+                //isFollow 0 이라는 것은 아직 팔로잉 한 상태가 아니라는 것 => 그러니까 .isSelected = false
+                //isFollow 1 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
+                if myPageData.isfollow == 0 {
+                    self.otherUserFollowBtn.isSelected = false
+                    self.otherUserFollowBtn.isFollow = "팔로우"
+                }  else {
+                    self.otherUserFollowBtn.isSelected = true
+                    self.otherUserFollowBtn.isFollow = "팔로잉"
+                }
                 self.myBoardData = myPageData.board
                 self.myScrapData = myPageData.scrap
                
                 break
             case .nullValue :
                 self.simpleAlert(title: "오류", message: "값 없음")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+  
+}
+
+
+
+//통신
+extension OtherUserPageVC {
+    //하트 버튼 눌렀을 때
+    func likeAction(url : String, userIdx : String, sender : followBtn){
+        
+        let params : [String : Any] = [
+            "following_id" : userIdx
+        ]
+        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = true
+                sender.isFollow = "팔로잉"
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    //좋아요 취소
+    func dislikeAction(url : String, sender : followBtn){
+        CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = false
+                sender.isFollow = "팔로우"
+
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :

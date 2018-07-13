@@ -13,11 +13,13 @@ class MainLikeTVC: UITableViewController, APIService {
     var legislatorLikeData : [LegislatorLikeVOData] = []
     var firstData : LegislatorLikeVOData?
     var secondData : LegislatorLikeVOData?
+    var voteDelegate : VoteDelegate?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+         self.tableView.setContentOffset(.zero, animated: true)
         legislatorLikeInit(url : url("/ranking/list/1"))
-        
-        //self.tableView.setContentOffset(.zero, animated: true)
+    
+       
     }
     
     override func viewDidLoad() {
@@ -69,9 +71,8 @@ extension MainLikeTVC {
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier) as! MainTVCell
-            
+         
                 cell.configure(viewType : .like, index: indexPath.row, data: legislatorLikeData[indexPath.row])
-               
             
             cell.voteBtn.tag = legislatorLikeData[indexPath.row].lID
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
@@ -171,6 +172,9 @@ extension MainLikeTVC{
     
    
     
+    func temp(){
+        legislatorLikeInit(url : url("/ranking/list/1"))
+    }
     
     
     //내 포인트 보고 '확인'했을때 통신
@@ -179,11 +183,8 @@ extension MainLikeTVC{
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
-               // myImageView.center = CGPointMake(cell.contentView.bounds.size.width/2,cell.contentView.bounds.size.height/2)
-              
-                self.popupImgView(fileName: "area_like_popup")
-                
-                self.viewWillAppear(false)
+               self.voteDelegate?.myVoteDelegate(isLike: 1)
+               self.temp()
                 break
             case .noPoint :
                 self.simpleAlert(title: "오류", message: "포인트가 부족합니다")

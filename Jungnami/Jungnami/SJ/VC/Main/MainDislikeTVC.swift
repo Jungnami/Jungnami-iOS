@@ -16,10 +16,12 @@ class MainDislikeTVC: UITableViewController, APIService {
    var legislatorDislikeData : [LegislatorLikeVOData] = []
     var firstData : LegislatorLikeVOData?
     var secondData : LegislatorLikeVOData?
+    var voteDelegate : VoteDelegate?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tableView.setContentOffset(.zero, animated: true)
         legislatorLikeInit(url : url("/ranking/list/0"))
-       // self.tableView.setContentOffset(.zero, animated: true)
+        
     }
     
     override func viewDidLoad() {
@@ -65,8 +67,8 @@ extension MainDislikeTVC {
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier, for: indexPath) as! MainTVCell
-            
-            cell.configure(viewType : .dislike, index: indexPath.row, data: legislatorDislikeData[indexPath.row])
+          
+           cell.configure(viewType : .dislike, index: indexPath.row, data: legislatorDislikeData[indexPath.row])
             cell.voteBtn.tag = legislatorDislikeData[indexPath.row].lID
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
             
@@ -158,14 +160,18 @@ extension MainDislikeTVC {
         })
     } //getMyPoint
     
+    func temp(){
+        legislatorLikeInit(url : url("/ranking/list/0"))
+    }
+    
     //내 포인트 보고 '확인'했을때 통신
     func voteOkAction(url : String, params : [String : Any]) {
         VoteService.shareInstance.vote(url: url, params : params, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
-                self.popupImgView(fileName: "area_hate_popup")
-                self.viewWillAppear(false)
+               self.voteDelegate?.myVoteDelegate(isLike: 0)
+               self.temp()
                 break
             case .noPoint :
                 self.simpleAlert(title: "오류", message: "포인트가 부족합니다")

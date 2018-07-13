@@ -133,6 +133,8 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
             
         
             if indexPath.row == 0 {
+                print("서브타이틀 확인")
+                print(title_)
                 cell.configure(title : title_, text : text_, thumnail : contentDetails_[0].imgURL)
             } else {
                 cell.configure2(data: contentDetails_[indexPath.row])
