@@ -1362,6 +1362,9 @@
                                             <constraint firstAttribute="width" constant="79" id="IUE-lp-4Qb"/>
                                         </constraints>
                                         <state key="normal" image="charge_usd_2.19"/>
+                                        <connections>
+                                            <action selector="priceBtn:" destination="Qzg-hL-INj" eventType="touchUpInside" id="9w1-Pc-KVi"/>
+                                        </connections>
                                     </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="charge_coin_small" translatesAutoresizingMaskIntoConstraints="NO" id="qpL-4V-Wip">
                                         <rect key="frame" x="10" y="104" width="17" height="17"/>
@@ -1383,6 +1386,9 @@
                                             <constraint firstAttribute="width" constant="79" id="vvv-wC-edU"/>
                                         </constraints>
                                         <state key="normal" image="charge_usd_2.19"/>
+                                        <connections>
+                                            <action selector="priceBtn:" destination="Qzg-hL-INj" eventType="touchUpInside" id="EjM-Vo-Obf"/>
+                                        </connections>
                                     </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="charge_coin_small" translatesAutoresizingMaskIntoConstraints="NO" id="b7X-dt-YFL">
                                         <rect key="frame" x="10" y="148" width="17" height="17"/>
@@ -1404,6 +1410,9 @@
                                             <constraint firstAttribute="width" constant="79" id="tJK-q4-ypv"/>
                                         </constraints>
                                         <state key="normal" image="charge_usd_3.29"/>
+                                        <connections>
+                                            <action selector="priceBtn:" destination="Qzg-hL-INj" eventType="touchUpInside" id="BOm-H5-2Hv"/>
+                                        </connections>
                                     </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="charge_coin_small" translatesAutoresizingMaskIntoConstraints="NO" id="C2x-fr-uFP">
                                         <rect key="frame" x="10" y="192" width="17" height="17"/>
@@ -1425,6 +1434,9 @@
                                             <constraint firstAttribute="height" constant="30" id="I0W-dP-krX"/>
                                         </constraints>
                                         <state key="normal" image="charge_usd_10.99"/>
+                                        <connections>
+                                            <action selector="priceBtn:" destination="Qzg-hL-INj" eventType="touchUpInside" id="MQH-9x-7Zr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
