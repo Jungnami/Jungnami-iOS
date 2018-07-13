@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ContentVC: UIViewController, AlarmProtocol{
+class ContentVC: UIViewController, AlarmProtocol, APIService{
 
     @IBOutlet weak var recommendBtn: UIButton!
     @IBOutlet weak var tmiBtn: UIButton!
@@ -104,11 +104,16 @@ class ContentVC: UIViewController, AlarmProtocol{
         return view
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //blackView.isHidden = false
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+
+         self.navigationController?.navigationBar.shadowImage = UIImage()
          self.navigationController?.setNavigationBarHidden(true, animated: false)
         //        addNavBarImage()
         setKeyboardSetting()
@@ -121,6 +126,12 @@ class ContentVC: UIViewController, AlarmProtocol{
             make.top.equalTo(menuBarView.snp.bottom)
         }
          alarmBtn.addTarget(self, action:  #selector(toAlarmVC(_sender:)), for: .touchUpInside)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.searchTxtField.resignFirstResponder()
+      
     }
     
     
@@ -264,8 +275,8 @@ extension ContentVC : UITextFieldDelegate{
         
         if let searchString_ = textField.text {
             //여기서 searchContent(searchString : String, url : String) 부르면 됨
-            //searchContent(searchString : searchString_, url : url("/search/contents/\(searchString_)"))
-            print("aa")
+            searchContent(searchString : searchString_, url : url("/search/contents/\(searchString_)"))
+        
         }
         
         
@@ -311,6 +322,7 @@ extension ContentVC{
     }
     
     @objc func tapBackground() {
+        
         self.view.endEditing(true)
     }
     
@@ -342,14 +354,15 @@ extension ContentVC {
     func toSearchResultPage(searchString : String, contentSearchData : [ContentSearchVOData]){
         print("다음뷰")
         //다음뷰로 넘기기
-       /* let mainStoryboard = Storyboard.shared().mainStoryboard
-        if let searchLegislatorResultTVC = mainStoryboard.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
-            self.navSearchView.endEditing(true)
-            searchLegislatorResultTVC.legislatorSearchData = legislatorSearchData
-            searchLegislatorResultTVC.searchString = searchString
-            searchLegislatorResultTVC.viewFrom = 0
-            self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
-        }*/
+        
+        let subStoryboard = Storyboard.shared().subStoryboard
+        if let contentSearchResultVC = subStoryboard.instantiateViewController(withIdentifier:ContentSearchResultVC.reuseIdentifier) as? ContentSearchResultVC {
+          
+            contentSearchResultVC.contendSearchData = contentSearchData
+            contentSearchResultVC.searchString = searchString
+        
+            self.navigationController?.pushViewController(contentSearchResultVC, animated: true)
+        }
     }
     
     

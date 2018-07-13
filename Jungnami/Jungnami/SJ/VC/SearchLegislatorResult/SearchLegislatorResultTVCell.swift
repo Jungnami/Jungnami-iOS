@@ -17,7 +17,7 @@ class SearchLegislatorResultTVCell: UITableViewCell {
     @IBOutlet weak var rankDetailLbl: UILabel!
     @IBOutlet weak var regionLbl: UILabel!
     
-    
+
     func configure(rank : Int, data : LegislatorSearchVOData){
         rankLbl.text = "\(rank)"
         if (gsno(data.imgurl) == "0") {

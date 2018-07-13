@@ -30,6 +30,7 @@ class SearchLegislatorResultTVC: UITableViewController, APIService {
         return view
     }()
     
+    
     var keyboardDismissGesture: UITapGestureRecognizer?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,6 +88,7 @@ extension SearchLegislatorResultTVC {
         }
         
     }
+    
 }
 
 
@@ -170,6 +172,7 @@ extension SearchLegislatorResultTVC{
         self.view.endEditing(true)
     }
 }
+
 
 //통신
 extension SearchLegislatorResultTVC {
