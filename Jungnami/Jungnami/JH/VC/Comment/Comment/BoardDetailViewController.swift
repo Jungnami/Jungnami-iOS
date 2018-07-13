@@ -185,9 +185,19 @@ extension BoardDetailViewController : TapDelegate2, UIGestureRecognizerDelegate 
         if let indexPath = detailTableView.indexPathForRow(at: touch){
             let cell = self.detailTableView.cellForRow(at: indexPath) as! CommentCell
             let userId = cell.commentUserLbl.userId
-            if let myPageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
-               myPageVC.selectedUserId = userId
-                self.present(myPageVC, animated: true, completion: nil)
+            let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+            if (myId == userId ){
+                //내걸로
+                if let myPageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
+                    myPageVC.selectedUserId = userId
+                    self.present(myPageVC, animated: true, completion: nil)
+                }
+            } else {
+                //남의걸로
+                if let otherUserPageVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:OtherUserPageVC.reuseIdentifier) as? OtherUserPageVC {
+                    otherUserPageVC.selectedUserId = userId
+                    self.present(otherUserPageVC, animated: true, completion: nil)
+                }
             }
             
         }

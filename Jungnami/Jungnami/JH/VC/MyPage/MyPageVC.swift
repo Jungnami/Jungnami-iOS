@@ -9,8 +9,14 @@
 import UIKit
 import Kingfisher
 
+
 class MyPageVC: UIViewController , APIService{
+    @IBOutlet weak var myInfoView: UIView!
     
+    @IBOutlet weak var containScarpFeedView: UIView!
+    @IBOutlet var myCoinView: UIView!
+    @IBOutlet var myVoteView: UIView!
+
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var profileuserNameLbl: UILabel!    
     @IBOutlet weak var profileScrapNumLbl: UILabel!
@@ -76,6 +82,7 @@ class MyPageVC: UIViewController , APIService{
     }
     
     var selectedUserId : String?
+    
     private lazy var scrapCVC: ScrapCVC = {
         
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
@@ -109,6 +116,7 @@ class MyPageVC: UIViewController , APIService{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         profileImgView.makeImageRound()
         self.alarmBtn.addTarget(self, action:  #selector(toAlarmVC(_sender:)), for: .touchUpInside)
         updateView(selected: 0)

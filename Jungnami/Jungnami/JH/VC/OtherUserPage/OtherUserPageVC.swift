@@ -6,14 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
-class OtherUserPageVC: UIViewController {
+class OtherUserPageVC: UIViewController, APIService {
 
     @IBOutlet weak var otherUserProfileImgView: UIImageView!
     @IBOutlet weak var otherUserNameLbl: UILabel!
-    @IBAction func otherUserFollowBtn(_ sender: Any) {
-        //
-    }
+   
     @IBOutlet weak var otherUserScrapCountLbl: UILabel!
     @IBOutlet weak var otherUserFeedCountLbl: UILabel!
     @IBOutlet weak var otherUserFollowingCountLbl: UILabel!
@@ -40,43 +39,30 @@ class OtherUserPageVC: UIViewController {
         updateView(selected: sender.tag)
         
     }
-    //tapGesture-------------------------------
+    
+    
+    //알림, 설정, 버튼으로 연결해야함
+    //var data = MyPageData.sharedInstance.myPageUsers
+    //tapGesture--------------------------------
     var keyboardDismiss: UITapGestureRecognizer?
     var delegate : TapDelegate?
+    //    var index = 0
+    //셀아닌부분에서 tapGesture하려면 어떻게...?
+    //------------------------------------------
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        otherUserProfileImgView.makeRounded()
-        updateView(selected: 0)
-        //tapGesture
-        //make label button
-        let tapFollow = UITapGestureRecognizer(target: self, action: #selector(OtherUserPageVC.tapFollowLbl(_:)))
-        otherUserFollowingCountLbl.isUserInteractionEnabled = true
-        otherUserFollowingCountLbl.addGestureRecognizer(tapFollow)
-        
-        let tapFollower = UITapGestureRecognizer(target: self, action: #selector(OtherUserPageVC.tapFollowerLbl(_:)))
-        otherUserFollowerCountLbl.isUserInteractionEnabled = true
-        otherUserFollowerCountLbl.addGestureRecognizer(tapFollower)
+    var myBoardData : [MyPageVODataBoard]  = [] {
+        didSet {
+            myFeedVC.myBoardData = myBoardData
+        }
     }
-    //tapGesture
-    //followLbl 터치했을 때 화면 올리기------------------------------------
-    @objc func tapFollowLbl(_ sender: UITapGestureRecognizer) {
-        let followList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowListVC.reuseIdentifier) as! FollowListVC
-        //데이터 pass하는거 어케하지~?
-        self.present(followList, animated: true, completion: nil)
+    var myScrapData : [MyPageVODataScrap]  = [] {
+        didSet {
+            scrapCVC.myScrapData = myScrapData
+        }
     }
-    //followerLbl 터치했을 때 화면 올리기
-    @objc func tapFollowerLbl(_ sender: UITapGestureRecognizer) {
-//        let followerList = UIStoryboard(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: FollowerListVC.reuseIdentifier) as! FollowerListVC
-//        self.present(followerList, animated: true, completion: nil)
-    }
-    //------------------------------------------------------------
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    var selectedUserId : String?
+    
     private lazy var scrapCVC: ScrapCVC = {
         
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
@@ -94,18 +80,74 @@ class OtherUserPageVC: UIViewController {
         let storyboard = UIStoryboard(name: "Sub", bundle: Bundle.main)
         
         var viewController = storyboard.instantiateViewController(withIdentifier: MyFeedVC.reuseIdentifier) as! MyFeedVC
-        
+        viewController.myBoardData = self.myBoardData
         self.add(asChildViewController: viewController)
         
         return viewController
     }()
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selectedUserId_ = selectedUserId {
+            getMyPage(url: url("/user/mypage/\(selectedUserId_)"))
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        otherUserProfileImgView.makeImageRound()
+       
+        updateView(selected: 0)
+        
+        //네비게이션바 히든
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        //make label button
+        let tapFollow = UITapGestureRecognizer(target: self, action: #selector(MyPageVC.tapFollowLbl(_:)))
+        otherUserFollowingCountLbl.isUserInteractionEnabled = true
+        otherUserFollowingCountLbl.addGestureRecognizer(tapFollow)
+        
+        let tapFollower = UITapGestureRecognizer(target: self, action: #selector(MyPageVC.tapFollowerLbl(_:)))
+        otherUserFollowerCountLbl.isUserInteractionEnabled = true
+        otherUserFollowerCountLbl.addGestureRecognizer(tapFollower)
+        if let selectedUserId_ = selectedUserId {
+            getMyPage(url: url("/user/mypage/\(selectedUserId_)"))
+        }
+        
+    }
+    //followLbl 터치했을 때 화면 올리기
+    @objc func tapFollowLbl(_ sender: UITapGestureRecognizer) {
+        
+        
+        if let followListVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:FollowListVC.reuseIdentifier) as? FollowListVC {
+            followListVC.selectedUserId = selectedUserId
+            followListVC.entryPoint = 0
+            followListVC.navTitle = "팔로잉"
+            self.present(followListVC, animated: true, completion: nil)
+        }
+    }
+    //followerLbl 터치했을 때 화면 올리기
+    @objc func tapFollowerLbl(_ sender: UITapGestureRecognizer) {
+        if let followListVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:FollowListVC.reuseIdentifier) as? FollowListVC {
+            followListVC.selectedUserId = selectedUserId
+            followListVC.entryPoint = 1
+            followListVC.navTitle = "팔로워"
+            self.present(followListVC, animated: true, completion: nil)
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+    }
 }
 extension OtherUserPageVC{
-    
-    
-    static func viewController() -> OtherUserPageVC {
-        return UIStoryboard.init(name: "Sub", bundle: nil).instantiateViewController(withIdentifier: OtherUserPageVC.reuseIdentifier) as! OtherUserPageVC
+    static func viewController() -> MyPageVC {
+        return Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
     }
+    
     
     
     private func add(asChildViewController viewController: UIViewController) {
@@ -159,4 +201,66 @@ extension OtherUserPageVC{
     
     
     
+}
+
+//알림페이지로 가게
+extension OtherUserPageVC {
+    @objc func toAlarmVC(_sender: UIButton){
+        if let noticeVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:NoticeVC.reuseIdentifier) as? NoticeVC {
+            
+            let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+            if (myId == "-1"){
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+                
+            } else {
+                self.present(noticeVC, animated : true)
+            }
+            
+        }
+    }
+}
+
+//통신
+extension OtherUserPageVC {
+    func getMyPage(url : String) {
+        MypageService.shareInstance.getUserPage(url: url, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let myPageData):
+                
+                
+                let myPageData = myPageData as! MyPageVOData
+                if (self.gsno(myPageData.img) == "0") {
+                    self.otherUserProfileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+                } else {
+                    if let url = URL(string: self.gsno(myPageData.img)){
+                        self.otherUserProfileImgView.kf.setImage(with: url)
+                    }
+                }
+                self.otherUserNameLbl.text = myPageData.nickname
+                self.otherUserScrapCountLbl.text = "\(myPageData.scrapcnt)"
+                self.otherUserFeedCountLbl.text = "\(myPageData.boardcnt)"
+                self.otherUserFollowingCountLbl.text = "\(myPageData.followingcnt)"
+                self.otherUserFollowerCountLbl.text = "\(myPageData.followercnt)"
+               
+                self.myBoardData = myPageData.board
+                self.myScrapData = myPageData.scrap
+               
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "값 없음")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
 }
