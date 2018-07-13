@@ -198,7 +198,6 @@ extension ContentSearchResultVC {
             switch result {
             case .networkSuccess(let contentData):
                 let contentSearchData = contentData as! [ContentSearchVOData]
-                
                 self.contendSearchData = contentSearchData
                 self.searchTxtField.resignFirstResponder()
                 self.contentSearchResultCollectionView.reloadData()

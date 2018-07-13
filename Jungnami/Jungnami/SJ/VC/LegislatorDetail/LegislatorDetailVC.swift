@@ -119,7 +119,6 @@ extension LegislatorDetailVC {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             if let contents_ = contents {
-
                let contentIdx = contents_[indexPath.row].id
                 let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
 
@@ -192,7 +191,6 @@ extension LegislatorDetailVC : UITextFieldDelegate{
                 supportPopupView.okBtn.setImage(#imageLiteral(resourceName: "legislator-detailpage_confirm_blue"), for: .normal)
             }
         }
-        
         
     }
     
@@ -323,8 +321,6 @@ extension LegislatorDetailVC {
             }
             
         })
-        
-        
         
     }
     //후원하기 클릭
