@@ -29,8 +29,11 @@ class MainLikeTVC: UITableViewController, APIService {
     }
     
     @objc func vote(_ sender : UIButton){
-
-        getMyPoint(url : url("/legislator/voting"), index : sender.tag)
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        let indexPath: IndexPath? = self.tableView.indexPathForRow(at: buttonPosition)
+        
+        let cell = self.tableView.cellForRow(at: indexPath!) as! MainTVCell
+        getMyPoint(url : url("/legislator/voting"), index : sender.tag, cell : cell)
     }
     
     
@@ -133,7 +136,7 @@ extension MainLikeTVC{
     }
     
     //내 포인트 불러오기
-    func getMyPoint(url : String, index : Int){
+    func getMyPoint(url : String, index : Int, cell : MainTVCell){
         GetPointService.shareInstance.getPoint(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -147,7 +150,7 @@ extension MainLikeTVC{
                         "l_id" : index,
                         "islike" : 1
                     ]
-                    self.voteOkAction(url: self.url("/legislator/voting"), params: params)
+                    self.voteOkAction(url: self.url("/legislator/voting"), params: params, cell : cell)
                 }
                 break
             case .accessDenied :
@@ -166,13 +169,20 @@ extension MainLikeTVC{
         })
     } //getMyPoint
     
+   
+    
+    
+    
     //내 포인트 보고 '확인'했을때 통신
-    func voteOkAction(url : String, params : [String : Any]) {
+    func voteOkAction(url : String, params : [String : Any], cell : MainTVCell) {
         VoteService.shareInstance.vote(url: url, params : params, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
+               // myImageView.center = CGPointMake(cell.contentView.bounds.size.width/2,cell.contentView.bounds.size.height/2)
+              
                 self.popupImgView(fileName: "area_like_popup")
+                
                 self.viewWillAppear(false)
                 break
             case .noPoint :

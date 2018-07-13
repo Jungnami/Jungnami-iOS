@@ -43,7 +43,6 @@ class ContentVC: UIViewController, AlarmProtocol{
             } else {
                 alarmCountLbl.text = "\(alarmCount)"
             }
-            
         }
     }
     
@@ -264,8 +263,8 @@ extension ContentVC : UITextFieldDelegate{
         }
         
         if let searchString_ = textField.text {
-            //여기서 통신
-            //searchLegislator(searchString : searchString_, url : url("/search/legislator/\(searchString_)"))
+            //여기서 searchContent(searchString : String, url : String) 부르면 됨
+            //searchContent(searchString : searchString_, url : url("/search/contents/\(searchString_)"))
             print("aa")
         }
         
@@ -273,6 +272,8 @@ extension ContentVC : UITextFieldDelegate{
         return true
     }
 }
+
+
 
 //키보드 대응
 extension ContentVC{
@@ -311,6 +312,44 @@ extension ContentVC{
     
     @objc func tapBackground() {
         self.view.endEditing(true)
+    }
+    
+    
+}
+
+extension ContentVC {
+    //콘텐츠 검색
+    func searchContent(searchString : String, url : String){
+        ContentSearchService.shareInstance.searchContent(url: url) { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(let contentData):
+                let contentSearchData = contentData as! [ContentSearchVOData]
+                
+                self.toSearchResultPage(searchString: searchString, contentSearchData: contentSearchData)
+                break
+            case .nullValue :
+                self.simpleAlert(title: "오류", message: "검색 결과가 없습니다")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+        }
+    }
+    
+    func toSearchResultPage(searchString : String, contentSearchData : [ContentSearchVOData]){
+        print("다음뷰")
+        //다음뷰로 넘기기
+       /* let mainStoryboard = Storyboard.shared().mainStoryboard
+        if let searchLegislatorResultTVC = mainStoryboard.instantiateViewController(withIdentifier:SearchLegislatorResultTVC.reuseIdentifier) as? SearchLegislatorResultTVC {
+            self.navSearchView.endEditing(true)
+            searchLegislatorResultTVC.legislatorSearchData = legislatorSearchData
+            searchLegislatorResultTVC.searchString = searchString
+            searchLegislatorResultTVC.viewFrom = 0
+            self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
+        }*/
     }
     
     

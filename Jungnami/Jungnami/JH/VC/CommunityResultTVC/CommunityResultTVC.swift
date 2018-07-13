@@ -27,7 +27,7 @@ class CommunityResultTVC: UITableViewController, APIService {
     }()
     
     var keyboardDismissGesture: UITapGestureRecognizer?
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchTxtfield.text = searchString
@@ -67,41 +67,34 @@ extension CommunityResultTVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CommunityResultTVCell.reuseIdentifier) as! CommunityResultTVCell
-       
-        cell.configure(index: indexPath.row, data: communitySearchData[indexPath.row])
-         cell.delegate = self
-         //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
-         //cell.doubleTapdelegate = self
-         let temp = communitySearchData[indexPath.row]
-         //여기는 스크랩했냐 아니냐
-         cell.scrapBtn.tag = temp.id
-         cell.commentBtn.tag = (temp.id)
-         cell.heartBtn.boardIdx = temp.id
-         cell.heartBtn.isLike = temp.islike
-         cell.heartBtn.indexPath = indexPath.row
-         cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
-         cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
-         cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-         
- 
         
-      /*  cell.configure(index : indexPath.row, data: communitySearchData[indexPath.row])
+        cell.configure(index: indexPath.row, data: communitySearchData[indexPath.row])
         cell.delegate = self
-        cell.scrapBtn.tag = indexPath.row
-        cell.scrapBtn.isUserInteractionEnabled = true
-        cell.scrapBtn.addTarget(self, action: #selector(scrap(sender:)), for: .touchUpInside)*/
+        //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
+        //cell.doubleTapdelegate = self
+        let temp = communitySearchData[indexPath.row]
+        //여기는 스크랩했냐 아니냐
+        cell.scrapBtn.tag = temp.id
+        cell.commentBtn.tag = (temp.id)
+        cell.heartBtn.boardIdx = temp.id
+        cell.heartBtn.isLike = temp.islike
+        cell.heartBtn.indexPath = indexPath.row
+        cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
+        cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
+        cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+        
         
         return cell
         
     }
     
-
+    
 }
 
 //셀들에 관한 액션
 extension CommunityResultTVC {
     
-   
+    
     @objc func scrap(_ sender : UIButton){
         let boardIdx = sender.tag
         
@@ -159,8 +152,8 @@ extension CommunityResultTVC : UITextFieldDelegate {
             }
         }
         
-      //  textField.resignFirstResponder()
-       
+        //  textField.resignFirstResponder()
+        
         //여기서 검색
         if let searchString_ = textField.text {
             searchCommunity(searchString : searchString_, url : url("/search/board/\(searchString_)"))
@@ -218,10 +211,25 @@ extension CommunityResultTVC :  UIGestureRecognizerDelegate, TapDelegate2 {
         if let indexPath = self.tableView.indexPathForRow(at: touch){
             let cell = self.tableView.cellForRow(at: indexPath) as! CommunityResultTVCell
             let userId = cell.profileImgView.userId
-            if let myPageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
-                myPageVC.selectedUserId = userId
-                self.present(myPageVC, animated: true, completion: nil)
-            }
+            
+            
+           let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+            if (myId == userId ){
+                //내걸로
+                print("checkehcekchek")
+              
+                if let myPageVC = Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier:MyPageVC.reuseIdentifier) as? MyPageVC {
+                    myPageVC.selectedUserId = userId
+                    self.present(myPageVC, animated: true, completion: nil)
+                }
+            } else {
+                //남의걸로
+                 print("checkehcekchek22222")
+                if let otherUserPageVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:OtherUserPageVC.reuseIdentifier) as? OtherUserPageVC {
+                    otherUserPageVC.selectedUserId = userId
+                    self.present(otherUserPageVC, animated: true, completion: nil)
+                }
+            } 
             
         }
     }

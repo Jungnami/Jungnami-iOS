@@ -9,7 +9,7 @@ import Foundation
 
 struct FollowListVO: Codable {
     let message: String
-    let data: [FollowListVOData]
+    let data: [FollowListVOData]?
 }
 
 struct FollowListVOData: Codable {

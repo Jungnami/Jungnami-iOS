@@ -17,6 +17,8 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.contentCollectionView.refreshControl = UIRefreshControl()
+        self.contentCollectionView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         contentCollectionView.delegate = self
         contentCollectionView.dataSource = self
         //통신
@@ -127,6 +129,16 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
     
 
 }
+
+//리프레시
+extension ContentRecommendVC {
+    
+    @objc func startReloadTableView(_ sender: UIRefreshControl){
+         contentRecommendInit(url: url("/contents/recommend"))
+        sender.endRefreshing()
+    }
+}
+
 //통신
 
 extension ContentRecommendVC {
