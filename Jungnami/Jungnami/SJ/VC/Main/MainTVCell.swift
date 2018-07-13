@@ -34,8 +34,10 @@ class MainTVCell: UITableViewCell {
         voteCountLbl.text = "\(String(describing: data.scoretext))"
         
         profileImgView.makeImageRound()
+    
         progressBar.snp.makeConstraints { (make) in
             make.width.equalTo(maxWidth*data.width)
+           // make.width.equalTo(240)
             make.height.equalTo(12)
             make.leading.equalTo(profileImgView.snp.trailing).offset(-15)
             make.bottom.equalTo(profileImgView.snp.bottom).offset(-7)
@@ -62,9 +64,9 @@ class MainTVCell: UITableViewCell {
             } else if data.ranking == "3" {
                 medalImgView.image = #imageLiteral(resourceName: "ranking_yellow_bomb")
             }
-            
+
         }
-        
+
         
         if index > 2 {
             medalImgView.isHidden = true
@@ -72,12 +74,19 @@ class MainTVCell: UITableViewCell {
         
         if(index % 2 == 1){
             self.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9843137255, alpha: 1)
+        } else {
+            self.backgroundColor = .white
         }
         
         
         
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        
+    }
     
     
     
@@ -91,6 +100,7 @@ class MainTVCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
+
         // Configure the view for the selected state
     }
     

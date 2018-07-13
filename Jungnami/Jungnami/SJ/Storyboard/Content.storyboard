@@ -92,7 +92,7 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cJy-c5-19p" userLabel="buttonNotCell">
-                                        <rect key="frame" x="13" y="631" width="98" height="24"/>
+                                        <rect key="frame" x="13" y="631" width="62" height="24"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MF9-mu-fzT">
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -105,8 +105,8 @@
                                                     <action selector="commentBtn:" destination="HxA-wi-rS3" eventType="touchUpInside" id="MUP-oi-CeA"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHz-fn-AUk">
-                                                <rect key="frame" x="77" y="0.0" width="21" height="24"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHz-fn-AUk">
+                                                <rect key="frame" x="62" y="0.0" width="0.0" height="24"/>
                                                 <state key="normal" image="content_share"/>
                                                 <connections>
                                                     <action selector="shareBtn:" destination="HxA-wi-rS3" eventType="touchUpInside" id="hvs-iY-pXp"/>

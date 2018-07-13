@@ -8,7 +8,15 @@
 import UIKit
 
 
-class PartyListDetailPageMenuVC : UIViewController, APIService{
+class PartyListDetailPageMenuVC : UIViewController, APIService, VoteDelegate {
+    func myVoteDelegate(isLike: Int) {
+        if isLike == 0 {
+            self.popupImgView(fileName: "area_hate_popup")
+        } else {
+            self.popupImgView(fileName: "area_like_popup")
+        }
+    }
+    
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var likeBtn: UIButton!
@@ -58,7 +66,7 @@ class PartyListDetailPageMenuVC : UIViewController, APIService{
         let storyboard = Storyboard.shared().mainStoryboard
         
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailLikeTVC.reuseIdentifier) as! PartyListDetailLikeTVC
-        
+        viewController.voteDelegate = self
         viewController.selectedParty = selectedParty
         viewController.selectedRegion = selectedRegion
         self.add(asChildViewController: viewController)
@@ -71,6 +79,7 @@ class PartyListDetailPageMenuVC : UIViewController, APIService{
         let storyboard = Storyboard.shared().mainStoryboard
         
         var viewController = storyboard.instantiateViewController(withIdentifier: PartyListDetailDislikeTVC.reuseIdentifier) as! PartyListDetailDislikeTVC
+        viewController.voteDelegate = self
         viewController.selectedParty = selectedParty
         viewController.selectedRegion = selectedRegion
         self.add(asChildViewController: viewController)

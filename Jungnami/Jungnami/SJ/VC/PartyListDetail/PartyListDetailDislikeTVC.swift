@@ -12,6 +12,7 @@ class PartyListDetailDislikeTVC: UITableViewController, APIService {
     var selectedParty : PartyName?
     var selectedRegion : Region?
     var legislatorDislikeData : [PartyLegistorLikeVOData] = []
+    var voteDelegate : VoteDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -162,7 +163,8 @@ extension PartyListDetailDislikeTVC{
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
-                self.popupImgView(fileName: "area_hate_popup")
+                 self.voteDelegate?.myVoteDelegate(isLike: 0)
+                //self.popupImgView(fileName: "area_hate_popup")
                 self.viewWillAppear(false)
                 break
             case .noPoint :

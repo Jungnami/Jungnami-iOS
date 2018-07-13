@@ -14,6 +14,7 @@ class PartyListDetailLikeTVC: UITableViewController,APIService {
     var selectedParty : PartyName?
     var selectedRegion : Region?
     var legislatorLikeData : [PartyLegistorLikeVOData] = []
+    var voteDelegate : VoteDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -157,7 +158,7 @@ extension PartyListDetailLikeTVC {
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
-                self.popupImgView(fileName: "area_like_popup")
+                self.voteDelegate?.myVoteDelegate(isLike: 1)
                 self.viewWillAppear(false)
                 break
             case .noPoint :

@@ -7,7 +7,15 @@
 
 import UIKit
 
-class MainPageMenuVC: UIViewController, APIService {
+class MainPageMenuVC: UIViewController, APIService, VoteDelegate {
+    
+    func myVoteDelegate(isLike: Int) {
+        if isLike == 0 {
+            self.popupImgView(fileName: "area_hate_popup")
+        } else {
+            self.popupImgView(fileName: "area_like_popup")
+        }
+    }
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var likeBtn: UIButton!
@@ -59,7 +67,7 @@ class MainPageMenuVC: UIViewController, APIService {
     
         var viewController = storyboard.instantiateViewController(withIdentifier: MainLikeTVC.reuseIdentifier) as! MainLikeTVC
         
-        
+        viewController.voteDelegate = self
         self.add(asChildViewController: viewController)
         
         return viewController
@@ -70,7 +78,7 @@ class MainPageMenuVC: UIViewController, APIService {
         let storyboard = Storyboard.shared().rankStoryboard
         
         var viewController = storyboard.instantiateViewController(withIdentifier: MainDislikeTVC.reuseIdentifier) as! MainDislikeTVC
-        
+         viewController.voteDelegate = self
         self.add(asChildViewController: viewController)
         
         return viewController

@@ -7,12 +7,7 @@
 
 import UIKit
 import Kingfisher
-/*
- "following_id": "807465239",
- "following_nickname": "이종찬",
- "following_img_url": "http://k.kakaocdn.net/dn/jDRoT/btqm4vFAE94/k1Zh9fVdUym2xIEZhevmFK/profile_110x110c.jpg",
- "isMyFollowing": "나"
- */
+
 class followBtn : UIButton {
     var isFollow : String? //
     var userIdx : String?
