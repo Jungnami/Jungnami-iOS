@@ -64,6 +64,8 @@ class CommentCell: UITableViewCell {
         
         
         if index < 3 {
+            commentBestImg.isHidden = false
+        } else {
             commentBestImg.isHidden = true
         }
         
