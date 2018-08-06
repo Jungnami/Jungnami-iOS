@@ -70,6 +70,7 @@
 		3B97B5E420F35C1000020A81 /* GetLegislatorDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5E320F35C1000020A81 /* GetLegislatorDetailService.swift */; };
 		3B97B5E620F3842700020A81 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5E520F3842700020A81 /* LoginService.swift */; };
 		3B97B5E820F3869900020A81 /* LoginVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B97B5E720F3869900020A81 /* LoginVO.swift */; };
+		3B9EE267211854CB00C21E84 /* CommunityNoImgTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EE266211854CB00C21E84 /* CommunityNoImgTVCell.swift */; };
 		3BAFF97620EE845A0088F020 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAFF97520EE845A0088F020 /* Region.swift */; };
 		3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */; };
 		3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */; };
@@ -129,7 +130,6 @@
 		439D814E20EB2FE5007DAD57 /* ContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D813920EB2FE5007DAD57 /* ContentVC.swift */; };
 		439D815020EB2FE5007DAD57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 439D813B20EB2FE5007DAD57 /* Assets.xcassets */; };
 		439D815120EB2FE5007DAD57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439D813C20EB2FE5007DAD57 /* AppDelegate.swift */; };
-		439D815220EB2FE5007DAD57 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 439D813D20EB2FE5007DAD57 /* Info.plist */; };
 		43C5137B20ECD81D0017BDD8 /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C5137A20ECD81D0017BDD8 /* MyPageVC.swift */; };
 		43C5137E20ECD9D00017BDD8 /* ScrapCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C5137D20ECD9D00017BDD8 /* ScrapCVC.swift */; };
 		43C5138020ECD9F70017BDD8 /* ScrapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C5137F20ECD9F70017BDD8 /* ScrapCell.swift */; };
@@ -227,6 +227,7 @@
 		3B97B5E320F35C1000020A81 /* GetLegislatorDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLegislatorDetailService.swift; sourceTree = "<group>"; };
 		3B97B5E520F3842700020A81 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		3B97B5E720F3869900020A81 /* LoginVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVO.swift; sourceTree = "<group>"; };
+		3B9EE266211854CB00C21E84 /* CommunityNoImgTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityNoImgTVCell.swift; sourceTree = "<group>"; };
 		3BAFF97520EE845A0088F020 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVC.swift; sourceTree = "<group>"; };
 		3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVCell.swift; sourceTree = "<group>"; };
@@ -683,6 +684,7 @@
 				3B83165820F106E0001D2423 /* CommunityFirstSectionWriteTVCell.swift */,
 				3B83165A20F10AF9001D2423 /* CommunityFirstSectionLoginTVCell.swift */,
 				439D813020EB2FE5007DAD57 /* CommunityTVCell.swift */,
+				3B9EE266211854CB00C21E84 /* CommunityNoImgTVCell.swift */,
 				439D812F20EB2FE5007DAD57 /* Sample.swift */,
 			);
 			path = Community;
@@ -1020,7 +1022,6 @@
 				3B87A34E20F8E5FD00A968B8 /* CoinChangePopup.xib in Resources */,
 				3BCF933620F1656600E9E7F7 /* SupportPopup.xib in Resources */,
 				3B47AEB120F5EC2D0054B49A /* Mypage.storyboard in Resources */,
-				439D815220EB2FE5007DAD57 /* Info.plist in Resources */,
 				439D814020EB2FE5007DAD57 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1211,6 +1212,7 @@
 				4353B94E20F66B2000C88214 /* MyFeedCell.swift in Sources */,
 				3B6B031920EE530000034C9B /* ColorChip.swift in Sources */,
 				4353B95820F759DD00C88214 /* FollowerListVO.swift in Sources */,
+				3B9EE267211854CB00C21E84 /* CommunityNoImgTVCell.swift in Sources */,
 				3B94986320F4A04400BFA81E /* CommunityService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1350,8 +1352,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y4XABUQ539;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jungnami",
@@ -1361,6 +1364,7 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = kangsujin.Jungnami;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jungnami/SJ/Jungnami-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1374,8 +1378,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y4XABUQ539;
+				DEVELOPMENT_TEAM = 4QG3GC35LA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Jungnami",
@@ -1385,6 +1390,7 @@
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = kangsujin.Jungnami;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jungnami/SJ/Jungnami-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
