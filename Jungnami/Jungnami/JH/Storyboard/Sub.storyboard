@@ -702,7 +702,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7nk-Ko-oGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="530" y="654"/>
+            <point key="canvasLocation" x="762" y="578"/>
         </scene>
         <!--Content RecommendVC-->
         <scene sceneID="jni-ci-wyw">
@@ -2207,7 +2207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBM-96-flx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="1508"/>
+            <point key="canvasLocation" x="12" y="1509"/>
         </scene>
         <!--Content Search ResultVC-->
         <scene sceneID="i3Y-bn-bSW">

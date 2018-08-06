@@ -12,18 +12,20 @@ import SnapKit
 class MyPageFeedVC: UIViewController, LTTableViewProtocal, APIService {
    
     
-    private lazy var tableView: UITableView = {
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 64
-        let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
-        return tableView
-    }()
-    
     
     var myBoardData : [MyPageVODataBoard]  = [] {
         didSet {
              self.tableView.reloadData()
         }
     }
+    
+    
+    private lazy var tableView: UITableView = {
+        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height - 20
+        let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
+        return tableView
+    }()
+    
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +55,6 @@ extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
         if myBoardData[indexPath.row].source.count == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedTVCell.reuseIdentifier, for: indexPath) as! MypageFeedTVCell
             
-            
             cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
             cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
             cell.configure(data: myBoardData[indexPath.row])
@@ -68,11 +69,8 @@ extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 60.0
-//    }
 }
+
 
 
 extension MyPageFeedVC {

@@ -10,6 +10,7 @@
 		3B0475F120EEBD8D00D30A4D /* MainLikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0475F020EEBD8D00D30A4D /* MainLikeTVC.swift */; };
 		3B0475F320EEBD9B00D30A4D /* MainDislikeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0475F220EEBD9B00D30A4D /* MainDislikeTVC.swift */; };
 		3B0896A120EEBA2B00BFBCBC /* MainPageMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0896A020EEBA2B00BFBCBC /* MainPageMenuVC.swift */; };
+		3B14480F2118C7A4000BB48C /* MyPageScrapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B14480E2118C7A4000BB48C /* MyPageScrapVC.swift */; };
 		3B44E97221187E210079E9AC /* MyPageFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44E97121187E210079E9AC /* MyPageFeedVC.swift */; };
 		3B44E97421187E2D0079E9AC /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44E97321187E2D0079E9AC /* MyPageVC.swift */; };
 		3B44E9782118847B0079E9AC /* MypageHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B44E9772118847B0079E9AC /* MypageHeader.xib */; };
@@ -20,6 +21,8 @@
 		3B6B030C20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B030B20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift */; };
 		3B6B031920EE530000034C9B /* ColorChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B031820EE530000034C9B /* ColorChip.swift */; };
 		3B6B031B20EE530A00034C9B /* PartyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B031A20EE530A00034C9B /* PartyList.swift */; };
+		3B78CD3A2118CB5B0066B2B8 /* MyPageScrapCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78CD382118CB5B0066B2B8 /* MyPageScrapCVCell.swift */; };
+		3B78CD3B2118CB5B0066B2B8 /* MyPageScrapCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B78CD392118CB5B0066B2B8 /* MyPageScrapCVCell.xib */; };
 		3B8254FE20EF674D00ABCB59 /* MainFirstSectionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8254FD20EF674D00ABCB59 /* MainFirstSectionTVCell.swift */; };
 		3B82550020EF675F00ABCB59 /* MainTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8254FF20EF675F00ABCB59 /* MainTVCell.swift */; };
 		3B83165720F104C3001D2423 /* CommunityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83165620F104C3001D2423 /* CommunityVC.swift */; };
@@ -94,8 +97,6 @@
 		3BF603BB21188F29007BB99F /* MypageFeedTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF603B921188F29007BB99F /* MypageFeedTVCell.xib */; };
 		3BF603BE21188F3C007BB99F /* MypageFeedScrapTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF603BC21188F3C007BB99F /* MypageFeedScrapTVCell.swift */; };
 		3BF603BF21188F3C007BB99F /* MypageFeedScrapTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF603BD21188F3C007BB99F /* MypageFeedScrapTVCell.xib */; };
-		3BF603C221188F53007BB99F /* MypageScrapTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF603C021188F53007BB99F /* MypageScrapTVCell.swift */; };
-		3BF603C321188F53007BB99F /* MypageScrapTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF603C121188F53007BB99F /* MypageScrapTVCell.xib */; };
 		3BFCE31120F4D9B500C21AEB /* CommunityLikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31020F4D9B500C21AEB /* CommunityLikeService.swift */; };
 		3BFCE31320F501DF00C21AEB /* CommunityCommentVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31220F501DF00C21AEB /* CommunityCommentVO.swift */; };
 		3BFCE31520F5022900C21AEB /* CommunityCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31420F5022900C21AEB /* CommunityCommentService.swift */; };
@@ -174,6 +175,7 @@
 		3B0475F020EEBD8D00D30A4D /* MainLikeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLikeTVC.swift; sourceTree = "<group>"; };
 		3B0475F220EEBD9B00D30A4D /* MainDislikeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDislikeTVC.swift; sourceTree = "<group>"; };
 		3B0896A020EEBA2B00BFBCBC /* MainPageMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageMenuVC.swift; sourceTree = "<group>"; };
+		3B14480E2118C7A4000BB48C /* MyPageScrapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScrapVC.swift; sourceTree = "<group>"; };
 		3B297F6D20E8A74100B82B0B /* Jungnami.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jungnami.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B44E97121187E210079E9AC /* MyPageFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageFeedVC.swift; sourceTree = "<group>"; };
 		3B44E97321187E2D0079E9AC /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
@@ -185,6 +187,8 @@
 		3B6B030B20EE0A2300034C9B /* PartyListDetailFirstSectionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyListDetailFirstSectionTVCell.swift; sourceTree = "<group>"; };
 		3B6B031820EE530000034C9B /* ColorChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChip.swift; sourceTree = "<group>"; };
 		3B6B031A20EE530A00034C9B /* PartyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyList.swift; sourceTree = "<group>"; };
+		3B78CD382118CB5B0066B2B8 /* MyPageScrapCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScrapCVCell.swift; sourceTree = "<group>"; };
+		3B78CD392118CB5B0066B2B8 /* MyPageScrapCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageScrapCVCell.xib; sourceTree = "<group>"; };
 		3B8254FD20EF674D00ABCB59 /* MainFirstSectionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFirstSectionTVCell.swift; sourceTree = "<group>"; };
 		3B8254FF20EF675F00ABCB59 /* MainTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTVCell.swift; sourceTree = "<group>"; };
 		3B83165620F104C3001D2423 /* CommunityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityVC.swift; sourceTree = "<group>"; };
@@ -261,8 +265,6 @@
 		3BF603B921188F29007BB99F /* MypageFeedTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MypageFeedTVCell.xib; sourceTree = "<group>"; };
 		3BF603BC21188F3C007BB99F /* MypageFeedScrapTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFeedScrapTVCell.swift; sourceTree = "<group>"; };
 		3BF603BD21188F3C007BB99F /* MypageFeedScrapTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MypageFeedScrapTVCell.xib; sourceTree = "<group>"; };
-		3BF603C021188F53007BB99F /* MypageScrapTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageScrapTVCell.swift; sourceTree = "<group>"; };
-		3BF603C121188F53007BB99F /* MypageScrapTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MypageScrapTVCell.xib; sourceTree = "<group>"; };
 		3BFCE31020F4D9B500C21AEB /* CommunityLikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityLikeService.swift; sourceTree = "<group>"; };
 		3BFCE31220F501DF00C21AEB /* CommunityCommentVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentVO.swift; sourceTree = "<group>"; };
 		3BFCE31420F5022900C21AEB /* CommunityCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentService.swift; sourceTree = "<group>"; };
@@ -550,8 +552,9 @@
 		3BF603C52118B89B007BB99F /* MyPageScrap */ = {
 			isa = PBXGroup;
 			children = (
-				3BF603C021188F53007BB99F /* MypageScrapTVCell.swift */,
-				3BF603C121188F53007BB99F /* MypageScrapTVCell.xib */,
+				3B14480E2118C7A4000BB48C /* MyPageScrapVC.swift */,
+				3B78CD382118CB5B0066B2B8 /* MyPageScrapCVCell.swift */,
+				3B78CD392118CB5B0066B2B8 /* MyPageScrapCVCell.xib */,
 			);
 			path = MyPageScrap;
 			sourceTree = "<group>";
@@ -1076,8 +1079,8 @@
 				4353B95620F7549F00C88214 /* Content.storyboard in Resources */,
 				3BCF933820F16B4700E9E7F7 /* CompletePopup.xib in Resources */,
 				3B87A34E20F8E5FD00A968B8 /* CoinChangePopup.xib in Resources */,
+				3B78CD3B2118CB5B0066B2B8 /* MyPageScrapCVCell.xib in Resources */,
 				3BF603BF21188F3C007BB99F /* MypageFeedScrapTVCell.xib in Resources */,
-				3BF603C321188F53007BB99F /* MypageScrapTVCell.xib in Resources */,
 				3BCF933620F1656600E9E7F7 /* SupportPopup.xib in Resources */,
 				3B47AEB120F5EC2D0054B49A /* Mypage.storyboard in Resources */,
 				439D814020EB2FE5007DAD57 /* Main.storyboard in Resources */,
@@ -1153,6 +1156,7 @@
 				3B97B5D320F28D2000020A81 /* PostablewithPhoto.swift in Sources */,
 				43C5137E20ECD9D00017BDD8 /* ScrapCVC.swift in Sources */,
 				4353B96220F7D54A00C88214 /* ContentSearchResultSample.swift in Sources */,
+				3B78CD3A2118CB5B0066B2B8 /* MyPageScrapCVCell.swift in Sources */,
 				3B44E97221187E210079E9AC /* MyPageFeedVC.swift in Sources */,
 				43EDECC320F2039000E0F0E9 /* FollowListVC.swift in Sources */,
 				3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */,
@@ -1197,12 +1201,12 @@
 				43EDECBF20F1CA9500E0F0E9 /* StoryFirstCell.swift in Sources */,
 				439D814D20EB2FE5007DAD57 /* RecommendSecondCell.swift in Sources */,
 				439D814E20EB2FE5007DAD57 /* ContentVC.swift in Sources */,
-				3BF603C221188F53007BB99F /* MypageScrapTVCell.swift in Sources */,
 				43EDECC820F205B300E0F0E9 /* FollowerFixedCell.swift in Sources */,
 				3B97B5DE20F3402C00020A81 /* PartyLegistorLikeVO.swift in Sources */,
 				3B94985320F3E36700BFA81E /* GetPointService.swift in Sources */,
 				43537EF620F0AD6E0036435A /* NoticeCell.swift in Sources */,
 				43EDECB420F1C6D500E0F0E9 /* ContentStoryVC.swift in Sources */,
+				3B14480F2118C7A4000BB48C /* MyPageScrapVC.swift in Sources */,
 				3BFCE31120F4D9B500C21AEB /* CommunityLikeService.swift in Sources */,
 				3B94985F20F3FDA500BFA81E /* CoinVO.swift in Sources */,
 				3BCF932E20F15CA500E9E7F7 /* SupportPopupView.swift in Sources */,

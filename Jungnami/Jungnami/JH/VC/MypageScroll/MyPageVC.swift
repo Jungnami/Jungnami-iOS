@@ -10,8 +10,9 @@ import LTScrollView
 
 class MyPageVC: UIViewController, APIService {
     
-    let myFeedVC = MyPageFeedVC()
-    let scrapVC = MyPageFeedVC()
+   
+    let myScrapVC = MyPageScrapVC()
+     let myFeedVC = MyPageFeedVC()
     var selectedUserId : String?
     
     var myBoardData : [MyPageVODataBoard]  = [] {
@@ -21,12 +22,12 @@ class MyPageVC: UIViewController, APIService {
     }
     var myScrapData : [MyPageVODataScrap]  = [] {
         didSet {
-         // scrapVC.myScrapData = myScrapData
+            myScrapVC.myScrapData = myScrapData
         }
     }
     
     private lazy var viewControllers: [UIViewController] = {
-        return [myFeedVC, scrapVC]
+        return [myScrapVC, myFeedVC]
     }()
     
     private lazy var titles: [String] = {
@@ -84,7 +85,6 @@ class MyPageVC: UIViewController, APIService {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         if let selectedUserId_ = selectedUserId {
             getMyPage(url: url("/user/mypage/\(selectedUserId_)"))
         }

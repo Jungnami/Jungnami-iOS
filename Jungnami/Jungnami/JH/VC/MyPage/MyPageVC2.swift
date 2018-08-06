@@ -6,6 +6,8 @@
 //  Created by 이지현 on 2018. 7. 4..
 //
 
+//지우고 정리
+
 import UIKit
 import Kingfisher
 
@@ -16,7 +18,7 @@ class MyPageVC2: UIViewController , APIService{
     @IBOutlet var myVoteView: UIView!
 
     @IBOutlet weak var profileImgView: UIImageView!
-    @IBOutlet weak var profileuserNameLbl: UILabel!    
+    @IBOutlet weak var profileuserNameLbl: UILabel!
     @IBOutlet weak var profileScrapNumLbl: UILabel!
     @IBOutlet weak var profileMyfeedNumLbl: UILabel!
     @IBOutlet weak var profileFollowingNumLbl: UILabel!
@@ -301,4 +303,5 @@ extension MyPageVC2 {
         })
     }
 }
+
 
