@@ -10,7 +10,8 @@ pod 'SnapKit'
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'Kingfisher'
-
+pod 'LTScrollView'
+pod 'MJRefresh'
 
 
   # Pods for Jungnami

@@ -1,35 +1,16 @@
 //
-//  CommunityTVCell.swift
+//  CommunityNoImgTVCell.swift
 //  Jungnami
 //
-//  Created by 강수진 on 2018. 7. 2..
-//  Copyright © 2018년 강수진. All rights reserved.
-//
+//  Created by 강수진 on 2018. 8. 6..
+
 
 import UIKit
 import Kingfisher
 import SnapKit
 
 
-class myHeartBtn : UIButton {
-    var isLike : Int?
-    var boardIdx : Int?
-    var indexPath : Int = 0
-    var likeCnt : Int = 0
-    var cellFrom : Int = 0
-}
-
-class myCommentBtn : UIButton {
-    var likeCnt : Int = 0
-    var commentCnt : Int = 0
-}
-class myScrapBtn : UIButton {
-    var isScrap : Int?
-    var contentIdx : Int?
-}
-
-
-class CommunityTVCell: UITableViewCell {
+class CommunityNoImgTVCell: UITableViewCell {
     
     @IBOutlet weak var profileImgView: myTouchImg!
     @IBOutlet weak var nameLabel: myTouchLbl!
@@ -38,22 +19,21 @@ class CommunityTVCell: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var contentImgView : UIImageView!
     @IBOutlet weak var heartBtn : myHeartBtn!
     @IBOutlet weak var commentBtn : myCommentBtn!
     @IBOutlet weak var scrapBtn : UIButton!
-
-    
     
     //tapGesture-------------------------------
     var index = 0
     var delegate: TapDelegate2?
     var doubleTapdelegate: DoubleTapDelegate?
     //-----------------------------------------
- 
+    
+   
+    
     func configure(index : Int, data : CommunityVODataContent){
         self.index = index
-
+        
         commentBtn.commentCnt = data.commentcnt
         commentBtn.likeCnt = data.likecnt
         heartBtn.setImage(UIImage(named: "community_heart"), for: .normal)
@@ -79,24 +59,14 @@ class CommunityTVCell: UITableViewCell {
                 self.profileImgView.kf.setImage(with: url)
             }
         }
-      
-  
-        if (gsno(data.img) == "0") {
-          
-            contentImgView.image = #imageLiteral(resourceName: "community_default_img")
-    
-        } else {
-             if let url = URL(string: gsno(data.img)){
-                self.contentImgView.kf.setImage(with: url)
-            }
-        }
-    
+        
+        
         //여기 고치기
-    
-         profileImgView.userId = data.userId
-         nameLabel.userId = data.userId
-       
-       // profileImgView.userId = data.
+        
+        profileImgView.userId = data.userId
+        nameLabel.userId = data.userId
+        
+        // profileImgView.userId = data.
         //nameLabel.userId = data.userimg!
     }
     
@@ -129,11 +99,6 @@ class CommunityTVCell: UITableViewCell {
             }
         }
         
-    
-            if let url = URL(string: gsno(data.imgURL)){
-                self.contentImgView.kf.setImage(with: url)
-            }
-        
         
         //여기 고치기
         
@@ -143,6 +108,7 @@ class CommunityTVCell: UITableViewCell {
         // profileImgView.userId = data.
         //nameLabel.userId = data.userimg!
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImgView.makeImageRound()
@@ -156,12 +122,9 @@ class CommunityTVCell: UITableViewCell {
         
         self.nameLabel.addGestureRecognizer(lblTapGesture)
         self.profileImgView.addGestureRecognizer(imgTapGesture)
-
-        contentImgView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(sender:)))
-        tap.numberOfTapsRequired = 2
-        contentImgView.addGestureRecognizer(tap)
-    
+        
+      
+        
     }
     //tapGesture
     @objc func imgTap(sender: UITapGestureRecognizer) {
@@ -173,7 +136,7 @@ class CommunityTVCell: UITableViewCell {
     }
     
     @objc func doubleTapped(sender : UITapGestureRecognizer) {
-         doubleTapdelegate?.myDoubleTapDelegate(sender : sender)
+        doubleTapdelegate?.myDoubleTapDelegate(sender : sender)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -181,4 +144,5 @@ class CommunityTVCell: UITableViewCell {
     }
     
 }
+
 

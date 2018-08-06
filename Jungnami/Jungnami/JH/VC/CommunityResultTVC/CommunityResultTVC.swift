@@ -65,26 +65,52 @@ extension CommunityResultTVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (gsno(communitySearchData[indexPath.row].imgURL) != "0") {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
+            
+            cell.configure2(index: indexPath.row, data: communitySearchData[indexPath.row])
+            cell.delegate = self
+            //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
+            //cell.doubleTapdelegate = self
+            let temp = communitySearchData[indexPath.row]
+            //여기는 스크랩했냐 아니냐
+            cell.scrapBtn.tag = temp.id
+            cell.commentBtn.tag = (temp.id)
+            cell.heartBtn.boardIdx = temp.id
+            cell.heartBtn.isLike = temp.islike
+            cell.heartBtn.indexPath = indexPath.row
+            cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
+            cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
+            cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+            
+            
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CommunityNoImgTVCell.reuseIdentifier) as! CommunityNoImgTVCell
+            
+            cell.configure2(index: indexPath.row, data: communitySearchData[indexPath.row])
+            cell.delegate = self
+            //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
+            //cell.doubleTapdelegate = self
+            let temp = communitySearchData[indexPath.row]
+            //여기는 스크랩했냐 아니냐
+            cell.scrapBtn.tag = temp.id
+            cell.commentBtn.tag = (temp.id)
+            cell.heartBtn.boardIdx = temp.id
+            cell.heartBtn.isLike = temp.islike
+            cell.heartBtn.indexPath = indexPath.row
+            cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
+            cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
+            cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+            
+            return cell
+        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: CommunityResultTVCell.reuseIdentifier) as! CommunityResultTVCell
-        
-        cell.configure(index: indexPath.row, data: communitySearchData[indexPath.row])
-        cell.delegate = self
-        //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
-        //cell.doubleTapdelegate = self
-        let temp = communitySearchData[indexPath.row]
-        //여기는 스크랩했냐 아니냐
-        cell.scrapBtn.tag = temp.id
-        cell.commentBtn.tag = (temp.id)
-        cell.heartBtn.boardIdx = temp.id
-        cell.heartBtn.isLike = temp.islike
-        cell.heartBtn.indexPath = indexPath.row
-        cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
-        cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
-        cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
         
         
-        return cell
+        
         
     }
     
@@ -122,7 +148,15 @@ extension CommunityResultTVC {
         
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         let indexPath: IndexPath? = self.tableView.indexPathForRow(at: buttonPosition)
-        let cell = self.tableView.cellForRow(at: indexPath!) as! CommunityResultTVCell
+       
+        var cell = UITableViewCell()
+        if let imgCell = self.tableView.cellForRow(at: indexPath!) as? CommunityTVCell {
+            cell = imgCell
+        }
+        
+        if let noImgCell = self.tableView.cellForRow(at: indexPath!) as? CommunityNoImgTVCell {
+            cell = noImgCell
+        }
         
         if sender.isLike! == 0 {
             likeAction(url: url("/board/likeboard"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
@@ -209,9 +243,20 @@ extension CommunityResultTVC :  UIGestureRecognizerDelegate, TapDelegate2 {
     func myTableDelegate(sender : UITapGestureRecognizer) {
         let touch = sender.location(in: self.tableView)
         if let indexPath = self.tableView.indexPathForRow(at: touch){
-            let cell = self.tableView.cellForRow(at: indexPath) as! CommunityResultTVCell
-            let userId = cell.profileImgView.userId
+            var cell : UITableViewCell?
+            var userId = ""
+            if let imgCell = self.tableView.cellForRow(at: indexPath) as? CommunityTVCell {
+                userId = imgCell.profileImgView.userId
+                cell = imgCell
+                
+            }
             
+            if let noImgCell = self.tableView.cellForRow(at: indexPath) as? CommunityNoImgTVCell {
+                cell = noImgCell
+                userId = noImgCell.profileImgView.userId
+            }
+            
+        
             
            let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
             if (myId == userId ){
@@ -260,7 +305,7 @@ extension CommunityResultTVC {
     
     
     //하트 버튼 눌렀을 때
-    func likeAction(url : String, boardIdx : Int, isLike : Int, cell : CommunityResultTVCell, sender : myHeartBtn, likeCnt : Int){
+    func likeAction(url : String, boardIdx : Int, isLike : Int, cell : UITableViewCell, sender : myHeartBtn, likeCnt : Int){
         let params : [String : Any] = [
             "board_id" : boardIdx
         ]
@@ -274,12 +319,27 @@ extension CommunityResultTVC {
                 
                 var changed : Int = 0
                 //Now change the text and background colour
-                if cell.likeLabel.text == "\(likeCnt)" {
-                    changed = likeCnt+1
-                } else {
-                    changed = likeCnt
+                
+                let tempCell : UITableViewCell = cell
+                if let imgCell = tempCell as? CommunityTVCell {
+                    if imgCell.likeLabel.text == "\(likeCnt)" {
+                        changed = likeCnt+1
+                    } else {
+                        changed = likeCnt
+                    }
+                    imgCell.likeLabel.text = "\(changed)"
+                    
                 }
-                cell.likeLabel.text = "\(changed)"
+                
+                if let noImgCell = tempCell as? CommunityNoImgTVCell {
+                    if noImgCell.likeLabel.text == "\(likeCnt)" {
+                        changed = likeCnt+1
+                    } else {
+                        changed = likeCnt
+                    }
+                    noImgCell.likeLabel.text = "\(changed)"
+                }
+              
                 
                 
                 break
@@ -300,7 +360,7 @@ extension CommunityResultTVC {
     }
     
     //좋아요 취소
-    func dislikeAction(url : String, cell : CommunityResultTVCell, sender : myHeartBtn, likeCnt : Int){
+    func dislikeAction(url : String, cell : UITableViewCell, sender : myHeartBtn, likeCnt : Int){
         CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -311,12 +371,25 @@ extension CommunityResultTVC {
                 var changed : Int = 0
                 
                 //Now change the text and background colour
-                if cell.likeLabel.text == "\(likeCnt)" {
-                    changed = likeCnt-1
-                } else {
-                    changed = likeCnt
+                let tempCell : UITableViewCell = cell
+                if let imgCell = tempCell as? CommunityTVCell {
+                    if imgCell.likeLabel.text == "\(likeCnt)" {
+                        changed = likeCnt-1
+                    } else {
+                        changed = likeCnt
+                    }
+                    imgCell.likeLabel.text = "\(changed)"
+                    
                 }
-                cell.likeLabel.text = "\(changed)"
+                
+                if let noImgCell = tempCell as? CommunityNoImgTVCell {
+                    if noImgCell.likeLabel.text == "\(likeCnt)" {
+                        changed = likeCnt-1
+                    } else {
+                        changed = likeCnt
+                    }
+                    noImgCell.likeLabel.text = "\(changed)"
+                }
                 
                 break
             case .accessDenied :

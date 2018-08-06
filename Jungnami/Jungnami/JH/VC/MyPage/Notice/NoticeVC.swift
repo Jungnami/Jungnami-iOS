@@ -92,7 +92,7 @@ extension NoticeVC {
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(let alarmData):
-                self.alarmData = alarmData as! [AlarmVOData]
+                self.alarmData = alarmData as? [AlarmVOData]
                 self.noticeTableView.reloadData()
                 break
                 
