@@ -1,67 +1,81 @@
 //
-//  MyFeedVC.swift
+//  LTAdvancedTestOneVC.swift
 //  Jungnami
 //
-//  Created by 이지현 on 2018. 7. 6..
+//  Created by 강수진 on 2018. 8. 6..
 //
 
 import UIKit
+import LTScrollView
+import SnapKit
 
-class MyFeedVC: UIViewController, APIService {
-
-    @IBOutlet weak var myFeedTableView: UITableView!
+class MyPageFeedVC: UIViewController, LTTableViewProtocal, APIService {
+   
+    
+    private lazy var tableView: UITableView = {
+        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 64
+        let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
+        return tableView
+    }()
+    
+    
     var myBoardData : [MyPageVODataBoard]  = [] {
         didSet {
-            if let myFeedTableView_ =  myFeedTableView{
-                myFeedTableView_.reloadData()
-            }
-          
+             self.tableView.reloadData()
         }
     }
-    
-    
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        myFeedTableView.delegate = self
-        myFeedTableView.dataSource = self
-        myFeedTableView.tableFooterView = UIView(frame : .zero)
+        view.backgroundColor = UIColor.white
+        let nib = UINib.init(nibName: "MypageFeedTVCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: "MypageFeedTVCell")
+         let nib2 = UINib.init(nibName: "MypageFeedScrapTVCell", bundle: nil)
+         self.tableView.register(nib2, forCellReuseIdentifier: "MypageFeedScrapTVCell")
+
+        view.addSubview(tableView)
+        glt_scrollView = tableView
+       
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
     }
-
-
 }
 
-
-extension MyFeedVC : UITableViewDelegate, UITableViewDataSource{
+extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myBoardData.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if myBoardData[indexPath.row].source.count == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MyFeedCell.reuseIdentifier, for: indexPath) as! MyFeedCell
-          
-          
+            let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedTVCell.reuseIdentifier, for: indexPath) as! MypageFeedTVCell
+            
+            
             cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
             cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
             cell.configure(data: myBoardData[indexPath.row])
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MyFeedShareCell.reuseIdentifier, for: indexPath) as! MyFeedShareCell
-         
+            let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedScrapTVCell.reuseIdentifier, for: indexPath) as! MypageFeedScrapTVCell
+            
             cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
             cell.likeBtn.addTarget(self, action: #selector(sharedLike(_:)), for: .touchUpInside)
-             cell.configure(data: myBoardData[indexPath.row])
+            cell.configure(data: myBoardData[indexPath.row])
             return cell
         }
         
     }
     
-    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 60.0
+//    }
 }
 
-//셀들에 관한 것
-extension MyFeedVC {
+
+extension MyPageFeedVC {
     
     @objc func comment(_ sender : myCommentBtn){
         let communityStoartyboard = Storyboard.shared().communityStoryboard
@@ -79,10 +93,10 @@ extension MyFeedVC {
     
     @objc func like(_ sender : myHeartBtn){
         //통신
-        let buttonPosition = sender.convert(CGPoint.zero, to: self.myFeedTableView)
-         let indexPath: IndexPath? = self.myFeedTableView.indexPathForRow(at: buttonPosition)
-       
-        let cell = self.myFeedTableView.cellForRow(at: indexPath!) as! MyFeedCell
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        let indexPath: IndexPath? = self.tableView.indexPathForRow(at: buttonPosition)
+        
+        let cell = self.tableView.cellForRow(at: indexPath!) as! MypageFeedTVCell
         
         if sender.isLike! == 0 {
             likeAction(url: url("/board/likeboard"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
@@ -95,10 +109,10 @@ extension MyFeedVC {
     
     @objc func sharedLike(_ sender : myHeartBtn){
         //통신
-        let buttonPosition = sender.convert(CGPoint.zero, to: self.myFeedTableView)
-        let indexPath: IndexPath? = self.myFeedTableView.indexPathForRow(at: buttonPosition)
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        let indexPath: IndexPath? = self.tableView.indexPathForRow(at: buttonPosition)
         
-        let cell = self.myFeedTableView.cellForRow(at: indexPath!) as! MyFeedShareCell
+        let cell = self.tableView.cellForRow(at: indexPath!) as! MypageFeedScrapTVCell
         
         if sender.isLike! == 0 {
             sharedLikeAction(url: url("/board/likeboard"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
@@ -111,11 +125,11 @@ extension MyFeedVC {
 
 
 //통신
-extension MyFeedVC {
+extension MyPageFeedVC {
     
     
     //하트 버튼 눌렀을 때
-    func likeAction(url : String, boardIdx : Int, isLike : Int, cell : MyFeedCell, sender : myHeartBtn, likeCnt : Int){
+    func likeAction(url : String, boardIdx : Int, isLike : Int, cell : MypageFeedTVCell, sender : myHeartBtn, likeCnt : Int){
         let params : [String : Any] = [
             "board_id" : boardIdx
         ]
@@ -134,7 +148,7 @@ extension MyFeedVC {
                     changed = likeCnt
                 }
                 cell.likeCntLbl.text = "\(changed)"
-
+                
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
@@ -153,7 +167,7 @@ extension MyFeedVC {
     }
     
     //좋아요 취소
-    func dislikeAction(url : String, cell : MyFeedCell, sender : myHeartBtn, likeCnt : Int){
+    func dislikeAction(url : String, cell : MypageFeedTVCell, sender : myHeartBtn, likeCnt : Int){
         CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -189,7 +203,7 @@ extension MyFeedVC {
     }
     
     //하트 버튼 눌렀을 때
-    func sharedLikeAction(url : String, boardIdx : Int, isLike : Int, cell : MyFeedShareCell, sender : myHeartBtn, likeCnt : Int){
+    func sharedLikeAction(url : String, boardIdx : Int, isLike : Int, cell : MypageFeedScrapTVCell, sender : myHeartBtn, likeCnt : Int){
         let params : [String : Any] = [
             "board_id" : boardIdx
         ]
@@ -210,7 +224,6 @@ extension MyFeedVC {
                 cell.likeCntLbl.text = "\(changed)"
                 
                 break
-                
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
                     if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
@@ -228,7 +241,7 @@ extension MyFeedVC {
     }
     
     //좋아요 취소
-    func sharedDislikeAction(url : String, cell : MyFeedShareCell, sender : myHeartBtn, likeCnt : Int){
+    func sharedDislikeAction(url : String, cell : MypageFeedScrapTVCell, sender : myHeartBtn, likeCnt : Int){
         CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -265,4 +278,5 @@ extension MyFeedVC {
     
     
 }
+
 

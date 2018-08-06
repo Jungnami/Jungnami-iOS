@@ -9,10 +9,8 @@
 import UIKit
 import Kingfisher
 
-
-class MyPageVC: UIViewController , APIService{
+class MyPageVC2: UIViewController , APIService{
     @IBOutlet weak var myInfoView: UIView!
-    
     @IBOutlet weak var containScarpFeedView: UIView!
     @IBOutlet var myCoinView: UIView!
     @IBOutlet var myVoteView: UIView!
@@ -23,13 +21,13 @@ class MyPageVC: UIViewController , APIService{
     @IBOutlet weak var profileMyfeedNumLbl: UILabel!
     @IBOutlet weak var profileFollowingNumLbl: UILabel!
     @IBOutlet weak var profileFollowerNumLbl: UILabel!
-    
     @IBOutlet weak var profileCoinCountLbl: myTouchLbl!
     @IBOutlet weak var profileVoteCountLbl: myTouchLbl!
     @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var scapBtn: UIButton!
     @IBOutlet weak var feedBtn: UIButton!
+    
     
     @IBOutlet weak var alarmBtn: UIButton!
     
@@ -125,11 +123,11 @@ class MyPageVC: UIViewController , APIService{
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         //make label button
-        let tapFollow = UITapGestureRecognizer(target: self, action: #selector(MyPageVC.tapFollowLbl(_:)))
+        let tapFollow = UITapGestureRecognizer(target: self, action: #selector(MyPageVC2.tapFollowLbl(_:)))
         profileFollowingNumLbl.isUserInteractionEnabled = true
         profileFollowingNumLbl.addGestureRecognizer(tapFollow)
         
-        let tapFollower = UITapGestureRecognizer(target: self, action: #selector(MyPageVC.tapFollowerLbl(_:)))
+        let tapFollower = UITapGestureRecognizer(target: self, action: #selector(MyPageVC2.tapFollowerLbl(_:)))
         profileFollowerNumLbl.isUserInteractionEnabled = true
         profileFollowerNumLbl.addGestureRecognizer(tapFollower)
         if let selectedUserId_ = selectedUserId {
@@ -137,7 +135,7 @@ class MyPageVC: UIViewController , APIService{
         }
         
         let tapAction1 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
-          let tapAction2 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
+        let tapAction2 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
         profileCoinCountLbl?.isUserInteractionEnabled = true
         profileCoinCountLbl?.addGestureRecognizer(tapAction1)
         profileVoteCountLbl?.isUserInteractionEnabled = true
@@ -180,7 +178,7 @@ class MyPageVC: UIViewController , APIService{
 }
 
 //메뉴바랑 그 안 컨테이너뷰
-extension MyPageVC{
+extension MyPageVC2{
     
     static func viewController() -> MyPageVC {
         return Storyboard.shared().mypageStoryboard.instantiateViewController(withIdentifier: MyPageVC.reuseIdentifier) as! MyPageVC
@@ -241,7 +239,7 @@ extension MyPageVC{
     
 }
 //알림페이지로 가게
-extension MyPageVC {
+extension MyPageVC2 {
     @objc func toAlarmVC(_sender: UIButton){
         if let noticeVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:NoticeVC.reuseIdentifier) as? NoticeVC {
             
@@ -264,7 +262,7 @@ extension MyPageVC {
 
 //통신
 
-extension MyPageVC {
+extension MyPageVC2 {
     func getMyPage(url : String) {
         MypageService.shareInstance.getUserPage(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }

@@ -114,11 +114,11 @@ class OtherUserPageVC: UIViewController, APIService {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         //make label button
-        let tapFollow = UITapGestureRecognizer(target: self, action: #selector(MyPageVC.tapFollowLbl(_:)))
+        let tapFollow = UITapGestureRecognizer(target: self, action: #selector(MyPageVC2.tapFollowLbl(_:)))
         otherUserFollowingCountLbl.isUserInteractionEnabled = true
         otherUserFollowingCountLbl.addGestureRecognizer(tapFollow)
         
-        let tapFollower = UITapGestureRecognizer(target: self, action: #selector(MyPageVC.tapFollowerLbl(_:)))
+        let tapFollower = UITapGestureRecognizer(target: self, action: #selector(MyPageVC2.tapFollowerLbl(_:)))
         otherUserFollowerCountLbl.isUserInteractionEnabled = true
         otherUserFollowerCountLbl.addGestureRecognizer(tapFollower)
         if let selectedUserId_ = selectedUserId {

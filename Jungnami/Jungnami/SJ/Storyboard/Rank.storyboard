@@ -194,7 +194,6 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F0v-h6-9e0">
                                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="278.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="187.5" id="H8F-p4-79K"/>
                                                 <constraint firstAttribute="height" constant="278" id="dNK-AH-faQ"/>
                                             </constraints>
                                         </imageView>
@@ -298,6 +297,7 @@
                                         <constraint firstItem="hUx-TQ-hNP" firstAttribute="centerY" secondItem="CmM-61-Psh" secondAttribute="centerY" id="4Pf-9Q-ah8"/>
                                         <constraint firstItem="iJp-bU-Ejj" firstAttribute="top" secondItem="sPs-QG-zMX" secondAttribute="top" id="5iY-YQ-aw6"/>
                                         <constraint firstItem="F0v-h6-9e0" firstAttribute="leading" secondItem="uNk-7U-TiS" secondAttribute="leading" constant="-12" id="5sZ-g0-bL1"/>
+                                        <constraint firstItem="F0v-h6-9e0" firstAttribute="width" secondItem="sPs-QG-zMX" secondAttribute="width" multiplier="1:2" id="6vi-Uf-kNY"/>
                                         <constraint firstItem="qgF-89-dr7" firstAttribute="centerY" secondItem="7Cc-zi-RXj" secondAttribute="centerY" id="7lA-Qk-9vs"/>
                                         <constraint firstItem="7gy-YX-isl" firstAttribute="bottom" secondItem="iJp-bU-Ejj" secondAttribute="bottom" id="8OA-0Q-XDe"/>
                                         <constraint firstItem="F0v-h6-9e0" firstAttribute="leading" secondItem="CmM-61-Psh" secondAttribute="leading" constant="8" id="C7q-V9-TaG"/>

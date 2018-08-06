@@ -117,7 +117,7 @@ extension LoginVC {
     //메인페이지로
     func toMainPage(){
         if entryPoint == 0 {
-            self.tabbarVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: "tabBar") as! TabbarVC
+            self.tabbarVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: "tabBar")
             if let tabbarVC_ = tabbarVC {
                 self.present(tabbarVC_, animated: true, completion: nil)
             }

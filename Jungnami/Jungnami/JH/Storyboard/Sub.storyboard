@@ -702,7 +702,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7nk-Ko-oGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="798"/>
+            <point key="canvasLocation" x="530" y="654"/>
         </scene>
         <!--Content RecommendVC-->
         <scene sceneID="jni-ci-wyw">

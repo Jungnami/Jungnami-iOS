@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My PageVC-->
+        <!--My PageVC2-->
         <scene sceneID="zfz-gi-jl1">
             <objects>
-                <viewController storyboardIdentifier="MyPageVC" id="jlK-Af-rQf" customClass="MyPageVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPageVC2" id="jlK-Af-rQf" customClass="MyPageVC2" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vMb-js-dwJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -423,6 +423,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6NQ-VP-Wdt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-159" y="2245"/>
+        </scene>
+        <!--My PageVC-->
+        <scene sceneID="bLt-9S-n7S">
+            <objects>
+                <viewController storyboardIdentifier="MyPageVC" id="41O-dI-Cka" customClass="MyPageVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3nm-fL-GgT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="eda-Zb-87p"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QuH-rt-dui" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="2245"/>
         </scene>
     </scenes>
     <resources>

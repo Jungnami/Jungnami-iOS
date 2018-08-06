@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       
         
         self.loginVC = rankStoryboard.instantiateViewController(withIdentifier: LoginVC.reuseIdentifier) as! LoginVC
-        self.tabbarVC = mainStoryboard.instantiateViewController(withIdentifier: "tabBar") as! TabbarVC
+        self.tabbarVC = mainStoryboard.instantiateViewController(withIdentifier: "tabBar") 
     
         
     }
