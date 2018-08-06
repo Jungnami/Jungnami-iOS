@@ -29,6 +29,8 @@ class CommunityNoImgTVCell: UITableViewCell {
     var doubleTapdelegate: DoubleTapDelegate?
     //-----------------------------------------
     
+   
+    
     func configure(index : Int, data : CommunityVODataContent){
         self.index = index
         
@@ -53,6 +55,45 @@ class CommunityNoImgTVCell: UITableViewCell {
             profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
             if let url = URL(string: gsno(data.userimg)){
+                
+                self.profileImgView.kf.setImage(with: url)
+            }
+        }
+        
+        
+        //여기 고치기
+        
+        profileImgView.userId = data.userId
+        nameLabel.userId = data.userId
+        
+        // profileImgView.userId = data.
+        //nameLabel.userId = data.userimg!
+    }
+    
+    func configure2(index : Int, data : CommunitySearchVOData){
+        self.index = index
+        
+        commentBtn.commentCnt = data.commentcnt
+        commentBtn.likeCnt = data.likecnt
+        heartBtn.setImage(UIImage(named: "community_heart"), for: .normal)
+        heartBtn.setImage(UIImage(named: "community_heart_blue"), for: .selected)
+        heartBtn.likeCnt = data.likecnt
+        nameLabel.text = data.nickname
+        timeLabel.text = data.writingtime
+        contentLabel.text = data.content
+        contentLabel.sizeToFit()
+        likeLabel.text = "\(data.likecnt)"
+        commentLabel.text = "\(data.commentcnt)"
+        if data.islike == 0 {
+            heartBtn.isSelected = false
+        } else {
+            heartBtn.isSelected = true
+        }
+        //킹피셔
+        if (gsno(data.userImgURL) == "0") {
+            profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.userImgURL)){
                 
                 self.profileImgView.kf.setImage(with: url)
             }

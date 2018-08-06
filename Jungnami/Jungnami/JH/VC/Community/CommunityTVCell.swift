@@ -42,13 +42,15 @@ class CommunityTVCell: UITableViewCell {
     @IBOutlet weak var heartBtn : myHeartBtn!
     @IBOutlet weak var commentBtn : myCommentBtn!
     @IBOutlet weak var scrapBtn : UIButton!
+
+    
     
     //tapGesture-------------------------------
     var index = 0
     var delegate: TapDelegate2?
     var doubleTapdelegate: DoubleTapDelegate?
     //-----------------------------------------
-  
+ 
     func configure(index : Int, data : CommunityVODataContent){
         self.index = index
 
@@ -98,6 +100,49 @@ class CommunityTVCell: UITableViewCell {
         //nameLabel.userId = data.userimg!
     }
     
+    func configure2(index : Int, data : CommunitySearchVOData){
+        self.index = index
+        
+        commentBtn.commentCnt = data.commentcnt
+        commentBtn.likeCnt = data.likecnt
+        heartBtn.setImage(UIImage(named: "community_heart"), for: .normal)
+        heartBtn.setImage(UIImage(named: "community_heart_blue"), for: .selected)
+        heartBtn.likeCnt = data.likecnt
+        nameLabel.text = data.nickname
+        timeLabel.text = data.writingtime
+        contentLabel.text = data.content
+        contentLabel.sizeToFit()
+        likeLabel.text = "\(data.likecnt)"
+        commentLabel.text = "\(data.commentcnt)"
+        if data.islike == 0 {
+            heartBtn.isSelected = false
+        } else {
+            heartBtn.isSelected = true
+        }
+        //킹피셔
+        if (gsno(data.userImgURL) == "0") {
+            profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(data.userImgURL)){
+                
+                self.profileImgView.kf.setImage(with: url)
+            }
+        }
+        
+    
+            if let url = URL(string: gsno(data.imgURL)){
+                self.contentImgView.kf.setImage(with: url)
+            }
+        
+        
+        //여기 고치기
+        
+        profileImgView.userId = data.userId
+        nameLabel.userId = data.userId
+        
+        // profileImgView.userId = data.
+        //nameLabel.userId = data.userimg!
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImgView.makeImageRound()
