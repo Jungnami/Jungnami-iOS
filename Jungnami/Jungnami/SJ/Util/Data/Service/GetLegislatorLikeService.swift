@@ -22,14 +22,16 @@ struct GetLegislatorLikeService : GettableService {
         get(url) { (result) in
             switch result {
             case .success(let networkResult):
-                switch networkResult.resResult.message {
-                case "Select Data Success" :
-                    completion(.networkSuccess(networkResult.resResult.data))
-                case "Internal Server Error" :
+                
+                switch networkResult.resCode{
+                case 200 : completion(.networkSuccess(networkResult.resResult.data))
+                case 500 :
                     completion(.serverErr)
                 default :
+                    print("neither 200 nor 500")
                     break
                 }
+                
                 break
             case .error(let errMsg) :
                 print(errMsg)

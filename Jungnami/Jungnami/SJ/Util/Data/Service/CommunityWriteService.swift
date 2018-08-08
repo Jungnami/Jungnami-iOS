@@ -18,6 +18,7 @@ struct CommunityWriteService: GettableService {
         get(url) { (result) in
             switch result {
             case .success(let networkResult):
+                
                 switch networkResult.resCode{
                 case 200 : completion(.networkSuccess(networkResult.resResult.data))
                 case 401 :
