@@ -94,7 +94,7 @@ extension PartyListDetailDislikeTVC{
 //셀에 버튼에 대한 클릭 액션 - 투표
 extension PartyListDetailDislikeTVC{
     @objc func vote(_ sender : UIButton){
-            getMyPoint(url : url("/legislator/voting"), index : sender.tag)
+            getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : sender.tag)
         }
     
 }
@@ -138,7 +138,7 @@ extension PartyListDetailDislikeTVC{
                         "islike" : 0
                     ]
                     
-                    self.voteOkAction(url: self.url("/legislator/voting"), params: params)
+                    self.voteOkAction(url: UrlPath.VoteLegislator.getURL(), params: params)
                 }
                 break
             case .accessDenied :

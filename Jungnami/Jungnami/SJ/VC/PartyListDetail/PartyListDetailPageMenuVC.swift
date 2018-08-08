@@ -247,6 +247,7 @@ extension PartyListDetailPageMenuVC : UITextFieldDelegate{
                        
                 url : url("/search/legislatorparty/\(selectedParty_.rawValue)/\(searchString_)"))
             }
+
         }
         
         if let selectedRegion_ = selectedRegion {

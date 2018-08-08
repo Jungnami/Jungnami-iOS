@@ -285,7 +285,7 @@ extension FollowListVC {
             switch result {
             case .networkSuccess(let followListData):
                 //수정
-                let followListData_ = followListData as! [FollowListVOData]
+                let followListData_ : [FollowListVOData]? = followListData as? [FollowListVOData]
                 self.followListData = followListData_
                 self.followTableView.reloadData()
                 print("success")
@@ -309,7 +309,7 @@ extension FollowListVC {
             switch result {
             case .networkSuccess(let followListData):
                 //수정
-                let followListData_ = followListData as! [FollowerListVOData]
+                let followListData_ = followListData as? [FollowerListVOData]
                 self.followerListData = followListData_
                 break
             case .nullValue :

@@ -116,7 +116,7 @@ extension SearchLegislatorResultTVC : UITextFieldDelegate {
         if let searchString_ = textField.text {
             if viewFrom == 0 {
                 // /search/legislator/:l_name -> 300명
-                searchLegislator(searchString : searchString_, url : url("/search/legislator/\(searchString_)"))
+                searchLegislator(searchString : searchString_, url : UrlPath.SearchLegislator.getURL(searchString_))
                 
             } else if viewFrom == 1 {
                 // /search/legislatorparty/:p_name/:l_name  -> 정당

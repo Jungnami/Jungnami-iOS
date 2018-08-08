@@ -17,7 +17,7 @@ class MainLikeTVC: UITableViewController, APIService {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
          self.tableView.setContentOffset(.zero, animated: true)
-        legislatorLikeInit(url : url("/ranking/list/1"))
+        legislatorLikeInit(url : UrlPath.LegislatorLikeList.getURL())
     
        
     }
@@ -36,7 +36,7 @@ class MainLikeTVC: UITableViewController, APIService {
         
         let cell = self.tableView.cellForRow(at: indexPath!) as! MainTVCell
         print("like click envet happed!")
-        getMyPoint(url : url("/legislator/voting"), index : sender.tag, cell : cell)
+        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : sender.tag, cell : cell)
     }
     
     
@@ -106,7 +106,7 @@ extension MainLikeTVC {
 extension MainLikeTVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        legislatorLikeInit(url : url("/ranking/list/1"))
+        legislatorLikeInit(url : UrlPath.LegislatorLikeList.getURL())
         
         self.tableView.reloadData()
         sender.endRefreshing()
@@ -153,7 +153,7 @@ extension MainLikeTVC{
                         "l_id" : index,
                         "islike" : 1
                     ]
-                    self.voteOkAction(url: self.url("/legislator/voting"), params: params, cell : cell)
+                    self.voteOkAction(url: UrlPath.VoteLegislator.getURL(), params: params, cell : cell)
                 }
                 break
             case .accessDenied :
@@ -175,7 +175,7 @@ extension MainLikeTVC{
    
     
     func temp(){
-        legislatorLikeInit(url : url("/ranking/list/1"))
+        legislatorLikeInit(url : UrlPath.LegislatorLikeList.getURL())
     }
     
     

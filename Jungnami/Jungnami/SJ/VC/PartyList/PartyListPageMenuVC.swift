@@ -252,7 +252,7 @@ extension PartyListPageMenuVC : UITextFieldDelegate{
         }
         
         if let searchString_ = textField.text {
-            searchLegislator(searchString : searchString_, url : url("/search/legislator/\(searchString_)"))
+            searchLegislator(searchString : searchString_, url : UrlPath.SearchLegislator.getURL(searchString_))
         }
         
         

@@ -45,7 +45,7 @@ class LoginVC: UIViewController, APIService{
                   //  print("token : \(session.token.accessToken)")
                   //  print("refresh token : \(session.token.refreshToken)")
                     let params : [String : Any] = ["accessToken" : session.token.accessToken]
-                    self.login(url: self.url("/user/kakaologin"), params: params)
+                    self.login(url: UrlPath.KakaoLogin.getURL(), params: params)
                  
                 }else{
                     print("Login failed")

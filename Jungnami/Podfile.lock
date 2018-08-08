@@ -2,7 +2,6 @@ PODS:
   - Alamofire (4.7.2)
   - Kingfisher (4.7.0)
   - LTScrollView (0.1.2)
-  - MJRefresh (3.1.15.3)
   - SnapKit (4.0.0)
   - SwiftyJSON (4.1.0)
 
@@ -10,7 +9,6 @@ DEPENDENCIES:
   - Alamofire
   - Kingfisher
   - LTScrollView
-  - MJRefresh
   - SnapKit
   - SwiftyJSON
 
@@ -19,7 +17,6 @@ SPEC REPOS:
     - Alamofire
     - Kingfisher
     - LTScrollView
-    - MJRefresh
     - SnapKit
     - SwiftyJSON
 
@@ -27,10 +24,9 @@ SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
   LTScrollView: c0dd4030178da6a70b87bc9f03d501a9cfe7f20e
-  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 004e80350f0bd4d396c448a5d43eff85124dfeef
+PODFILE CHECKSUM: 1d65d47ea21648091ae2a7916c2eac661bb5eb48
 
 COCOAPODS: 1.5.0

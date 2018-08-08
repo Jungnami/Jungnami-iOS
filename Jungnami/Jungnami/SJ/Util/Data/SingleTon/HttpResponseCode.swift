@@ -11,9 +11,19 @@ import Foundation
 enum HttpResponseCode: Int{
     case GET_SUCCESS = 200
     case POST_SUCCESS = 201
-    case WRONG_REQUEST = 400
+    case OTHER_ERROR = 401
     case SERVER_ERROR = 500
 }
+
+enum ResponseMessage : String {
+    case SUCCESS = "Success"
+    case NO_DATA = "No data" //200
+    case ACCESS_DENIED = "Access Denied" //401
+    case NO_COIN = "No coin" //401
+    case NO_VOTE = "No vote" //401
+    case SERVER_ERROR = "Internal Server Error" //500
+}
+
 
 enum Result<T> {
     case success(T)
