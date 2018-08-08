@@ -23,6 +23,9 @@
 		3B6B031B20EE530A00034C9B /* PartyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B031A20EE530A00034C9B /* PartyList.swift */; };
 		3B78CD3A2118CB5B0066B2B8 /* MyPageScrapCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78CD382118CB5B0066B2B8 /* MyPageScrapCVCell.swift */; };
 		3B78CD3B2118CB5B0066B2B8 /* MyPageScrapCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B78CD392118CB5B0066B2B8 /* MyPageScrapCVCell.xib */; };
+		3B78CD3E211B71F90066B2B8 /* OtherUserPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78CD3D211B71F90066B2B8 /* OtherUserPageVC.swift */; };
+		3B78CD40211B723B0066B2B8 /* OtherUserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B78CD3F211B723B0066B2B8 /* OtherUserHeaderView.swift */; };
+		3B78CD42211B73C90066B2B8 /* OtherUserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B78CD41211B73C90066B2B8 /* OtherUserHeader.xib */; };
 		3B8254FE20EF674D00ABCB59 /* MainFirstSectionTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8254FD20EF674D00ABCB59 /* MainFirstSectionTVCell.swift */; };
 		3B82550020EF675F00ABCB59 /* MainTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8254FF20EF675F00ABCB59 /* MainTVCell.swift */; };
 		3B83165720F104C3001D2423 /* CommunityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B83165620F104C3001D2423 /* CommunityVC.swift */; };
@@ -111,7 +114,7 @@
 		4348286720F6556B00663CC6 /* MyPageVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4348286620F6556B00663CC6 /* MyPageVO.swift */; };
 		4348286B20F65FD100663CC6 /* MyFeedShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4348286A20F65FD100663CC6 /* MyFeedShareCell.swift */; };
 		4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351999220EF7EE000D72AAF /* MyFeedVC.swift */; };
-		4351999620EFE94A00D72AAF /* OtherUserPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351999520EFE94A00D72AAF /* OtherUserPageVC.swift */; };
+		4351999620EFE94A00D72AAF /* OtherUserPageVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351999520EFE94A00D72AAF /* OtherUserPageVC2.swift */; };
 		43537EF620F0AD6E0036435A /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537EF520F0AD6E0036435A /* NoticeCell.swift */; };
 		43537EFE20F0E9C50036435A /* LegislatorProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */; };
 		43537F0020F0EA070036435A /* LegislatorContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537EFF20F0EA070036435A /* LegislatorContentCell.swift */; };
@@ -189,6 +192,9 @@
 		3B6B031A20EE530A00034C9B /* PartyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyList.swift; sourceTree = "<group>"; };
 		3B78CD382118CB5B0066B2B8 /* MyPageScrapCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScrapCVCell.swift; sourceTree = "<group>"; };
 		3B78CD392118CB5B0066B2B8 /* MyPageScrapCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageScrapCVCell.xib; sourceTree = "<group>"; };
+		3B78CD3D211B71F90066B2B8 /* OtherUserPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserPageVC.swift; sourceTree = "<group>"; };
+		3B78CD3F211B723B0066B2B8 /* OtherUserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserHeaderView.swift; sourceTree = "<group>"; };
+		3B78CD41211B73C90066B2B8 /* OtherUserHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherUserHeader.xib; sourceTree = "<group>"; };
 		3B8254FD20EF674D00ABCB59 /* MainFirstSectionTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFirstSectionTVCell.swift; sourceTree = "<group>"; };
 		3B8254FF20EF675F00ABCB59 /* MainTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTVCell.swift; sourceTree = "<group>"; };
 		3B83165620F104C3001D2423 /* CommunityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityVC.swift; sourceTree = "<group>"; };
@@ -279,7 +285,7 @@
 		4348286620F6556B00663CC6 /* MyPageVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVO.swift; sourceTree = "<group>"; };
 		4348286A20F65FD100663CC6 /* MyFeedShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedShareCell.swift; sourceTree = "<group>"; };
 		4351999220EF7EE000D72AAF /* MyFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedVC.swift; sourceTree = "<group>"; };
-		4351999520EFE94A00D72AAF /* OtherUserPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserPageVC.swift; sourceTree = "<group>"; };
+		4351999520EFE94A00D72AAF /* OtherUserPageVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserPageVC2.swift; sourceTree = "<group>"; };
 		43537EF520F0AD6E0036435A /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorProfileCell.swift; sourceTree = "<group>"; };
 		43537EFF20F0EA070036435A /* LegislatorContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorContentCell.swift; sourceTree = "<group>"; };
@@ -417,6 +423,16 @@
 				3B87A34A20F89FC500A968B8 /* VoteDelegate.swift */,
 			);
 			path = SingleTon;
+			sourceTree = "<group>";
+		};
+		3B78CD3C211B71D70066B2B8 /* OtherUserPageScroll */ = {
+			isa = PBXGroup;
+			children = (
+				3B78CD3D211B71F90066B2B8 /* OtherUserPageVC.swift */,
+				3B78CD3F211B723B0066B2B8 /* OtherUserHeaderView.swift */,
+				3B78CD41211B73C90066B2B8 /* OtherUserHeader.xib */,
+			);
+			path = OtherUserPageScroll;
 			sourceTree = "<group>";
 		};
 		3B87A34C20F8E5A000A968B8 /* Alert */ = {
@@ -601,7 +617,7 @@
 		4351999420EFE92600D72AAF /* OtherUserPage */ = {
 			isa = PBXGroup;
 			children = (
-				4351999520EFE94A00D72AAF /* OtherUserPageVC.swift */,
+				4351999520EFE94A00D72AAF /* OtherUserPageVC2.swift */,
 			);
 			path = OtherUserPage;
 			sourceTree = "<group>";
@@ -767,6 +783,7 @@
 		439D813420EB2FE5007DAD57 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				3B78CD3C211B71D70066B2B8 /* OtherUserPageScroll */,
 				3B44E96E21187DFB0079E9AC /* MypageScroll */,
 				4353B95B20F7D07800C88214 /* ContentSearchResult */,
 				439D812B20EB2FE5007DAD57 /* Community */,
@@ -1069,6 +1086,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BF603BB21188F29007BB99F /* MypageFeedTVCell.xib in Resources */,
+				3B78CD42211B73C90066B2B8 /* OtherUserHeader.xib in Resources */,
 				3B44E9782118847B0079E9AC /* MypageHeader.xib in Resources */,
 				3B83165F20F137A2001D2423 /* Community.storyboard in Resources */,
 				3B83166120F138A4001D2423 /* Rank.storyboard in Resources */,
@@ -1150,6 +1168,7 @@
 				3B6B031B20EE530A00034C9B /* PartyList.swift in Sources */,
 				43EDECD420F20C9A00E0F0E9 /* FollowerCell.swift in Sources */,
 				430703D720F107E500D37732 /* LegislatorContentData.swift in Sources */,
+				3B78CD3E211B71F90066B2B8 /* OtherUserPageVC.swift in Sources */,
 				43EDECB220F1C60500E0F0E9 /* ContentTmiVC.swift in Sources */,
 				3B94985520F3E3A300BFA81E /* PointVO.swift in Sources */,
 				43E4B7B820F5F9E800BA68D4 /* RecommendService2.swift in Sources */,
@@ -1169,7 +1188,7 @@
 				3B87A33520F6170300A968B8 /* LegislatorSearchVO.swift in Sources */,
 				43EDECCA20F2063E00E0F0E9 /* FollowerListVC.swift in Sources */,
 				439D814120EB2FE5007DAD57 /* CommunityWriteVC.swift in Sources */,
-				4351999620EFE94A00D72AAF /* OtherUserPageVC.swift in Sources */,
+				4351999620EFE94A00D72AAF /* OtherUserPageVC2.swift in Sources */,
 				3BFCE31320F501DF00C21AEB /* CommunityCommentVO.swift in Sources */,
 				3B97B5BE20F201F700020A81 /* kakaoLogin.cpp in Sources */,
 				3B87A34920F8186300A968B8 /* ContentSearchVO.swift in Sources */,
@@ -1240,6 +1259,7 @@
 				43E4B7BA20F5FA0200BA68D4 /* ContentDetailService.swift in Sources */,
 				3B87A33920F639C200A968B8 /* CommunitySearchVO.swift in Sources */,
 				432BA53B20F367C600B33A36 /* ChangeCoinVC.swift in Sources */,
+				3B78CD40211B723B0066B2B8 /* OtherUserHeaderView.swift in Sources */,
 				3BB4308D20ECE8BF002980D9 /* PartyListDetailPageMenuVC.swift in Sources */,
 				3BFCE31720F51CC700C21AEB /* CommunityCommentWriteService.swift in Sources */,
 				3B97B5C520F2432800020A81 /* TapDelegate.swift in Sources */,

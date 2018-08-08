@@ -229,9 +229,24 @@
             <point key="canvasLocation" x="-810.39999999999998" y="-826.23688155922048"/>
         </scene>
         <!--Other User PageVC-->
+        <scene sceneID="Eup-GH-Itk">
+            <objects>
+                <viewController storyboardIdentifier="OtherUserPageVC" id="09S-uB-NtB" customClass="OtherUserPageVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d2T-v2-bBT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="J6b-ma-wHR"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tBF-1r-C0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1356" y="1196"/>
+        </scene>
+        <!--Other User PageVC2-->
         <scene sceneID="Wq0-XG-ssh">
             <objects>
-                <viewController storyboardIdentifier="OtherUserPageVC" id="nL8-YW-5Ik" customClass="OtherUserPageVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OtherUserPageVC2" id="nL8-YW-5Ik" customClass="OtherUserPageVC2" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zuX-1g-3iW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
