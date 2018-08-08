@@ -134,12 +134,12 @@ extension LegislatorDetailVC {
 extension LegislatorDetailVC{
     //좋아요
     @objc func like(_sender: UIButton){
-        getMyPoint(url : url("/legislator/voting"), index : selectedLegislatorIdx, isLike : 1)
+        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : selectedLegislatorIdx, isLike : 1)
     }
     
     //싫어요
     @objc func dislike(_sender: UIButton){
-        getMyPoint(url : url("/legislator/voting"), index : selectedLegislatorIdx, isLike : 0)
+        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : selectedLegislatorIdx, isLike : 0)
     }
     //후원하기
     @objc func support(_sender: UIButton){
@@ -387,7 +387,7 @@ extension LegislatorDetailVC {
                         "islike" : isLike
                     ]
                     
-                    self.voteOkAction(url: self.url("/legislator/voting"), params: params, isLike : isLike)
+                    self.voteOkAction(url: UrlPath.VoteLegislator.getURL(), params: params, isLike : isLike)
                 }
                 break
             case .accessDenied :

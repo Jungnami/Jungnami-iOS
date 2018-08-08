@@ -15,7 +15,8 @@ enum HttpResponseCode: Int{
     case SERVER_ERROR = 500
 }
 
-enum ErrorMessage : String {
+enum ResponseMessage : String {
+    case SUCCESS = "Success"
     case NO_DATA = "No data" //200
     case ACCESS_DENIED = "Access Denied" //401
     case NO_COIN = "No coin" //401

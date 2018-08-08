@@ -90,7 +90,7 @@ extension PartyListDetailLikeTVC {
 //셀에 대한 행동 - 투표
 extension PartyListDetailLikeTVC {
     @objc func vote(_ sender : UIButton){
-        getMyPoint(url : url("/legislator/voting"), index : sender.tag)
+        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : sender.tag)
     }
 }
 
@@ -133,7 +133,7 @@ extension PartyListDetailLikeTVC {
                         "islike" : 1
                     ]
                     
-                    self.voteOkAction(url: self.url("/legislator/voting"), params: params)
+                    self.voteOkAction(url: UrlPath.VoteLegislator.getURL(), params: params)
                 }
                 break
             case .accessDenied :

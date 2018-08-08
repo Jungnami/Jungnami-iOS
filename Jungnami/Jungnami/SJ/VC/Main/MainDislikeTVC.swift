@@ -20,7 +20,7 @@ class MainDislikeTVC: UITableViewController, APIService {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.setContentOffset(.zero, animated: true)
-        legislatorLikeInit(url : url("/ranking/list/0"))
+        legislatorLikeInit(url : UrlPath.LegislatorDislikeList.getURL())
         
     }
     
@@ -31,7 +31,7 @@ class MainDislikeTVC: UITableViewController, APIService {
     }
     
     @objc func vote(_ sender : UIButton){
-        getMyPoint(url : url("/legislator/voting"), index : sender.tag)
+        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : sender.tag)
     }
     
     
@@ -94,7 +94,7 @@ extension MainDislikeTVC {
 extension MainDislikeTVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        legislatorLikeInit(url : url("/ranking/list/0"))
+        legislatorLikeInit(url : UrlPath.LegislatorDislikeList.getURL())
         
         self.tableView.reloadData()
         sender.endRefreshing()
@@ -142,7 +142,7 @@ extension MainDislikeTVC {
                         "islike" : 0
                     ]
                 
-                    self.voteOkAction(url: self.url("/legislator/voting"), params: params)
+                    self.voteOkAction(url: UrlPath.VoteLegislator.getURL(), params: params)
                 }
                 break
             case .accessDenied :
@@ -162,7 +162,7 @@ extension MainDislikeTVC {
     } //getMyPoint
     
     func temp(){
-        legislatorLikeInit(url : url("/ranking/list/0"))
+        legislatorLikeInit(url :UrlPath.LegislatorDislikeList.getURL())
     }
     
     //내 포인트 보고 '확인'했을때 통신

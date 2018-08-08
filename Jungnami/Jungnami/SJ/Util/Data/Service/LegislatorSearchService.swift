@@ -16,10 +16,14 @@ struct LegislatorSearchService: GettableService {
             switch result {
             case .success(let networkResult):
                 switch networkResult.resCode{
-                case 200 : completion(.networkSuccess(networkResult.resResult.data))
-                case 300 :
-                    completion(.nullValue)
-                case 500 :
+                case HttpResponseCode.GET_SUCCESS.rawValue :
+                    if networkResult.resResult.message == ResponseMessage.SUCCESS.rawValue {
+                        completion(.networkSuccess(networkResult.resResult.data))
+                    } else {
+                        completion(.nullValue)
+                    }
+                    
+                case HttpResponseCode.SERVER_ERROR.rawValue :
                     completion(.serverErr)
                 default :
                     print("no 200/300/500 rescode is \(networkResult.resCode)")

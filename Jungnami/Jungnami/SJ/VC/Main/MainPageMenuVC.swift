@@ -303,13 +303,14 @@ extension MainPageMenuVC : UITextFieldDelegate{
             let emptySpacesCount = myString.components(separatedBy: " ").count-1
             
             if emptySpacesCount == myString.count {
+               
                 simpleAlert(title: "오류", message: "검색어 입력")
                 return false
             }
         }
         
         if let searchString_ = textField.text {
-            searchLegislator(searchString : searchString_, url : url("/search/legislator/\(searchString_)"))
+            searchLegislator(searchString : searchString_, url : UrlPath.SearchLegislator.getURL(searchString_))
         }
         return true
     }
