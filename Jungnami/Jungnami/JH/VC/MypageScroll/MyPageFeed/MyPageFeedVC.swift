@@ -31,10 +31,14 @@ class MyPageFeedVC: UIViewController, LTTableViewProtocal, APIService {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        let nib = UINib.init(nibName: "MypageFeedTVCell", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: "MypageFeedTVCell")
-         let nib2 = UINib.init(nibName: "MypageFeedScrapTVCell", bundle: nil)
-         self.tableView.register(nib2, forCellReuseIdentifier: "MypageFeedScrapTVCell")
+        let mypageFeedTVCell = UINib.init(nibName: "MypageFeedTVCell", bundle: nil)
+        self.tableView.register(mypageFeedTVCell, forCellReuseIdentifier: "MypageFeedTVCell")
+        let mypageFeedScrapTVCell = UINib.init(nibName: "MypageFeedScrapTVCell", bundle: nil)
+         self.tableView.register(mypageFeedScrapTVCell, forCellReuseIdentifier: "MypageFeedScrapTVCell")
+        let mypageNoImageFeedTVcell = UINib.init(nibName: "MypageNoImageFeedTVcell", bundle: nil)
+        self.tableView.register(mypageNoImageFeedTVcell, forCellReuseIdentifier: "MypageNoImageFeedTVcell")
+        let mypageNoImageFeedScrapTVCell = UINib.init(nibName: "MypageNoImageFeedScrapTVCell", bundle: nil)
+        self.tableView.register(mypageNoImageFeedScrapTVCell, forCellReuseIdentifier: "MypageNoImageFeedScrapTVCell")
 
         view.addSubview(tableView)
         glt_scrollView = tableView
@@ -53,20 +57,45 @@ extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
         return myBoardData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if myBoardData[indexPath.row].source.count == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedTVCell.reuseIdentifier, for: indexPath) as! MypageFeedTVCell
-            
-            cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
-            cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-            cell.configure(data: myBoardData[indexPath.row])
-            return cell
+        let data = myBoardData[indexPath.row]
+        if data.source.count == 0 {
+            //내 글
+            if (gsno(data.bImg) == "0") {
+                //이미지 없음
+                let cell = tableView.dequeueReusableCell(withIdentifier: MypageNoImageFeedTVcell.reuseIdentifier, for: indexPath) as! MypageNoImageFeedTVcell
+                
+                cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
+                cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+                cell.configure(data: data)
+                return cell
+            } else {
+               //이미지 있음
+                let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedTVCell.reuseIdentifier, for: indexPath) as! MypageFeedTVCell
+                cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
+                cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+                cell.configure(data: data)
+                return cell
+            }
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedScrapTVCell.reuseIdentifier, for: indexPath) as! MypageFeedScrapTVCell
+            //공유한 글
+            if gsno(data.source[0].bImg) == "0" {
+                //이미지 없음
+                let cell = tableView.dequeueReusableCell(withIdentifier: MypageNoImageFeedScrapTVCell.reuseIdentifier, for: indexPath) as! MypageNoImageFeedScrapTVCell
+                
+                cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
+                cell.likeBtn.addTarget(self, action: #selector(sharedLike(_:)), for: .touchUpInside)
+                cell.configure(data: data)
+                return cell
+            } else {
+                //이미지 있음
+                let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedScrapTVCell.reuseIdentifier, for: indexPath) as! MypageFeedScrapTVCell
+                cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
+                cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+                cell.configure(data: data)
+                return cell
+            }
             
-            cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
-            cell.likeBtn.addTarget(self, action: #selector(sharedLike(_:)), for: .touchUpInside)
-            cell.configure(data: myBoardData[indexPath.row])
-            return cell
+            
         }
         
     }
@@ -277,5 +306,4 @@ extension MyPageFeedVC {
     
     
 }
-
 

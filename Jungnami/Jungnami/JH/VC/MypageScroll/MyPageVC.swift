@@ -137,7 +137,7 @@ extension MyPageVC {
         headerView_.profileMyfeedNumLbl.text = "\(myPageData.boardcnt)"
         headerView_.profileFollowingNumLbl.text = "\(myPageData.followingcnt)"
         headerView_.profileFollowerNumLbl.text = "\(myPageData.followercnt)"
-       // headerView_.profileCoinCountLbl.text = "\(myPageData.point)"
+        headerView_.profileCoinCountLbl.text = "\(myPageData.point)개"
         headerView_.profileVoteCountLbl.text = "\(myPageData.votingcnt)개"
         
         //alarm
