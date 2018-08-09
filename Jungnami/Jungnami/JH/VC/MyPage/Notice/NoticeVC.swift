@@ -23,7 +23,7 @@ class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AP
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        alarmInit(url: url("/user/push"))
+        alarmInit(url: UrlPath.AlarmList.getURL())
     }
     
     override func viewDidLoad() {
@@ -71,9 +71,9 @@ class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AP
         // 팔로우가 들어온다는 것은 아직 팔로잉 한 상태가 아니라는 것 => 그러니까 .isSelected = false
         //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
         if sender.isFollow! == "팔로우" {
-            likeAction(url: url("/user/follow"), userIdx : "\(sender.userIdx!)",  cell : cell, sender : sender )
+            likeAction(url: UrlPath.Follow.getURL(), userIdx : sender.userIdx!,  cell : cell, sender : sender )
         } else {
-            dislikeAction(url: url("/user/unfollow/\(sender.userIdx!)"), cell : cell, sender : sender )
+            dislikeAction(url: UrlPath.UnFollow.getURL(sender.userIdx!), cell : cell, sender : sender )
         }
         
     }

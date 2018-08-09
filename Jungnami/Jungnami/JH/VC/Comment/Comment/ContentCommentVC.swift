@@ -23,7 +23,7 @@ class ContentCommentVC: UIViewController, APIService {
     var selectedContent : Int? {
         didSet {
             if let selectedContent_ = selectedContent {
-                getCommentList(url: url("/contents/commentlist/\(selectedContent_)"))
+                getCommentList(url: UrlPath.ContentCommentList.getURL(selectedContent_.description))
             }
             
         }
@@ -35,7 +35,7 @@ class ContentCommentVC: UIViewController, APIService {
     
     
     @IBAction func writeCommentBtn(_ sender: Any) {
-        writeComment(url : url("/contents/makecomment"))
+        writeComment(url : UrlPath.WriteContentComment.getURL())
         commentTxt.text = ""
     }
     
@@ -53,7 +53,7 @@ class ContentCommentVC: UIViewController, APIService {
         likeCountLbl.sizeToFit()
         commentCountLbl.text = "\(commentCount)개"
         if let selectedContent_ = selectedContent {
-            getCommentList(url: url("/contents/commentlist/\(selectedContent_)"))
+            getCommentList(url: UrlPath.ContentCommentList.getURL(selectedContent_.description))
         }
         commentTxt.layer.cornerRadius = commentTxt.frame.height/2
         commentTxt.clipsToBounds = true
@@ -93,7 +93,8 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
             //삭제 url 넣기
             
             
-            self.deleteComment(url: self.url("/delete/contentscomment/\(commentIdx)"))
+            self.deleteComment(url:  UrlPath.DeleteContentComment.getURL(commentIdx.description))
+           
             //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
         }
         deleteAction.backgroundColor = .red
@@ -110,10 +111,10 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
         
         if sender.isLike! == 0 {
             
-            likeAction(url: url("/contents/likecomment"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            likeAction(url: UrlPath.LikeContentComment.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
             
-            dislikeAction(url: url("/delete/contentscommentlike/\(sender.boardIdx!)"), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.DislikeContentCommnet.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }
@@ -242,7 +243,7 @@ extension ContentCommentVC {
     
     func temp(){
        
-        getCommentList(url : url("/contents/commentlist/\(selectedContent!)"))
+        getCommentList(url : UrlPath.ContentCommentList.getURL(selectedContent!.description))
     }
     
     //댓글달기

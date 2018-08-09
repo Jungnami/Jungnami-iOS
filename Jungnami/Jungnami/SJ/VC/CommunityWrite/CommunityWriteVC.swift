@@ -80,7 +80,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     
     @objc func doneOk(){
         //통신
-        writeContent(url : url("/board/postcomplete"))
+        writeContent(url : UrlPath.WriteComplete.getURL())
     }
     
 }

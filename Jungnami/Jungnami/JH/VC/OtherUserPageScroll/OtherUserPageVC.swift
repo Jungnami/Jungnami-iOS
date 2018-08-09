@@ -10,7 +10,7 @@ import UIKit
 import LTScrollView
 
 class OtherUserPageVC : UIViewController, APIService {
- 
+    
     let myScrapVC = MyPageScrapVC()
     let myFeedVC = MyPageFeedVC()
     var selectedUserId : String?
@@ -39,6 +39,11 @@ class OtherUserPageVC : UIViewController, APIService {
         let headerView = OtherUserHeaderView.instanceFromNib()
         headerView.dismissBtn.addTarget(self, action: #selector(self.dismiss(_:)), for: .touchUpInside)
         
+        //
+        headerView.otherUserFollowBtn.setImage(UIImage(named: "other-user-page_add_user"), for: .normal)
+        headerView.otherUserFollowBtn.setImage(UIImage(named: "other-user-page_user_blue"), for: .selected)
+        headerView.otherUserFollowBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+        
         //make label button
         let tapFollow = UITapGestureRecognizer(target: self, action: #selector(OtherUserPageVC.tapFollowLbl(_:)))
         headerView.profileFollowingNumLbl.isUserInteractionEnabled = true
@@ -47,7 +52,7 @@ class OtherUserPageVC : UIViewController, APIService {
         let tapFollower = UITapGestureRecognizer(target: self, action: #selector(OtherUserPageVC.tapFollowerLbl(_:)))
         headerView.profileFollowerNumLbl.isUserInteractionEnabled = true
         headerView.profileFollowerNumLbl.addGestureRecognizer(tapFollower)
-       
+        
         
         headerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 232)
         return headerView
@@ -80,7 +85,7 @@ class OtherUserPageVC : UIViewController, APIService {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let selectedUserId_ = selectedUserId {
-            getMyPage(url: url("/user/mypage/\(selectedUserId_)"))
+            getMyPage(url: UrlPath.Mypage.getURL(selectedUserId_))
         }
     }
     override func viewDidLoad() {
@@ -131,9 +136,15 @@ extension OtherUserPageVC {
         headerView_.profileMyfeedNumLbl.text = "\(myPageData.boardcnt)"
         headerView_.profileFollowingNumLbl.text = "\(myPageData.followingcnt)"
         headerView_.profileFollowerNumLbl.text = "\(myPageData.followercnt)"
-    
         
-       
+        if myPageData.isfollow == 0 {
+            headerView_.otherUserFollowBtn.isSelected = false
+            headerView_.otherUserFollowBtn.isFollow = "팔로우"
+        }  else {
+            headerView_.otherUserFollowBtn.isSelected = true
+            headerView_.otherUserFollowBtn.isFollow = "팔로잉"
+        }
+        
     }//setHeaderInfo
     
 }
@@ -142,6 +153,16 @@ extension OtherUserPageVC {
 extension OtherUserPageVC {
     @objc func dismiss(_ sender : UIButton){
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func like(_ sender : followBtn){
+        //통신
+        if sender.isFollow! == "팔로우" {
+            likeAction(url: UrlPath.Follow.getURL(), userIdx : "\(selectedUserId!)", sender : sender )
+        } else {
+            dislikeAction(url:  UrlPath.UnFollow.getURL(selectedUserId!), sender : sender )
+        }
+        
     }
     
     //followLbl 터치했을 때 화면 올리기
@@ -162,7 +183,7 @@ extension OtherUserPageVC {
             self.present(followListVC, animated: true, completion: nil)
         }
     }
-  
+    
 }
 
 //통신
@@ -178,12 +199,75 @@ extension OtherUserPageVC {
                 let myPageData = myPageData as! MyPageVOData
                 self.setHeaderInfo(myPageData: myPageData)
                 
+                
                 self.myBoardData = myPageData.board
                 self.myScrapData = myPageData.scrap
                 
                 break
             case .nullValue :
                 self.simpleAlert(title: "오류", message: "값 없음")
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+}
+
+
+//통신
+extension OtherUserPageVC {
+    //하트 버튼 눌렀을 때
+    func likeAction(url : String, userIdx : String, sender : followBtn){
+        
+        let params : [String : Any] = [
+            "following_id" : userIdx
+        ]
+        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = true
+                sender.isFollow = "팔로잉"
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    //좋아요 취소
+    func dislikeAction(url : String, sender : followBtn){
+        CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                sender.isSelected = false
+                sender.isFollow = "팔로우"
+                
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :

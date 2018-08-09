@@ -245,16 +245,18 @@ extension PartyListDetailPageMenuVC : UITextFieldDelegate{
                 let viewFrom = 1
                 searchLegislator(searchString : searchString_, viewFrom : viewFrom,
                        
-                url : url("/search/legislatorparty/\(selectedParty_.rawValue)/\(searchString_)"))
+                url : UrlPath.SearchPartyLegislator.getURL("\(selectedParty_.rawValue)/\(searchString_)"))
             }
+           
 
         }
         
         if let selectedRegion_ = selectedRegion {
             if let searchString_ = textField.text {
                let viewFrom = 2
-                searchLegislator(searchString : searchString_, viewFrom : viewFrom, url : url("/search/legislatorregion/\(selectedRegion_.rawValue)/\(searchString_)"))
+                searchLegislator(searchString : searchString_, viewFrom : viewFrom, url :  UrlPath.SearchRegionLegislator.getURL("\(selectedRegion_.rawValue)/\(searchString_)") )
             }
+           
         }
        
         return true

@@ -125,7 +125,7 @@ extension CommunityResultTVC {
         let boardIdx = sender.tag
         
         simpleAlertwithHandler(title: "스크랩", message: "스크랩하시겠습니까?") { (_) in
-            self.scrapAction(url: self.url("/board/postcomplete"), boardIdx: boardIdx)
+            self.scrapAction(url: UrlPath.WriteComplete.getURL(), boardIdx: boardIdx)
         }
     }
     
@@ -159,9 +159,9 @@ extension CommunityResultTVC {
         }
         
         if sender.isLike! == 0 {
-            likeAction(url: url("/board/likeboard"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            likeAction(url: UrlPath.LikeBoard.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            dislikeAction(url: url("/delete/boardlike/\(sender.boardIdx!)"), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.DislikeBoard.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }
@@ -190,7 +190,7 @@ extension CommunityResultTVC : UITextFieldDelegate {
         
         //여기서 검색
         if let searchString_ = textField.text {
-            searchCommunity(searchString : searchString_, url : url("/search/board/\(searchString_)"))
+            searchCommunity(searchString : searchString_, url : UrlPath.SearchBoard.getURL(searchString_))
         }
         
         

@@ -24,7 +24,7 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
         navigationController?.view.backgroundColor = UIColor.white
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        legislatorDetailInit(url: url("/legislator/page/\(gino(selectedLegislatorIdx))"))
+        legislatorDetailInit(url: UrlPath.LegislatorDetail.getURL(gino(selectedLegislatorIdx).description))
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,7 +143,7 @@ extension LegislatorDetailVC{
     }
     //후원하기
     @objc func support(_sender: UIButton){
-        getMyCoin(url: url("/legislator/support"))
+        getMyCoin(url: UrlPath.SupportLegislator.getURL())
     }
 
 }
@@ -177,7 +177,7 @@ extension LegislatorDetailVC : UITextFieldDelegate{
             "coin" : gsno(supportPopupView.inputTxtField.text)
         ]
         
-        supportOkAction(url: url("/legislator/support"), params: params)
+        supportOkAction(url: UrlPath.SupportLegislator.getURL(), params: params)
     }
     
     

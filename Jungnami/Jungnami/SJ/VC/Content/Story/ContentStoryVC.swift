@@ -16,8 +16,8 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
         storyCollectionView.delegate = self
         self.storyCollectionView.refreshControl = UIRefreshControl()
         self.storyCollectionView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
-        let story = "스토리"
-        contentStorydInit(url: url("/contents/main/\(story)"))
+        
+        contentStorydInit(url: UrlPath.StoryContent.getURL())
     }
 
     override func didReceiveMemoryWarning() {
@@ -134,7 +134,7 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
 extension ContentStoryVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-       contentStorydInit(url: url("/contents/main/스토리"))
+       contentStorydInit(url: UrlPath.StoryContent.getURL())
         sender.endRefreshing()
     }
 }

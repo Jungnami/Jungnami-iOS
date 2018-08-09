@@ -56,9 +56,9 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func getList(){
         if let selectedUserId_ = selectedUserId, let entryPoint_ = entryPoint {
             if entryPoint_ == 0 {
-                followingListInit(url: url("/user/followinglist/\(selectedUserId_)"))
+                followingListInit(url: UrlPath.FollowingList.getURL(selectedUserId_))
             } else {
-                followerListInit(url: url("/user/followerlist/\(selectedUserId_)"))
+                followerListInit(url: UrlPath.FollowerList.getURL(selectedUserId_))
             }
             
         }
@@ -150,9 +150,9 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // 팔로우가 들어온다는 것은 아직 팔로잉 한 상태가 아니라는 것 => 그러니까 .isSelected = false
         //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
         if sender.isFollow! == "팔로우" {
-            likeAction(url: url("/user/follow"), userIdx : "\(sender.userIdx!)",  cell : cell, sender : sender )
+            likeAction(url: UrlPath.Follow.getURL(), userIdx : sender.userIdx!,  cell : cell, sender : sender )
         } else {
-            dislikeAction(url: url("/user/unfollow/\(sender.userIdx!)"), cell : cell, sender : sender )
+            dislikeAction(url: UrlPath.UnFollow.getURL(sender.userIdx!), cell : cell, sender : sender )
         }
         
     }
@@ -169,9 +169,9 @@ extension FollowListVC : UITextFieldDelegate {
         
         if textField.text == "" {
             if entryPoint_ == 0 {
-                self.followingListInit(url: url("/user/followinglist/\(selectedUserId_)"))
+                self.followingListInit(url: UrlPath.FollowingList.getURL(selectedUserId_))
             } else {
-                self.followerListInit(url: url("/user/followerlist/\(selectedUserId_)"))
+                self.followerListInit(url: UrlPath.FollowerList.getURL(selectedUserId_))
             }
             return
         }
@@ -180,12 +180,12 @@ extension FollowListVC : UITextFieldDelegate {
         if let searchString_ = textField.text {
             if entryPoint_ == 0 {
                 //팔로잉 검색
-                print("팔로잉 검색어는 \(searchString_)")
-                self.followingListInit(url: url("/search/following/\(selectedUserId_)/\(searchString_)"))
+            
+                self.followingListInit(url: UrlPath.SearchFollowing.getURL("\(selectedUserId_)/\(searchString_)"))
             } else {
                 //팔로워 검색
-                 print("팔로워 검색어는 \(searchString_)")
-                self.followerListInit(url: url("/search/follower/\(selectedUserId_)/\(searchString_)"))
+                
+                self.followerListInit(url: UrlPath.SearchFollower.getURL("\(selectedUserId_)/\(searchString_)"))
             }
         }
       

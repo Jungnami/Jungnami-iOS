@@ -16,7 +16,7 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        contentTmidInit(url: url("/contents/main/TMI"))
+        contentTmidInit(url: UrlPath.TMIContent.getURL())
         
     }
     override func viewDidLoad() {
@@ -145,7 +145,7 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
 extension ContentTmiVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        contentTmidInit(url: url("/contents/main/TMI"))
+        contentTmidInit(url: UrlPath.TMIContent.getURL())
     
         sender.endRefreshing()
     }

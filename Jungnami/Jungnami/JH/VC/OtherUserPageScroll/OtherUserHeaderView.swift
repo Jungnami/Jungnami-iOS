@@ -16,7 +16,7 @@ class OtherUserHeaderView: UIView {
     @IBOutlet weak var profileMyfeedNumLbl: UILabel!
     @IBOutlet weak var profileFollowingNumLbl: UILabel!
     @IBOutlet weak var profileFollowerNumLbl: UILabel!
-    
+    @IBOutlet weak var otherUserFollowBtn: followBtn!
 
     @IBOutlet weak var dismissBtn: UIButton!
 

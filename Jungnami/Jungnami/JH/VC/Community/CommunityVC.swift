@@ -83,7 +83,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
             login = true
         }
         //통신
-        communityInit(url : url("/board/boardlist"))
+        communityInit(url : UrlPath.BoardList.getURL())
         
         communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC
     }
@@ -212,7 +212,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
 extension CommunityVC {
     
     @objc func toWrite(_ sender : UIButton){
-        write(url: url("/board/post"))
+        write(url: UrlPath.WriteBoard.getURL())
     }
     
     @objc func toLogin(_ sender : UIButton){
@@ -227,7 +227,7 @@ extension CommunityVC {
         let boardIdx = sender.tag
         
         simpleAlertwithHandler(title: "스크랩", message: "스크랩하시겠습니까?") { (_) in
-            self.scrapAction(url: self.url("/board/postcomplete"), boardIdx: boardIdx)
+            self.scrapAction(url: UrlPath.WriteComplete.getURL(), boardIdx: boardIdx)
         }
     }
     
@@ -263,9 +263,9 @@ extension CommunityVC {
         //let cell = self.communityTableView.cellForRow(at: indexPath!) as! CommunityTVCell
         
         if sender.isLike! == 0 {
-            likeAction(url: url("/board/likeboard"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell!, sender : sender, likeCnt: sender.likeCnt )
+            likeAction(url: UrlPath.LikeBoard.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell!, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            dislikeAction(url: url("/delete/boardlike/\(sender.boardIdx!)"), cell : cell!, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.DislikeBoard.getURL(sender.boardIdx!.description), cell : cell!, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }
@@ -290,7 +290,7 @@ extension CommunityVC: UITextFieldDelegate {
         }
         //TODO - 확인 누르면 데이터 로드하는 통신 코드
         if let searchString_ = textField.text {
-            searchBoard(searchString : searchString_, url : url("/search/board/\(searchString_)"))
+            searchBoard(searchString : searchString_, url : UrlPath.SearchBoard.getURL(searchString_))
         }
         
        /* if let communityResultTVC = Storyboard.shared().communityStoryboard.instantiateViewController(withIdentifier:CommunityResultTVC.reuseIdentifier) as? CommunityResultTVC {
@@ -344,7 +344,7 @@ extension CommunityVC{
 extension CommunityVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        communityInit(url : url("/board/boardlist"))
+        communityInit(url : UrlPath.BoardList.getURL())
         sender.endRefreshing()
     }
 }

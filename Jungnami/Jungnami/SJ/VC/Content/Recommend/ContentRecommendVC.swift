@@ -22,7 +22,7 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
         contentCollectionView.delegate = self
         contentCollectionView.dataSource = self
         //통신
-        contentRecommendInit(url: url("/contents/recommend"))
+        contentRecommendInit(url: UrlPath.RecommendContent.getURL())
         
     }
     var contentData : [RecommendVODataContent]?
@@ -134,7 +134,7 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
 extension ContentRecommendVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-         contentRecommendInit(url: url("/contents/recommend"))
+         contentRecommendInit(url: UrlPath.RecommendContent.getURL())
         sender.endRefreshing()
     }
 }

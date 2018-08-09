@@ -86,7 +86,7 @@ class MyPageVC: UIViewController, APIService {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let selectedUserId_ = selectedUserId {
-            getMyPage(url: url("/user/mypage/\(selectedUserId_)"))
+            getMyPage(url: UrlPath.Mypage.getURL(selectedUserId_))
         }
     }
     override func viewDidLoad() {
@@ -137,8 +137,8 @@ extension MyPageVC {
         headerView_.profileMyfeedNumLbl.text = "\(myPageData.boardcnt)"
         headerView_.profileFollowingNumLbl.text = "\(myPageData.followingcnt)"
         headerView_.profileFollowerNumLbl.text = "\(myPageData.followercnt)"
-        headerView_.profileCoinCountLbl.text = "\(myPageData.coin)"
-        headerView_.profileVoteCountLbl.text = "\(myPageData.votingcnt)"
+       // headerView_.profileCoinCountLbl.text = "\(myPageData.point)"
+        headerView_.profileVoteCountLbl.text = "\(myPageData.votingcnt)개"
         
         //alarm
         let alarmCount = myPageData.pushcnt
