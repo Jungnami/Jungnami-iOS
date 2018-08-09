@@ -43,48 +43,21 @@
                                     </constraints>
                                     <state key="normal" image="content_x"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Nt-vL-08h" userLabel="bellBtn">
-                                    <rect key="frame" x="613" y="11" width="24" height="24"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="24" id="Ygf-8Y-BK7"/>
-                                        <constraint firstAttribute="height" constant="24" id="bvZ-bm-hdK"/>
-                                    </constraints>
-                                    <state key="normal" image="mypage_bell"/>
-                                </button>
-                                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="community_bell_blue_circle" translatesAutoresizingMaskIntoConstraints="NO" id="lVZ-0F-Obp">
-                                    <rect key="frame" x="607" y="9" width="16" height="16"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="16" id="H8L-nD-cNy"/>
-                                        <constraint firstAttribute="width" constant="16" id="shv-uv-Y6O"/>
-                                    </constraints>
-                                </imageView>
-                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSP-1D-OwD">
-                                    <rect key="frame" x="609" y="12" width="12" height="11"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                             </subviews>
                             <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="lVZ-0F-Obp" secondAttribute="trailing" constant="26" id="EFl-Ga-AwT"/>
                                 <constraint firstAttribute="bottom" secondItem="Weq-p6-kPD" secondAttribute="bottom" id="GUU-bM-Abs"/>
-                                <constraint firstItem="MSP-1D-OwD" firstAttribute="centerX" secondItem="lVZ-0F-Obp" secondAttribute="centerX" id="I5B-bw-3zG"/>
                                 <constraint firstItem="eNH-Ht-yhG" firstAttribute="top" secondItem="tPK-fh-8hU" secondAttribute="top" constant="66" id="L2a-Sl-QcC"/>
                                 <constraint firstItem="eNH-Ht-yhG" firstAttribute="centerX" secondItem="tPK-fh-8hU" secondAttribute="centerX" id="NoO-8D-WNY"/>
                                 <constraint firstItem="ZUe-HA-NVx" firstAttribute="leading" secondItem="tPK-fh-8hU" secondAttribute="leading" constant="12" id="ONP-ps-Gvp"/>
-                                <constraint firstItem="MSP-1D-OwD" firstAttribute="centerY" secondItem="lVZ-0F-Obp" secondAttribute="centerY" id="Tel-bY-ETR"/>
-                                <constraint firstAttribute="trailing" secondItem="0Nt-vL-08h" secondAttribute="trailing" constant="12" id="YY4-V3-VBl"/>
-                                <constraint firstItem="0Nt-vL-08h" firstAttribute="top" secondItem="tPK-fh-8hU" secondAttribute="top" constant="11" id="Z27-m2-tuR"/>
                                 <constraint firstItem="ZUe-HA-NVx" firstAttribute="top" secondItem="tPK-fh-8hU" secondAttribute="top" constant="11" id="gZ6-74-b9s"/>
                                 <constraint firstItem="Weq-p6-kPD" firstAttribute="leading" secondItem="tPK-fh-8hU" secondAttribute="leading" id="iZ2-KJ-ern"/>
-                                <constraint firstItem="lVZ-0F-Obp" firstAttribute="top" secondItem="tPK-fh-8hU" secondAttribute="top" constant="9" id="luM-NY-X8V"/>
                                 <constraint firstAttribute="height" constant="104" id="vKy-BV-8jb"/>
                                 <constraint firstAttribute="trailing" secondItem="Weq-p6-kPD" secondAttribute="trailing" id="vtH-2H-MV8"/>
                             </constraints>
                         </view>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ySN-IL-qsv">
-                            <rect key="frame" x="248.5" y="155" width="152" height="26"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4.5" translatesAutoresizingMaskIntoConstraints="NO" id="ySN-IL-qsv">
+                            <rect key="frame" x="226" y="155" width="197.5" height="26"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="mypage_namefield" translatesAutoresizingMaskIntoConstraints="NO" id="yJE-66-ewk">
                                     <rect key="frame" x="0.0" y="0.0" width="152" height="26"/>
@@ -93,10 +66,17 @@
                                         <constraint firstAttribute="height" constant="26" id="EtW-ys-QXw"/>
                                     </constraints>
                                 </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQf-Lr-RyF" customClass="followBtn" customModule="Jungnami" customModuleProvider="target">
+                                    <rect key="frame" x="156.5" y="0.0" width="41" height="26"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="41" id="80D-T9-YUy"/>
+                                    </constraints>
+                                    <state key="normal" image="other-user-page_add_user"/>
+                                </button>
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쁜쁜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QjO-AI-tb6">
-                            <rect key="frame" x="313" y="160" width="24.5" height="17"/>
+                            <rect key="frame" x="290.5" y="160" width="24.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -201,6 +181,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="dismissBtn" destination="ZUe-HA-NVx" id="LKX-OX-RXh"/>
+                <outlet property="otherUserFollowBtn" destination="MQf-Lr-RyF" id="egE-gY-P12"/>
                 <outlet property="profileFollowerNumLbl" destination="6Jp-wt-wX5" id="17Q-CD-gR3"/>
                 <outlet property="profileFollowingNumLbl" destination="LSs-ET-TDd" id="dqL-eJ-pEi"/>
                 <outlet property="profileImgView" destination="eNH-Ht-yhG" id="11G-65-6GN"/>
@@ -212,9 +193,8 @@
         </view>
     </objects>
     <resources>
-        <image name="community_bell_blue_circle" width="16" height="16"/>
         <image name="content_x" width="24" height="24"/>
-        <image name="mypage_bell" width="24" height="24"/>
         <image name="mypage_namefield" width="152" height="26"/>
+        <image name="other-user-page_add_user" width="41" height="26"/>
     </resources>
 </document>

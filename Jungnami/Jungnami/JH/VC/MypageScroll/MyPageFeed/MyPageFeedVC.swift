@@ -23,6 +23,7 @@ class MyPageFeedVC: UIViewController, LTTableViewProtocal, APIService {
     private lazy var tableView: UITableView = {
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height - 20
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
+        tableView.tableFooterView = UIView(frame : .zero)
         return tableView
     }()
     
@@ -97,9 +98,9 @@ extension MyPageFeedVC {
         let cell = self.tableView.cellForRow(at: indexPath!) as! MypageFeedTVCell
         
         if sender.isLike! == 0 {
-            likeAction(url: url("/board/likeboard"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            likeAction(url: UrlPath.LikeBoard.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            dislikeAction(url: url("/delete/boardlike/\(sender.boardIdx!)"), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.DislikeBoard.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }
@@ -113,9 +114,9 @@ extension MyPageFeedVC {
         let cell = self.tableView.cellForRow(at: indexPath!) as! MypageFeedScrapTVCell
         
         if sender.isLike! == 0 {
-            sharedLikeAction(url: url("/board/likeboard"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            sharedLikeAction(url: UrlPath.LikeBoard.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            sharedDislikeAction(url: url("/delete/boardlike/\(sender.boardIdx!)"), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            sharedDislikeAction(url: UrlPath.DislikeBoard.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }

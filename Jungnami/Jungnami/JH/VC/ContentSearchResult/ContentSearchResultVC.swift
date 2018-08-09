@@ -142,7 +142,7 @@ extension ContentSearchResultVC : UITextFieldDelegate {
         
         //있으면 리로드, 없으면 얼러트
         if let searchString_ = textField.text {
-            self.searchContent(url: url("/search/contents/\(searchString_)"))
+            self.searchContent(url: UrlPath.SearchContent.getURL(searchString_))
         }
         
         return true

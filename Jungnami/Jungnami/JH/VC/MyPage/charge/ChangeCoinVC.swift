@@ -38,7 +38,7 @@ class ChangeCoinVC: UIViewController, UITextFieldDelegate, APIService {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getMyCoin(url : url("/legislator/support"))
+        getMyCoin(url : UrlPath.SupportLegislator.getURL())
     }
     
     override func viewDidLoad() {
@@ -138,7 +138,7 @@ extension ChangeCoinVC {
         coinChangePopupView.deleteCoinLbtl.text = "-\(myCoin)"
         
         coinChangePopupView.cancleBtn.addTarget(self, action:#selector(self.cancle(_sender:)), for: .touchUpInside)
-        coinChangePopupView.okBtn.addTarget(self, action:#selector(self.supportOk(_sender:)), for: .touchUpInside)
+        coinChangePopupView.okBtn.addTarget(self, action:#selector(self.changeOk(_sender:)), for: .touchUpInside)
         
         supportAlert = CustomAlert(view : coinChangePopupView, width : 255, height : 300)
         supportAlert?.show(animated: false)
@@ -148,12 +148,12 @@ extension ChangeCoinVC {
         supportAlert?.dismiss(animated: false)
     }
     
-    @objc func supportOk(_sender: UIButton){
+    @objc func changeOk(_sender: UIButton){
         let params : [String : Any] = [
             "coin" : buyCount
         ]
         
-         supportOkAction(url: url("/user/addvote"), params: params)
+         changeOkAction(url: UrlPath.ChangeCoin.getURL(), params: params)
     }
     
     
@@ -173,8 +173,8 @@ extension ChangeCoinVC {
 
 
 extension ChangeCoinVC {
-    //후원하기 '확인' 했을때 액션
-    func supportOkAction(url : String, params : [String : Any]) {
+    //코인 바꾸기하기 '확인' 했을때 액션
+    func changeOkAction(url : String, params : [String : Any]) {
         SupportService.shareInstance.support(url: url, params : params, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {

@@ -24,7 +24,7 @@ class MyCoinVC: UIViewController,APIService {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getMyCoin(url : url("/legislator/support"))
+        getMyCoin(url : UrlPath.SupportLegislator.getURL())
     }
 
     

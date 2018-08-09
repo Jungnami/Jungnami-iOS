@@ -80,9 +80,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let contentIdx_ = contentIdx {
-            
-            print("abcdefg")
-            contentDetailInit(url: url("/contents/cardnews/\(contentIdx_)"))
+        contentDetailInit(url:UrlPath.ContentDetail.getURL(contentIdx_.description))
         }
     }
     
@@ -93,7 +91,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         self.tabBarController?.tabBar.isHidden = true
         //통신
         if let contentIdx_ = contentIdx {
-            contentDetailInit(url: url("/contents/cardnews/\(contentIdx_)"))
+            contentDetailInit(url: UrlPath.ContentDetail.getURL(contentIdx_.description))
         }
         likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
         likeBtn.setImage(UIImage(named: "content_heart"), for: .normal)
@@ -189,17 +187,17 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
 extension ContentDetailVC {
     @objc func like(_ sender : UIButton){
         if isLike == 0 {
-            likeAction(url: url("/contents/like"))
+            likeAction(url: UrlPath.LikeContent.getURL())
         } else {
-            dislikeAction(url: url("/delete/contentslike/\(contentIdx!)"))
+            dislikeAction(url: UrlPath.DislikeContent.getURL(contentIdx!.description))
         }
     }
     
     @objc func scrap(_ sender : UIButton){
         if isScrap == 0 {
-            scrapAction(url: url("/contents/scrap"))
+            scrapAction(url: UrlPath.ScrapContent.getURL())
         } else {
-            scrapCancelAction(url: url("/delete/scrap/\(contentIdx!)"))
+            scrapCancelAction(url: UrlPath.UnScrapContent.getURL(contentIdx!.description))
         }
     }
 }

@@ -275,7 +275,8 @@ extension ContentVC : UITextFieldDelegate{
         
         if let searchString_ = textField.text {
             //여기서 searchContent(searchString : String, url : String) 부르면 됨
-            searchContent(searchString : searchString_, url : url("/search/contents/\(searchString_)"))
+            searchContent(searchString : searchString_, url :
+                UrlPath.SearchContent.getURL(searchString_))
         
         }
         

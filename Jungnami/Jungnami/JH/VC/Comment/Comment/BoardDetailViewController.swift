@@ -24,7 +24,7 @@ class BoardDetailViewController: UIViewController, APIService {
     var selectedBoard : Int? {
         didSet {
             if let selectedBoard_ = selectedBoard {
-                getCommentList(url: url("/board/commentlist/\(selectedBoard_)"))
+                getCommentList(url: UrlPath.BoardCommentList.getURL(selectedBoard_.description))
             }
             
         }
@@ -36,7 +36,7 @@ class BoardDetailViewController: UIViewController, APIService {
   
     
     @IBAction func writeCommentBtn(_ sender: Any) {
-       writeComment(url : url("/board/makecomment"))
+       writeComment(url : UrlPath.WriteBoardComment.getURL())
         commentTxt.text = ""
     }
     
@@ -54,7 +54,7 @@ class BoardDetailViewController: UIViewController, APIService {
         likeCountLbl.sizeToFit()
         commentCountLbl.text = "\(commentCount)개"
         if let selectedBoard_ = selectedBoard {
-            getCommentList(url: url("/board/commentlist/\(selectedBoard_)"))
+            getCommentList(url: UrlPath.BoardCommentList.getURL(selectedBoard_.description))
         }
         commentTxt.layer.cornerRadius = commentTxt.frame.height/2
         commentTxt.clipsToBounds = true 
@@ -92,7 +92,7 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
             //삭제 url 넣기
           
             
-            self.deleteComment(url: self.url("/delete/boardcomment/\(commentIdx)"))
+            self.deleteComment(url: UrlPath.DeleteBoardComment.getURL(commentIdx.description))
             //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
         }
         deleteAction.backgroundColor = .red
@@ -109,9 +109,9 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
         let cell = self.detailTableView.cellForRow(at: indexPath!) as! CommentCell
         
         if sender.isLike! == 0 {
-            likeAction(url: url("/board/likecomment"), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            likeAction(url: UrlPath.LikeBoardComment.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            dislikeAction(url: url("/delete/boardcommentlike/\(sender.boardIdx!)"), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.DislikeBoardCommnet.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }
@@ -240,7 +240,7 @@ extension BoardDetailViewController {
     }
     
     func temp(){
-        getCommentList(url : url("/board/commentlist/\(gino(selectedBoard))"))
+        getCommentList(url : UrlPath.BoardCommentList.getURL(gino(selectedBoard).description))
     }
     
     //댓글달기
