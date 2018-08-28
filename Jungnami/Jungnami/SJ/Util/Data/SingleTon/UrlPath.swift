@@ -41,7 +41,7 @@ enum UrlPath : String {
     case ScrapContent = "/contents/scrap"
     case UnScrapContent = "/delete/scrap/"
     //마이페이지
-   
+    case Mypage = "/user/mypage/"
     case ChangeCoin = "/user/addvote"
     case AlarmList = "/user/push"
     //댓글
@@ -65,7 +65,7 @@ enum UrlPath : String {
     
 
     case DeleteBoardComment = "/delete/boardcomment/"
-    case Mypage = "/user/mypage/"
+    
    
     
     func getURL(_ parameter : String? = nil) -> String{

@@ -50,9 +50,11 @@ class MyPageVC: UIViewController, APIService {
         
         let tapAction1 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
         let tapAction2 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
-        headerView.profileCoinCountLbl?.isUserInteractionEnabled = true
+       
+        //false -> true 로 바꾸기
+        headerView.profileCoinCountLbl?.isUserInteractionEnabled = false
         headerView.profileCoinCountLbl?.addGestureRecognizer(tapAction1)
-        headerView.profileVoteCountLbl?.isUserInteractionEnabled = true
+        headerView.profileVoteCountLbl?.isUserInteractionEnabled = false
         headerView.profileVoteCountLbl?.addGestureRecognizer(tapAction2)
 
         headerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 314)
@@ -137,7 +139,7 @@ extension MyPageVC {
         headerView_.profileMyfeedNumLbl.text = "\(myPageData.boardcnt)"
         headerView_.profileFollowingNumLbl.text = "\(myPageData.followingcnt)"
         headerView_.profileFollowerNumLbl.text = "\(myPageData.followercnt)"
-       // headerView_.profileCoinCountLbl.text = "\(myPageData.point)"
+        headerView_.profileCoinCountLbl.text = "\(myPageData.point)개"
         headerView_.profileVoteCountLbl.text = "\(myPageData.votingcnt)개"
         
         //alarm
