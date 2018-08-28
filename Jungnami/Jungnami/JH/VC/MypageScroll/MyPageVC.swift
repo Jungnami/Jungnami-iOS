@@ -50,9 +50,11 @@ class MyPageVC: UIViewController, APIService {
         
         let tapAction1 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
         let tapAction2 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
-        headerView.profileCoinCountLbl?.isUserInteractionEnabled = true
+       
+        //false -> true 로 바꾸기
+        headerView.profileCoinCountLbl?.isUserInteractionEnabled = false
         headerView.profileCoinCountLbl?.addGestureRecognizer(tapAction1)
-        headerView.profileVoteCountLbl?.isUserInteractionEnabled = true
+        headerView.profileVoteCountLbl?.isUserInteractionEnabled = false
         headerView.profileVoteCountLbl?.addGestureRecognizer(tapAction2)
 
         headerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 314)

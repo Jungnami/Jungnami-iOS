@@ -1255,7 +1255,7 @@
                                                                     </constraints>
                                                                     <state key="normal" image="legislator-detailpage_hate_blue"/>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-ix-Uv9">
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-ix-Uv9">
                                                                     <rect key="frame" x="273" y="127" width="80" height="28"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="FRq-2O-vbm"/>
