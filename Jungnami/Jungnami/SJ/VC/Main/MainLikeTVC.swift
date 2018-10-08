@@ -35,7 +35,7 @@ class MainLikeTVC: UITableViewController, APIService {
         
         let cell = self.tableView.cellForRow(at: indexPath!) as! MainTVCell
         print("like click envet happed!")
-        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : sender.tag, cell : cell)
+        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : sender.tag, cell : cell)
     }
     
     
@@ -131,10 +131,12 @@ extension MainLikeTVC{
             switch result {
             case .networkSuccess(let legislatorData):
                 let legislatorData = legislatorData as! [LegislatorLikeVOData]
-                self.legislatorLikeData.append(contentsOf: legislatorData)
-                self.firstData = self.legislatorLikeData[0]
-                self.secondData = self.legislatorLikeData[1]
-                self.tableView.reloadData()
+                if legislatorData.count > 0 {
+                    self.legislatorLikeData.append(contentsOf: legislatorData)
+                    self.firstData = self.legislatorLikeData[0]
+                    self.secondData = self.legislatorLikeData[1]
+                    self.tableView.reloadData()
+                }
                 break
                 
             case .networkFail :

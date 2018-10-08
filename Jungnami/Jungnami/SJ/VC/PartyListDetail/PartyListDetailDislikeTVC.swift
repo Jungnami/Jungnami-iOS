@@ -17,18 +17,19 @@ class PartyListDetailDislikeTVC: UITableViewController, APIService {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.setContentOffset(.zero, animated: true)
-        if let selectedParty_ = selectedParty {
-            legislatorDislikeInit(url: UrlPath.PartyLegislatorDislikeList.getURL(selectedParty_.rawValue))
-        }
         
-        if let selectedRegion_ = selectedRegion {
-            legislatorDislikeInit(url: UrlPath.RegionLegislatorDislikeList.getURL(selectedRegion_.rawValue))
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let itemCount = legislatorDislikeData.count
+        if let selectedParty_ = selectedParty {
+            legislatorDislikeInit(url:
+                UrlPath.PartyLegislatorList.getURL("\(selectedParty_.rawValue)/0/\(itemCount)"))
+        }
+        if let selectedRegion_ = selectedRegion {
+            legislatorDislikeInit(url: UrlPath.RegionLegislatorList.getURL("\(selectedRegion_.rawValue)/0/\(itemCount)"))
+        }
     }
     
     
@@ -79,6 +80,23 @@ extension PartyListDetailDislikeTVC{
         }
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let section = indexPath.section
+        if section == 1 {
+            let lastItemIdx = legislatorDislikeData.count-1
+            let itemCount = legislatorDislikeData.count
+            if indexPath.row == lastItemIdx {
+                if let selectedParty_ = selectedParty {
+                    legislatorDislikeInit(url:
+                        UrlPath.PartyLegislatorList.getURL("\(selectedParty_.rawValue)/0/\(itemCount)"))
+                }
+                if let selectedRegion_ = selectedRegion {
+                    legislatorDislikeInit(url: UrlPath.RegionLegislatorList.getURL("\(selectedRegion_.rawValue)/0/\(itemCount)"))
+                }
+            }
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let legislatorDetailVC = self.storyboard?.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
@@ -94,8 +112,8 @@ extension PartyListDetailDislikeTVC{
 //셀에 버튼에 대한 클릭 액션 - 투표
 extension PartyListDetailDislikeTVC{
     @objc func vote(_ sender : UIButton){
-            getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : sender.tag)
-        }
+        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : sender.tag)
+    }
     
 }
 
@@ -108,8 +126,11 @@ extension PartyListDetailDislikeTVC{
             
             switch result {
             case .networkSuccess(let legislatorData):
-                self.legislatorDislikeData = legislatorData as! [PartyLegistorLikeVOData]
-                self.tableView.reloadData()
+                let legislatorData = legislatorData as! [PartyLegistorLikeVOData]
+                if legislatorData.count > 0 {
+                    self.legislatorDislikeData.append(contentsOf: legislatorData)
+                    self.tableView.reloadData()
+                }
                 break
                 
             case .networkFail :
@@ -163,7 +184,7 @@ extension PartyListDetailDislikeTVC{
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
-                 self.voteDelegate?.myVoteDelegate(isLike: 0)
+                self.voteDelegate?.myVoteDelegate(isLike: 0)
                 //self.popupImgView(fileName: "area_hate_popup")
                 self.viewWillAppear(false)
                 break

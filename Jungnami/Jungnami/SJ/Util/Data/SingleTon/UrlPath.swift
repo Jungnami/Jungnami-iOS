@@ -13,15 +13,17 @@ enum UrlPath : String {
     //국회의원
     case SearchLegislator = "/search/legislator/"
     case LegislatorList = "/ranking/all/"
-    case VoteLegislator = "/legislator/voting"
+    case GetPointToVote = "/user/vote"
+    case VoteLegislator = "/legislator/vote"
+    case LegislatorDetail = "/legislator/page/"
+    case GetCoin = "/user/point"
+    case SupportLegislator = "/legislator/support"
+    case PartyLegislatorList = "/ranking/party/"
+    case RegionLegislatorList = "/ranking/city/"
+    
     case SearchPartyLegislator = "/search/legislatorparty/"
     case SearchRegionLegislator = "/search/legislatorregion/"
-    case PartyLegislatorLikeList = "/legislatorlist/groupbyparty/1/"
-    case PartyLegislatorDislikeList = "/legislatorlist/groupbyparty/0/"
-    case RegionLegislatorLikeList = "/legislatorlist/groupbyregion/1/"
-    case RegionLegislatorDislikeList = "/legislatorlist/groupbyregion/0/"
-    case LegislatorDetail = "/legislator/page/"
-    case SupportLegislator = "/legislator/support"
+
     //커뮤니티
     case WriteComplete = "/board/postcomplete"
     case LikeBoard = "/board/likeboard"

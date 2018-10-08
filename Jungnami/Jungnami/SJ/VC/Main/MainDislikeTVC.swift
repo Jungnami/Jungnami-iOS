@@ -32,7 +32,7 @@ class MainDislikeTVC: UITableViewController, APIService {
     }
     
     @objc func vote(_ sender : UIButton){
-        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : sender.tag)
+        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : sender.tag)
     }
     
     
@@ -121,10 +121,12 @@ extension MainDislikeTVC {
             switch result {
             case .networkSuccess(let legislatorData):
                 let legislatorData = legislatorData as! [LegislatorLikeVOData]
-                self.legislatorDislikeData.append(contentsOf: legislatorData)
-                self.firstData = self.legislatorDislikeData[0]
-                self.secondData = self.legislatorDislikeData[1]
-                self.tableView.reloadData()
+                if legislatorData.count > 0 {
+                    self.legislatorDislikeData.append(contentsOf: legislatorData)
+                    self.firstData = self.legislatorDislikeData[0]
+                    self.secondData = self.legislatorDislikeData[1]
+                    self.tableView.reloadData()
+                }
                 break
                 
             case .networkFail :

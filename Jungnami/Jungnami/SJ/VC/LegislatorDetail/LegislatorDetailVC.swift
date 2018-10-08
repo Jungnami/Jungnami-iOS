@@ -134,16 +134,16 @@ extension LegislatorDetailVC {
 extension LegislatorDetailVC{
     //좋아요
     @objc func like(_sender: UIButton){
-        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : selectedLegislatorIdx, isLike : 1)
+        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : selectedLegislatorIdx, isLike : 1)
     }
     
     //싫어요
     @objc func dislike(_sender: UIButton){
-        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : selectedLegislatorIdx, isLike : 0)
+        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : selectedLegislatorIdx, isLike : 0)
     }
     //후원하기
     @objc func support(_sender: UIButton){
-        getMyCoin(url: UrlPath.SupportLegislator.getURL())
+        getMyCoin(url: UrlPath.GetCoin.getURL())
     }
 
 }
