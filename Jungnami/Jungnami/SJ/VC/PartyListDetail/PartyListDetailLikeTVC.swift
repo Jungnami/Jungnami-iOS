@@ -146,8 +146,7 @@ extension PartyListDetailLikeTVC {
             
             switch result {
             case .networkSuccess(let pointData):
-                let data = pointData as! PointVOData
-                let myPoint = data.votingCnt
+                let myPoint = pointData as! Int
                 self.simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권: \(myPoint)개") { (_) in
                     //확인했을때 통신
                     let params : [String : Any] = [

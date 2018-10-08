@@ -11,7 +11,6 @@ enum UrlPath : String {
     //로그인
     case KakaoLogin = "/user/login/kakao"
     //국회의원
-    case SearchLegislator = "/search/legislator/"
     case LegislatorList = "/ranking/all/"
     case GetPointToVote = "/user/vote"
     case VoteLegislator = "/legislator/vote"
@@ -21,15 +20,15 @@ enum UrlPath : String {
     case PartyLegislatorList = "/ranking/party/"
     case RegionLegislatorList = "/ranking/city/"
     
+    case SearchLegislator = "/search/legislator/"
     case SearchPartyLegislator = "/search/legislatorparty/"
     case SearchRegionLegislator = "/search/legislatorregion/"
     //커뮤니티
     case BoardList = "/board/"
     case WriteBoard = "/user/img"
+    case LikeBoard = "/board/like/"
  
     case WriteComplete = "/board/postcomplete"
-    case LikeBoard = "/board/likeboard"
-    case DislikeBoard = "/delete/boardlike/"
     case SearchBoard = "/search/board/"
 
     //컨텐츠

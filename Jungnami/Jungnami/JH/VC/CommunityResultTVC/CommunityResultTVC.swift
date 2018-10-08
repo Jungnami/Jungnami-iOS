@@ -161,7 +161,7 @@ extension CommunityResultTVC {
         if sender.isLike! == 0 {
             likeAction(url: UrlPath.LikeBoard.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            dislikeAction(url: UrlPath.DislikeBoard.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.LikeBoard.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }

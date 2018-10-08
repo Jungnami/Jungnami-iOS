@@ -10,13 +10,6 @@ import Foundation
 
 struct PointVO: Codable {
     let message: String
-    let data: PointVOData?
+    let data: Int?
 }
 
-struct PointVOData: Codable {
-    let votingCnt: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case votingCnt = "voting_cnt"
-    }
-}
