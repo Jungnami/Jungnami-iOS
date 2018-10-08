@@ -16,7 +16,7 @@ class MainLikeTVC: UITableViewController, APIService {
     var voteDelegate : VoteDelegate?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         self.tableView.setContentOffset(.zero, animated: true)
+        self.tableView.setContentOffset(.zero, animated: true)
         
     }
     
@@ -71,8 +71,8 @@ extension MainLikeTVC {
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier) as! MainTVCell
-         
-                cell.configure(viewType : .like, index: indexPath.row, data: legislatorLikeData[indexPath.row])
+            
+            cell.configure(viewType : .like, index: indexPath.row, data: legislatorLikeData[indexPath.row])
             
             cell.voteBtn.tag = legislatorLikeData[indexPath.row].lID
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
@@ -115,7 +115,7 @@ extension MainLikeTVC {
     @objc func startReloadTableView(_ sender: UIRefreshControl){
         legislatorLikeData = []
         let itemCount = legislatorLikeData.count
-       legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
+        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
         self.tableView.reloadData()
         sender.endRefreshing()
     }
@@ -183,12 +183,12 @@ extension MainLikeTVC{
         })
     } //getMyPoint
     
-   
+    
     
     /*func temp(){
-        let itemCount = legislatorLikeData.count
-        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
-    }*/
+     let itemCount = legislatorLikeData.count
+     legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
+     }*/
     
     
     //내 포인트 보고 '확인'했을때 통신
@@ -197,8 +197,8 @@ extension MainLikeTVC{
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
-               self.voteDelegate?.myVoteDelegate(isLike: 1)
-               //self.temp()
+                self.voteDelegate?.myVoteDelegate(isLike: 1)
+                //self.temp()
                 break
             case .noPoint :
                 self.simpleAlert(title: "오류", message: "포인트가 부족합니다")

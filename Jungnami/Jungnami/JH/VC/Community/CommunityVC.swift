@@ -67,10 +67,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
 
         }
     }
-    
-    
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         searchTxtfield.text = ""
         //searchTxtfield.resignFirstResponder()
@@ -82,9 +79,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         } else {
             login = true
         }
-        //통신
-        communityInit(url : UrlPath.BoardList.getURL())
-        
+    
         communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC
     }
     
@@ -106,16 +101,16 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
             make.top.equalTo(separateView.snp.top)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             alarmLbl.adjustsFontSizeToFitWidth = true
-           
-            
         }
+        
+        //통신
+        let itemCount = communityData.count.description
+        communityInit(url : UrlPath.BoardList.getURL(itemCount))
+        
         //----------------------------------------------------
         //refreshControl
         self.communityTableView.refreshControl = UIRefreshControl()
-        self.communityTableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
-        
-        
-        
+        self.communityTableView.refreshControl?.addTarget(self, action: #selector(self.startReloadTableView(_:)), for: UIControlEvents.valueChanged)
     } //viewDidLoad
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -143,7 +138,6 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            
             if !login {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionLoginTVCell.reuseIdentifier) as! CommunityFirstSectionLoginTVCell
                 cell.nextBtn.addTarget(self, action: #selector(toLogin(_:)), for: .touchUpInside)
@@ -205,7 +199,17 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-    
+ 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let section = indexPath.section
+        if section == 1 {
+            let lastItemIdx = communityData.count-1
+            let itemIdx = communityData[lastItemIdx].boardid.description
+            if indexPath.row == lastItemIdx {
+                communityInit(url : UrlPath.BoardList.getURL(itemIdx))
+            }
+        }
+    }
 }
 
 //셀들에 관한 액션 -> 글쓰기/로그인/스크랩
@@ -342,9 +346,12 @@ extension CommunityVC{
 
 //refreshControl
 extension CommunityVC{
-    
+    //TODO: - 여기 안먹음
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        communityInit(url : UrlPath.BoardList.getURL())
+        print("reload")
+        communityData = []
+        let itemCount = communityData.count.description
+        communityInit(url : UrlPath.BoardList.getURL(itemCount))
         sender.endRefreshing()
     }
 }
@@ -442,8 +449,10 @@ extension CommunityVC {
             switch result {
             case .networkSuccess(let communityData):
                 let communityContent = communityData as! CommunityVOData
-                self.communityData = communityContent.content
-                self.communityTableView.reloadData()
+                if communityContent.content.count > 0 {
+                    self.communityData.append(contentsOf: communityContent.content)
+                    self.communityTableView.reloadData()
+                }
                
                 self.userImgURL = communityContent.userImgURL
                 self.getAlarm(alarmCount: communityContent.alarmcnt)

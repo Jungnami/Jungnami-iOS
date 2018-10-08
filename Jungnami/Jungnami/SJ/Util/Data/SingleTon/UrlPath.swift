@@ -23,13 +23,13 @@ enum UrlPath : String {
     
     case SearchPartyLegislator = "/search/legislatorparty/"
     case SearchRegionLegislator = "/search/legislatorregion/"
-
     //커뮤니티
+    case BoardList = "/board/"
+ 
     case WriteComplete = "/board/postcomplete"
     case LikeBoard = "/board/likeboard"
     case DislikeBoard = "/delete/boardlike/"
     case SearchBoard = "/search/board/"
-    case BoardList = "/board/boardlist"
     case WriteBoard = "/board/post"
     //컨텐츠
     case SearchContent = "/search/contents/"
