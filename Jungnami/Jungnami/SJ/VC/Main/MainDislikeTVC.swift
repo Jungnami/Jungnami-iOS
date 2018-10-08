@@ -20,12 +20,13 @@ class MainDislikeTVC: UITableViewController, APIService {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.setContentOffset(.zero, animated: true)
-        legislatorLikeInit(url : UrlPath.LegislatorDislikeList.getURL())
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let itemCount = legislatorDislikeData.count
+        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
     }
@@ -77,6 +78,14 @@ extension MainDislikeTVC {
         }
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastItemIdx = legislatorDislikeData.count-1
+        let itemCount = legislatorDislikeData.count
+        if indexPath.row == lastItemIdx {
+            legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard = Storyboard.shared().mainStoryboard
         
@@ -94,8 +103,9 @@ extension MainDislikeTVC {
 extension MainDislikeTVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        legislatorLikeInit(url : UrlPath.LegislatorDislikeList.getURL())
-        
+        legislatorDislikeData = []
+        let itemCount = legislatorDislikeData.count
+        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
         self.tableView.reloadData()
         sender.endRefreshing()
     }
@@ -110,7 +120,8 @@ extension MainDislikeTVC {
             
             switch result {
             case .networkSuccess(let legislatorData):
-                self.legislatorDislikeData = legislatorData as! [LegislatorLikeVOData]
+                let legislatorData = legislatorData as! [LegislatorLikeVOData]
+                self.legislatorDislikeData.append(contentsOf: legislatorData)
                 self.firstData = self.legislatorDislikeData[0]
                 self.secondData = self.legislatorDislikeData[1]
                 self.tableView.reloadData()
@@ -161,10 +172,11 @@ extension MainDislikeTVC {
         })
     } //getMyPoint
     
-    func temp(){
-        legislatorLikeInit(url :UrlPath.LegislatorDislikeList.getURL())
+   /* func temp(){
+     let itemCount = legislatorDislikeData.count
+     legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
     }
-    
+    */
     //내 포인트 보고 '확인'했을때 통신
     func voteOkAction(url : String, params : [String : Any]) {
         VoteService.shareInstance.vote(url: url, params : params, completion: { [weak self] (result) in
@@ -172,7 +184,7 @@ extension MainDislikeTVC {
             switch result {
             case .networkSuccess(_):
                self.voteDelegate?.myVoteDelegate(isLike: 0)
-               self.temp()
+               //self.temp()
                 break
             case .noPoint :
                 self.simpleAlert(title: "오류", message: "포인트가 부족합니다")
