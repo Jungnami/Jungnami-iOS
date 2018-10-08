@@ -16,15 +16,11 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
         storyCollectionView.delegate = self
         self.storyCollectionView.refreshControl = UIRefreshControl()
         self.storyCollectionView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
-        
-        contentStorydInit(url: UrlPath.StoryContent.getURL())
+        let itemCount = storyData?.count
+        contentStorydInit(url: UrlPath.Content.getURL("스토리/\(itemCount ?? 0)"))
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
+
     @IBOutlet weak var storyCollectionView: UICollectionView!
     
     var storyData: [RecommendVODataContent]?
@@ -78,6 +74,20 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
             return cell
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let section = indexPath.section
+        if section == 1 {
+            if let storyContents_ = storyData {
+                let lastItemIdx = storyContents_.count-1
+                let itemIdx = storyContents_[lastItemIdx].contentsid
+                if indexPath.row == lastItemIdx {
+                    contentStorydInit(url: UrlPath.Content.getURL("스토리/\(itemIdx)"))
+                }
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
@@ -134,7 +144,9 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
 extension ContentStoryVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-       contentStorydInit(url: UrlPath.StoryContent.getURL())
+        storyData = []
+        let itemCount = storyData?.count
+        contentStorydInit(url: UrlPath.Content.getURL("스토리/\(itemCount ?? 0)"))
         sender.endRefreshing()
     }
 }
@@ -149,9 +161,14 @@ extension ContentStoryVC {
             switch result {
             case .networkSuccess(let storyData):
                 let storyData = storyData as! RecommendVOData
-                self.storyData = storyData.content
+                if self.storyData == nil {
+                    self.storyData = []
+                }
+                if storyData.content.count > 0 {
+                    self.storyData?.append(contentsOf: storyData.content)
+                    self.storyCollectionView.reloadData()
+                }
                 self.alarmCount = storyData.alarmcnt // 알림 lbl
-                self.storyCollectionView.reloadData()
                 break
             case .nullValue :
                 self.simpleAlert(title: "오류", message: "값 없음")

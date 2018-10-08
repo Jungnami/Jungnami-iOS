@@ -14,6 +14,11 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     
     
     @IBAction func dismissBtn(_ sender: Any) {
+        contentTxtView.text = "생각을 공유해 보세요"
+        contentTxtView.textColor = UIColor.lightGray
+        doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
+        doneBtn.isUserInteractionEnabled = false
+        removeImgView()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -25,6 +30,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     var imgURL : String = ""
     var images : [String : Data]?
     var keyboardDismissGesture: UITapGestureRecognizer?
+    var delegate : TapDelegate?
     let imagePicker : UIImagePickerController = UIImagePickerController()
     lazy var deleteImgBtn : UIButton = {
         let button = UIButton()
@@ -50,7 +56,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
         }
     }
     
-    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +70,6 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
             self.profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         }
         profileImgView.makeImageRound()
-        contentTxtView.text = "생각을 공유해 보세요"
-        contentTxtView.textColor = UIColor.lightGray
     }
     
     @objc func clickGif(){
@@ -80,7 +84,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     
     @objc func doneOk(){
         //통신
-        writeContent(url : UrlPath.WriteComplete.getURL())
+        writeContent(url : UrlPath.Board.getURL())
     }
     
 }
@@ -316,6 +320,7 @@ extension CommunityWriteVC {
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
+                self.delegate?.myTableDelegate(index: -1)
                 self.dismiss(animated: true, completion: nil)
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "인터넷 연결상태를 확인해주세요")

@@ -125,7 +125,7 @@ extension CommunityResultTVC {
         let boardIdx = sender.tag
         
         simpleAlertwithHandler(title: "스크랩", message: "스크랩하시겠습니까?") { (_) in
-            self.scrapAction(url: UrlPath.WriteComplete.getURL(), boardIdx: boardIdx)
+            self.scrapAction(url: UrlPath.Board.getURL(), boardIdx: boardIdx)
         }
     }
     

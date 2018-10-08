@@ -24,18 +24,15 @@ enum UrlPath : String {
     case SearchPartyLegislator = "/search/legislatorparty/"
     case SearchRegionLegislator = "/search/legislatorregion/"
     //커뮤니티
-    case BoardList = "/board/"
+    case Board = "/board/"
     case WriteBoard = "/user/img"
     case LikeBoard = "/board/like/"
- 
-    case WriteComplete = "/board/postcomplete"
+    
     case SearchBoard = "/search/board/"
-
     //컨텐츠
+    case Content = "/contents/"
+   
     case SearchContent = "/search/contents/"
-    case RecommendContent = "/contents/recommend"
-    case TMIContent = "/contents/main/TMI"
-    case StoryContent = "/contents/main/스토리"
     case ContentDetail = "/contents/cardnews/"
     case LikeContent = "/contents/like"
     case DislikeContent = "/delete/contentslike/"
@@ -46,8 +43,7 @@ enum UrlPath : String {
     case ChangeCoin = "/user/addvote"
     case AlarmList = "/user/push"
     //댓글
-    case BoardCommentList = "/board/commentlist/"
-    case WriteBoardComment = "/board/makecomment"
+    case BoardCommentList = "/board/comment/"
     
     case LikeBoardComment = "/board/likecomment"
     case DislikeBoardCommnet = "/delete/boardcommentlike/"

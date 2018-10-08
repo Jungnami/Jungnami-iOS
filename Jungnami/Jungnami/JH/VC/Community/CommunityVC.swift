@@ -79,16 +79,20 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         } else {
             login = true
         }
-    
-        communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC
+        communityWriteVC?.delegate = self
         self.navigationController?.isNavigationBarHidden = true
         searchTxtfield.delegate = self
         communityTableView.dataSource = self
         communityTableView.delegate = self
+        
+        self.communityTableView.refreshControl = UIRefreshControl()
+        self.communityTableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         alarmLbl.sizeToFit()
         searchTxtfield.enablesReturnKeyAutomatically = false
         self.communityTableView.addSubview(blackView)
@@ -105,12 +109,8 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         
         //통신
         let itemCount = communityData.count.description
-        communityInit(url : UrlPath.BoardList.getURL(itemCount))
+        communityInit(url : UrlPath.Board.getURL(itemCount))
         
-        //----------------------------------------------------
-        //refreshControl
-        self.communityTableView.refreshControl = UIRefreshControl()
-        self.communityTableView.refreshControl?.addTarget(self, action: #selector(self.startReloadTableView(_:)), for: UIControlEvents.valueChanged)
     } //viewDidLoad
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -206,7 +206,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
             let lastItemIdx = communityData.count-1
             let itemIdx = communityData[lastItemIdx].boardid.description
             if indexPath.row == lastItemIdx {
-                communityInit(url : UrlPath.BoardList.getURL(itemIdx))
+                communityInit(url : UrlPath.Board.getURL(itemIdx))
             }
         }
     }
@@ -231,7 +231,7 @@ extension CommunityVC {
         let boardIdx = sender.tag
         
         simpleAlertwithHandler(title: "스크랩", message: "스크랩하시겠습니까?") { (_) in
-            self.scrapAction(url: UrlPath.WriteComplete.getURL(), boardIdx: boardIdx)
+            self.scrapAction(url: UrlPath.Board.getURL(), boardIdx: boardIdx)
         }
     }
     
@@ -351,8 +351,17 @@ extension CommunityVC{
         print("reload")
         communityData = []
         let itemCount = communityData.count.description
-        communityInit(url : UrlPath.BoardList.getURL(itemCount))
+        communityInit(url : UrlPath.Board.getURL(itemCount))
         sender.endRefreshing()
+    }
+}
+
+extension CommunityVC : TapDelegate {
+    //글쓰기에서 돌아왔을 때
+    func myTableDelegate(index: Int) {
+        communityData = []
+        let itemCount = communityData.count.description
+        communityInit(url : UrlPath.Board.getURL(itemCount))
     }
 }
 
@@ -453,7 +462,6 @@ extension CommunityVC {
                     self.communityData.append(contentsOf: communityContent.content)
                     self.communityTableView.reloadData()
                 }
-               
                 self.userImgURL = communityContent.userImgURL
                 self.getAlarm(alarmCount: communityContent.alarmcnt)
                 break

@@ -36,7 +36,7 @@ class BoardDetailViewController: UIViewController, APIService {
   
     
     @IBAction func writeCommentBtn(_ sender: Any) {
-       writeComment(url : UrlPath.WriteBoardComment.getURL())
+       writeComment(url : UrlPath.BoardCommentList.getURL())
         commentTxt.text = ""
     }
     
