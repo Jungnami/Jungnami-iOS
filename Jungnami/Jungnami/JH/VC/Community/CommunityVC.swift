@@ -478,8 +478,7 @@ extension CommunityVC {
             case .networkSuccess(let legislatorData):
                 let img = legislatorData as! CommunityWriteVOData
                 self.communityWriteVC?.imgURL = img.imgURL
-                
-                
+
                 self.toCommunityWriteVC()
                 break
             case .accessDenied :

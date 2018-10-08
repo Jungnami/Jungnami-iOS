@@ -25,12 +25,13 @@ enum UrlPath : String {
     case SearchRegionLegislator = "/search/legislatorregion/"
     //커뮤니티
     case BoardList = "/board/"
+    case WriteBoard = "/user/img"
  
     case WriteComplete = "/board/postcomplete"
     case LikeBoard = "/board/likeboard"
     case DislikeBoard = "/delete/boardlike/"
     case SearchBoard = "/search/board/"
-    case WriteBoard = "/board/post"
+
     //컨텐츠
     case SearchContent = "/search/contents/"
     case RecommendContent = "/contents/recommend"
