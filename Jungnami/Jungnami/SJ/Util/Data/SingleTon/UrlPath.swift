@@ -9,11 +9,10 @@ import Foundation
 
 enum UrlPath : String {
     //로그인
-    case KakaoLogin = "/user/kakaologin"
+    case KakaoLogin = "/user/login/kakao"
     //국회의원
     case SearchLegislator = "/search/legislator/"
-    case LegislatorLikeList = "/ranking/list/1"
-    case LegislatorDislikeList = "/ranking/list/0"
+    case LegislatorList = "/ranking/all/"
     case VoteLegislator = "/legislator/voting"
     case SearchPartyLegislator = "/search/legislatorparty/"
     case SearchRegionLegislator = "/search/legislatorregion/"

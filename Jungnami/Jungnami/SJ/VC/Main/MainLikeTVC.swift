@@ -17,14 +17,13 @@ class MainLikeTVC: UITableViewController, APIService {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
          self.tableView.setContentOffset(.zero, animated: true)
-        legislatorLikeInit(url : UrlPath.LegislatorLikeList.getURL())
-    
-       
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let itemCount = legislatorLikeData.count
+        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         
@@ -83,6 +82,14 @@ extension MainLikeTVC {
         }
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastItemIdx = legislatorLikeData.count-1
+        let itemCount = legislatorLikeData.count
+        if indexPath.row == lastItemIdx {
+            legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let mainStoryboard = Storyboard.shared().mainStoryboard
@@ -106,8 +113,9 @@ extension MainLikeTVC {
 extension MainLikeTVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        legislatorLikeInit(url : UrlPath.LegislatorLikeList.getURL())
-        
+        legislatorLikeData = []
+        let itemCount = legislatorLikeData.count
+       legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
         self.tableView.reloadData()
         sender.endRefreshing()
     }
@@ -122,7 +130,8 @@ extension MainLikeTVC{
             
             switch result {
             case .networkSuccess(let legislatorData):
-                self.legislatorLikeData = legislatorData as! [LegislatorLikeVOData]
+                let legislatorData = legislatorData as! [LegislatorLikeVOData]
+                self.legislatorLikeData.append(contentsOf: legislatorData)
                 self.firstData = self.legislatorLikeData[0]
                 self.secondData = self.legislatorLikeData[1]
                 self.tableView.reloadData()
@@ -174,9 +183,10 @@ extension MainLikeTVC{
     
    
     
-    func temp(){
-        legislatorLikeInit(url : UrlPath.LegislatorLikeList.getURL())
-    }
+    /*func temp(){
+        let itemCount = legislatorLikeData.count
+        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
+    }*/
     
     
     //내 포인트 보고 '확인'했을때 통신
@@ -186,7 +196,7 @@ extension MainLikeTVC{
             switch result {
             case .networkSuccess(_):
                self.voteDelegate?.myVoteDelegate(isLike: 1)
-               self.temp()
+               //self.temp()
                 break
             case .noPoint :
                 self.simpleAlert(title: "오류", message: "포인트가 부족합니다")
