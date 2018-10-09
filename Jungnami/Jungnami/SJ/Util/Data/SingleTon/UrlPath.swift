@@ -10,6 +10,7 @@ import Foundation
 enum UrlPath : String {
     //로그인
     case KakaoLogin = "/user/login/kakao"
+    
     //국회의원
     case LegislatorList = "/ranking/all/"
     case GetPointToVote = "/user/vote"
@@ -19,53 +20,42 @@ enum UrlPath : String {
     case SupportLegislator = "/legislator/support"
     case PartyLegislatorList = "/ranking/party/"
     case RegionLegislatorList = "/ranking/city/"
-    
-    case SearchLegislator = "/search/legislator/"
-    case SearchPartyLegislator = "/search/legislatorparty/"
-    case SearchRegionLegislator = "/search/legislatorregion/"
+    case SearchLegislator = "/ranking/all/search/"
+   
     //커뮤니티
     case Board = "/board/"
     case WriteBoard = "/user/img"
     case LikeBoard = "/board/like/"
+    case SearchBoard = "/board/search/"
     
-    case SearchBoard = "/search/board/"
     //컨텐츠
     case Content = "/contents/"
-   
-    case SearchContent = "/search/contents/"
-    case ContentDetail = "/contents/cardnews/"
-    case LikeContent = "/contents/like"
-    case DislikeContent = "/delete/contentslike/"
-    case ScrapContent = "/contents/scrap"
-    case UnScrapContent = "/delete/scrap/"
+    case ContentDetail = "/contents/detail/"
+    case SearchContent = "/contents/search/"
+    case LikeContent = "/contents/like/"
+    case ScrapContent = "/user/scrap/"
+    
     //마이페이지
     case Mypage = "/user/mypage/"
-    case ChangeCoin = "/user/addvote"
     case AlarmList = "/user/push"
+    
+    case ChangeCoin = "/user/addvote"
+    
     //댓글
     case BoardCommentList = "/board/comment/"
+    case ContentCommentList = "/contents/comment/"
+    case WriteContentComment = "/contents/comment"
+    case LikeContentComment = "/contents/comment/like/"
     
+    case DeleteBoardComment = "/delete/boardcomment/"
     case LikeBoardComment = "/board/likecomment"
     case DislikeBoardCommnet = "/delete/boardcommentlike/"
-    case ContentCommentList = "/contents/commentlist/"
-    case WriteContentComment = "/contents/makecomment"
-    case DeleteContentComment = "/delete/contentscomment/"
-    case LikeContentComment = "/contents/likecomment"
-    case DislikeContentCommnet = "/delete/contentscommentlike/"
+    
     //팔로우/팔로워
-    case FollowerList = "/user/followerlist/"
-    case FollowingList = "/user/followinglist/"
+    case User = "/user/"
     case Follow = "/user/follow"
-    case UnFollow = "/user/unfollow/"
-    case SearchFollower = "/search/follower/"
-    case SearchFollowing = "/search/following/"
-    
-
-    case DeleteBoardComment = "/delete/boardcomment/"
-    
    
-    
     func getURL(_ parameter : String? = nil) -> String{
-        return "https://jungnami.ml\(self.rawValue)\(parameter ?? "")"
+        return "https://jungnami.tk\(self.rawValue)\(parameter ?? "")"
     }
 }

@@ -19,9 +19,13 @@ struct FollowerListService : GettableService {
                 switch networkResult.resCode {
                 //여기
                 case 200 :
-                    completion(.networkSuccess(networkResult.resResult.data))
-                case 300 :
-                    completion(.nullValue)
+                    if networkResult.resResult.message == "No data" {
+                        completion(.nullValue)
+                    } else {
+                      completion(.networkSuccess(networkResult.resResult.data))
+                    }
+                case 401 :
+                    completion(.accessDenied)
                 case 500 :
                     completion(.serverErr)
                 default :

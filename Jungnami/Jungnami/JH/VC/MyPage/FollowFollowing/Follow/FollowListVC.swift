@@ -29,7 +29,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     //통신
     var followListData : [FollowListVOData]? {
         didSet {
-            if let _ = followerListData {
+            if let _ = followListData {
                 self.followTableView.reloadData()
             }
         }
@@ -56,9 +56,9 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func getList(){
         if let selectedUserId_ = selectedUserId, let entryPoint_ = entryPoint {
             if entryPoint_ == 0 {
-                followingListInit(url: UrlPath.FollowingList.getURL(selectedUserId_))
+                followingListInit(url: UrlPath.User.getURL("\(selectedUserId_)/followinglist"))
             } else {
-                followerListInit(url: UrlPath.FollowerList.getURL(selectedUserId_))
+                followerListInit(url: UrlPath.User.getURL("\(selectedUserId_)/followerlist"))
             }
             
         }
@@ -152,7 +152,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         if sender.isFollow! == "팔로우" {
             likeAction(url: UrlPath.Follow.getURL(), userIdx : sender.userIdx!,  cell : cell, sender : sender )
         } else {
-            dislikeAction(url: UrlPath.UnFollow.getURL(sender.userIdx!), cell : cell, sender : sender )
+            dislikeAction(url: UrlPath.User.getURL("\(sender.userIdx!)/unfollow"), cell : cell, sender : sender )
         }
         
     }
@@ -169,9 +169,9 @@ extension FollowListVC : UITextFieldDelegate {
         
         if textField.text == "" {
             if entryPoint_ == 0 {
-                self.followingListInit(url: UrlPath.FollowingList.getURL(selectedUserId_))
+                self.followingListInit(url: UrlPath.User.getURL("\(selectedUserId_)/followinglist"))
             } else {
-                self.followerListInit(url: UrlPath.FollowerList.getURL(selectedUserId_))
+                self.followerListInit(url: UrlPath.User.getURL("\(selectedUserId_)/followerlist"))
             }
             return
         }
@@ -180,12 +180,12 @@ extension FollowListVC : UITextFieldDelegate {
         if let searchString_ = textField.text {
             if entryPoint_ == 0 {
                 //팔로잉 검색
-            
-                self.followingListInit(url: UrlPath.SearchFollowing.getURL("\(selectedUserId_)/\(searchString_)"))
+                ///user/:f_id/followinglist/search/:keyword
+                self.followingListInit(url: UrlPath.User.getURL("\(selectedUserId_)/followinglist/search/\(searchString_)"))
             } else {
                 //팔로워 검색
-                
-                self.followerListInit(url: UrlPath.SearchFollower.getURL("\(selectedUserId_)/\(searchString_)"))
+                ///user/:f_id/followerlist/search/:keyword
+                self.followerListInit(url: UrlPath.User.getURL("\(selectedUserId_)/followerlist/search/\(searchString_)"))
             }
         }
       
@@ -256,8 +256,6 @@ extension FollowListVC {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isFollow = "팔로우"
-                
-                
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
@@ -291,7 +289,8 @@ extension FollowListVC {
                 print("success")
                 break
             case .nullValue :
-                self.simpleAlert(title: "오류", message: "값 없음")
+                self.followListData = []
+                //self.simpleAlert(title: "오류", message: "값 없음")
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
             default :
@@ -313,6 +312,7 @@ extension FollowListVC {
                 self.followerListData = followListData_
                 break
             case .nullValue :
+                self.followerListData = []
                 break
                 //self.simpleAlert(title: "오류", message: "값 없음")
             case .networkFail :

@@ -189,7 +189,7 @@ extension ContentDetailVC {
         if isLike == 0 {
             likeAction(url: UrlPath.LikeContent.getURL())
         } else {
-            dislikeAction(url: UrlPath.DislikeContent.getURL(contentIdx!.description))
+            dislikeAction(url: UrlPath.LikeContent.getURL(contentIdx!.description))
         }
     }
     
@@ -197,7 +197,7 @@ extension ContentDetailVC {
         if isScrap == 0 {
             scrapAction(url: UrlPath.ScrapContent.getURL())
         } else {
-            scrapCancelAction(url: UrlPath.UnScrapContent.getURL(contentIdx!.description))
+            scrapCancelAction(url: UrlPath.ScrapContent.getURL(contentIdx!.description))
         }
     }
 }

@@ -370,8 +370,14 @@ extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate2 {
     func myTableDelegate(sender : UITapGestureRecognizer) {
         let touch = sender.location(in: communityTableView)
         if let indexPath = communityTableView.indexPathForRow(at: touch){
-            let cell = self.communityTableView.cellForRow(at: indexPath) as! CommunityTVCell
-            let userId = cell.profileImgView.userId
+            var userId = ""
+            if let cell = self.communityTableView.cellForRow(at: indexPath) as? CommunityTVCell {
+                userId = cell.profileImgView.userId
+            }
+            if let cell = self.communityTableView.cellForRow(at: indexPath) as? CommunityNoImgTVCell {
+                userId = cell.profileImgView.userId
+            }
+            //let userId = cell.profileImgView.userId
             let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
             if (myId == userId ){
                 //내걸로

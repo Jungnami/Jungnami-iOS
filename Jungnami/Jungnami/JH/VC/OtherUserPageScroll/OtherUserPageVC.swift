@@ -160,7 +160,7 @@ extension OtherUserPageVC {
         if sender.isFollow! == "팔로우" {
             likeAction(url: UrlPath.Follow.getURL(), userIdx : "\(selectedUserId!)", sender : sender )
         } else {
-            dislikeAction(url:  UrlPath.UnFollow.getURL(selectedUserId!), sender : sender )
+            dislikeAction(url:  UrlPath.User.getURL("\(selectedUserId!)/unfollow"), sender : sender )
         }
         
     }

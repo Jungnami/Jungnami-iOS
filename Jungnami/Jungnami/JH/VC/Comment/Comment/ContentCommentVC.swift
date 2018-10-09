@@ -93,7 +93,7 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
             //삭제 url 넣기
             
             
-            self.deleteComment(url:  UrlPath.DeleteContentComment.getURL(commentIdx.description))
+            self.deleteComment(url:  UrlPath.ContentCommentList.getURL(commentIdx.description))
            
             //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
         }
@@ -114,7 +114,7 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
             likeAction(url: UrlPath.LikeContentComment.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
             
-            dislikeAction(url: UrlPath.DislikeContentCommnet.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.LikeContentComment.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }
