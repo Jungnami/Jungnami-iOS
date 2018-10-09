@@ -12,7 +12,7 @@ class MyPageVC: UIViewController, APIService {
     
    
     let myScrapVC = MyPageScrapVC()
-     let myFeedVC = MyPageFeedVC()
+    let myFeedVC = MyPageFeedVC()
     var selectedUserId : String?
     
     var myBoardData : [MyPageVODataBoard]  = [] {

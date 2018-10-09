@@ -32,7 +32,7 @@ class MainDislikeTVC: UITableViewController, APIService {
     }
     
     @objc func vote(_ sender : UIButton){
-        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : sender.tag)
+        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : sender.tag)
     }
     
     
@@ -121,10 +121,12 @@ extension MainDislikeTVC {
             switch result {
             case .networkSuccess(let legislatorData):
                 let legislatorData = legislatorData as! [LegislatorLikeVOData]
-                self.legislatorDislikeData.append(contentsOf: legislatorData)
-                self.firstData = self.legislatorDislikeData[0]
-                self.secondData = self.legislatorDislikeData[1]
-                self.tableView.reloadData()
+                if legislatorData.count > 0 {
+                    self.legislatorDislikeData.append(contentsOf: legislatorData)
+                    self.firstData = self.legislatorDislikeData[0]
+                    self.secondData = self.legislatorDislikeData[1]
+                    self.tableView.reloadData()
+                }
                 break
                 
             case .networkFail :
@@ -144,8 +146,7 @@ extension MainDislikeTVC {
             
             switch result {
             case .networkSuccess(let pointData):
-                let data = pointData as! PointVOData
-                let myPoint = data.votingCnt
+                let myPoint = pointData as! Int
                 self.simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권: \(myPoint)개") { (_) in
                     //확인했을때 통신
                     let params : [String : Any] = [

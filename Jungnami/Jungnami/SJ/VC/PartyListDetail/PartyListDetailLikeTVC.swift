@@ -19,19 +19,19 @@ class PartyListDetailLikeTVC: UITableViewController,APIService {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.setContentOffset(.zero, animated: true)
-        if let selectedParty_ = selectedParty {
-            
-            legislatorLikeInit(url: UrlPath.PartyLegislatorLikeList.getURL(selectedParty_.rawValue))
-        }
-        if let selectedRegion_ = selectedRegion {
-       
-            legislatorLikeInit(url:  UrlPath.RegionLegislatorLikeList.getURL(selectedRegion_.rawValue))
-        }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let itemCount = legislatorLikeData.count
+        if let selectedParty_ = selectedParty {
+            legislatorLikeInit(url:
+                UrlPath.PartyLegislatorList.getURL("\(selectedParty_.rawValue)/1/\(itemCount)"))
+        }
+        if let selectedRegion_ = selectedRegion {
+          legislatorLikeInit(url:  UrlPath.RegionLegislatorList.getURL("\(selectedRegion_.rawValue)/1/\(itemCount)"))
+        }
     }
 }
 
@@ -47,6 +47,23 @@ extension PartyListDetailLikeTVC {
             return 1
         } else {
             return legislatorLikeData.count
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let section = indexPath.section
+        if section == 1 {
+            let lastItemIdx = legislatorLikeData.count-1
+            let itemCount = legislatorLikeData.count
+            if indexPath.row == lastItemIdx {
+                if let selectedParty_ = selectedParty {
+                    legislatorLikeInit(url:
+                        UrlPath.PartyLegislatorList.getURL("\(selectedParty_.rawValue)/1/\(itemCount)"))
+                }
+                if let selectedRegion_ = selectedRegion {
+                    legislatorLikeInit(url:  UrlPath.RegionLegislatorList.getURL("\(selectedRegion_.rawValue)/1/\(itemCount)"))
+                }
+            }
         }
     }
     
@@ -81,18 +98,18 @@ extension PartyListDetailLikeTVC {
         if let legislatorDetailVC = self.storyboard?.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
             legislatorDetailVC.selectedLegislatorIdx = self.legislatorLikeData[indexPath.row].id
-              legislatorDetailVC.selectedLegislatorName = self.legislatorLikeData[indexPath.row].name
+            legislatorDetailVC.selectedLegislatorName = self.legislatorLikeData[indexPath.row].name
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
         
     }
-
+    
 }
 
 //셀에 대한 행동 - 투표
 extension PartyListDetailLikeTVC {
     @objc func vote(_ sender : UIButton){
-        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : sender.tag)
+        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : sender.tag)
     }
 }
 
@@ -105,8 +122,11 @@ extension PartyListDetailLikeTVC {
             
             switch result {
             case .networkSuccess(let legislatorData):
-                self.legislatorLikeData = legislatorData as! [PartyLegistorLikeVOData]
-                self.tableView.reloadData()
+                let legislatorData = legislatorData as! [PartyLegistorLikeVOData]
+                if legislatorData.count > 0 {
+                    self.legislatorLikeData.append(contentsOf: legislatorData)
+                    self.tableView.reloadData()
+                }
                 break
                 
             case .networkFail :
@@ -126,8 +146,7 @@ extension PartyListDetailLikeTVC {
             
             switch result {
             case .networkSuccess(let pointData):
-                let data = pointData as! PointVOData
-                let myPoint = data.votingCnt
+                let myPoint = pointData as! Int
                 self.simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권: \(myPoint)개") { (_) in
                     //확인했을때 통신
                     let params : [String : Any] = [

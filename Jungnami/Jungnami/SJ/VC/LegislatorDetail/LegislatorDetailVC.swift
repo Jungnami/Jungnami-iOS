@@ -134,16 +134,16 @@ extension LegislatorDetailVC {
 extension LegislatorDetailVC{
     //좋아요
     @objc func like(_sender: UIButton){
-        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : selectedLegislatorIdx, isLike : 1)
+        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : selectedLegislatorIdx, isLike : 1)
     }
     
     //싫어요
     @objc func dislike(_sender: UIButton){
-        getMyPoint(url : UrlPath.VoteLegislator.getURL(), index : selectedLegislatorIdx, isLike : 0)
+        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : selectedLegislatorIdx, isLike : 0)
     }
     //후원하기
     @objc func support(_sender: UIButton){
-        getMyCoin(url: UrlPath.SupportLegislator.getURL())
+        getMyCoin(url: UrlPath.GetCoin.getURL())
     }
 
 }
@@ -378,8 +378,7 @@ extension LegislatorDetailVC {
             
             switch result {
             case .networkSuccess(let pointData):
-                let data = pointData as! PointVOData
-                let myPoint = data.votingCnt
+                let myPoint = pointData as! Int
                 self.simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권: \(myPoint)개") { (_) in
                     //확인했을때 통신
                     let params : [String : Any] = [

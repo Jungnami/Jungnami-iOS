@@ -20,10 +20,8 @@ struct GetPointService: GettableService {
             switch result {
             case .success(let networkResult):
                 switch networkResult.resCode{
-                    
-                case 200 : completion(.networkSuccess(networkResult.resResult.data))
+                case 200 : completion(.networkSuccess(networkResult.resResult.data ?? 0))
                 case 401 :
-                    print("votingvoting")
                     completion(.accessDenied)
                 case 500 :
                     completion(.serverErr)

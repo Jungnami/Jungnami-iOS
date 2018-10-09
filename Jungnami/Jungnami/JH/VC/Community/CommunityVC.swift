@@ -67,10 +67,7 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
 
         }
     }
-    
-    
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         searchTxtfield.text = ""
         //searchTxtfield.resignFirstResponder()
@@ -82,18 +79,20 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
         } else {
             login = true
         }
-        //통신
-        communityInit(url : UrlPath.BoardList.getURL())
         
-        communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        communityWriteVC = self.storyboard?.instantiateViewController(withIdentifier:CommunityWriteVC.reuseIdentifier) as? CommunityWriteVC
+        communityWriteVC?.delegate = self
         self.navigationController?.isNavigationBarHidden = true
         searchTxtfield.delegate = self
         communityTableView.dataSource = self
         communityTableView.delegate = self
+        
+        self.communityTableView.refreshControl = UIRefreshControl()
+        self.communityTableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         alarmLbl.sizeToFit()
         searchTxtfield.enablesReturnKeyAutomatically = false
         self.communityTableView.addSubview(blackView)
@@ -106,15 +105,11 @@ class CommunityVC: UIViewController, UISearchBarDelegate, APIService {
             make.top.equalTo(separateView.snp.top)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             alarmLbl.adjustsFontSizeToFitWidth = true
-           
-            
         }
-        //----------------------------------------------------
-        //refreshControl
-        self.communityTableView.refreshControl = UIRefreshControl()
-        self.communityTableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         
-        
+        //통신
+        let itemCount = communityData.count.description
+        communityInit(url : UrlPath.Board.getURL(itemCount))
         
     } //viewDidLoad
     
@@ -143,7 +138,6 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            
             if !login {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionLoginTVCell.reuseIdentifier) as! CommunityFirstSectionLoginTVCell
                 cell.nextBtn.addTarget(self, action: #selector(toLogin(_:)), for: .touchUpInside)
@@ -205,7 +199,17 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-    
+ 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let section = indexPath.section
+        if section == 1 {
+            let lastItemIdx = communityData.count-1
+            let itemIdx = communityData[lastItemIdx].boardid.description
+            if indexPath.row == lastItemIdx {
+                communityInit(url : UrlPath.Board.getURL(itemIdx))
+            }
+        }
+    }
 }
 
 //셀들에 관한 액션 -> 글쓰기/로그인/스크랩
@@ -227,7 +231,7 @@ extension CommunityVC {
         let boardIdx = sender.tag
         
         simpleAlertwithHandler(title: "스크랩", message: "스크랩하시겠습니까?") { (_) in
-            self.scrapAction(url: UrlPath.WriteComplete.getURL(), boardIdx: boardIdx)
+            self.scrapAction(url: UrlPath.Board.getURL(), boardIdx: boardIdx)
         }
     }
     
@@ -265,7 +269,7 @@ extension CommunityVC {
         if sender.isLike! == 0 {
             likeAction(url: UrlPath.LikeBoard.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell!, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            dislikeAction(url: UrlPath.DislikeBoard.getURL(sender.boardIdx!.description), cell : cell!, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.LikeBoard.getURL(sender.boardIdx!.description), cell : cell!, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }
@@ -342,10 +346,22 @@ extension CommunityVC{
 
 //refreshControl
 extension CommunityVC{
-    
+    //TODO: - 여기 안먹음
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        communityInit(url : UrlPath.BoardList.getURL())
+        print("reload")
+        communityData = []
+        let itemCount = communityData.count.description
+        communityInit(url : UrlPath.Board.getURL(itemCount))
         sender.endRefreshing()
+    }
+}
+
+extension CommunityVC : TapDelegate {
+    //글쓰기에서 돌아왔을 때
+    func myTableDelegate(index: Int) {
+        communityData = []
+        let itemCount = communityData.count.description
+        communityInit(url : UrlPath.Board.getURL(itemCount))
     }
 }
 
@@ -442,9 +458,10 @@ extension CommunityVC {
             switch result {
             case .networkSuccess(let communityData):
                 let communityContent = communityData as! CommunityVOData
-                self.communityData = communityContent.content
-                self.communityTableView.reloadData()
-               
+                if communityContent.content.count > 0 {
+                    self.communityData.append(contentsOf: communityContent.content)
+                    self.communityTableView.reloadData()
+                }
                 self.userImgURL = communityContent.userImgURL
                 self.getAlarm(alarmCount: communityContent.alarmcnt)
                 break
@@ -467,10 +484,8 @@ extension CommunityVC {
             
             switch result {
             case .networkSuccess(let legislatorData):
-                let img = legislatorData as! CommunityWriteVOData
-                self.communityWriteVC?.imgURL = img.imgURL
-                
-                
+                let img = legislatorData as! String
+                self.communityWriteVC?.imgURL = img
                 self.toCommunityWriteVC()
                 break
             case .accessDenied :

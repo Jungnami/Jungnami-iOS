@@ -14,18 +14,15 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         super.viewWillDisappear(animated)
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        contentTmidInit(url: UrlPath.TMIContent.getURL())
-        
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tmiCollectionView.refreshControl = UIRefreshControl()
         self.tmiCollectionView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         tmiCollectionView.delegate = self
         tmiCollectionView.dataSource = self
-        
+        let itemCount = tmiContents?.count
+        contentTmidInit(url: UrlPath.Content.getURL("TMI/\(itemCount ?? 0)"))
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,7 +31,7 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
     }
     
     var tmiContents: [RecommendVODataContent]?
-     var alarmDelegate  : AlarmProtocol?
+    var alarmDelegate  : AlarmProtocol?
     var alarmCount : Int? {
         didSet {
             if let alarmCount_ = alarmCount {
@@ -82,61 +79,75 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
             return cell
         }
     }
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            if indexPath.section == 0 {
-                
-                let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
-                //pass data
-                if let contentData_ = tmiContents {
-                    detailVC.contentIdx = contentData_[indexPath.row].contentsid
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let section = indexPath.section
+        if section == 1 {
+            if let tmiContents_ = tmiContents {
+                let lastItemIdx = tmiContents_.count-1
+                let itemIdx = tmiContents_[lastItemIdx].contentsid
+                if indexPath.row == lastItemIdx {
+                    contentTmidInit(url: UrlPath.Content.getURL("TMI/\(itemIdx)"))
                 }
-                //화면전환
-                self.navigationController?.pushViewController(detailVC, animated: true)
-            }else {
-                let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
-                //passData
-                if let contentData_ = tmiContents {
-                    detailVC.contentIdx = contentData_[indexPath.row].contentsid
-                }
-                //화면전환
-            self.navigationController?.pushViewController(detailVC, animated: true)
-
             }
         }
-        
-        //--------collectionView Layout
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            if indexPath.section == 0 {
-                return CGSize(width: self.view.frame.width, height: 257)
-            }else {
-                return CGSize(width: 170, height: 187)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            
+            let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+            //pass data
+            if let contentData_ = tmiContents {
+                detailVC.contentIdx = contentData_[indexPath.row].contentsid
             }
+            //화면전환
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }else {
+            let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
+            //passData
+            if let contentData_ = tmiContents {
+                detailVC.contentIdx = contentData_[indexPath.row].contentsid
+            }
+            //화면전환
+            self.navigationController?.pushViewController(detailVC, animated: true)
             
         }
-        //세로간격
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            if section == 0 {
-                return 0
-            }else{
-                return 6
-            }
+    }
+    
+    //--------collectionView Layout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            return CGSize(width: self.view.frame.width, height: 257)
+        }else {
+            return CGSize(width: 170, height: 187)
         }
-        //가로간격
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-            if section == 0 {
-                return 0
-            }else {
-                return 7.5
-            }
+        
+    }
+    //세로간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }else{
+            return 6
         }
-        //section과 collectionView사이 간격 - (top, left, bottom, right)
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            if section == 0{
-                return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            }else {
-                return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-            }
+    }
+    //가로간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }else {
+            return 7.5
         }
+    }
+    //section과 collectionView사이 간격 - (top, left, bottom, right)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if section == 0{
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }else {
+            return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        }
+    }
     
     
 }
@@ -145,8 +156,9 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
 extension ContentTmiVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        contentTmidInit(url: UrlPath.TMIContent.getURL())
-    
+        tmiContents = []
+        let itemCount = tmiContents?.count
+        contentTmidInit(url: UrlPath.Content.getURL("TMI/\(itemCount ?? 0)"))
         sender.endRefreshing()
     }
 }
@@ -162,9 +174,14 @@ extension ContentTmiVC {
             switch result {
             case .networkSuccess(let tmiData):
                 let recommendData = tmiData as! RecommendVOData
-                self.tmiContents = recommendData.content
+                if self.tmiContents == nil {
+                    self.tmiContents = []
+                }
+                if recommendData.content.count > 0 {
+                    self.tmiContents?.append(contentsOf: recommendData.content)
+                    self.tmiCollectionView.reloadData()
+                }
                 self.alarmCount = recommendData.alarmcnt // 알림 lbl
-                self.tmiCollectionView.reloadData()
                 break
             case .nullValue :
                 self.simpleAlert(title: "오류", message: "값 없음")

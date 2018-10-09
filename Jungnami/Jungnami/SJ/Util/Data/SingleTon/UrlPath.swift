@@ -11,29 +11,28 @@ enum UrlPath : String {
     //로그인
     case KakaoLogin = "/user/login/kakao"
     //국회의원
-    case SearchLegislator = "/search/legislator/"
     case LegislatorList = "/ranking/all/"
-    case VoteLegislator = "/legislator/voting"
+    case GetPointToVote = "/user/vote"
+    case VoteLegislator = "/legislator/vote"
+    case LegislatorDetail = "/legislator/page/"
+    case GetCoin = "/user/point"
+    case SupportLegislator = "/legislator/support"
+    case PartyLegislatorList = "/ranking/party/"
+    case RegionLegislatorList = "/ranking/city/"
+    
+    case SearchLegislator = "/search/legislator/"
     case SearchPartyLegislator = "/search/legislatorparty/"
     case SearchRegionLegislator = "/search/legislatorregion/"
-    case PartyLegislatorLikeList = "/legislatorlist/groupbyparty/1/"
-    case PartyLegislatorDislikeList = "/legislatorlist/groupbyparty/0/"
-    case RegionLegislatorLikeList = "/legislatorlist/groupbyregion/1/"
-    case RegionLegislatorDislikeList = "/legislatorlist/groupbyregion/0/"
-    case LegislatorDetail = "/legislator/page/"
-    case SupportLegislator = "/legislator/support"
     //커뮤니티
-    case WriteComplete = "/board/postcomplete"
-    case LikeBoard = "/board/likeboard"
-    case DislikeBoard = "/delete/boardlike/"
+    case Board = "/board/"
+    case WriteBoard = "/user/img"
+    case LikeBoard = "/board/like/"
+    
     case SearchBoard = "/search/board/"
-    case BoardList = "/board/boardlist"
-    case WriteBoard = "/board/post"
     //컨텐츠
+    case Content = "/contents/"
+   
     case SearchContent = "/search/contents/"
-    case RecommendContent = "/contents/recommend"
-    case TMIContent = "/contents/main/TMI"
-    case StoryContent = "/contents/main/스토리"
     case ContentDetail = "/contents/cardnews/"
     case LikeContent = "/contents/like"
     case DislikeContent = "/delete/contentslike/"
@@ -44,8 +43,7 @@ enum UrlPath : String {
     case ChangeCoin = "/user/addvote"
     case AlarmList = "/user/push"
     //댓글
-    case BoardCommentList = "/board/commentlist/"
-    case WriteBoardComment = "/board/makecomment"
+    case BoardCommentList = "/board/comment/"
     
     case LikeBoardComment = "/board/likecomment"
     case DislikeBoardCommnet = "/delete/boardcommentlike/"

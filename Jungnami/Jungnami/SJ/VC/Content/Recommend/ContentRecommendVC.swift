@@ -22,7 +22,8 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
         contentCollectionView.delegate = self
         contentCollectionView.dataSource = self
         //통신
-        contentRecommendInit(url: UrlPath.RecommendContent.getURL())
+        let itemCount = contentData?.count.description
+        contentRecommendInit(url: UrlPath.Content.getURL(itemCount ?? "0"))
         
     }
     var contentData : [RecommendVODataContent]?
@@ -36,11 +37,7 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+   
     
     //-------------------collectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -62,21 +59,36 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
         if indexPath.section == 0 {
             let cell = contentCollectionView.dequeueReusableCell(withReuseIdentifier: RecommendFirstCell.reuseIdentifier, for: indexPath) as! RecommendFirstCell
             //통신
-            if let tmicontents_ = contentData{
-                cell.configure(data: tmicontents_[indexPath.row])
+            if let recommendedContent_ = contentData{
+                cell.configure(data: recommendedContent_[indexPath.row])
             }
             return cell
         }else {
             let cell = contentCollectionView.dequeueReusableCell(withReuseIdentifier: RecommendSecondCell.reuseIdentifier, for: indexPath) as! RecommendSecondCell
             //통신
-            if let tmiContents_ = contentData{
-                cell.configure(data: tmiContents_[indexPath.row])
+            if let recommendedContent_ = contentData{
+                cell.configure(data: recommendedContent_[indexPath.row])
             }
             cell.contentImgView.layer.cornerRadius = 10
             cell.contentImgView.layer.masksToBounds = true
             return cell
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let section = indexPath.section
+        if section == 1 {
+            if let contentData_ = contentData {
+                let lastItemIdx = contentData_.count-1
+                let itemIdx = contentData_[lastItemIdx].contentsid.description
+                if indexPath.row == lastItemIdx {
+                    contentRecommendInit(url: UrlPath.Content.getURL(itemIdx))
+                }
+            }
+        }
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
         let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
@@ -134,7 +146,9 @@ class ContentRecommendVC: UIViewController, UICollectionViewDelegate, UICollecti
 extension ContentRecommendVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-         contentRecommendInit(url: UrlPath.RecommendContent.getURL())
+        contentData = []
+        let itemCount = contentData?.count.description
+        contentRecommendInit(url: UrlPath.Content.getURL(itemCount ?? "0"))
         sender.endRefreshing()
     }
 }
@@ -150,9 +164,15 @@ extension ContentRecommendVC {
             switch result {
             case .networkSuccess(let recommendData):
                 let recommendData = recommendData as! RecommendVOData
-                self.contentData = recommendData.content
+                if self.contentData == nil {
+                    self.contentData = []
+                }
+                if recommendData.content.count > 0 {
+                    self.contentData?.append(contentsOf: recommendData.content)
+                     self.contentCollectionView.reloadData()
+                }
                 self.alarmCount = recommendData.alarmcnt
-                self.contentCollectionView.reloadData()
+               
                 break
             case .nullValue :
                 self.simpleAlert(title: "오류", message: "값 없음")
