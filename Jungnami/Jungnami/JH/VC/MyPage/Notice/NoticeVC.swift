@@ -73,7 +73,7 @@ class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AP
         if sender.isFollow! == "팔로우" {
             likeAction(url: UrlPath.Follow.getURL(), userIdx : sender.userIdx!,  cell : cell, sender : sender )
         } else {
-            dislikeAction(url: UrlPath.UnFollow.getURL(sender.userIdx!), cell : cell, sender : sender )
+            dislikeAction(url: UrlPath.User.getURL("\(sender.userIdx!)/unfollow"), cell : cell, sender : sender )
         }
         
     }

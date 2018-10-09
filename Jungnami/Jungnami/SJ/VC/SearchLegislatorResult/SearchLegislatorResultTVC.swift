@@ -121,13 +121,13 @@ extension SearchLegislatorResultTVC : UITextFieldDelegate {
             } else if viewFrom == 1 {
                 // /search/legislatorparty/:p_name/:l_name  -> 정당
                 
-                searchLegislator(searchString : searchString_, url : UrlPath.SearchPartyLegislator.getURL("\(selectedParty!.rawValue)/\(searchString_)"))
+                searchLegislator(searchString : searchString_, url : UrlPath.PartyLegislatorList.getURL("\(selectedParty!.rawValue)/search/\(searchString_)"))
                 
                 
             } else {
                 // /search/legislatorregion/:city/:l_name  -> 지역
                 searchLegislator(searchString : searchString_, url :
-                    UrlPath.SearchRegionLegislator.getURL("\(selectedRegion!.rawValue)/\(searchString_)"))
+                    UrlPath.RegionLegislatorList.getURL("\(selectedRegion!.rawValue)/search/\(searchString_)"))
             }
         }
         
