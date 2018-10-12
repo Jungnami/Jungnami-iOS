@@ -33,8 +33,8 @@ struct MyPageVODataBoard: Codable {
     let source: [MyPageVODataBoardSource]
     let bContent, bImg: String?
     let bTime: String
-    let likeCnt, commentCnt: Int
-    let islike : Int
+    var likeCnt, commentCnt: Int
+    var islike : Int
     
     enum CodingKeys: String, CodingKey {
         case bID = "b_id"
