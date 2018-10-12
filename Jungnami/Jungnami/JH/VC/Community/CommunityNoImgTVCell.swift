@@ -21,6 +21,8 @@ class CommunityNoImgTVCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var heartBtn : myHeartBtn!
     @IBOutlet weak var commentBtn : myCommentBtn!
+    
+    @IBOutlet weak var warningBtn: myHeartBtn!
     @IBOutlet weak var scrapBtn : UIButton!
     
     //tapGesture-------------------------------

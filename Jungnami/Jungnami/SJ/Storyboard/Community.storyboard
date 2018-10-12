@@ -416,6 +416,13 @@
                                                     <color key="textColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqf-Oe-ABj" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
+                                                    <rect key="frame" x="92" y="555.5" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="aqf-Oe-ABj" secondAttribute="height" multiplier="1:1" id="sZE-4Q-Rdc"/>
+                                                    </constraints>
+                                                    <state key="normal" image="community_warning"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="q8u-ab-iba" firstAttribute="top" secondItem="oT3-Mb-zhb" secondAttribute="bottom" constant="12.5" id="4ES-NA-NeC"/>
@@ -436,16 +443,19 @@
                                                 <constraint firstItem="SEd-9C-kj8" firstAttribute="top" secondItem="P7M-GO-ZV0" secondAttribute="bottom" constant="5" id="QVP-M6-cxW"/>
                                                 <constraint firstItem="BTi-qt-42a" firstAttribute="leading" secondItem="vsz-1K-AOs" secondAttribute="leading" constant="12" id="QyD-rf-feb"/>
                                                 <constraint firstItem="oT3-Mb-zhb" firstAttribute="leading" secondItem="Te4-Xs-DeQ" secondAttribute="leading" id="SwD-dM-JxY"/>
+                                                <constraint firstItem="aqf-Oe-ABj" firstAttribute="leading" secondItem="Z4p-cc-xzt" secondAttribute="trailing" constant="16" id="UBg-l6-wIo"/>
                                                 <constraint firstItem="Te4-Xs-DeQ" firstAttribute="top" secondItem="ckp-iF-jBD" secondAttribute="bottom" constant="13" id="VZa-iH-xaD"/>
                                                 <constraint firstItem="H4n-eX-jlx" firstAttribute="top" secondItem="BTi-qt-42a" secondAttribute="bottom" constant="12" id="W8y-OB-fGF"/>
                                                 <constraint firstItem="UW0-xi-cWs" firstAttribute="centerY" secondItem="h8N-Yr-hxM" secondAttribute="centerY" id="WGZ-oD-rPi"/>
                                                 <constraint firstItem="9QK-sD-Teg" firstAttribute="top" secondItem="h8N-Yr-hxM" secondAttribute="bottom" constant="14.5" id="WU7-Ql-9kQ"/>
+                                                <constraint firstItem="aqf-Oe-ABj" firstAttribute="width" secondItem="Z4p-cc-xzt" secondAttribute="width" id="XaI-rQ-0yh"/>
                                                 <constraint firstItem="KRk-Xx-AyL" firstAttribute="leading" secondItem="H4n-eX-jlx" secondAttribute="leading" id="Yfz-4B-bdb"/>
                                                 <constraint firstItem="Z4p-cc-xzt" firstAttribute="leading" secondItem="oT3-Mb-zhb" secondAttribute="trailing" constant="16" id="a5N-eU-RAY"/>
                                                 <constraint firstItem="oT3-Mb-zhb" firstAttribute="top" secondItem="9QK-sD-Teg" secondAttribute="bottom" constant="12.5" id="cQP-vx-faO"/>
                                                 <constraint firstItem="P7M-GO-ZV0" firstAttribute="leading" secondItem="BTi-qt-42a" secondAttribute="trailing" constant="8" id="eo2-67-Cqa"/>
                                                 <constraint firstItem="h8N-Yr-hxM" firstAttribute="leading" secondItem="Te4-Xs-DeQ" secondAttribute="trailing" constant="6" id="fyc-dw-aEG"/>
                                                 <constraint firstItem="ZQN-ES-MfO" firstAttribute="leading" secondItem="UW0-xi-cWs" secondAttribute="trailing" constant="6" id="hqQ-Hy-FXG"/>
+                                                <constraint firstItem="aqf-Oe-ABj" firstAttribute="centerY" secondItem="Z4p-cc-xzt" secondAttribute="centerY" id="l1l-y4-oir"/>
                                                 <constraint firstItem="mCO-Rf-rQ9" firstAttribute="leading" secondItem="ZQN-ES-MfO" secondAttribute="trailing" id="m5p-7p-ocv"/>
                                                 <constraint firstItem="7Se-5K-2n0" firstAttribute="centerY" secondItem="Z4p-cc-xzt" secondAttribute="centerY" id="mKf-Ex-YC8"/>
                                                 <constraint firstItem="Te4-Xs-DeQ" firstAttribute="leading" secondItem="KRk-Xx-AyL" secondAttribute="leading" id="osZ-Jz-Dcb"/>
@@ -478,6 +488,7 @@
                                             <outlet property="profileImgView" destination="BTi-qt-42a" id="5YZ-PQ-YZg"/>
                                             <outlet property="scrapBtn" destination="7Se-5K-2n0" id="Utm-sA-EXd"/>
                                             <outlet property="timeLabel" destination="SEd-9C-kj8" id="sPG-4D-tcC"/>
+                                            <outlet property="warningBtn" destination="aqf-Oe-ABj" id="5xS-Bq-o3D"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommunityNoImgTVCell" rowHeight="210" id="eBi-Ox-lQr" customClass="CommunityNoImgTVCell" customModule="Jungnami" customModuleProvider="target">
@@ -589,6 +600,13 @@
                                                     <color key="textColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amt-Gj-6Kn" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
+                                                    <rect key="frame" x="92" y="165" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="amt-Gj-6Kn" secondAttribute="height" multiplier="1:1" id="LaM-Uy-TxL"/>
+                                                    </constraints>
+                                                    <state key="normal" image="community_warning"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ofw-1l-q4X" firstAttribute="leading" secondItem="ikz-bs-ITD" secondAttribute="leading" id="3wi-CA-w65"/>
@@ -600,6 +618,7 @@
                                                 <constraint firstItem="43r-8P-bq2" firstAttribute="leading" secondItem="tDH-2x-ps1" secondAttribute="leading" id="9AH-1H-SOR"/>
                                                 <constraint firstItem="itS-Hb-8B1" firstAttribute="top" secondItem="n4W-p4-5o3" secondAttribute="bottom" constant="12.5" id="Cxp-YH-1SW"/>
                                                 <constraint firstItem="TR5-Qo-bkk" firstAttribute="top" secondItem="V1k-h5-9To" secondAttribute="top" constant="13" id="D9h-ZM-0BB"/>
+                                                <constraint firstItem="amt-Gj-6Kn" firstAttribute="width" secondItem="dfU-hH-9hZ" secondAttribute="width" id="FnO-n7-vlv"/>
                                                 <constraint firstItem="VOw-uM-k2G" firstAttribute="leading" secondItem="fR3-OO-0Fp" secondAttribute="trailing" constant="6" id="FwH-qx-ZjV"/>
                                                 <constraint firstItem="tDH-2x-ps1" firstAttribute="leading" secondItem="88Y-wp-yVR" secondAttribute="leading" id="HBK-DQ-PIY"/>
                                                 <constraint firstItem="fxy-4i-Tuw" firstAttribute="top" secondItem="itS-Hb-8B1" secondAttribute="bottom" constant="12.5" id="HEK-mg-bhx"/>
@@ -608,6 +627,7 @@
                                                 <constraint firstItem="dfU-hH-9hZ" firstAttribute="centerY" secondItem="itS-Hb-8B1" secondAttribute="centerY" id="S1y-h0-K54"/>
                                                 <constraint firstItem="43r-8P-bq2" firstAttribute="top" secondItem="tDH-2x-ps1" secondAttribute="bottom" constant="13" id="SOz-gm-H45"/>
                                                 <constraint firstItem="dfU-hH-9hZ" firstAttribute="leading" secondItem="itS-Hb-8B1" secondAttribute="trailing" constant="16" id="Vln-Jd-iON"/>
+                                                <constraint firstItem="amt-Gj-6Kn" firstAttribute="centerY" secondItem="dfU-hH-9hZ" secondAttribute="centerY" id="WC1-Hg-Yla"/>
                                                 <constraint firstItem="Jej-m7-FOi" firstAttribute="leading" secondItem="VOw-uM-k2G" secondAttribute="trailing" id="XhE-Y8-tAk"/>
                                                 <constraint firstItem="Jej-m7-FOi" firstAttribute="centerY" secondItem="VOw-uM-k2G" secondAttribute="centerY" id="YAu-Z3-WsR"/>
                                                 <constraint firstItem="TR5-Qo-bkk" firstAttribute="width" secondItem="V1k-h5-9To" secondAttribute="width" multiplier="38:375" id="YOh-6o-ktt"/>
@@ -623,6 +643,7 @@
                                                 <constraint firstItem="JXf-qf-gmB" firstAttribute="leading" secondItem="OpW-cf-2Ub" secondAttribute="trailing" id="msx-YQ-2hW"/>
                                                 <constraint firstItem="JXf-qf-gmB" firstAttribute="centerY" secondItem="OpW-cf-2Ub" secondAttribute="centerY" id="mtZ-og-e58"/>
                                                 <constraint firstItem="Ofw-1l-q4X" firstAttribute="top" secondItem="ikz-bs-ITD" secondAttribute="bottom" constant="5" id="oYq-4P-xU7"/>
+                                                <constraint firstItem="amt-Gj-6Kn" firstAttribute="leading" secondItem="dfU-hH-9hZ" secondAttribute="trailing" constant="16" id="ppZ-yp-DLE"/>
                                                 <constraint firstItem="OpW-cf-2Ub" firstAttribute="leading" secondItem="43r-8P-bq2" secondAttribute="trailing" constant="6" id="qgy-sW-kQd"/>
                                                 <constraint firstItem="ikz-bs-ITD" firstAttribute="top" secondItem="V1k-h5-9To" secondAttribute="top" constant="16" id="uQD-oq-B0h"/>
                                                 <constraint firstItem="OpW-cf-2Ub" firstAttribute="centerY" secondItem="43r-8P-bq2" secondAttribute="centerY" id="vUU-ga-fVf"/>
@@ -647,6 +668,7 @@
                                             <outlet property="profileImgView" destination="TR5-Qo-bkk" id="0ur-do-bpf"/>
                                             <outlet property="scrapBtn" destination="puM-zR-TXP" id="fjx-dR-Y9D"/>
                                             <outlet property="timeLabel" destination="Ofw-1l-q4X" id="4Ma-hJ-4KJ"/>
+                                            <outlet property="warningBtn" destination="amt-Gj-6Kn" id="OB9-Cp-U3t"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -865,6 +887,13 @@
                                             <color key="textColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJ2-nq-KFW" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
+                                            <rect key="frame" x="92" y="561.5" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="TJ2-nq-KFW" secondAttribute="height" multiplier="1:1" id="ZAx-up-EKQ"/>
+                                            </constraints>
+                                            <state key="normal" image="community_warning"/>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="wbD-sw-Ouo" firstAttribute="width" secondItem="gs0-tO-fGU" secondAttribute="width" multiplier="24:375" id="0Bw-yO-laz"/>
@@ -882,6 +911,7 @@
                                         <constraint firstItem="igG-s2-GMC" firstAttribute="top" secondItem="Ovo-0G-ngU" secondAttribute="bottom" priority="900" constant="13" id="JTy-IH-lhP"/>
                                         <constraint firstItem="kuf-Nx-55T" firstAttribute="leading" secondItem="1OL-ok-3Tz" secondAttribute="leading" id="LoX-fa-R8J"/>
                                         <constraint firstItem="kuf-Nx-55T" firstAttribute="top" secondItem="1OL-ok-3Tz" secondAttribute="bottom" constant="5" id="M8s-IU-f7X"/>
+                                        <constraint firstItem="TJ2-nq-KFW" firstAttribute="width" secondItem="lrM-qg-pzD" secondAttribute="width" id="ObM-sO-CAp"/>
                                         <constraint firstItem="Ovo-0G-ngU" firstAttribute="trailing" secondItem="acw-nX-dh2" secondAttribute="trailing" id="Pfp-3o-BYk"/>
                                         <constraint firstItem="VlF-ck-Ihw" firstAttribute="width" secondItem="gs0-tO-fGU" secondAttribute="width" multiplier="38:375" id="Pqf-Hc-HWA"/>
                                         <constraint firstItem="VlF-ck-Ihw" firstAttribute="leading" secondItem="gs0-tO-fGU" secondAttribute="leading" constant="12" id="QRb-b4-vc0"/>
@@ -890,6 +920,7 @@
                                         <constraint firstItem="xZq-pP-67a" firstAttribute="centerY" secondItem="fd3-IH-3Dl" secondAttribute="centerY" id="XCj-BT-7js"/>
                                         <constraint firstItem="QZd-1r-5cE" firstAttribute="centerY" secondItem="lrM-qg-pzD" secondAttribute="centerY" id="YVN-jm-iNq"/>
                                         <constraint firstItem="xZq-pP-67a" firstAttribute="leading" secondItem="fd3-IH-3Dl" secondAttribute="trailing" id="Z6T-FU-gNc"/>
+                                        <constraint firstItem="TJ2-nq-KFW" firstAttribute="leading" secondItem="lrM-qg-pzD" secondAttribute="trailing" constant="16" id="ZO4-ka-aF9"/>
                                         <constraint firstAttribute="bottom" secondItem="B1Q-8k-qVR" secondAttribute="bottom" id="ah7-5k-2D8"/>
                                         <constraint firstItem="fd3-IH-3Dl" firstAttribute="leading" secondItem="MkU-Lm-bps" secondAttribute="trailing" constant="6" id="e0W-bB-7xQ"/>
                                         <constraint firstItem="Ghr-va-yyM" firstAttribute="centerY" secondItem="c1w-JD-ogF" secondAttribute="centerY" id="f0i-p1-4yF"/>
@@ -906,6 +937,7 @@
                                         <constraint firstItem="Ovo-0G-ngU" firstAttribute="top" secondItem="acw-nX-dh2" secondAttribute="bottom" constant="11" id="kp3-Rw-l9v"/>
                                         <constraint firstItem="lrM-qg-pzD" firstAttribute="centerY" secondItem="wbD-sw-Ouo" secondAttribute="centerY" id="lX0-7j-jOm"/>
                                         <constraint firstItem="Zcu-AL-9qJ" firstAttribute="top" secondItem="igG-s2-GMC" secondAttribute="bottom" constant="15" id="oPC-OI-jPE"/>
+                                        <constraint firstItem="TJ2-nq-KFW" firstAttribute="centerY" secondItem="lrM-qg-pzD" secondAttribute="centerY" id="qGy-wY-g6a"/>
                                         <constraint firstItem="VlF-ck-Ihw" firstAttribute="top" secondItem="gs0-tO-fGU" secondAttribute="top" constant="13" id="rUm-Es-9nL"/>
                                         <constraint firstItem="MkU-Lm-bps" firstAttribute="leading" secondItem="Ghr-va-yyM" secondAttribute="trailing" constant="25.5" id="um8-7R-f5J"/>
                                         <constraint firstItem="s0l-bP-mlU" firstAttribute="top" secondItem="Ovo-0G-ngU" secondAttribute="bottom" constant="13" id="wxD-RY-X6f"/>
@@ -931,6 +963,7 @@
                                     <outlet property="profileImgView" destination="VlF-ck-Ihw" id="Bne-Vb-ovB"/>
                                     <outlet property="scrapBtn" destination="QZd-1r-5cE" id="jUy-eC-eoY"/>
                                     <outlet property="timeLabel" destination="kuf-Nx-55T" id="0so-ef-YS4"/>
+                                    <outlet property="warningBtn" destination="TJ2-nq-KFW" id="Mws-TK-JgX"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommunityNoImgTVCell" rowHeight="210" id="wqt-aF-V2J" customClass="CommunityNoImgTVCell" customModule="Jungnami" customModuleProvider="target">
@@ -1042,6 +1075,13 @@
                                             <color key="textColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2l-Qj-0Sw" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
+                                            <rect key="frame" x="92" y="165.5" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="c2l-Qj-0Sw" secondAttribute="height" multiplier="1:1" id="ayz-Bk-JOv"/>
+                                            </constraints>
+                                            <state key="normal" image="community_warning"/>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="8XS-Vp-DEz" firstAttribute="leading" secondItem="HJm-u5-Fez" secondAttribute="leading" id="05S-TK-Bmb"/>
@@ -1069,10 +1109,12 @@
                                         <constraint firstItem="DKJ-wg-jLc" firstAttribute="top" secondItem="ECf-4h-4Mi" secondAttribute="top" constant="13" id="X7G-Bw-9wP"/>
                                         <constraint firstItem="yDu-TT-IKT" firstAttribute="centerY" secondItem="Voa-C7-EAW" secondAttribute="centerY" id="YLq-xM-sCh"/>
                                         <constraint firstItem="EH1-Rh-fJK" firstAttribute="top" secondItem="Voa-C7-EAW" secondAttribute="bottom" constant="14.5" id="aLD-s2-ocv"/>
+                                        <constraint firstItem="c2l-Qj-0Sw" firstAttribute="width" secondItem="uuo-L8-y8M" secondAttribute="width" id="agR-N4-9kz"/>
                                         <constraint firstItem="ZvX-Ua-wZo" firstAttribute="width" secondItem="ECf-4h-4Mi" secondAttribute="width" multiplier="24:375" id="b1P-eX-y8G"/>
                                         <constraint firstItem="DKJ-wg-jLc" firstAttribute="width" secondItem="ECf-4h-4Mi" secondAttribute="width" multiplier="38:375" id="bma-fr-rYU"/>
                                         <constraint firstItem="VrI-HR-Me9" firstAttribute="top" secondItem="8XS-Vp-DEz" secondAttribute="bottom" constant="13" id="cw1-Tb-ABa"/>
                                         <constraint firstItem="PBi-kI-gnX" firstAttribute="leading" secondItem="DKJ-wg-jLc" secondAttribute="trailing" constant="8" id="gcx-b0-cO7"/>
+                                        <constraint firstItem="c2l-Qj-0Sw" firstAttribute="centerY" secondItem="uuo-L8-y8M" secondAttribute="centerY" id="gyG-q3-iTV"/>
                                         <constraint firstItem="SOS-lU-b6w" firstAttribute="leading" secondItem="PBi-kI-gnX" secondAttribute="leading" id="kAK-Yx-99f"/>
                                         <constraint firstItem="JxZ-eq-RJ7" firstAttribute="top" secondItem="ZvX-Ua-wZo" secondAttribute="bottom" constant="12.5" id="kRB-Jw-WbG"/>
                                         <constraint firstItem="JfG-8N-WY5" firstAttribute="centerY" secondItem="2pR-k1-UWh" secondAttribute="centerY" id="m0e-hq-fZO"/>
@@ -1081,6 +1123,7 @@
                                         <constraint firstAttribute="trailing" secondItem="rdX-80-UkC" secondAttribute="trailing" constant="12" id="nTU-XG-Sxj"/>
                                         <constraint firstItem="Voa-C7-EAW" firstAttribute="leading" secondItem="VrI-HR-Me9" secondAttribute="trailing" constant="6" id="ooA-C4-sm6"/>
                                         <constraint firstItem="Voa-C7-EAW" firstAttribute="centerY" secondItem="VrI-HR-Me9" secondAttribute="centerY" id="srp-eZ-G55"/>
+                                        <constraint firstItem="c2l-Qj-0Sw" firstAttribute="leading" secondItem="uuo-L8-y8M" secondAttribute="trailing" constant="16" id="uwr-Q4-cIV"/>
                                         <constraint firstItem="yDu-TT-IKT" firstAttribute="leading" secondItem="uKd-FS-53H" secondAttribute="trailing" constant="25.5" id="xa0-o8-OaB"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1100,6 +1143,7 @@
                                     <outlet property="profileImgView" destination="DKJ-wg-jLc" id="wh8-I7-7T4"/>
                                     <outlet property="scrapBtn" destination="rdX-80-UkC" id="gtK-Db-u6G"/>
                                     <outlet property="timeLabel" destination="SOS-lU-b6w" id="qJL-hg-p3G"/>
+                                    <outlet property="warningBtn" destination="c2l-Qj-0Sw" id="QMs-Ua-nEV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1117,7 +1161,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyr-if-9KQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1521" y="-360"/>
+            <point key="canvasLocation" x="1520.8" y="-360.71964017991007"/>
         </scene>
         <!--RecommentVC-->
         <scene sceneID="7x2-PX-ZUg">
@@ -1851,6 +1895,7 @@
         <image name="community_search_field" width="279" height="31"/>
         <image name="community_small_chat" width="15" height="15"/>
         <image name="community_small_heart" width="14" height="14"/>
+        <image name="community_warning" width="128" height="128"/>
         <image name="content_best_icon" width="29" height="13"/>
         <image name="content_chat_field" width="302" height="37"/>
         <image name="content_chat_rightarrow" width="42" height="41"/>

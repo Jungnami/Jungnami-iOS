@@ -56,6 +56,6 @@ enum UrlPath : String {
     case Follow = "/user/follow"
    
     func getURL(_ parameter : String? = nil) -> String{
-        return "https://jungnami.tk\(self.rawValue)\(parameter ?? "")"
+        return "http://13.124.216.2:3000\(self.rawValue)\(parameter ?? "")"
     }
 }

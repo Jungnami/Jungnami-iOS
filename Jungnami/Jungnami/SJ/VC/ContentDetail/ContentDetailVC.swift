@@ -16,6 +16,8 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
+    
+    @IBOutlet weak var warningBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var scarpBtn: UIButton!
     var contentIdx : Int? // contentDetail
