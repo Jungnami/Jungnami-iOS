@@ -90,6 +90,7 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
         sharedBG.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
         sharedProfileImgView.makeImageRound()
         userProfileImg.makeImageRound()
+        self.selectionStyle = .none
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -100,7 +100,7 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cJy-c5-19p" userLabel="buttonNotCell">
-                                        <rect key="frame" x="13" y="631" width="62" height="24"/>
+                                        <rect key="frame" x="13" y="631" width="100" height="24"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MF9-mu-fzT">
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -113,8 +113,12 @@
                                                     <action selector="commentBtn:" destination="HxA-wi-rS3" eventType="touchUpInside" id="MUP-oi-CeA"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEh-bf-nIK">
+                                                <rect key="frame" x="77" y="0.0" width="23" height="24"/>
+                                                <state key="normal" image="content_warning"/>
+                                            </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHz-fn-AUk">
-                                                <rect key="frame" x="62" y="0.0" width="0.0" height="24"/>
+                                                <rect key="frame" x="100" y="0.0" width="0.0" height="24"/>
                                                 <state key="normal" image="content_share"/>
                                                 <connections>
                                                     <action selector="shareBtn:" destination="HxA-wi-rS3" eventType="touchUpInside" id="hvs-iY-pXp"/>
@@ -242,6 +246,7 @@
                         <outlet property="pageLbl" destination="GMc-Av-Fof" id="Tax-DH-4ZI"/>
                         <outlet property="scarpBtn" destination="J3Q-QK-3gV" id="IkO-rM-BBf"/>
                         <outlet property="shareBtn" destination="WHz-fn-AUk" id="bzO-hP-Tod"/>
+                        <outlet property="warningBtn" destination="XEh-bf-nIK" id="5dG-X5-sAP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="193-I9-GjF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -258,5 +263,6 @@
         <image name="content_scrap" width="18" height="24"/>
         <image name="content_share" width="21" height="22"/>
         <image name="content_smallheart_blackbackground" width="15" height="14"/>
+        <image name="content_warning" width="23" height="23"/>
     </resources>
 </document>

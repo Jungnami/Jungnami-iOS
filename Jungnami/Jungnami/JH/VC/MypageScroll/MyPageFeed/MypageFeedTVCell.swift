@@ -68,6 +68,7 @@ class MypageFeedTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         userImgView.makeImageRound()
+        self.selectionStyle = .none
         // Initialization code
     }
     

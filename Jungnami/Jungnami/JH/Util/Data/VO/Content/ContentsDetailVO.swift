@@ -14,10 +14,10 @@ struct ContentDetailVO: Codable {
 
 struct ContentDetailVOData: Codable {
     let title, thumbnail, text, subtitle: String
-    let type ,islike, isscrap : Int
+    var type ,islike, isscrap : Int
     let imagearray: [ContentDetailVODataImgArr]
     let youtube: String
-    let likeCnt, commentCnt: Int
+    var likeCnt, commentCnt: Int
 }
 
 struct ContentDetailVODataImgArr: Codable {

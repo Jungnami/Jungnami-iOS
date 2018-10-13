@@ -90,15 +90,17 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
         let selectedComment = commentData![indexPath.row]
         let deleteAction = UITableViewRowAction(style: .normal, title: "삭제") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
-            //삭제 url 넣기
-            
-            
             self.deleteComment(url:  UrlPath.ContentCommentList.getURL(commentIdx.description))
            
             //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
         }
         deleteAction.backgroundColor = .red
-        return [deleteAction]
+        let reportAction = UITableViewRowAction(style: .normal, title: "신고") { (rowAction, indexPath) in
+            let commentIdx = selectedComment.commentid
+            //신고 url 넣기
+           
+        }
+        return [deleteAction, reportAction]
     }
     
     

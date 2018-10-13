@@ -16,7 +16,12 @@ struct CommunitySearchService : GettableService {
             switch result {
             case .success(let networkResult):
                 switch networkResult.resCode{
-                case 200 : completion(.networkSuccess(networkResult.resResult.data))
+                case 200 :
+                    if networkResult.resResult.message == "No data"{
+                        completion(.nullValue)
+                    } else {
+                       completion(.networkSuccess(networkResult.resResult.data))
+                    }
                 case 300 :
                     completion(.nullValue)
                 case 500 :

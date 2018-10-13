@@ -96,7 +96,13 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
             //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
         }
         deleteAction.backgroundColor = .red
-        return [deleteAction]
+        
+        let reportAction = UITableViewRowAction(style: .normal, title: "신고") { (rowAction, indexPath) in
+            let commentIdx = selectedComment.commentid
+            //신고 url 넣기
+            
+        }
+        return [deleteAction, reportAction]
     }
     
     

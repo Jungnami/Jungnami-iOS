@@ -41,6 +41,8 @@ class CommunityTVCell: UITableViewCell {
     @IBOutlet weak var contentImgView : UIImageView!
     @IBOutlet weak var heartBtn : myHeartBtn!
     @IBOutlet weak var commentBtn : myCommentBtn!
+    
+    @IBOutlet weak var warningBtn: myHeartBtn!
     @IBOutlet weak var scrapBtn : UIButton!
 
     
