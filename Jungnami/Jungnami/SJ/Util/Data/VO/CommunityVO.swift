@@ -30,7 +30,7 @@ struct CommunityVODataContent: Codable {
     let img : String
     let userId : String
     let writingtime, content: String
-    let islike, likecnt, commentcnt: Int
+    var islike, likecnt, commentcnt: Int
     
     
     enum CodingKeys: String, CodingKey {
