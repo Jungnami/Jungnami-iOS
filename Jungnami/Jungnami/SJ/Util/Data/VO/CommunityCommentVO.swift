@@ -14,7 +14,7 @@ struct CommunityCommentVO: Codable {
 struct CommunityCommentVOData: Codable {
     let commentid: Int
     let timeset, content, userNick, userImg: String
-    let recommentCnt, commentlikeCnt, islike: Int
+    var recommentCnt, commentlikeCnt, islike: Int
     let userId : String
     
     enum CodingKeys: String, CodingKey {

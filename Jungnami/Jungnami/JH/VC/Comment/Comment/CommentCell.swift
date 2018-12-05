@@ -53,7 +53,7 @@ class CommentCell: UITableViewCell {
         commentDateLbl.text = data.timeset
         commentLikeLbl.text = "\(data.commentlikeCnt)"
         
-        
+        commentLikeBtn.indexPath = index
         commentLikeBtn.boardIdx = data.commentid
         commentLikeBtn.isLike = data.islike
         if data.islike == 0 {

@@ -28,7 +28,7 @@ class ContentCommentVC: UIViewController, APIService {
             
         }
     }
-    var commentData : [CommunityCommentVOData]?
+    var commentData : [CommunityCommentVOData] = []
     @IBAction func dissmissBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -68,37 +68,32 @@ class ContentCommentVC: UIViewController, APIService {
 extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let commentData_ = commentData {
-            return commentData_.count
-        }
-        return 0
+        return commentData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
-        if let commentData_ = commentData {
-             cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-            cell.delegate = self
-            cell.configure(index : indexPath.row ,data: commentData_[indexPath.row])
-        }
+        guard commentData.count > 0 else {return cell}
         
-      
+        cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+        cell.delegate = self
+        cell.configure(index : indexPath.row ,data: commentData[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let selectedComment = commentData![indexPath.row]
+        let selectedComment = commentData[indexPath.row]
         let deleteAction = UITableViewRowAction(style: .normal, title: "삭제") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
             self.deleteComment(url:  UrlPath.ContentCommentList.getURL(commentIdx.description))
-           
+            
             //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
         }
         deleteAction.backgroundColor = .red
         let reportAction = UITableViewRowAction(style: .normal, title: "신고") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
             //신고 url 넣기
-           
+            
         }
         return [deleteAction, reportAction]
     }
@@ -127,7 +122,7 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
 
 extension ContentCommentVC {
     
-  
+    
     func setKeyboardSetting() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -244,7 +239,7 @@ extension ContentCommentVC {
     }
     
     func temp(){
-       
+        
         getCommentList(url : UrlPath.ContentCommentList.getURL(selectedContent!.description))
     }
     
@@ -287,7 +282,7 @@ extension ContentCommentVC {
             switch result {
             case .networkSuccess(_):
                 self.simpleAlert(title: "성공", message: "댓글 삭제 완료")
-              
+                
                 self.temp()
                 
                 break
@@ -297,7 +292,7 @@ extension ContentCommentVC {
                 break
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
-        
+                
             default :
                 break
             }
@@ -318,8 +313,8 @@ extension ContentCommentVC {
             case .networkSuccess(_):
                 sender.isSelected = true
                 sender.isLike = 1
-              
-
+                self.commentData[sender.indexPath].islike = 1
+                self.commentData[sender.indexPath].commentlikeCnt += 1
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
@@ -346,7 +341,9 @@ extension ContentCommentVC {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isLike = 0
-
+                self.commentData[sender.indexPath].islike = 0
+                self.commentData[sender.indexPath].commentlikeCnt -= 1
+                
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
