@@ -15,9 +15,9 @@ struct CommunitySearchVO: Codable {
 struct CommunitySearchVOData: Codable {
     let id: Int
     let nickname, content, userImgURL, imgURL: String
-    let islike: Int
+    var islike: Int
     let writingtime: String
-    let likecnt, commentcnt: Int
+    var likecnt, commentcnt: Int
     let userId : String
     
     enum CodingKeys: String, CodingKey {

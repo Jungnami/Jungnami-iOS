@@ -74,6 +74,43 @@ extension UIViewController {
         viewController.view.removeFromSuperview()
         viewController.removeFromParentViewController()
     }
+    
+    func reportAction(reportId : Int, reportHandler : @escaping (_ reportReason : String)->Void){
+        //신고하기
+        let alertTitle = "신고 사유를 선택해주세요"
+        let reportTitle1 = "음란물"
+        let reportTitle2 = "사칭 및 사기"
+        let reportTitle3 = "허위사실 유포"
+        let reportTitle4 = "상업적 광고 및 판매"
+        let reportTitle5 = "욕설 및 불쾌감을 주는 표현"
+        let cancleTitle = "취소"
+        let alert = UIAlertController(title: alertTitle, message: nil, preferredStyle: .actionSheet)
+        
+        let report1 = UIAlertAction(title: reportTitle1, style: .default) { (re1) in
+            reportHandler(re1.title!)
+        }
+        let report2 = UIAlertAction(title: reportTitle2, style: .default) { (re2) in
+            reportHandler(re2.title!)
+        }
+        let report3 = UIAlertAction(title: reportTitle3, style: .default) { (re3) in
+            reportHandler(re3.title!)
+        }
+        let report4 = UIAlertAction(title: reportTitle4, style: .default) { (re4) in
+            reportHandler(re4.title!)
+        }
+        let report5 = UIAlertAction(title: reportTitle5, style: .default) { (re5) in
+            reportHandler(re5.title!)
+        }
+
+        let cancleAction = UIAlertAction(title: cancleTitle,style: .cancel)
+        alert.addAction(report1)
+        alert.addAction(report2)
+        alert.addAction(report3)
+        alert.addAction(report4)
+        alert.addAction(report5)
+        alert.addAction(cancleAction)
+        present(alert, animated: true)
+    }
 }
 
 

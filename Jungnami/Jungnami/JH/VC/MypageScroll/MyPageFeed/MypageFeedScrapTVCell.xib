@@ -145,6 +145,13 @@
                                         </constraints>
                                         <state key="normal" image="community_heart"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUd-oP-AuB">
+                                        <rect key="frame" x="96" y="562" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Q3B-X3-STN"/>
+                                        </constraints>
+                                        <state key="normal" image="community_warning"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -154,10 +161,12 @@
                                     <constraint firstItem="EJK-A2-bMv" firstAttribute="leading" secondItem="Bd5-Ix-6bd" secondAttribute="leading" id="Bue-XW-oUa"/>
                                     <constraint firstItem="pbr-pe-Knc" firstAttribute="top" secondItem="Bd5-Ix-6bd" secondAttribute="top" constant="16" id="C0I-9o-eZB"/>
                                     <constraint firstItem="tkw-Wd-qei" firstAttribute="centerY" secondItem="oNR-tG-vZU" secondAttribute="centerY" id="GI8-CY-L10"/>
+                                    <constraint firstItem="GUd-oP-AuB" firstAttribute="centerY" secondItem="50h-z7-Orb" secondAttribute="centerY" id="MIq-Fw-Q7C"/>
                                     <constraint firstItem="fCf-2y-oZu" firstAttribute="top" secondItem="Bd5-Ix-6bd" secondAttribute="top" constant="13" id="MK7-DD-wmk"/>
                                     <constraint firstAttribute="bottom" secondItem="mAA-Aa-Vfe" secondAttribute="bottom" constant="12" id="O0v-ak-036"/>
                                     <constraint firstItem="3dC-6e-pjO" firstAttribute="leading" secondItem="Bd5-Ix-6bd" secondAttribute="leading" constant="12" id="R16-g3-TTb"/>
                                     <constraint firstItem="3dC-6e-pjO" firstAttribute="top" secondItem="hqP-5l-H0f" secondAttribute="bottom" constant="13" id="T2P-Tv-mgU"/>
+                                    <constraint firstItem="GUd-oP-AuB" firstAttribute="width" secondItem="GUd-oP-AuB" secondAttribute="height" multiplier="1:1" id="V4t-yf-Nyi"/>
                                     <constraint firstAttribute="trailing" secondItem="EJK-A2-bMv" secondAttribute="trailing" id="V52-wB-ZRr"/>
                                     <constraint firstItem="fCf-2y-oZu" firstAttribute="leading" secondItem="Bd5-Ix-6bd" secondAttribute="leading" constant="12" id="WBH-B7-zOw"/>
                                     <constraint firstItem="mAA-Aa-Vfe" firstAttribute="leading" secondItem="Bd5-Ix-6bd" secondAttribute="leading" constant="12" id="YV5-1z-ZGO"/>
@@ -170,6 +179,7 @@
                                     <constraint firstItem="oNR-tG-vZU" firstAttribute="leading" secondItem="3dC-6e-pjO" secondAttribute="trailing" constant="5" id="pwV-dS-g8T"/>
                                     <constraint firstItem="mAA-Aa-Vfe" firstAttribute="top" secondItem="EJK-A2-bMv" secondAttribute="bottom" constant="13" id="qZ8-n2-wTg"/>
                                     <constraint firstAttribute="trailing" secondItem="hqP-5l-H0f" secondAttribute="trailing" constant="12" id="txN-Oe-c5I"/>
+                                    <constraint firstItem="GUd-oP-AuB" firstAttribute="leading" secondItem="50h-z7-Orb" secondAttribute="trailing" constant="18" id="vKC-ME-MUl"/>
                                     <constraint firstItem="pbr-pe-Knc" firstAttribute="leading" secondItem="fCf-2y-oZu" secondAttribute="trailing" constant="8" id="vSA-Bg-k1K"/>
                                     <constraint firstItem="hqP-5l-H0f" firstAttribute="leading" secondItem="Bd5-Ix-6bd" secondAttribute="leading" constant="12" id="vmI-on-A54"/>
                                     <constraint firstItem="ovn-Yc-683" firstAttribute="top" secondItem="pbr-pe-Knc" secondAttribute="bottom" constant="5" id="yHB-bp-34C"/>
@@ -218,5 +228,6 @@
         <image name="community_heart" width="24" height="24"/>
         <image name="community_small_chat" width="15" height="15"/>
         <image name="community_small_heart" width="14" height="14"/>
+        <image name="community_warning" width="128" height="128"/>
     </resources>
 </document>

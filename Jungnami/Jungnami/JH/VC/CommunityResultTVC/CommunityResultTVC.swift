@@ -316,7 +316,8 @@ extension CommunityResultTVC {
             case .networkSuccess(_):
                 sender.isSelected = true
                 sender.isLike = 1
-                
+                self.communitySearchData[sender.indexPath].islike = 1
+                self.communitySearchData[sender.indexPath].likecnt += 1
                 var changed : Int = 0
                 //Now change the text and background colour
                 
@@ -368,6 +369,8 @@ extension CommunityResultTVC {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isLike = 0
+                self.communitySearchData[sender.indexPath].islike = 0
+                self.communitySearchData[sender.indexPath].likecnt -= 1
                 var changed : Int = 0
                 
                 //Now change the text and background colour

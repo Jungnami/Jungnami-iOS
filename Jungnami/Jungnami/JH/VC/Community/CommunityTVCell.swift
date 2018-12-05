@@ -61,6 +61,7 @@ class CommunityTVCell: UITableViewCell {
         heartBtn.setImage(UIImage(named: "community_heart"), for: .normal)
         heartBtn.setImage(UIImage(named: "community_heart_blue"), for: .selected)
         heartBtn.likeCnt = data.likecnt
+        heartBtn.indexPath = index
         nameLabel.text = data.nickname
         timeLabel.text = data.writingtime
         contentLabel.text = data.content
@@ -110,6 +111,7 @@ class CommunityTVCell: UITableViewCell {
         heartBtn.setImage(UIImage(named: "community_heart"), for: .normal)
         heartBtn.setImage(UIImage(named: "community_heart_blue"), for: .selected)
         heartBtn.likeCnt = data.likecnt
+        heartBtn.indexPath = index
         nameLabel.text = data.nickname
         timeLabel.text = data.writingtime
         contentLabel.text = data.content

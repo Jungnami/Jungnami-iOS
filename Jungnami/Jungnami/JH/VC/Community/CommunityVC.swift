@@ -397,19 +397,6 @@ extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate2 {
     }
     
     
-   /* func myDoubleTapDelegate(sender : UITapGestureRecognizer) {
-        let touch = sender.location(in: communityTableView)
-        if let indexPath = communityTableView.indexPathForRow(at: touch){
-            let cell = self.communityTableView.cellForRow(at: indexPath) as! CommunityTVCell
-            let boardIdx = cell.heartBtn.boardIdx
-            let isLike = cell.heartBtn.isLike
-            let sender = cell.heartBtn
-            let likeCount = cell.heartBtn.likeCnt
-            touchLikeAction(url: url("/board/likeboard"), boardIdx : boardIdx!, isLike : isLike!, cell : cell, sender : sender!, likeCnt: likeCount )
-            
-        }
-    }
-    */
     func heartPopup(){
         DispatchQueue.main.asyncAfter(deadline: .now()){
             var myPopupImgView = UIImageView()
@@ -511,44 +498,6 @@ extension CommunityVC {
         
     }
     
-    //탭 두번 하트 눌렀을 때
-    func touchLikeAction(url : String, boardIdx : Int, isLike : Int, cell : CommunityTVCell, sender : myHeartBtn, likeCnt : Int){
-        let params : [String : Any] = [
-            "board_id" : boardIdx
-        ]
-        CommunityLikeService.shareInstance.like(url: url, params: params, completion: { [weak self] (result) in
-            guard let `self` = self else { return }
-            
-            switch result {
-            case .networkSuccess(_):
-                sender.isSelected = true
-                
-                sender.isLike = 1
-                
-                var changed : Int = 0
-                //Now change the text and background colour
-                if sender.isLike != 1 {
-                    changed = likeCnt+1
-                } else {
-                    changed = likeCnt
-                }
-                cell.likeLabel.text = "\(changed)"
-                break
-            case .accessDenied :
-                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
-                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
-                        loginVC.entryPoint = 1
-                        self.present(loginVC, animated: true, completion: nil)
-                    }
-                })
-            case .networkFail :
-                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
-            default :
-                break
-            }
-            
-        })
-    }
     
     //하트 버튼 눌렀을 때
     func likeAction(url : String, boardIdx : Int, isLike : Int, cell : UITableViewCell, sender : myHeartBtn, likeCnt : Int){
@@ -562,6 +511,8 @@ extension CommunityVC {
             case .networkSuccess(_):
                 sender.isSelected = true
                 sender.isLike = 1
+                self.communityData[sender.indexPath].islike = 1
+                 self.communityData[sender.indexPath].likecnt += 1
                 
                 var changed : Int = 0
                 //Now change the text and background colour
@@ -615,6 +566,8 @@ extension CommunityVC {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isLike = 0
+                self.communityData[sender.indexPath].islike = 0
+                self.communityData[sender.indexPath].likecnt -= 1
                 var changed : Int = 0
                 
                 let tempCell : UITableViewCell = cell

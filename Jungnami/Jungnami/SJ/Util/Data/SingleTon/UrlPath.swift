@@ -20,7 +20,9 @@ enum UrlPath : String {
     case SupportLegislator = "/legislator/support"
     case PartyLegislatorList = "/ranking/party/"
     case RegionLegislatorList = "/ranking/city/"
-    case SearchLegislator = "/ranking/all/search/"
+    case SearchPartyLegislator = "/ranking/search/party/"
+    case SearchRegionLegislator = "/ranking/search/city/"
+    case SearchLegislator = "/ranking/search/all/"
    
     //커뮤니티
     case Board = "/board/"
@@ -46,7 +48,6 @@ enum UrlPath : String {
     case ContentCommentList = "/contents/comment/"
     case WriteContentComment = "/contents/comment"
     case LikeContentComment = "/contents/comment/like/"
-    
     case DeleteBoardComment = "/delete/boardcomment/"
     case LikeBoardComment = "/board/likecomment"
     case DislikeBoardCommnet = "/delete/boardcommentlike/"

@@ -108,6 +108,13 @@
                                         </constraints>
                                         <state key="normal" image="community_heart"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L81-cx-yC7">
+                                        <rect key="frame" x="96" y="581.5" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="KGy-OF-CbX"/>
+                                        </constraints>
+                                        <state key="normal" image="community_warning"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -135,7 +142,10 @@
                                     <constraint firstItem="Y0i-1P-hli" firstAttribute="leading" secondItem="eQR-Pw-xrT" secondAttribute="leading" constant="12" id="chh-Mv-4A5"/>
                                     <constraint firstItem="CX3-Cc-PqW" firstAttribute="leading" secondItem="SP7-zj-28x" secondAttribute="trailing" constant="8" id="crG-kL-Yed"/>
                                     <constraint firstAttribute="bottom" secondItem="r3H-3I-0L0" secondAttribute="bottom" constant="13" id="eJI-OD-P6H"/>
+                                    <constraint firstItem="L81-cx-yC7" firstAttribute="width" secondItem="L81-cx-yC7" secondAttribute="height" multiplier="1:1" id="eKl-Wa-aF7"/>
+                                    <constraint firstItem="L81-cx-yC7" firstAttribute="leading" secondItem="pA8-4r-4Gd" secondAttribute="trailing" constant="18" id="fQb-bm-oQQ"/>
                                     <constraint firstItem="5fX-9N-2KB" firstAttribute="leading" secondItem="CX3-Cc-PqW" secondAttribute="leading" id="hHP-v6-zXM"/>
+                                    <constraint firstItem="L81-cx-yC7" firstAttribute="centerY" secondItem="pA8-4r-4Gd" secondAttribute="centerY" id="irc-bi-D9z"/>
                                     <constraint firstItem="mAH-1D-2dI" firstAttribute="leading" secondItem="eQR-Pw-xrT" secondAttribute="leading" id="nUM-WW-Oxu"/>
                                     <constraint firstItem="kHJ-Aj-9MD" firstAttribute="centerY" secondItem="d6G-Xz-LJT" secondAttribute="centerY" id="t3Q-MH-sso"/>
                                     <constraint firstItem="vkO-Cw-VtM" firstAttribute="leading" secondItem="kHJ-Aj-9MD" secondAttribute="trailing" constant="16" id="tRZ-rf-VVX"/>
@@ -181,5 +191,6 @@
         <image name="community_heart" width="24" height="24"/>
         <image name="community_small_chat" width="15" height="15"/>
         <image name="community_small_heart" width="14" height="14"/>
+        <image name="community_warning" width="128" height="128"/>
     </resources>
 </document>
