@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -101,10 +102,18 @@
                                         </constraints>
                                         <state key="normal" image="community_heart"/>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhf-lA-ByQ">
+                                        <rect key="frame" x="96" y="181.5" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="PA9-vQ-jdx"/>
+                                        </constraints>
+                                        <state key="normal" image="community_warning"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="O4i-l3-Z6O" secondAttribute="trailing" constant="12" id="3TK-xF-7js"/>
+                                    <constraint firstItem="Mhf-lA-ByQ" firstAttribute="centerY" secondItem="cA3-IL-JEk" secondAttribute="centerY" id="5Id-qc-pCH"/>
                                     <constraint firstItem="NsG-Gn-kwZ" firstAttribute="top" secondItem="0l6-7S-jtt" secondAttribute="bottom" constant="15" id="8Vo-4H-NUg"/>
                                     <constraint firstItem="QOS-L7-HxF" firstAttribute="trailing" secondItem="O4i-l3-Z6O" secondAttribute="trailing" id="A5Q-tP-QCO"/>
                                     <constraint firstItem="0l6-7S-jtt" firstAttribute="leading" secondItem="QOS-L7-HxF" secondAttribute="leading" id="Cfu-Pb-iOB"/>
@@ -121,6 +130,7 @@
                                     <constraint firstItem="vS1-c7-93k" firstAttribute="leading" secondItem="Mth-JL-AJ1" secondAttribute="trailing" constant="6" id="Tat-0i-rs8"/>
                                     <constraint firstItem="vtd-sS-Xjw" firstAttribute="leading" secondItem="d5i-4g-Bwf" secondAttribute="trailing" constant="8" id="WDP-xP-ZTE"/>
                                     <constraint firstItem="d5i-4g-Bwf" firstAttribute="leading" secondItem="ACE-qo-skk" secondAttribute="leading" constant="12" id="WJl-n7-iCe"/>
+                                    <constraint firstItem="Mhf-lA-ByQ" firstAttribute="leading" secondItem="cA3-IL-JEk" secondAttribute="trailing" constant="18" id="Wh3-J1-ssS"/>
                                     <constraint firstItem="cA3-IL-JEk" firstAttribute="centerY" secondItem="QIU-E8-nPB" secondAttribute="centerY" id="ZbI-79-7ON"/>
                                     <constraint firstItem="KPd-Z0-M0V" firstAttribute="leading" secondItem="vtd-sS-Xjw" secondAttribute="leading" id="f5M-FK-uD9"/>
                                     <constraint firstItem="QIU-E8-nPB" firstAttribute="leading" secondItem="0l6-7S-jtt" secondAttribute="leading" id="hs5-DJ-0w9"/>
@@ -128,6 +138,7 @@
                                     <constraint firstItem="QOS-L7-HxF" firstAttribute="top" secondItem="O4i-l3-Z6O" secondAttribute="bottom" constant="11" id="lPb-KZ-HsY"/>
                                     <constraint firstItem="KPd-Z0-M0V" firstAttribute="top" secondItem="vtd-sS-Xjw" secondAttribute="bottom" constant="5" id="lnt-U2-Coa"/>
                                     <constraint firstItem="d5i-4g-Bwf" firstAttribute="top" secondItem="ACE-qo-skk" secondAttribute="top" constant="13" id="qNl-Wu-g2X"/>
+                                    <constraint firstItem="Mhf-lA-ByQ" firstAttribute="width" secondItem="Mhf-lA-ByQ" secondAttribute="height" multiplier="1:1" id="suw-AB-Wx1"/>
                                     <constraint firstItem="NsG-Gn-kwZ" firstAttribute="leading" secondItem="ACE-qo-skk" secondAttribute="leading" id="tyd-L1-ljg"/>
                                     <constraint firstAttribute="trailing" secondItem="NsG-Gn-kwZ" secondAttribute="trailing" id="xQG-uC-6pX"/>
                                     <constraint firstItem="O4i-l3-Z6O" firstAttribute="top" secondItem="d5i-4g-Bwf" secondAttribute="bottom" constant="12" id="zN5-jw-3Yv"/>
@@ -170,5 +181,6 @@
         <image name="community_heart" width="24" height="24"/>
         <image name="community_small_chat" width="15" height="15"/>
         <image name="community_small_heart" width="14" height="14"/>
+        <image name="community_warning" width="128" height="128"/>
     </resources>
 </document>
