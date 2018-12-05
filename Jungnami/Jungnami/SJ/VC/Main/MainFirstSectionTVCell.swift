@@ -104,6 +104,30 @@ class MainFirstSectionTVCell: UITableViewCell {
         firstProgressBar.makeRounded()
         secondProgressBar.makeRounded()
     }
+
+    override func prepareForReuse() {
+        firstProgressBar.removeConstraints()
+        secondProgressBar.removeConstraints()
+        firstProgressBar.snp.makeConstraints { (make) in
+            make.leading.equalTo(firstImgView.snp.leading).offset(-8)
+            make.height.equalTo(15)
+            make.bottom.equalTo(firstImgView.snp.bottom).offset(-21)
+        }
+        firstProgressBarLbl.snp.makeConstraints { (make) in
+            make.trailing.equalTo(firstProgressBar.snp.trailing).offset(-8)
+            make.centerY.equalTo(firstProgressBar)
+        }
+        
+        secondProgressBar.snp.makeConstraints { (make) in
+            make.trailing.equalTo(secondImgView.snp.trailing).offset(8)
+            make.height.equalTo(15)
+            make.bottom.equalTo(secondImgView.snp.bottom).offset(-21)
+        }
+        secondProgressBarLbl.snp.makeConstraints { (make) in
+            make.leading.equalTo(secondProgressBar.snp.leading).offset(8)
+            make.centerY.equalTo(secondProgressBar)
+        }
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

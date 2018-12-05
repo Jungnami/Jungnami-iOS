@@ -54,39 +54,45 @@ class MainTVCell: UITableViewCell {
         case .like:
             rankLbl.text = data.ranking
             if data.ranking == "1" {
-                medalImgView.image = #imageLiteral(resourceName: "ranking_gold_medal")
+                setMedalImg(image: #imageLiteral(resourceName: "ranking_gold_medal"))
             } else if data.ranking == "2" {
-                medalImgView.image = #imageLiteral(resourceName: "ranking_silver_medal")
+                setMedalImg(image: #imageLiteral(resourceName: "ranking_silver_medal"))
             } else if data.ranking == "3" {
-                medalImgView.image = #imageLiteral(resourceName: "ranking_bronze_medal")
+                setMedalImg(image: #imageLiteral(resourceName: "ranking_bronze_medal"))
+            } else {
+               medalImgView.isHidden = true
             }
         case .dislike :
             rankLbl.text =  data.ranking
             if data.ranking == "1" {
-                medalImgView.image = #imageLiteral(resourceName: "ranking_red_bomb")
+                setMedalImg(image: #imageLiteral(resourceName: "ranking_red_bomb"))
             } else if data.ranking == "2" {
-                medalImgView.image = #imageLiteral(resourceName: "ranking_orange_bomb")
+                setMedalImg(image: #imageLiteral(resourceName: "ranking_orange_bomb"))
             } else if data.ranking == "3" {
-                medalImgView.image = #imageLiteral(resourceName: "ranking_yellow_bomb")
+                setMedalImg(image: #imageLiteral(resourceName: "ranking_yellow_bomb"))
+            } else {
+                medalImgView.isHidden = true
             }
-
         }
-
         
-        if index > 2 {
-            medalImgView.isHidden = true
-        } else {
-            medalImgView.isHidden = false
-        }
+//        if index > 2 {
+//            medalImgView.isHidden = true
+//        } else {
+//            if !medalImgView.isHidden {
+//            medalImgView.isHidden = false
+//            }
+//        }
         
         if(index % 2 == 1){
             self.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9843137255, alpha: 1)
         } else {
             self.backgroundColor = .white
         }
-        
-        
-        
+    }
+    
+    func setMedalImg(image : UIImage){
+        medalImgView.image = image
+        medalImgView.isHidden = false
     }
     
     override func prepareForReuse() {
