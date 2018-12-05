@@ -13,99 +13,69 @@ class MainFirstSectionTVCell: UITableViewCell {
     
     @IBOutlet weak var firstImgView: UIImageView!
     @IBOutlet weak var secondImgView: UIImageView!
-    
     @IBOutlet weak var firstNameLbl: UILabel!
     @IBOutlet weak var secondNameLbl: UILabel!
     @IBOutlet weak var firstPartyLbl: UILabel!
     @IBOutlet weak var secondPartyLbl: UILabel!
-    
     @IBOutlet weak var firstProgressBar: UIView!
-    
     @IBOutlet weak var secondProgressBar: UIView!
-    
     @IBOutlet weak var firstProgressBarLbl: UILabel!
     @IBOutlet weak var secondProgressBarLbl: UILabel!
     let maxWidth : Double = 150.0
     //꽉찬게 240
     func configure(first : LegislatorLikeVOData, second : LegislatorLikeVOData){
-        //firstImgView.image =
-            
-        if (gsno(first.mainimg) == "0") {
-            firstImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
-        } else {
-            if let url = URL(string: gsno(first.mainimg)){
-                self.firstImgView.kf.setImage(with: url)
-            }
-        }
-        
-        if (gsno(second.mainimg) == "0") {
-            secondImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
-        } else {
-            if let url = URL(string: gsno(second.mainimg)){
-                self.secondImgView.kf.setImage(with: url)
-            }
-        }
-        
+
+        setImageView(imgView: firstImgView, imgUrl: first.mainimg)
         firstNameLbl.text = first.lName
         firstPartyLbl.text = first.partyName.rawValue
         firstProgressBarLbl.text = first.scoretext
-        switch first.partyName {
-        case .더불어민주당:
-             firstProgressBar.backgroundColor = ColorChip.shared().partyBlue
-        case .자유한국당:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyRed
-        case .민중당:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyOrange
-        case .바른미래당:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyMint
-        case .무소속:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyGray
-        case .대한애국당:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyNavy
-        case .민주평화당:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyGreen
-        case .정의당:
-            firstProgressBar.backgroundColor = ColorChip.shared().partyYellow
-        }
-    
-        firstProgressBar.snp.makeConstraints { (make) in
-            make.width.equalTo(maxWidth*first.width)
-        }
-        
+        setProgressbarColor(progressbar: firstProgressBar, partyName: first.partyName)
+        setProgresssbarWidth(progressbar: firstProgressBar, progressWidth: first.width)
+
+        setImageView(imgView: secondImgView, imgUrl: second.mainimg)
         secondNameLbl.text = second.lName
         secondPartyLbl.text = second.partyName.rawValue
         secondProgressBarLbl.text = second.scoretext
-        switch second.partyName {
-        case .더불어민주당:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyBlue
-        case .자유한국당:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyRed
-        case .민중당:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyOrange
-        case .바른미래당:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyMint
-        case .무소속:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyGray
-        case .대한애국당:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyNavy
-        case .민주평화당:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyGreen
-        case .정의당:
-            secondProgressBar.backgroundColor = ColorChip.shared().partyYellow
-        }
-        secondProgressBar.snp.makeConstraints { (make) in
-            make.width.equalTo(maxWidth*second.width)
-        }
-        
+        setProgressbarColor(progressbar: secondProgressBar, partyName: second.partyName)
+        setProgresssbarWidth(progressbar: secondProgressBar, progressWidth: second.width)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        firstProgressBar.makeRounded()
-        secondProgressBar.makeRounded()
+    func setImageView(imgView : UIImageView, imgUrl : String?){
+        if (gsno(imgUrl) == "0") {
+            imgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        } else {
+            if let url = URL(string: gsno(imgUrl)){
+                imgView.kf.setImage(with: url)
+            }
+        }
     }
-
-    override func prepareForReuse() {
+    func setProgresssbarWidth(progressbar : UIView, progressWidth : Double){
+        progressbar.snp.makeConstraints { (make) in
+            make.width.equalTo(maxWidth*progressWidth)
+        }
+    }
+    
+    func setProgressbarColor(progressbar : UIView, partyName : PartyName){
+        switch partyName {
+        case .더불어민주당:
+            progressbar.backgroundColor = ColorChip.shared().partyBlue
+        case .자유한국당:
+            progressbar.backgroundColor = ColorChip.shared().partyRed
+        case .민중당:
+            progressbar.backgroundColor = ColorChip.shared().partyOrange
+        case .바른미래당:
+            progressbar.backgroundColor = ColorChip.shared().partyMint
+        case .무소속:
+            progressbar.backgroundColor = ColorChip.shared().partyGray
+        case .대한애국당:
+            progressbar.backgroundColor = ColorChip.shared().partyNavy
+        case .민주평화당:
+            progressbar.backgroundColor = ColorChip.shared().partyGreen
+        case .정의당:
+            progressbar.backgroundColor = ColorChip.shared().partyYellow
+        }
+    }
+    func setProgressBarWidth(){
         firstProgressBar.removeConstraints()
         secondProgressBar.removeConstraints()
         firstProgressBar.snp.makeConstraints { (make) in
@@ -129,9 +99,18 @@ class MainFirstSectionTVCell: UITableViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        firstProgressBar.makeRounded()
+        secondProgressBar.makeRounded()
+    }
+
+    override func prepareForReuse() {
+        setProgressBarWidth()
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         // Configure the view for the selected state
         firstProgressBar.isHidden = false
         secondProgressBar.isHidden = false

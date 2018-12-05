@@ -75,14 +75,6 @@ class MainTVCell: UITableViewCell {
             }
         }
         
-//        if index > 2 {
-//            medalImgView.isHidden = true
-//        } else {
-//            if !medalImgView.isHidden {
-//            medalImgView.isHidden = false
-//            }
-//        }
-        
         if(index % 2 == 1){
             self.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9843137255, alpha: 1)
         } else {
@@ -100,9 +92,7 @@ class MainTVCell: UITableViewCell {
         progressBar.deactivateAllConstraints()
         
     }
-    
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImgView.layer.borderColor = ColorChip.shared().mainColor.cgColor
