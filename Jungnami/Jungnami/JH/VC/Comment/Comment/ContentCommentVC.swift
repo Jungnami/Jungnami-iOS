@@ -40,6 +40,8 @@ class ContentCommentVC: UIViewController, APIService {
     }
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         detailTableView.tableFooterView = UIView(frame : .zero)
@@ -92,11 +94,17 @@ extension ContentCommentVC : UITableViewDataSource, UITableViewDelegate {
         deleteAction.backgroundColor = .red
         let reportAction = UITableViewRowAction(style: .normal, title: "신고") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
-            //신고 url 넣기
-            
+            self.reportAction(reportId: commentIdx, reportHandler: { (reportReson) in
+                //신고 url 넣기
+                    self.noticeSuccess(reportReson, autoClear: true, autoClearTime: 1)
+                    //sendMail(selectedId: reportId, reason : reportReason)
+            })
         }
         return [deleteAction, reportAction]
     }
+  
+    
+    
     
     
     @objc func like(_ sender : myHeartBtn){

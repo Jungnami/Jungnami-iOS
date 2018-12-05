@@ -98,6 +98,7 @@
 		3BCF933620F1656600E9E7F7 /* SupportPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCF933520F1656600E9E7F7 /* SupportPopup.xib */; };
 		3BCF933820F16B4700E9E7F7 /* CompletePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCF933720F16B4700E9E7F7 /* CompletePopup.xib */; };
 		3BCF933A20F16F8F00E9E7F7 /* CompletePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF933920F16F8F00E9E7F7 /* CompletePopupView.swift */; };
+		3BE415FA21B86D8A00FC4E84 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE415F921B86D8A00FC4E84 /* SwiftNotice.swift */; };
 		3BF603BA21188F29007BB99F /* MypageFeedTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF603B821188F29007BB99F /* MypageFeedTVCell.swift */; };
 		3BF603BB21188F29007BB99F /* MypageFeedTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF603B921188F29007BB99F /* MypageFeedTVCell.xib */; };
 		3BF603BE21188F3C007BB99F /* MypageFeedScrapTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF603BC21188F3C007BB99F /* MypageFeedScrapTVCell.swift */; };
@@ -260,6 +261,7 @@
 		3BCF933520F1656600E9E7F7 /* SupportPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportPopup.xib; sourceTree = "<group>"; };
 		3BCF933720F16B4700E9E7F7 /* CompletePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletePopup.xib; sourceTree = "<group>"; };
 		3BCF933920F16F8F00E9E7F7 /* CompletePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletePopupView.swift; sourceTree = "<group>"; };
+		3BE415F921B86D8A00FC4E84 /* SwiftNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 		3BF603B821188F29007BB99F /* MypageFeedTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFeedTVCell.swift; sourceTree = "<group>"; };
 		3BF603B921188F29007BB99F /* MypageFeedTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MypageFeedTVCell.xib; sourceTree = "<group>"; };
 		3BF603BC21188F3C007BB99F /* MypageFeedScrapTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFeedScrapTVCell.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 				3B97B5CE20F28CE400020A81 /* GettableService.swift */,
 				3B97B5D020F28CFB00020A81 /* PostableService.swift */,
 				3B97B5D220F28D2000020A81 /* PostablewithPhoto.swift */,
+				3BE415F921B86D8A00FC4E84 /* SwiftNotice.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1217,6 +1220,7 @@
 				3B0475F120EEBD8D00D30A4D /* MainLikeTVC.swift in Sources */,
 				4353B95020F66F0C00C88214 /* MypageService.swift in Sources */,
 				3B94985B20F3FCCC00BFA81E /* GetCoinService.swift in Sources */,
+				3BE415FA21B86D8A00FC4E84 /* SwiftNotice.swift in Sources */,
 				3B83165920F106E0001D2423 /* CommunityFirstSectionWriteTVCell.swift in Sources */,
 				3B87A34520F7F39A00A968B8 /* CommentDeleteService.swift in Sources */,
 				4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */,
