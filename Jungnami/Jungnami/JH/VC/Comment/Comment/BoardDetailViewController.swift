@@ -117,7 +117,7 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
         if sender.isLike! == 0 {
             likeAction(url: UrlPath.LikeBoardComment.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            dislikeAction(url: UrlPath.DislikeBoardCommnet.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.LikeBoardComment.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }

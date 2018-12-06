@@ -49,12 +49,11 @@ enum UrlPath : String {
     case WriteContentComment = "/contents/comment"
     case LikeContentComment = "/contents/comment/like/"
     case DeleteBoardComment = "/delete/boardcomment/"
-    case LikeBoardComment = "/board/likecomment"
-    case DislikeBoardCommnet = "/delete/boardcommentlike/"
-    
+    case LikeBoardComment = "/board/comment/like/"
+  
     //팔로우/팔로워
     case User = "/user/"
-    case Follow = "/user/follow"
+    case Follow = "/user/follow/"
    
     func getURL(_ parameter : String? = nil) -> String{
         return "http://13.124.216.2:3000\(self.rawValue)\(parameter ?? "")"
