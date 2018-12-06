@@ -17,7 +17,7 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
         self.storyCollectionView.refreshControl = UIRefreshControl()
         self.storyCollectionView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         let itemCount = storyData?.count
-        contentStorydInit(url: UrlPath.Content.getURL("스토리/\(itemCount ?? 0)"))
+        contentStorydInit(url: UrlPath.ContentCategory.getURL("스토리/\(itemCount ?? 0)"))
     }
 
 
@@ -82,7 +82,7 @@ class ContentStoryVC: UIViewController, UICollectionViewDataSource, UICollection
                 let lastItemIdx = storyContents_.count-1
                 let itemIdx = storyContents_[lastItemIdx].contentsid
                 if indexPath.row == lastItemIdx {
-                    contentStorydInit(url: UrlPath.Content.getURL("스토리/\(itemIdx)"))
+                    contentStorydInit(url: UrlPath.ContentCategory.getURL("스토리/\(itemIdx)"))
                 }
             }
         }
@@ -146,7 +146,7 @@ extension ContentStoryVC {
     @objc func startReloadTableView(_ sender: UIRefreshControl){
         storyData = []
         let itemCount = storyData?.count
-        contentStorydInit(url: UrlPath.Content.getURL("스토리/\(itemCount ?? 0)"))
+        contentStorydInit(url: UrlPath.ContentCategory.getURL("스토리/\(itemCount ?? 0)"))
         sender.endRefreshing()
     }
 }

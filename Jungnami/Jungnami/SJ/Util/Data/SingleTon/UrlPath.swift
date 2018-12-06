@@ -32,7 +32,7 @@ enum UrlPath : String {
     
     //컨텐츠
     case Content = "/contents/"
-    case ContentDetail = "/contents/detail/"
+    case ContentCategory = "/contents/category/"
     case SearchContent = "/contents/search/"
     case LikeContent = "/contents/like/"
     case ScrapContent = "/user/scrap/"

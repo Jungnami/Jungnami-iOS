@@ -22,7 +22,12 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
         tmiCollectionView.delegate = self
         tmiCollectionView.dataSource = self
         let itemCount = tmiContents?.count
-        contentTmidInit(url: UrlPath.Content.getURL("TMI/\(itemCount ?? 0)"))
+        contentTmidInit(url: UrlPath.ContentCategory.getURL("TMI/\(itemCount ?? 0)"))
+        ///contents/:contents_id/detail
+       //contents/category/:category/:pre
+        
+
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -87,7 +92,7 @@ class ContentTmiVC: UIViewController, UICollectionViewDelegateFlowLayout, UIColl
                 let lastItemIdx = tmiContents_.count-1
                 let itemIdx = tmiContents_[lastItemIdx].contentsid
                 if indexPath.row == lastItemIdx {
-                    contentTmidInit(url: UrlPath.Content.getURL("TMI/\(itemIdx)"))
+                    contentTmidInit(url: UrlPath.ContentCategory.getURL("TMI/\(itemIdx)"))
                 }
             }
         }
@@ -158,7 +163,7 @@ extension ContentTmiVC {
     @objc func startReloadTableView(_ sender: UIRefreshControl){
         tmiContents = []
         let itemCount = tmiContents?.count
-        contentTmidInit(url: UrlPath.Content.getURL("TMI/\(itemCount ?? 0)"))
+        contentTmidInit(url: UrlPath.ContentCategory.getURL("TMI/\(itemCount ?? 0)"))
         sender.endRefreshing()
     }
 }

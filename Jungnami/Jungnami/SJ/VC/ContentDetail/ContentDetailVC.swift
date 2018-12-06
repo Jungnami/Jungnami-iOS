@@ -81,7 +81,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let contentIdx_ = contentIdx {
-        contentDetailInit(url:UrlPath.ContentDetail.getURL(contentIdx_.description))
+        contentDetailInit(url:UrlPath.Content.getURL(contentIdx_.description+"/detail"))
         }
     }
     
@@ -92,7 +92,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         self.tabBarController?.tabBar.isHidden = true
         //통신
         if let contentIdx_ = contentIdx {
-            contentDetailInit(url: UrlPath.ContentDetail.getURL(contentIdx_.description))
+            contentDetailInit(url: UrlPath.Content.getURL(contentIdx_.description+"/detail"))
         }
         likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
         likeBtn.setImage(UIImage(named: "content_heart"), for: .normal)
