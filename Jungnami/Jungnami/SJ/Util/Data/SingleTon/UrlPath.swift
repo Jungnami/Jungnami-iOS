@@ -32,7 +32,7 @@ enum UrlPath : String {
     
     //컨텐츠
     case Content = "/contents/"
-    case ContentDetail = "/contents/detail/"
+    case ContentCategory = "/contents/category/"
     case SearchContent = "/contents/search/"
     case LikeContent = "/contents/like/"
     case ScrapContent = "/user/scrap/"
@@ -40,7 +40,6 @@ enum UrlPath : String {
     //마이페이지
     case Mypage = "/user/mypage/"
     case AlarmList = "/user/push"
-    
     case ChangeCoin = "/user/addvote"
     
     //댓글
@@ -48,13 +47,11 @@ enum UrlPath : String {
     case ContentCommentList = "/contents/comment/"
     case WriteContentComment = "/contents/comment"
     case LikeContentComment = "/contents/comment/like/"
-    case DeleteBoardComment = "/delete/boardcomment/"
-    case LikeBoardComment = "/board/likecomment"
-    case DislikeBoardCommnet = "/delete/boardcommentlike/"
-    
+    case LikeBoardComment = "/board/comment/like/"
+  
     //팔로우/팔로워
     case User = "/user/"
-    case Follow = "/user/follow"
+    case Follow = "/user/follow/"
    
     func getURL(_ parameter : String? = nil) -> String{
         return "http://13.124.216.2:3000\(self.rawValue)\(parameter ?? "")"

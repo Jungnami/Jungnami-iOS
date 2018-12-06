@@ -21,7 +21,7 @@ class RecommendFirstCell: UICollectionViewCell {
         recommendTitleLbl.text = data.title
         recommendCategoryLbl.text = data.text
         if (gsno(data.thumbnail) == "0") {
-            recommendImgView.image = #imageLiteral(resourceName: "dabi")
+            recommendImgView.image = UIImage()
         } else {
             
             if let url = URL(string: gsno(data.thumbnail)){

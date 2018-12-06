@@ -13,11 +13,12 @@ class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AP
     var keyboardDismissGesture: UITapGestureRecognizer?
     //-------------------------------------------------
     
-    var alarmData : [AlarmVOData]?
+    var alarmData : [AlarmVOData] = []
     
     @IBOutlet weak var noticeTableView: UITableView!
+
     
-    @IBAction func dismissBtn(_ sender: UIButton) {
+    @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -43,18 +44,18 @@ class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AP
 
     //--------------tableView-------------
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let alarmData_ = alarmData {
-            return alarmData_.count
-        }
-       return 0
+      
+            return alarmData.count
+      
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NoticeCell.reuseIdentifier, for: indexPath) as! NoticeCell
-        if let alarmData_ = alarmData {
-            cell.followBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-             cell.configure(data: alarmData_[indexPath.row])
-        }
+        guard alarmData.count > 0 else {return cell}
+    
+            cell.followBtn.addTarget(self, action: #selector(follow(_:)), for: .touchUpInside)
+            cell.configure(data: alarmData[indexPath.row], index : indexPath.row)
+        
 
         //tapGesture--------------
         cell.delegate = self
@@ -62,7 +63,7 @@ class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AP
         return cell
     }
     
-    @objc func like(_ sender : followBtn){
+    @objc func follow(_ sender : followBtn){
         //통신
         
         let buttonPosition = sender.convert(CGPoint.zero, to: self.noticeTableView)
@@ -73,7 +74,7 @@ class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AP
         if sender.isFollow! == "팔로우" {
             likeAction(url: UrlPath.Follow.getURL(), userIdx : sender.userIdx!,  cell : cell, sender : sender )
         } else {
-            dislikeAction(url: UrlPath.User.getURL("\(sender.userIdx!)/unfollow"), cell : cell, sender : sender )
+            dislikeAction(url: UrlPath.Follow.getURL("\(sender.userIdx!)"), cell : cell, sender : sender )
         }
         
     }
@@ -92,7 +93,9 @@ extension NoticeVC {
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(let alarmData):
-                self.alarmData = alarmData as? [AlarmVOData]
+                if let alarmData_ = alarmData as? [AlarmVOData] {
+                    self.alarmData = alarmData_
+                }
                 self.noticeTableView.reloadData()
                 break
                 
@@ -122,7 +125,7 @@ extension NoticeVC {
             case .networkSuccess(_):
                 sender.isSelected = true
                 sender.isFollow = "팔로잉"
-                
+                self.alarmData[sender.indexPath].button = "팔로잉"
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
@@ -149,7 +152,7 @@ extension NoticeVC {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isFollow = "팔로우"
-                
+                self.alarmData[sender.indexPath].button = "팔로우"
                 
                 break
             case .accessDenied :

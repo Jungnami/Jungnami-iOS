@@ -1,6 +1,5 @@
 //
-//  BoardDetailViewController.swift
-//  sopt22_seminar4_1
+//  CommentVC.swift
 //
 //  Created by 강수진 on 2018. 4. 30..
 //  Copyright © 2018년 강수진. All rights reserved.
@@ -8,7 +7,7 @@
 
 import UIKit
 
-class BoardDetailViewController: UIViewController, APIService {
+class CommentVC: UIViewController, APIService {
     
     // 화면 터치했을 때 키보드 사라지게 하는 gesture
     var keyboardDismissGesture: UITapGestureRecognizer?
@@ -16,9 +15,9 @@ class BoardDetailViewController: UIViewController, APIService {
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var commentSendView: UIView!
     @IBOutlet weak var commentTxt: UITextView!
-        @IBOutlet weak var likeCountLbl: UILabel!
-        @IBOutlet weak var commentCountLbl: UILabel!
-
+    @IBOutlet weak var likeCountLbl: UILabel!
+    @IBOutlet weak var commentCountLbl: UILabel!
+    
     var heartCount = 0
     var commentCount = 0
     var selectedBoard : Int? {
@@ -29,14 +28,14 @@ class BoardDetailViewController: UIViewController, APIService {
             
         }
     }
-    var commentData : [CommunityCommentVOData]?
+    var commentData : [CommunityCommentVOData] = []
     @IBAction func dissmissBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-  
+    
     
     @IBAction func writeCommentBtn(_ sender: Any) {
-       writeComment(url : UrlPath.BoardCommentList.getURL())
+        writeComment(url : UrlPath.BoardCommentList.getURL())
         commentTxt.text = ""
     }
     
@@ -48,8 +47,7 @@ class BoardDetailViewController: UIViewController, APIService {
         detailTableView.delegate = self
         detailTableView.dataSource = self
         detailTableView.tableFooterView = UIView(frame : .zero)
-        //commentTxt.addTarget(self, action: #selector(canCommentSend), for: .editingChanged)
-         setKeyboardSetting()
+        setKeyboardSetting()
         likeCountLbl.text = "\(heartCount)명이 좋아합니다"
         likeCountLbl.sizeToFit()
         commentCountLbl.text = "\(commentCount)개"
@@ -60,53 +58,54 @@ class BoardDetailViewController: UIViewController, APIService {
         commentTxt.clipsToBounds = true 
         
     }
-
+    
 }
 
-extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate {
- 
+extension CommentVC : UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let commentData_ = commentData {
-            return commentData_.count
-        }
-        return 0
+        return commentData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
-        if let commentData_ = commentData {
-            
-            cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-            cell.configure(index : indexPath.row ,data: commentData_[indexPath.row])
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.reuseIdentifier, for: indexPath) as! CommentCell
+        guard commentData.count > 0 else {return cell}
+        
+        cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+        cell.configure(index : indexPath.row ,data: commentData[indexPath.row])
+        
         
         cell.delegate = self
         return cell
     }
     
     
-     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let selectedComment = commentData![indexPath.row]
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let selectedComment = commentData[indexPath.row]
         let deleteAction = UITableViewRowAction(style: .normal, title: "삭제") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
             //삭제 url 넣기
-          
             
-            self.deleteComment(url: UrlPath.DeleteBoardComment.getURL(commentIdx.description))
+            
+            self.deleteComment(url: UrlPath.BoardCommentList.getURL(commentIdx.description))
             //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
         }
         deleteAction.backgroundColor = .red
         
         let reportAction = UITableViewRowAction(style: .normal, title: "신고") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
-            //신고 url 넣기
+            self.reportAction(reportId: commentIdx, reportHandler: { (reportReson) in
+                //신고 url 넣기
+                self.noticeSuccess(reportReson, autoClear: true, autoClearTime: 1)
+                //sendMail(selectedId: reportId, reason : reportReason)
+            })
             
         }
         return [deleteAction, reportAction]
     }
     
     
- 
+    
     @objc func like(_ sender : myHeartBtn){
         //통신
         
@@ -117,7 +116,7 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
         if sender.isLike! == 0 {
             likeAction(url: UrlPath.LikeBoardComment.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            dislikeAction(url: UrlPath.DislikeBoardCommnet.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            dislikeAction(url: UrlPath.LikeBoardComment.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }
@@ -126,9 +125,9 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
 }
 
 
-extension BoardDetailViewController {
+extension CommentVC {
     
-   
+    
     func setKeyboardSetting() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -144,8 +143,8 @@ extension BoardDetailViewController {
             detailTableView.contentInset = contentInset
             ////////
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 위로 이동시킴 ////////
-        
-                commentSendView.frame.origin.y -= keyboardSize.height
+            
+            commentSendView.frame.origin.y -= keyboardSize.height
             
             ////////
             self.view.layoutIfNeeded()
@@ -160,8 +159,8 @@ extension BoardDetailViewController {
             contentInset.bottom = 0
             detailTableView.contentInset = contentInset
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 아래로 이동시킴 ////////
-           
-               commentSendView.frame.origin.y += keyboardSize.height
+            
+            commentSendView.frame.origin.y += keyboardSize.height
             
             
             ////////
@@ -189,8 +188,8 @@ extension BoardDetailViewController {
 }
 
 //tapGesture
-extension BoardDetailViewController : TapDelegate2, UIGestureRecognizerDelegate {
-
+extension CommentVC : TapDelegate2, UIGestureRecognizerDelegate {
+    
     func myTableDelegate(sender : UITapGestureRecognizer) {
         let touch = sender.location(in: detailTableView)
         if let indexPath = detailTableView.indexPathForRow(at: touch){
@@ -213,10 +212,10 @@ extension BoardDetailViewController : TapDelegate2, UIGestureRecognizerDelegate 
             
         }
     }
-  
+    
 }
 //통신
-extension BoardDetailViewController {
+extension CommentVC {
     func getCommentList(url : String){
         CommunityCommentService.shareInstance.getCommunity(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
@@ -287,9 +286,9 @@ extension BoardDetailViewController {
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
-             
+                
                 self.simpleAlert(title: "성공", message: "댓글 삭제 완료")
-              
+                
                 self.temp()
                 break
             case .accessDenied :
@@ -306,7 +305,7 @@ extension BoardDetailViewController {
     
     //하트 버튼 눌렀을 때
     func likeAction(url : String, boardIdx : Int, isLike : Int, cell : CommentCell, sender : myHeartBtn, likeCnt : Int){
-       
+        
         let params : [String : Any] = [
             "comment_id" : boardIdx
         ]
@@ -317,7 +316,9 @@ extension BoardDetailViewController {
             case .networkSuccess(_):
                 sender.isSelected = true
                 sender.isLike = 1
-              
+                self.commentData[sender.indexPath].islike = 1
+                self.commentData[sender.indexPath].commentlikeCnt += 1
+                
                 
                 break
             case .accessDenied :
@@ -345,7 +346,9 @@ extension BoardDetailViewController {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isLike = 0
-              
+                self.commentData[sender.indexPath].islike = 0
+                self.commentData[sender.indexPath].commentlikeCnt -= 1
+                
                 
                 break
             case .accessDenied :

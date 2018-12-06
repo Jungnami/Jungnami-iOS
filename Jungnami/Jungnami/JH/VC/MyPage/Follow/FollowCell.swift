@@ -11,6 +11,7 @@ import Kingfisher
 class followBtn : UIButton {
     var isFollow : String? //
     var userIdx : String?
+    var indexPath : Int = 0
 }
 
 class FollowCell: UITableViewCell {
@@ -26,7 +27,7 @@ class FollowCell: UITableViewCell {
     @IBOutlet weak var followCancelBtn: followBtn!
     
   
-    func configure(data : FollowListVOData){
+    func configure(data : FollowListVOData, index : Int){
         if (gsno(data.followingImgURL) == "0") {
             followImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
             
@@ -44,6 +45,7 @@ class FollowCell: UITableViewCell {
         //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
         followCancelBtn.isFollow = data.isMyFollowing
         followCancelBtn.userIdx = data.followingID
+        followCancelBtn.indexPath = index
         if data.isMyFollowing == "팔로우" {
             followCancelBtn.isSelected = false
         } else if data.isMyFollowing == "팔로잉"{
@@ -53,7 +55,7 @@ class FollowCell: UITableViewCell {
         }
     }
     
-    func configure2(data : FollowerListVOData){
+    func configure2(data : FollowerListVOData, index : Int){
         if (gsno(data.followerImgURL) == "0") {
             followImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
             
@@ -71,6 +73,7 @@ class FollowCell: UITableViewCell {
         //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
         followCancelBtn.isFollow = data.isMyFollowing
         followCancelBtn.userIdx = data.followerID
+        followCancelBtn.indexPath = index
         if data.isMyFollowing == "팔로우" {
             followCancelBtn.isSelected = false
         } else if data.isMyFollowing == "팔로잉"{
@@ -87,18 +90,6 @@ class FollowCell: UITableViewCell {
         //탭레코그나이저
         followImgView.isUserInteractionEnabled = true
         followNickNameLbl.isUserInteractionEnabled = true
-        
-//        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.imgTap(sender:)))
-//        let lblTapGesture = UITapGestureRecognizer(target: self, action: #selector(RecommentCell.lblTap(sender:)))
-//        self.followNickNameLbl.addGestureRecognizer(lblTapGesture)
-//        self.followImgView.addGestureRecognizer(imgTapGesture)
-        
-    }
-    @objc func imgTap(sender: UITapGestureRecognizer) {
-        delegate?.myTableDelegate(index : index)
-    }
-    @objc func lblTap(sender: UITapGestureRecognizer) {
-        delegate?.myTableDelegate(index : index)
     }
 
     //선택됐을 때

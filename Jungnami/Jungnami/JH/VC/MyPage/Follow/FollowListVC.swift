@@ -11,7 +11,8 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
      var keyboardDismissGesture: UITapGestureRecognizer?
     
-    @IBOutlet weak var navTitleLbl: UILabel!
+
+    @IBOutlet weak var myNavItem: UINavigationItem!
     @IBOutlet weak var followTableView: UITableView!
     @IBOutlet weak var followSearchField: UITextField!
     @IBOutlet weak var followSearchImg: UIImageView!
@@ -21,11 +22,10 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    @IBAction func dismissBtn(_ sender: UIButton) {
+    @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-   
     //통신
     var followListData : [FollowListVOData]? {
         didSet {
@@ -37,7 +37,6 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var followerListData : [FollowerListVOData]? {
         didSet {
             if let _ = followerListData {
-      
                 self.followTableView.reloadData()
             }
         }
@@ -49,7 +48,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
          getList()
         
         if let navTitle_ = navTitle {
-            self.navTitleLbl.text = navTitle_
+            self.myNavItem.title = navTitle_
         }
     }
     
@@ -72,18 +71,13 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.followSearchField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         //keyboardDown
-        hideKeyboardWhenTappedAround()
+        setKeyboardSetting()
         getList()
         
         followSearchField.delegate = self
         followTableView.tableFooterView = UIView(frame : .zero)
-        //searchField
-        //        if followSearchField.text != "" {
-        //            followSearchImg.isHidden = true
-        //        }else {
-        //            followSearchImg.isHidden = false
-        //        }
     }
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -125,14 +119,14 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             
             if let followListData_ = followListData {
                 //여기서부터
-                cell.followCancelBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-                cell.configure(data: followListData_[indexPath.row])
+                cell.followCancelBtn.addTarget(self, action: #selector(follow(_:)), for: .touchUpInside)
+                cell.configure(data: followListData_[indexPath.row], index : indexPath.row)
             }
             
             if let followerListData_ = followerListData {
         
-                cell.followCancelBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-                cell.configure2(data: followerListData_[indexPath.row])
+                cell.followCancelBtn.addTarget(self, action: #selector(follow(_:)), for: .touchUpInside)
+                cell.configure2(data: followerListData_[indexPath.row], index : indexPath.row)
             }
             
             return cell
@@ -141,18 +135,17 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
-    @objc func like(_ sender : followBtn){
+    @objc func follow(_ sender : followBtn){
         //통신
-        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.followTableView)
         let indexPath: IndexPath? = self.followTableView.indexPathForRow(at: buttonPosition)
         let cell = self.followTableView.cellForRow(at: indexPath!) as! FollowCell
         // 팔로우가 들어온다는 것은 아직 팔로잉 한 상태가 아니라는 것 => 그러니까 .isSelected = false
         //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
         if sender.isFollow! == "팔로우" {
-            likeAction(url: UrlPath.Follow.getURL(), userIdx : sender.userIdx!,  cell : cell, sender : sender )
+            followAction(url: UrlPath.Follow.getURL(), userIdx : sender.userIdx!,  cell : cell, sender : sender )
         } else {
-            dislikeAction(url: UrlPath.User.getURL("\(sender.userIdx!)/unfollow"), cell : cell, sender : sender )
+            unfollowAction(url: UrlPath.Follow.getURL("\(sender.userIdx!)"), cell : cell, sender : sender )
         }
         
     }
@@ -201,15 +194,46 @@ extension FollowListVC : TapDelegate, UIGestureRecognizerDelegate {
         print(index)
     }
 }
+
+//키보드
 extension FollowListVC {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChangeCoinVC.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+    func setKeyboardSetting() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    @objc func keyboardWillShow(_ notification: Notification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.followTableView.contentInset.bottom = keyboardSize.height
+            self.view.layoutIfNeeded()
+        }
+        adjustKeyboardDismissGesture(isKeyboardVisible: true)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        adjustKeyboardDismissGesture(isKeyboardVisible: false)
+        self.followTableView.contentInset.bottom = 0
+        self.view.layoutIfNeeded()
+    }
+    
+    //화면 바깥 터치했을때 키보드 없어지는 코드
+    func adjustKeyboardDismissGesture(isKeyboardVisible: Bool) {
+        if isKeyboardVisible {
+            if keyboardDismissGesture == nil {
+                keyboardDismissGesture = UITapGestureRecognizer(target: self, action: #selector(tapBackground))
+                view.addGestureRecognizer(keyboardDismissGesture!)
+            }
+        } else {
+            if keyboardDismissGesture != nil {
+                view.removeGestureRecognizer(keyboardDismissGesture!)
+                keyboardDismissGesture = nil
+            }
+        }
+    }
+    
+    @objc func tapBackground() {
+        self.view.endEditing(true)
     }
 }
 
@@ -217,7 +241,7 @@ extension FollowListVC {
 //통신
 extension FollowListVC {
     //하트 버튼 눌렀을 때
-    func likeAction(url : String, userIdx : String,  cell : FollowCell, sender : followBtn){
+    func followAction(url : String, userIdx : String,  cell : FollowCell, sender : followBtn){
         
         let params : [String : Any] = [
             "following_id" : userIdx
@@ -229,6 +253,14 @@ extension FollowListVC {
             case .networkSuccess(_):
                 sender.isSelected = true
                 sender.isFollow = "팔로잉"
+                if self.followListData != nil {
+                    self.followListData![sender.indexPath].isMyFollowing = "팔로잉"
+                    
+                }
+                
+                if self.followerListData != nil {
+                     self.followerListData![sender.indexPath].isMyFollowing = "팔로잉"
+                }
 
                 break
             case .accessDenied :
@@ -248,7 +280,7 @@ extension FollowListVC {
     }
     
     //좋아요 취소
-    func dislikeAction(url : String, cell : FollowCell, sender : followBtn){
+    func unfollowAction(url : String, cell : FollowCell, sender : followBtn){
         CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -256,6 +288,14 @@ extension FollowListVC {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isFollow = "팔로우"
+                if self.followListData != nil {
+                    self.followListData![sender.indexPath].isMyFollowing = "팔로우"
+                    
+                }
+                
+                if self.followerListData != nil {
+                    self.followerListData![sender.indexPath].isMyFollowing = "팔로우"
+                }
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in

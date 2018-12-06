@@ -112,7 +112,7 @@ extension MyPageFeedVC {
     @objc func comment(_ sender : myCommentBtn){
         let communityStoartyboard = Storyboard.shared().communityStoryboard
         
-        if let commentVC = communityStoartyboard.instantiateViewController(withIdentifier:BoardDetailViewController.reuseIdentifier) as? BoardDetailViewController {
+        if let commentVC = communityStoartyboard.instantiateViewController(withIdentifier:CommentVC.reuseIdentifier) as? CommentVC {
             
             commentVC.selectedBoard = sender.tag
             commentVC.heartCount = sender.likeCnt

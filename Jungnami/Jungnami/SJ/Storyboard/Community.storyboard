@@ -1470,7 +1470,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="헐랭..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlt-eM-MBI">
-                                                    <rect key="frame" x="57" y="32" width="292" height="16"/>
+                                                    <rect key="frame" x="57" y="32" width="34" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                     <nil key="highlightedColor"/>
@@ -1488,9 +1488,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <state key="normal" title="답글 5개"/>
                                                 </button>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Qig-aZ-NFV">
-                                                    <rect key="frame" x="57" y="76.5" width="0.0" height="0.0"/>
-                                                </stackView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content_best_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Bhm-sI-m8M">
                                                     <rect key="frame" x="106" y="11" width="29" height="13"/>
                                                 </imageView>
@@ -1512,7 +1509,6 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Qig-aZ-NFV" secondAttribute="bottom" constant="12" id="25G-ih-3sg"/>
                                                 <constraint firstItem="aEr-tL-DFm" firstAttribute="leading" secondItem="Sqh-Fw-l9d" secondAttribute="leading" constant="12" id="Hca-6l-QRj"/>
                                                 <constraint firstItem="QzW-tJ-sD7" firstAttribute="top" secondItem="aEr-tL-DFm" secondAttribute="top" id="J8R-2t-Kqf"/>
                                                 <constraint firstItem="nlt-eM-MBI" firstAttribute="top" secondItem="QzW-tJ-sD7" secondAttribute="bottom" constant="5" id="JhJ-YI-e6z"/>
@@ -1523,10 +1519,10 @@
                                                 <constraint firstItem="Bhm-sI-m8M" firstAttribute="top" secondItem="QzW-tJ-sD7" secondAttribute="top" id="PjA-wY-RSq"/>
                                                 <constraint firstItem="3WZ-YZ-n3w" firstAttribute="top" secondItem="nlt-eM-MBI" secondAttribute="bottom" constant="2" id="SOU-Me-PJW"/>
                                                 <constraint firstItem="Bhm-sI-m8M" firstAttribute="leading" secondItem="QzW-tJ-sD7" secondAttribute="trailing" constant="4" id="TLF-Jz-aaD"/>
+                                                <constraint firstItem="r7O-Jl-Gfg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nlt-eM-MBI" secondAttribute="trailing" constant="10" id="UMT-Nj-EzP"/>
                                                 <constraint firstAttribute="trailing" secondItem="r7O-Jl-Gfg" secondAttribute="trailing" constant="16" id="Xee-4i-z7d"/>
                                                 <constraint firstAttribute="bottom" secondItem="3WZ-YZ-n3w" secondAttribute="bottom" constant="15" id="bLJ-Yt-8m3"/>
                                                 <constraint firstItem="nlt-eM-MBI" firstAttribute="leading" secondItem="QzW-tJ-sD7" secondAttribute="leading" id="v8l-v0-S3U"/>
-                                                <constraint firstAttribute="trailing" secondItem="nlt-eM-MBI" secondAttribute="trailing" constant="26" id="vyd-Dr-0cn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1658,10 +1654,10 @@
             </objects>
             <point key="canvasLocation" x="3065" y="-447"/>
         </scene>
-        <!--Board Detail View Controller-->
+        <!--CommentVC-->
         <scene sceneID="LID-vV-zaI">
             <objects>
-                <viewController storyboardIdentifier="BoardDetailViewController" id="0Ch-a8-664" customClass="BoardDetailViewController" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentVC" id="0Ch-a8-664" customClass="CommentVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5MX-PH-jU6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1691,7 +1687,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="헐랭..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoJ-4A-S5w">
-                                                    <rect key="frame" x="57" y="32" width="292" height="16"/>
+                                                    <rect key="frame" x="57" y="32" width="34" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                     <nil key="highlightedColor"/>
@@ -1709,9 +1705,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <state key="normal" title="답글 5개"/>
                                                 </button>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cuN-a5-SKc">
-                                                    <rect key="frame" x="57" y="76.5" width="0.0" height="0.0"/>
-                                                </stackView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content_best_icon" translatesAutoresizingMaskIntoConstraints="NO" id="mR3-qm-CKr">
                                                     <rect key="frame" x="106" y="11" width="29" height="13"/>
                                                 </imageView>
@@ -1741,9 +1734,8 @@
                                                 <constraint firstItem="mR3-qm-CKr" firstAttribute="leading" secondItem="H5c-8U-6Ln" secondAttribute="trailing" constant="4" id="SCc-od-c3E"/>
                                                 <constraint firstItem="mR3-qm-CKr" firstAttribute="top" secondItem="H5c-8U-6Ln" secondAttribute="top" id="SbH-k7-oYD"/>
                                                 <constraint firstItem="SoJ-4A-S5w" firstAttribute="top" secondItem="H5c-8U-6Ln" secondAttribute="bottom" constant="5" id="U9h-Sl-QOT"/>
-                                                <constraint firstAttribute="bottom" secondItem="cuN-a5-SKc" secondAttribute="bottom" constant="12" id="ZNr-Nl-0Q8"/>
+                                                <constraint firstItem="1FG-hN-oxM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SoJ-4A-S5w" secondAttribute="trailing" constant="10" id="aND-yv-0mc"/>
                                                 <constraint firstItem="H5c-8U-6Ln" firstAttribute="leading" secondItem="rLl-MY-zkW" secondAttribute="trailing" constant="7" id="eP2-Hw-4mv"/>
-                                                <constraint firstAttribute="trailing" secondItem="SoJ-4A-S5w" secondAttribute="trailing" constant="26" id="fgK-N2-lM5"/>
                                                 <constraint firstItem="SoJ-4A-S5w" firstAttribute="leading" secondItem="H5c-8U-6Ln" secondAttribute="leading" id="kam-7D-Hpx"/>
                                                 <constraint firstItem="Khh-g1-1wF" firstAttribute="top" secondItem="SoJ-4A-S5w" secondAttribute="bottom" constant="2" id="lkV-Kz-7th"/>
                                                 <constraint firstItem="H5c-8U-6Ln" firstAttribute="top" secondItem="rLl-MY-zkW" secondAttribute="top" id="lxW-uk-jCH"/>
