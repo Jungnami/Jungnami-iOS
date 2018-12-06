@@ -26,6 +26,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
    
+    
     //통신
     var followListData : [FollowListVOData]? {
         didSet {
@@ -37,7 +38,6 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var followerListData : [FollowerListVOData]? {
         didSet {
             if let _ = followerListData {
-      
                 self.followTableView.reloadData()
             }
         }
@@ -77,13 +77,8 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         followSearchField.delegate = self
         followTableView.tableFooterView = UIView(frame : .zero)
-        //searchField
-        //        if followSearchField.text != "" {
-        //            followSearchImg.isHidden = true
-        //        }else {
-        //            followSearchImg.isHidden = false
-        //        }
     }
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -125,14 +120,14 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             
             if let followListData_ = followListData {
                 //여기서부터
-                cell.followCancelBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-                cell.configure(data: followListData_[indexPath.row])
+                cell.followCancelBtn.addTarget(self, action: #selector(follow(_:)), for: .touchUpInside)
+                cell.configure(data: followListData_[indexPath.row], index : indexPath.row)
             }
             
             if let followerListData_ = followerListData {
         
-                cell.followCancelBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-                cell.configure2(data: followerListData_[indexPath.row])
+                cell.followCancelBtn.addTarget(self, action: #selector(follow(_:)), for: .touchUpInside)
+                cell.configure2(data: followerListData_[indexPath.row], index : indexPath.row)
             }
             
             return cell
@@ -141,18 +136,17 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
-    @objc func like(_ sender : followBtn){
+    @objc func follow(_ sender : followBtn){
         //통신
-        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.followTableView)
         let indexPath: IndexPath? = self.followTableView.indexPathForRow(at: buttonPosition)
         let cell = self.followTableView.cellForRow(at: indexPath!) as! FollowCell
         // 팔로우가 들어온다는 것은 아직 팔로잉 한 상태가 아니라는 것 => 그러니까 .isSelected = false
         //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
         if sender.isFollow! == "팔로우" {
-            likeAction(url: UrlPath.Follow.getURL(), userIdx : sender.userIdx!,  cell : cell, sender : sender )
+            followAction(url: UrlPath.Follow.getURL(), userIdx : sender.userIdx!,  cell : cell, sender : sender )
         } else {
-            dislikeAction(url: UrlPath.User.getURL("\(sender.userIdx!)/unfollow"), cell : cell, sender : sender )
+            unfollowAction(url: UrlPath.Follow.getURL("\(sender.userIdx!)"), cell : cell, sender : sender )
         }
         
     }
@@ -217,7 +211,7 @@ extension FollowListVC {
 //통신
 extension FollowListVC {
     //하트 버튼 눌렀을 때
-    func likeAction(url : String, userIdx : String,  cell : FollowCell, sender : followBtn){
+    func followAction(url : String, userIdx : String,  cell : FollowCell, sender : followBtn){
         
         let params : [String : Any] = [
             "following_id" : userIdx
@@ -229,6 +223,14 @@ extension FollowListVC {
             case .networkSuccess(_):
                 sender.isSelected = true
                 sender.isFollow = "팔로잉"
+                if self.followListData != nil {
+                    self.followListData![sender.indexPath].isMyFollowing = "팔로잉"
+                    
+                }
+                
+                if self.followerListData != nil {
+                     self.followerListData![sender.indexPath].isMyFollowing = "팔로잉"
+                }
 
                 break
             case .accessDenied :
@@ -248,7 +250,7 @@ extension FollowListVC {
     }
     
     //좋아요 취소
-    func dislikeAction(url : String, cell : FollowCell, sender : followBtn){
+    func unfollowAction(url : String, cell : FollowCell, sender : followBtn){
         CommunityDislikeService.shareInstance.dislikeCommunity(url: url, completion: {  [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -256,6 +258,14 @@ extension FollowListVC {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isFollow = "팔로우"
+                if self.followListData != nil {
+                    self.followListData![sender.indexPath].isMyFollowing = "팔로우"
+                    
+                }
+                
+                if self.followerListData != nil {
+                    self.followerListData![sender.indexPath].isMyFollowing = "팔로우"
+                }
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in

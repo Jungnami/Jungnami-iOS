@@ -777,6 +777,7 @@
 			isa = PBXGroup;
 			children = (
 				432BA53420F3658700B33A36 /* charge */,
+				43EDECCF20F20C3100E0F0E9 /* Follow */,
 				43EDECC420F204DE00E0F0E9 /* FollowFollowing */,
 				4331B01020EFFBB000FA290C /* Notice */,
 			);
@@ -927,7 +928,6 @@
 		43EDECC420F204DE00E0F0E9 /* FollowFollowing */ = {
 			isa = PBXGroup;
 			children = (
-				43EDECCF20F20C3100E0F0E9 /* Follow */,
 			);
 			path = FollowFollowing;
 			sourceTree = "<group>";

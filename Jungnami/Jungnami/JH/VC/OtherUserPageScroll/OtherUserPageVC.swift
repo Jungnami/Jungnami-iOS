@@ -42,7 +42,7 @@ class OtherUserPageVC : UIViewController, APIService {
         //
         headerView.otherUserFollowBtn.setImage(UIImage(named: "other-user-page_add_user"), for: .normal)
         headerView.otherUserFollowBtn.setImage(UIImage(named: "other-user-page_user_blue"), for: .selected)
-        headerView.otherUserFollowBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+        headerView.otherUserFollowBtn.addTarget(self, action: #selector(follow(_:)), for: .touchUpInside)
         
         //make label button
         let tapFollow = UITapGestureRecognizer(target: self, action: #selector(OtherUserPageVC.tapFollowLbl(_:)))
@@ -136,7 +136,7 @@ extension OtherUserPageVC {
         headerView_.profileMyfeedNumLbl.text = "\(myPageData.boardcnt)"
         headerView_.profileFollowingNumLbl.text = "\(myPageData.followingcnt)"
         headerView_.profileFollowerNumLbl.text = "\(myPageData.followercnt)"
-        
+
         if myPageData.isfollow == 0 {
             headerView_.otherUserFollowBtn.isSelected = false
             headerView_.otherUserFollowBtn.isFollow = "팔로우"
@@ -155,12 +155,12 @@ extension OtherUserPageVC {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func like(_ sender : followBtn){
+    @objc func follow(_ sender : followBtn){
         //통신
         if sender.isFollow! == "팔로우" {
             likeAction(url: UrlPath.Follow.getURL(), userIdx : "\(selectedUserId!)", sender : sender )
         } else {
-            dislikeAction(url:  UrlPath.User.getURL("\(selectedUserId!)/unfollow"), sender : sender )
+            dislikeAction(url:  UrlPath.Follow.getURL("\(selectedUserId!)"), sender : sender )
         }
         
     }

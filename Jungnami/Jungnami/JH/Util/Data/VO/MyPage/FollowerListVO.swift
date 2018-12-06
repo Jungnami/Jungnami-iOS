@@ -13,7 +13,8 @@ struct FollowerListVO: Codable {
 }
 
 struct FollowerListVOData: Codable {
-    let followerID, followerNickname, followerImgURL, isMyFollowing: String
+    let followerID, followerNickname, followerImgURL : String
+    var isMyFollowing: String
     
     enum CodingKeys: String, CodingKey {
         case followerID = "follower_id"

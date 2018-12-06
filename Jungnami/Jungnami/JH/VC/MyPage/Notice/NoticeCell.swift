@@ -25,7 +25,7 @@ class NoticeCell: UITableViewCell {
     
     var check: Bool = true // ?
    
-    func configure(data: AlarmVOData) {
+    func configure(data: AlarmVOData, index : Int) {
        
         if (gsno(data.imgURL) == "0") {
             noticeProfileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
@@ -47,13 +47,15 @@ class NoticeCell: UITableViewCell {
         //팔로잉이 들어온다는 것은 팔로잉을 하고 있다는것 => 그러니까 .isSelected = true
         followBtn.isFollow = data.button
         followBtn.userIdx = data.id
+        followBtn.indexPath = index
         
         if followType == "팔로우" {
             followBtn.isSelected = false
+            followBtn.isHidden = false
             
         } else if followType == "팔로잉" {
             followBtn.isSelected = true
-           
+            followBtn.isHidden = false
         } else {
             followBtn.isHidden = true
         }
@@ -64,6 +66,7 @@ class NoticeCell: UITableViewCell {
             self.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9882352941, blue: 1, alpha: 1)
         } else {
             //체크 한거
+            self.backgroundColor = .white
         }
         
     }
