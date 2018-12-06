@@ -68,9 +68,8 @@ extension CommentVC : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.reuseIdentifier, for: indexPath) as! CommentCell
         guard commentData.count > 0 else {return cell}
-        
         
         cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
         cell.configure(index : indexPath.row ,data: commentData[indexPath.row])
@@ -88,14 +87,18 @@ extension CommentVC : UITableViewDataSource, UITableViewDelegate {
             //삭제 url 넣기
             
             
-            self.deleteComment(url: UrlPath.DeleteBoardComment.getURL(commentIdx.description))
+            self.deleteComment(url: UrlPath.BoardCommentList.getURL(commentIdx.description))
             //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
         }
         deleteAction.backgroundColor = .red
         
         let reportAction = UITableViewRowAction(style: .normal, title: "신고") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
-            //신고 url 넣기
+            self.reportAction(reportId: commentIdx, reportHandler: { (reportReson) in
+                //신고 url 넣기
+                self.noticeSuccess(reportReson, autoClear: true, autoClearTime: 1)
+                //sendMail(selectedId: reportId, reason : reportReason)
+            })
             
         }
         return [deleteAction, reportAction]
