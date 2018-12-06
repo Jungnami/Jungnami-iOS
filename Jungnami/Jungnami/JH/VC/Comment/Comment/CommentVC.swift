@@ -15,9 +15,9 @@ class CommentVC: UIViewController, APIService {
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var commentSendView: UIView!
     @IBOutlet weak var commentTxt: UITextView!
-        @IBOutlet weak var likeCountLbl: UILabel!
-        @IBOutlet weak var commentCountLbl: UILabel!
-
+    @IBOutlet weak var likeCountLbl: UILabel!
+    @IBOutlet weak var commentCountLbl: UILabel!
+    
     var heartCount = 0
     var commentCount = 0
     var selectedBoard : Int? {
@@ -28,14 +28,14 @@ class CommentVC: UIViewController, APIService {
             
         }
     }
-    var commentData : [CommunityCommentVOData]?
+    var commentData : [CommunityCommentVOData] = []
     @IBAction func dissmissBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-  
+    
     
     @IBAction func writeCommentBtn(_ sender: Any) {
-       writeComment(url : UrlPath.BoardCommentList.getURL())
+        writeComment(url : UrlPath.BoardCommentList.getURL())
         commentTxt.text = ""
     }
     
@@ -47,8 +47,7 @@ class CommentVC: UIViewController, APIService {
         detailTableView.delegate = self
         detailTableView.dataSource = self
         detailTableView.tableFooterView = UIView(frame : .zero)
-        //commentTxt.addTarget(self, action: #selector(canCommentSend), for: .editingChanged)
-         setKeyboardSetting()
+        setKeyboardSetting()
         likeCountLbl.text = "\(heartCount)명이 좋아합니다"
         likeCountLbl.sizeToFit()
         commentCountLbl.text = "\(commentCount)개"
@@ -59,37 +58,35 @@ class CommentVC: UIViewController, APIService {
         commentTxt.clipsToBounds = true 
         
     }
-
+    
 }
 
 extension CommentVC : UITableViewDataSource, UITableViewDelegate {
- 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let commentData_ = commentData {
-            return commentData_.count
-        }
-        return 0
+        return commentData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
-        if let commentData_ = commentData {
-            
-            cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-            cell.configure(index : indexPath.row ,data: commentData_[indexPath.row])
-        }
+        guard commentData.count > 0 else {return cell}
+        
+        
+        cell.commentLikeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+        cell.configure(index : indexPath.row ,data: commentData[indexPath.row])
+        
         
         cell.delegate = self
         return cell
     }
     
     
-     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let selectedComment = commentData![indexPath.row]
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let selectedComment = commentData[indexPath.row]
         let deleteAction = UITableViewRowAction(style: .normal, title: "삭제") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
             //삭제 url 넣기
-          
+            
             
             self.deleteComment(url: UrlPath.DeleteBoardComment.getURL(commentIdx.description))
             //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
@@ -105,7 +102,7 @@ extension CommentVC : UITableViewDataSource, UITableViewDelegate {
     }
     
     
- 
+    
     @objc func like(_ sender : myHeartBtn){
         //통신
         
@@ -127,7 +124,7 @@ extension CommentVC : UITableViewDataSource, UITableViewDelegate {
 
 extension CommentVC {
     
-   
+    
     func setKeyboardSetting() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -143,8 +140,8 @@ extension CommentVC {
             detailTableView.contentInset = contentInset
             ////////
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 위로 이동시킴 ////////
-        
-                commentSendView.frame.origin.y -= keyboardSize.height
+            
+            commentSendView.frame.origin.y -= keyboardSize.height
             
             ////////
             self.view.layoutIfNeeded()
@@ -159,8 +156,8 @@ extension CommentVC {
             contentInset.bottom = 0
             detailTableView.contentInset = contentInset
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 아래로 이동시킴 ////////
-           
-               commentSendView.frame.origin.y += keyboardSize.height
+            
+            commentSendView.frame.origin.y += keyboardSize.height
             
             
             ////////
@@ -189,7 +186,7 @@ extension CommentVC {
 
 //tapGesture
 extension CommentVC : TapDelegate2, UIGestureRecognizerDelegate {
-
+    
     func myTableDelegate(sender : UITapGestureRecognizer) {
         let touch = sender.location(in: detailTableView)
         if let indexPath = detailTableView.indexPathForRow(at: touch){
@@ -212,7 +209,7 @@ extension CommentVC : TapDelegate2, UIGestureRecognizerDelegate {
             
         }
     }
-  
+    
 }
 //통신
 extension CommentVC {
@@ -286,9 +283,9 @@ extension CommentVC {
             guard let `self` = self else { return }
             switch result {
             case .networkSuccess(_):
-             
+                
                 self.simpleAlert(title: "성공", message: "댓글 삭제 완료")
-              
+                
                 self.temp()
                 break
             case .accessDenied :
@@ -305,7 +302,7 @@ extension CommentVC {
     
     //하트 버튼 눌렀을 때
     func likeAction(url : String, boardIdx : Int, isLike : Int, cell : CommentCell, sender : myHeartBtn, likeCnt : Int){
-       
+        
         let params : [String : Any] = [
             "comment_id" : boardIdx
         ]
@@ -316,7 +313,9 @@ extension CommentVC {
             case .networkSuccess(_):
                 sender.isSelected = true
                 sender.isLike = 1
-              
+                self.commentData[sender.indexPath].islike = 1
+                self.commentData[sender.indexPath].commentlikeCnt += 1
+                
                 
                 break
             case .accessDenied :
@@ -344,7 +343,9 @@ extension CommentVC {
             case .networkSuccess(_):
                 sender.isSelected = false
                 sender.isLike = 0
-              
+                self.commentData[sender.indexPath].islike = 0
+                self.commentData[sender.indexPath].commentlikeCnt -= 1
+                
                 
                 break
             case .accessDenied :
