@@ -107,7 +107,7 @@
 		3BFCE31320F501DF00C21AEB /* CommunityCommentVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31220F501DF00C21AEB /* CommunityCommentVO.swift */; };
 		3BFCE31520F5022900C21AEB /* CommunityCommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31420F5022900C21AEB /* CommunityCommentService.swift */; };
 		3BFCE31720F51CC700C21AEB /* CommunityCommentWriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31620F51CC700C21AEB /* CommunityCommentWriteService.swift */; };
-		3BFCE31920F5251500C21AEB /* BoardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31820F5251500C21AEB /* BoardDetailViewController.swift */; };
+		3BFCE31920F5251500C21AEB /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFCE31820F5251500C21AEB /* CommentVC.swift */; };
 		432BA53720F3674900B33A36 /* ChargeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BA53620F3674900B33A36 /* ChargeVC.swift */; };
 		432BA53920F3678A00B33A36 /* MyCoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BA53820F3678A00B33A36 /* MyCoinVC.swift */; };
 		432BA53B20F367C600B33A36 /* ChangeCoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BA53A20F367C600B33A36 /* ChangeCoinVC.swift */; };
@@ -270,7 +270,7 @@
 		3BFCE31220F501DF00C21AEB /* CommunityCommentVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentVO.swift; sourceTree = "<group>"; };
 		3BFCE31420F5022900C21AEB /* CommunityCommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentService.swift; sourceTree = "<group>"; };
 		3BFCE31620F51CC700C21AEB /* CommunityCommentWriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommentWriteService.swift; sourceTree = "<group>"; };
-		3BFCE31820F5251500C21AEB /* BoardDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailViewController.swift; sourceTree = "<group>"; };
+		3BFCE31820F5251500C21AEB /* CommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		432BA53620F3674900B33A36 /* ChargeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeVC.swift; sourceTree = "<group>"; };
 		432BA53820F3678A00B33A36 /* MyCoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinVC.swift; sourceTree = "<group>"; };
 		432BA53A20F367C600B33A36 /* ChangeCoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCoinVC.swift; sourceTree = "<group>"; };
@@ -803,7 +803,7 @@
 		43D1DABB20EB5AE300B752D1 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				3BFCE31820F5251500C21AEB /* BoardDetailViewController.swift */,
+				3BFCE31820F5251500C21AEB /* CommentVC.swift */,
 				3B87A33C20F6B21100A968B8 /* ContentCommentVC.swift */,
 				43D1DAB820EB50FC00B752D1 /* CommentCell.swift */,
 			);
@@ -1225,7 +1225,7 @@
 				3B87A34520F7F39A00A968B8 /* CommentDeleteService.swift in Sources */,
 				4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */,
 				43E4B7B620F5F9C900BA68D4 /* ContentsVO.swift in Sources */,
-				3BFCE31920F5251500C21AEB /* BoardDetailViewController.swift in Sources */,
+				3BFCE31920F5251500C21AEB /* CommentVC.swift in Sources */,
 				3B0475F320EEBD9B00D30A4D /* MainDislikeTVC.swift in Sources */,
 				4353B94E20F66B2000C88214 /* MyFeedCell.swift in Sources */,
 				3B6B031920EE530000034C9B /* ColorChip.swift in Sources */,

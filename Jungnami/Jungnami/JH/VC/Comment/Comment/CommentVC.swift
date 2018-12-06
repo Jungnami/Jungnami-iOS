@@ -1,6 +1,5 @@
 //
-//  BoardDetailViewController.swift
-//  sopt22_seminar4_1
+//  CommentVC.swift
 //
 //  Created by 강수진 on 2018. 4. 30..
 //  Copyright © 2018년 강수진. All rights reserved.
@@ -8,7 +7,7 @@
 
 import UIKit
 
-class BoardDetailViewController: UIViewController, APIService {
+class CommentVC: UIViewController, APIService {
     
     // 화면 터치했을 때 키보드 사라지게 하는 gesture
     var keyboardDismissGesture: UITapGestureRecognizer?
@@ -63,7 +62,7 @@ class BoardDetailViewController: UIViewController, APIService {
 
 }
 
-extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate {
+extension CommentVC : UITableViewDataSource, UITableViewDelegate {
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let commentData_ = commentData {
@@ -126,7 +125,7 @@ extension BoardDetailViewController : UITableViewDataSource, UITableViewDelegate
 }
 
 
-extension BoardDetailViewController {
+extension CommentVC {
     
    
     func setKeyboardSetting() {
@@ -189,7 +188,7 @@ extension BoardDetailViewController {
 }
 
 //tapGesture
-extension BoardDetailViewController : TapDelegate2, UIGestureRecognizerDelegate {
+extension CommentVC : TapDelegate2, UIGestureRecognizerDelegate {
 
     func myTableDelegate(sender : UITapGestureRecognizer) {
         let touch = sender.location(in: detailTableView)
@@ -216,7 +215,7 @@ extension BoardDetailViewController : TapDelegate2, UIGestureRecognizerDelegate 
   
 }
 //통신
-extension BoardDetailViewController {
+extension CommentVC {
     func getCommentList(url : String){
         CommunityCommentService.shareInstance.getCommunity(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }

@@ -1239,7 +1239,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="89" id="LdX-V5-4Oh" customClass="CommentCell" customModule="Jungnami" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="89" id="LdX-V5-4Oh" customClass="CommentCell" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LdX-V5-4Oh" id="dc1-yv-LfX">
@@ -1292,7 +1292,7 @@
                                                     <rect key="frame" x="106" y="11" width="29" height="13"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvT-rc-NRj">
-                                                    <rect key="frame" x="348" y="23" width="15" height="14"/>
+                                                    <rect key="frame" x="123" y="23" width="15" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="Ahd-oC-XaQ"/>
                                                         <constraint firstAttribute="width" constant="15" id="Ncx-Xk-pmi"/>
@@ -1329,7 +1329,7 @@
                                             <outlet property="commentUserLbl" destination="nka-96-7CG" id="Jzc-My-ena"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecommentCell" rowHeight="89" id="XfD-wO-dbj" customClass="RecommentCell" customModule="Jungnami" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecommentCell" rowHeight="89" id="XfD-wO-dbj" customClass="RecommentCell" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="117" width="375" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XfD-wO-dbj" id="U7C-uc-Bqe">
@@ -1378,7 +1378,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDP-hc-GaW">
-                                                    <rect key="frame" x="348" y="23" width="15" height="14"/>
+                                                    <rect key="frame" x="123" y="23" width="15" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="9Ay-li-ifA"/>
                                                         <constraint firstAttribute="width" constant="15" id="ssz-kN-ANa"/>
@@ -1449,7 +1449,7 @@
                                 <rect key="frame" x="0.0" y="66" width="375" height="545"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="79" id="3gZ-mJ-uPl" customClass="CommentCell" customModule="Jungnami" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="79" id="3gZ-mJ-uPl" customClass="CommentCell" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3gZ-mJ-uPl" id="Sqh-Fw-l9d">
@@ -1658,10 +1658,10 @@
             </objects>
             <point key="canvasLocation" x="3065" y="-447"/>
         </scene>
-        <!--Board Detail View Controller-->
+        <!--CommentVC-->
         <scene sceneID="LID-vV-zaI">
             <objects>
-                <viewController storyboardIdentifier="BoardDetailViewController" id="0Ch-a8-664" customClass="BoardDetailViewController" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentVC" id="0Ch-a8-664" customClass="CommentVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5MX-PH-jU6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1670,7 +1670,7 @@
                                 <rect key="frame" x="0.0" y="66" width="375" height="545"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="79" id="Zm8-vl-GrQ" customClass="CommentCell" customModule="Jungnami" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="79" id="Zm8-vl-GrQ" customClass="CommentCell" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zm8-vl-GrQ" id="zyz-9q-Hag">
