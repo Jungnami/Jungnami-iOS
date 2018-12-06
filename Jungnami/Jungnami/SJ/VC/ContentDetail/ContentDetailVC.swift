@@ -16,7 +16,6 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
-    
     @IBOutlet weak var warningBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var scarpBtn: UIButton!
@@ -130,8 +129,6 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentDetailCell.reuseIdentifier, for: indexPath) as! ContentDetailCell
         if let contentDetails_ = contentImages, let title_ = contentTitle , let text_ = text, let thumnail_ = thumnail{
-            
-        
             if indexPath.row == 0 {
                 print("서브타이틀 확인")
                 print(title_)
@@ -139,12 +136,6 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
             } else {
                 cell.configure2(data: contentDetails_[indexPath.row])
             }
-           /* if indexPath.row == 0 {
-                cell.configure(title : title_, writeTime : writeTime_, thumnail : thumnail_)
-            } else {
-                cell.configure2(data: contentDetails_[indexPath.row-1])
-            }*/
-            
         }
         cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         return cell
@@ -158,7 +149,6 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
             //cell밖으로 빼내야하나~?~?~?~?
             pageLbl.isHidden = false
             pageLbl.text = "\(indexPath.row)"
-            
         }
         
         //투두 - 연결해논것 indexPath.row > 0 이면 날짜랑, 타이틀 레이블.isHidden = true 로 주기
@@ -230,7 +220,7 @@ extension ContentDetailVC {
                     //이미지 어레이 가져오는거//
                     self.commentCountLbl.text = String(contentDetail.commentCnt)
                     self.contentImages = contentDetail.imagearray
-                    self.contentTitle = contentDetail.subtitle
+                    self.contentTitle = contentDetail.title
                     self.text = contentDetail.text
                     self.thumnail = contentDetail.thumbnail
                     self.isLike = contentDetail.islike

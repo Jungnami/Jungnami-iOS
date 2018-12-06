@@ -16,8 +16,9 @@ class NoticeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, AP
     var alarmData : [AlarmVOData] = []
     
     @IBOutlet weak var noticeTableView: UITableView!
+
     
-    @IBAction func dismissBtn(_ sender: UIButton) {
+    @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     

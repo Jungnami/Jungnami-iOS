@@ -11,7 +11,8 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
      var keyboardDismissGesture: UITapGestureRecognizer?
     
-    @IBOutlet weak var navTitleLbl: UILabel!
+
+    @IBOutlet weak var myNavItem: UINavigationItem!
     @IBOutlet weak var followTableView: UITableView!
     @IBOutlet weak var followSearchField: UITextField!
     @IBOutlet weak var followSearchImg: UIImageView!
@@ -21,11 +22,9 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    @IBAction func dismissBtn(_ sender: UIButton) {
+    @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-   
     
     //통신
     var followListData : [FollowListVOData]? {
@@ -49,7 +48,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
          getList()
         
         if let navTitle_ = navTitle {
-            self.navTitleLbl.text = navTitle_
+            self.myNavItem.title = navTitle_
         }
     }
     
@@ -72,7 +71,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.followSearchField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         //keyboardDown
-        hideKeyboardWhenTappedAround()
+        setKeyboardSetting()
         getList()
         
         followSearchField.delegate = self
@@ -195,15 +194,46 @@ extension FollowListVC : TapDelegate, UIGestureRecognizerDelegate {
         print(index)
     }
 }
+
+//키보드
 extension FollowListVC {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChangeCoinVC.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+    func setKeyboardSetting() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    @objc func keyboardWillShow(_ notification: Notification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.followTableView.contentInset.bottom = keyboardSize.height
+            self.view.layoutIfNeeded()
+        }
+        adjustKeyboardDismissGesture(isKeyboardVisible: true)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        adjustKeyboardDismissGesture(isKeyboardVisible: false)
+        self.followTableView.contentInset.bottom = 0
+        self.view.layoutIfNeeded()
+    }
+    
+    //화면 바깥 터치했을때 키보드 없어지는 코드
+    func adjustKeyboardDismissGesture(isKeyboardVisible: Bool) {
+        if isKeyboardVisible {
+            if keyboardDismissGesture == nil {
+                keyboardDismissGesture = UITapGestureRecognizer(target: self, action: #selector(tapBackground))
+                view.addGestureRecognizer(keyboardDismissGesture!)
+            }
+        } else {
+            if keyboardDismissGesture != nil {
+                view.removeGestureRecognizer(keyboardDismissGesture!)
+                keyboardDismissGesture = nil
+            }
+        }
+    }
+    
+    @objc func tapBackground() {
+        self.view.endEditing(true)
     }
 }
 
