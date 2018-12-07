@@ -81,7 +81,6 @@ class LoginVC: UIViewController, APIService{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-       
     }
     
 }
@@ -100,9 +99,7 @@ extension LoginVC {
                 self.userDefault.set(self.userData?.token, forKey : "userToken")
                 //유저디폴트
                 self.userToken = UserDefaults.standard.string(forKey: "userToken") ?? "-1"
-                print(self.userToken)
-                //화면 띄우기
-                self.toMainPage()
+               // print(self.userToken)
             case .accessDenied :
                 self.simpleAlert(title: "오류", message: "Access Denied")
             case .networkFail :

@@ -97,6 +97,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         self.window?.rootViewController = isOpened ? self.tabbarVC : self.loginVC
         self.window?.makeKeyAndVisible()
+        if isOpened && !UserDefaults.standard.bool(forKey: "alreadyShownInfo"){
+                let infoVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier: InfoVC.reuseIdentifier)
+            self.window?.rootViewController?.present(infoVC, animated: true, completion: nil)
+            UserDefaults.standard.set(true, forKey: "alreadyShownInfo")
+        }
     }
     
     @objc func kakaoSessionDidChangeWithNotification() {

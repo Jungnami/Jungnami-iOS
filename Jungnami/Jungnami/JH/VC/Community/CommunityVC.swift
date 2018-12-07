@@ -152,6 +152,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
             }
             
         } else {
+            guard communityData.count > 0 else {return UITableViewCell()}
             if (gsno(communityData[indexPath.row].img) != "0") {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTVCell.reuseIdentifier) as! CommunityTVCell
   
@@ -472,7 +473,6 @@ extension CommunityVC {
     func write(url : String){
         CommunityWriteService.shareInstance.communityWrite(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
-            
             switch result {
             case .networkSuccess(let legislatorData):
                 let img = legislatorData as? String

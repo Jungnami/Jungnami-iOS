@@ -133,7 +133,7 @@
             <objects>
                 <viewController restorationIdentifier="CommunityVC" storyboardIdentifier="CommunityVC" id="cOa-MV-PT1" customClass="CommunityVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hcv-2j-QzB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJU-jZ-euo">
@@ -225,7 +225,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dcn-2g-2YN">
-                                <rect key="frame" x="0.0" y="66.5" width="375" height="1433.5"/>
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="600.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityFirstSectionLoginTVCell" rowHeight="67" id="I1e-na-4hQ" customClass="CommunityFirstSectionLoginTVCell" customModule="Jungnami" customModuleProvider="target">
@@ -687,7 +687,6 @@
                         <viewLayoutGuide key="safeArea" id="4Aj-Oa-hol"/>
                     </view>
                     <navigationItem key="navigationItem" id="1Ny-gt-PZc"/>
-                    <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="alarmBtn" destination="Obp-JO-oFS" id="knc-IY-LM8"/>
                         <outlet property="alarmLbl" destination="NXh-V4-7d2" id="NpH-LP-11F"/>

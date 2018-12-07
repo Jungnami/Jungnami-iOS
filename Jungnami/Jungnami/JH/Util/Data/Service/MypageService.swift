@@ -10,7 +10,6 @@ import Foundation
 import Foundation
 
 struct MypageService : GettableService {
-    // let userDefault = UserDefaults.standard
     typealias NetworkData = MyPageVO //여기
     static let shareInstance = MypageService() //여기
     func getUserPage(url : String, completion : @escaping (NetworkResult<Any>) -> Void){
