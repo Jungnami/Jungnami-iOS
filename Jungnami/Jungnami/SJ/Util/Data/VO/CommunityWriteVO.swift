@@ -8,5 +8,5 @@
 import Foundation
 struct CommunityWriteVO: Codable {
     let message: String
-    let data: String
+    let data: String?
 }

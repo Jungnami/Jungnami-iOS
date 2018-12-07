@@ -27,7 +27,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     @IBOutlet weak var contentTxtView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     var contentImgView: UIImageView = UIImageView()
-    var imgURL : String = ""
+    var imgURL : String? = ""
     var images : [String : Data]?
     var keyboardDismissGesture: UITapGestureRecognizer?
     var delegate : TapDelegate?

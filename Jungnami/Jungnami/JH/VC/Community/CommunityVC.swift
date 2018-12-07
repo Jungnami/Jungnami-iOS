@@ -475,7 +475,7 @@ extension CommunityVC {
             
             switch result {
             case .networkSuccess(let legislatorData):
-                let img = legislatorData as! String
+                let img = legislatorData as? String
                 self.communityWriteVC?.imgURL = img
                 self.toCommunityWriteVC()
                 break
