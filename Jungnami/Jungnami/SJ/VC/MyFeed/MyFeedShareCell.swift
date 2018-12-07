@@ -36,7 +36,7 @@ class MyFeedShareCell: UITableViewCell {
     
    
     func configure(data : MyPageVODataBoard) {
-        if (gsno(data.uImg) == "0") {
+        if (gsno(data.uImg) == "") {
             userProfileImg.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
             if let url = URL(string: gsno(data.uImg)){
@@ -44,7 +44,7 @@ class MyFeedShareCell: UITableViewCell {
             }
         }
         
-        if (gsno(data.source[0].uImg) == "0") {
+        if (gsno(data.source[0].uImg) == "") {
             sharedProfileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
             if let url = URL(string: gsno(data.source[0].uImg)){

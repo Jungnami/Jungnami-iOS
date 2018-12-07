@@ -144,9 +144,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityFirstSectionWriteTVCell.reuseIdentifier) as! CommunityFirstSectionWriteTVCell
-                if let userImgUrl_ = userImgURL {
-                    cell.configure(userImgUrl_)
-                }
+                cell.configure(self.gsno(userImgURL))
                 
                 cell.nextBtn.addTarget(self, action: #selector(toWrite(_:)), for: .touchUpInside)
                 

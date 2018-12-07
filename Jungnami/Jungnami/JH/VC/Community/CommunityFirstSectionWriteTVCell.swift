@@ -15,7 +15,7 @@ class CommunityFirstSectionWriteTVCell: UITableViewCell {
     @IBOutlet weak var nextBtn: UIButton!
     
     func configure(_ imgURL : String){
-        if (gsno(imgURL) == "0") {
+        if (gsno(imgURL) == "") {
             userImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
            
         } else {

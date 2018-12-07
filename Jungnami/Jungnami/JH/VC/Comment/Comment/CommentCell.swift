@@ -38,7 +38,7 @@ class CommentCell: UITableViewCell {
     //----------------------------
     func configure(index : Int, data : CommunityCommentVOData){
       
-        if (gsno(data.userImg) == "0") {
+        if (gsno(data.userImg) == "") {
             commentProfileImg.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
             if let url = URL(string: gsno(data.userImg)){

@@ -125,7 +125,7 @@ extension MyPageVC {
         
         guard let headerView_ = headerView as? MypageHeaderView else {return}
         
-        if (self.gsno(myPageData.img) == "0") {
+        if (self.gsno(myPageData.img) == "") {
             headerView_.profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
             
         } else {

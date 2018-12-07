@@ -18,7 +18,7 @@ class MypageNoImageFeedTVcell: UITableViewCell {
     @IBOutlet weak var commentBtn: myCommentBtn!
     
     func configure(data : MyPageVODataBoard){
-        if (gsno(data.uImg) == "0") {
+        if (gsno(data.uImg) == "") {
             userImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
             if let url = URL(string: gsno(data.uImg)){
