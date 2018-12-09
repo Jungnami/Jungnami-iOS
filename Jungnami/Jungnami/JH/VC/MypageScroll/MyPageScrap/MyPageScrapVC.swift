@@ -16,6 +16,8 @@ class MyPageScrapVC : UIViewController, LTTableViewProtocal, APIService  {
         }
     }
     
+    private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
+    
     private lazy var collectionView: UICollectionView = {
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 20
         let layout = UICollectionViewFlowLayout()

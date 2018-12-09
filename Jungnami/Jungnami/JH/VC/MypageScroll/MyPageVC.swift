@@ -25,7 +25,7 @@ class MyPageVC: UIViewController, APIService {
             myScrapVC.myScrapData = myScrapData
         }
     }
-    
+    private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
     private lazy var viewControllers: [UIViewController] = {
         return [myScrapVC, myFeedVC]
     }()
@@ -68,6 +68,14 @@ class MyPageVC: UIViewController, APIService {
         layout.titleSelectColor = ColorChip.shared().mainColor
         layout.sliderHeight = 41.0
         layout.bottomLineHeight = 0
+        
+        layout.sliderHeight = 50.0
+        layout.bottomLineHeight = 2
+        layout.sliderWidth = 70
+        layout.bottomLineColor = ColorChip.shared().mainColor
+        layout.isAverage = true
+        layout.isNeedScale = false
+      
         return layout
     }()
     

@@ -1,19 +1,19 @@
 PODS:
-  - Alamofire (4.7.2)
+  - Alamofire (4.8.0)
   - Kingfisher (4.7.0)
-  - LTScrollView (0.1.2)
-  - SnapKit (4.0.0)
-  - SwiftyJSON (4.1.0)
+  - LTScrollView (0.2.1)
+  - SnapKit (4.2.0)
+  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Alamofire
-  - Kingfisher
+  - Kingfisher (~> 4.7.0)
   - LTScrollView
   - SnapKit
   - SwiftyJSON
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - Kingfisher
     - LTScrollView
@@ -21,12 +21,12 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
-  LTScrollView: c0dd4030178da6a70b87bc9f03d501a9cfe7f20e
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  LTScrollView: 93fff4aed9f9545f541a99b320b27808f5307c12
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 1d65d47ea21648091ae2a7916c2eac661bb5eb48
+PODFILE CHECKSUM: 0393975634167e2c1fb0d26970bef124751b3775
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.6.0.beta.2

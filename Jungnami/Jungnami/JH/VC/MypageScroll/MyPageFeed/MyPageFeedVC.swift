@@ -17,6 +17,8 @@ class MyPageFeedVC: UIViewController, LTTableViewProtocal, APIService {
         }
     }
     
+    private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
+    
     private lazy var tableView: UITableView = {
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height - 20
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)

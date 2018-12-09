@@ -345,7 +345,6 @@ extension CommunityVC{
 
 //refreshControl
 extension CommunityVC{
-    //TODO: - 여기 안먹음
     @objc func startReloadTableView(_ sender: UIRefreshControl){
         print("reload")
         communityData = []
@@ -396,26 +395,6 @@ extension CommunityVC :  UIGestureRecognizerDelegate, TapDelegate2 {
     }
     
     
-    func heartPopup(){
-        DispatchQueue.main.asyncAfter(deadline: .now()){
-            var myPopupImgView = UIImageView()
-            myPopupImgView = self.setImgView(viewName: myPopupImgView, fileName: "community_heart_blue")
-            self.view.addSubview(myPopupImgView)
-            myPopupImgView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-            myPopupImgView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-            myPopupImgView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-            myPopupImgView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-            myPopupImgView.contentMode = .scaleAspectFit
-            
-            
-            //self.setImageViewConstraints(myPopupImgView)
-            myPopupImgView.isHidden = false
-            myPopupImgView.expand()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                myPopupImgView.isHidden = true
-            }
-        }
-    }
 }
 
 

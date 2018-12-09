@@ -14,6 +14,7 @@ class OtherUserPageVC : UIViewController, APIService {
     let myScrapVC = MyPageScrapVC()
     let myFeedVC = MyPageFeedVC()
     var selectedUserId : String?
+    private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
     
     var myBoardData : [MyPageVODataBoard]  = [] {
         didSet {

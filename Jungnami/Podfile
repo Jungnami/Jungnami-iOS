@@ -9,7 +9,7 @@ target 'Jungnami' do
 pod 'SnapKit'
 pod 'Alamofire'
 pod 'SwiftyJSON'
-pod 'Kingfisher'
+pod 'Kingfisher', '~>4.7.0'
 pod 'LTScrollView'
 
 
