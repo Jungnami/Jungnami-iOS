@@ -16,7 +16,7 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
-    @IBOutlet weak var warningBtn: UIButton!
+   
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var scarpBtn: UIButton!
     var contentIdx : Int? // contentDetail
@@ -49,11 +49,10 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBAction func commentBtn(_ sender: Any) {
         let communityStoartyboard = Storyboard.shared().communityStoryboard
         if let selectedContentId_ = self.contentIdx {
-            if let commentVC = communityStoartyboard.instantiateViewController(withIdentifier:ContentCommentVC.reuseIdentifier) as? ContentCommentVC {
+            if let commentVC = communityStoartyboard.instantiateViewController(withIdentifier:CommentVC.reuseIdentifier) as? CommentVC {
                
-                commentVC.selectedContent = selectedContentId_
-                //  commentVC.heartCount = sender.likeCnt
-                //  commentVC.commentCount = sender.commentCnt
+                commentVC.selectedBoard = selectedContentId_
+                commentVC.isCommunity = false
                 
                 self.present(commentVC, animated: true)
             }
@@ -112,11 +111,18 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func reportContentAction(_ sender: Any) {
+        self.reportAction(reportId: self.gino(contentIdx), reportHandler: { (reportReason) in
+            //신고 url 넣기
+            let relation = ReportCategory.content.rawValue
+            let params : [String : Any] = [
+                "relation" : relation,
+                "relation_id" : self.gino(self.contentIdx),
+                "content" : reportReason
+            ]
+            self.reportAction(url: UrlPath.Report.getURL(), parmas: params)
+        })
     }
-    //샘플 var data = ContentData.sharedInstance.contentDetails
     
     //-------------------collectionView-------------
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -366,6 +372,31 @@ extension ContentDetailVC {
                  self.isScrap = 0
                 
                 
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    //신고
+    func reportAction(url : String, parmas : [String : Any]){
+        ReportService.shareInstance.report(url: url, params: parmas, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                self.noticeSuccess("신고 완료", autoClear: true, autoClearTime: 1)
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in

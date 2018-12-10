@@ -106,6 +106,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEh-bf-nIK">
                                                 <rect key="frame" x="77" y="0.0" width="23" height="24"/>
                                                 <state key="normal" image="content_warning"/>
+                                                <connections>
+                                                    <action selector="reportContentAction:" destination="HxA-wi-rS3" eventType="touchUpInside" id="H9W-w8-Yky"/>
+                                                </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHz-fn-AUk">
                                                 <rect key="frame" x="100" y="0.0" width="0.0" height="24"/>
@@ -244,7 +247,6 @@
                         <outlet property="pageLbl" destination="GMc-Av-Fof" id="Tax-DH-4ZI"/>
                         <outlet property="scarpBtn" destination="J3Q-QK-3gV" id="IkO-rM-BBf"/>
                         <outlet property="shareBtn" destination="WHz-fn-AUk" id="bzO-hP-Tod"/>
-                        <outlet property="warningBtn" destination="XEh-bf-nIK" id="5dG-X5-sAP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="193-I9-GjF" userLabel="First Responder" sceneMemberID="firstResponder"/>

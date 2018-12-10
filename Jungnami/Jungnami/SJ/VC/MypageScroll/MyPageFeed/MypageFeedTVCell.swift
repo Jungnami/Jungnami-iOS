@@ -18,6 +18,8 @@ class MypageFeedTVCell: UITableViewCell {
     @IBOutlet weak var commentCntLbl: UILabel!
     @IBOutlet weak var likeBtn: myHeartBtn!
     @IBOutlet weak var commentBtn: myCommentBtn!
+    @IBOutlet weak var warningBtn: myHeartBtn!
+    var reportHandler : ((_ reportIdx : Int)->Void)?
     
     func configure(data : MyPageVODataBoard, indexPath : Int){
         if (gsno(data.uImg) == "") {
@@ -51,6 +53,7 @@ class MypageFeedTVCell: UITableViewCell {
         likeBtn.isLike = data.islike
         likeBtn.cellFrom = 1
         likeBtn.tag = indexPath
+        warningBtn.tag = data.bID
         
         if data.islike == 0 {
             likeBtn.isSelected = false
@@ -70,14 +73,11 @@ class MypageFeedTVCell: UITableViewCell {
         super.awakeFromNib()
         userImgView.makeImageRound()
         self.selectionStyle = .none
+        warningBtn.addTarget(self, action: #selector(report(_:)), for: .touchUpInside)
         // Initialization code
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    @objc func report(_ sender: UIButton){
+        reportHandler!(sender.tag)
     }
-
     
 }

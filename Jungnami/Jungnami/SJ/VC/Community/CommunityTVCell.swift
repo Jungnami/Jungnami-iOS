@@ -41,12 +41,9 @@ class CommunityTVCell: UITableViewCell {
     @IBOutlet weak var contentImgView : UIImageView!
     @IBOutlet weak var heartBtn : myHeartBtn!
     @IBOutlet weak var commentBtn : myCommentBtn!
-    
     @IBOutlet weak var warningBtn: myHeartBtn!
     @IBOutlet weak var scrapBtn : UIButton!
-
-    
-    
+    var reportHandler : ((_ reportIdx : Int)->Void)?
     //tapGesture-------------------------------
     var index = 0
     var delegate: TapDelegate2?
@@ -66,6 +63,7 @@ class CommunityTVCell: UITableViewCell {
         timeLabel.text = data.writingtime
         contentLabel.text = data.content
         contentLabel.sizeToFit()
+        warningBtn.tag = data.boardid
         likeLabel.text = "\(data.likecnt)"
         commentLabel.text = "\(data.commentcnt)"
         if data.islike == 0 {
@@ -116,6 +114,7 @@ class CommunityTVCell: UITableViewCell {
         timeLabel.text = data.writingtime
         contentLabel.text = data.content
         contentLabel.sizeToFit()
+        warningBtn.tag = data.id
         likeLabel.text = "\(data.likecnt)"
         commentLabel.text = "\(data.commentcnt)"
         if data.islike == 0 {
@@ -132,20 +131,13 @@ class CommunityTVCell: UITableViewCell {
                 self.profileImgView.kf.setImage(with: url)
             }
         }
-        
-    
             if let url = URL(string: gsno(data.imgURL)){
                 self.contentImgView.kf.setImage(with: url)
             }
         
-        
         //여기 고치기
-        
         profileImgView.userId = data.userId
         nameLabel.userId = data.userId
-        
-        // profileImgView.userId = data.
-        //nameLabel.userId = data.userimg!
     }
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -160,8 +152,11 @@ class CommunityTVCell: UITableViewCell {
         
         self.nameLabel.addGestureRecognizer(lblTapGesture)
         self.profileImgView.addGestureRecognizer(imgTapGesture)
-
+        warningBtn.addTarget(self, action: #selector(report(_:)), for: .touchUpInside)
+    }
     
+    @objc func report(_ sender: UIButton){
+        reportHandler!(sender.tag)
     }
     //tapGesture
     @objc func imgTap(sender: UITapGestureRecognizer) {

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="608"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="607.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="608"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkC-x8-UOX" userLabel="배경회색">
@@ -145,7 +145,7 @@
                                         </constraints>
                                         <state key="normal" image="community_heart"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUd-oP-AuB">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUd-oP-AuB" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
                                         <rect key="frame" x="96" y="562" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="Q3B-X3-STN"/>
@@ -218,6 +218,7 @@
                 <outlet property="sharedTimeLbl" destination="4sb-eT-p5l" id="jDz-3A-URu"/>
                 <outlet property="userNameLbl" destination="pbr-pe-Knc" id="SbG-Vk-tkg"/>
                 <outlet property="userProfileImg" destination="fCf-2y-oZu" id="4Dt-oE-mhg"/>
+                <outlet property="warningBtn" destination="GUd-oP-AuB" id="dr0-bw-oaI"/>
                 <outlet property="whiteBackground" destination="Bd5-Ix-6bd" id="evC-gQ-rdK"/>
             </connections>
             <point key="canvasLocation" x="55" y="336"/>

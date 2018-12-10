@@ -1,32 +1,32 @@
 //
-//  MypageFeedScrapTVCell.swift
+//  MypageNoImageFeedScrapTVCell.swift
 //  Jungnami
 //
-//  Created by 강수진 on 2018. 8. 6..
+//  Created by 강수진 on 2018. 8. 9..
 //
 
 import UIKit
 
-class MypageFeedScrapTVCell: UITableViewCell {
+class MypageNoImageFeedScrapTVCell: UITableViewCell {
 
     @IBOutlet weak var grayBackground: UIView!
     @IBOutlet weak var whiteBackground: UIView!
     @IBOutlet weak var sharedBG: UIView!
     @IBOutlet weak var sharedProfileImgView: myTouchImg!
     @IBOutlet weak var sharedContentLbl: UILabel!
-    @IBOutlet weak var sharedContentImgView: UIImageView!
     @IBOutlet weak var sharedTimeLbl: UILabel!
     @IBOutlet weak var sharedNameLbl: UILabel!
     @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var userProfileImg: UIImageView!
-    
     @IBOutlet weak var likeCntLbl: UILabel!
     @IBOutlet weak var chatCntLbl: UILabel!
-    
     @IBOutlet weak var likeBtn: myHeartBtn!
     @IBOutlet weak var commentBtn: myCommentBtn!
+     @IBOutlet weak var warningBtn: myHeartBtn!
+    var reportHandler : ((_ reportIdx : Int)->Void)?
     var delegate: TapDelegate2?
+    
     
     func configure(data : MyPageVODataBoard, indexPath : Int) {
         if (gsno(data.uImg) == "") {
@@ -45,16 +45,9 @@ class MypageFeedScrapTVCell: UITableViewCell {
             }
         }
         
-        if (gsno(data.source[0].bImg) == "0") {
-            sharedContentImgView.image = #imageLiteral(resourceName: "community_default_img")
-        } else {
-            if let url = URL(string: gsno(data.source[0].bImg)){
-                self.sharedContentImgView.kf.setImage(with: url)
-            }
-        }
-        
+   
+
         sharedProfileImgView.userId = data.source[0].uID
-        
         commentBtn.tag = (data.bID)
         commentBtn.likeCnt = data.likeCnt
         commentBtn.commentCnt = data.commentCnt
@@ -66,7 +59,7 @@ class MypageFeedScrapTVCell: UITableViewCell {
         likeBtn.isLike = data.islike
         likeBtn.cellFrom = 0
         likeBtn.tag = indexPath
-        
+        warningBtn.tag = data.bID
         
         if data.islike == 0 {
             likeBtn.isSelected = false
@@ -88,8 +81,6 @@ class MypageFeedScrapTVCell: UITableViewCell {
         
     }
     
-   
-   
     override func awakeFromNib() {
         super.awakeFromNib()
         sharedBG.layer.borderWidth = 1
@@ -98,23 +89,26 @@ class MypageFeedScrapTVCell: UITableViewCell {
         userProfileImg.makeImageRound()
         self.selectionStyle = .none
         addTapGestureToUser()
-        
+         warningBtn.addTarget(self, action: #selector(report(_:)), for: .touchUpInside)
     }
     
     func addTapGestureToUser(){
         
         let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imgTap(sender:)))
-      
+        
         sharedProfileImgView.isUserInteractionEnabled = true
         sharedNameLbl.isUserInteractionEnabled = true
         sharedNameLbl.addGestureRecognizer(imgTapGesture)
         sharedProfileImgView.addGestureRecognizer(imgTapGesture)
-
+        
     }
     
     @objc func imgTap(sender: UITapGestureRecognizer) {
         sender.view?.tag = self.gino(Int(sharedProfileImgView.userId))
         delegate?.myTableDelegate(sender : sender)
+        
     }
-  
+    @objc func report(_ sender: UIButton){
+        reportHandler!(sender.tag)
+    } 
 }

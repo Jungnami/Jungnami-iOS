@@ -14,8 +14,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     
     
     @IBAction func dismissBtn(_ sender: Any) {
-        contentTxtView.text = "생각을 공유해 보세요"
-        contentTxtView.textColor = UIColor.lightGray
+        makeTxtViewClear()
         doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
         doneBtn.isUserInteractionEnabled = false
         removeImgView()
@@ -69,6 +68,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
         } else {
             self.profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         }
+        makeTxtViewClear()
         profileImgView.makeImageRound()
     }
     
@@ -85,6 +85,11 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     @objc func doneOk(){
         //통신
         writeContent(url : UrlPath.Board.getURL())
+    }
+    
+    func makeTxtViewClear(){
+        contentTxtView.text = "생각을 공유해 보세요"
+        contentTxtView.textColor = UIColor.lightGray
     }
     
 }
@@ -156,8 +161,7 @@ extension CommunityWriteVC {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "생각을 공유해 보세요"
-            textView.textColor = UIColor.lightGray
+            makeTxtViewClear()
         }
     }
     

@@ -169,6 +169,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
                 cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
                 cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
                 cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+                cell.reportHandler = report
                 
                 return cell
                 
@@ -188,11 +189,10 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
                 cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
                 cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
                 cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+                cell.reportHandler = report
                 
                 return cell
             }
-           
-           
         }
         
     }
@@ -209,8 +209,22 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//셀들에 관한 액션 -> 글쓰기/로그인/스크랩
+//셀들에 관한 액션 -> 글쓰기/로그인/스크랩/신고
 extension CommunityVC {
+    
+    func report(boardIdx : Int){
+        self.reportAction(reportId: boardIdx, reportHandler: { (reportReason) in
+            //신고 url 넣기
+            let relation = ReportCategory.content.rawValue
+            let params : [String : Any] = [
+                "relation" : relation,
+                "relation_id" : boardIdx,
+                "content" : reportReason
+            ]
+            self.reportAction(url: UrlPath.Report.getURL(), parmas: params)
+        })
+    }
+    
     
     @objc func toWrite(_ sender : UIButton){
         write(url: UrlPath.WriteBoard.getURL())
@@ -261,8 +275,7 @@ extension CommunityVC {
         if let noImgCell = self.communityTableView.cellForRow(at: indexPath!) as? CommunityNoImgTVCell {
             cell = noImgCell
         }
-        //let cell = self.communityTableView.cellForRow(at: indexPath!) as! CommunityTVCell
-        
+       
         if sender.isLike! == 0 {
             likeAction(url: UrlPath.LikeBoard.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell!, sender : sender, likeCnt: sender.likeCnt )
         } else {
@@ -293,11 +306,6 @@ extension CommunityVC: UITextFieldDelegate {
         if let searchString_ = textField.text {
             searchBoard(searchString : searchString_, url : UrlPath.SearchBoard.getURL(searchString_))
         }
-        
-       /* if let communityResultTVC = Storyboard.shared().communityStoryboard.instantiateViewController(withIdentifier:CommunityResultTVC.reuseIdentifier) as? CommunityResultTVC {
-            self.navigationController?.pushViewController(communityResultTVC, animated: true)
-        }*/
-        
         return true
     }
 }
@@ -344,7 +352,6 @@ extension CommunityVC{
 //refreshControl
 extension CommunityVC{
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        print("reload")
         communityData = []
         let itemCount = communityData.count.description
         communityInit(url : UrlPath.Board.getURL(itemCount))
@@ -640,6 +647,31 @@ extension CommunityVC {
             communitySearchResultTVC.communitySearchData = communitySearchData
             self.navigationController?.pushViewController(communitySearchResultTVC, animated: true)
         }
+    }
+    
+    //신고
+    func reportAction(url : String, parmas : [String : Any]){
+        ReportService.shareInstance.report(url: url, params: parmas, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                self.noticeSuccess("신고 완료", autoClear: true, autoClearTime: 1)
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
     }
 }
 

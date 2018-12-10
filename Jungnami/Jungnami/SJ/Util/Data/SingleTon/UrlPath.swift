@@ -29,6 +29,7 @@ enum UrlPath : String {
     case WriteBoard = "/user/img"
     case LikeBoard = "/board/like/"
     case SearchBoard = "/board/search/"
+    case Report = "/user/report/"
     
     //컨텐츠
     case Content = "/contents/"
@@ -36,6 +37,7 @@ enum UrlPath : String {
     case SearchContent = "/contents/search/"
     case LikeContent = "/contents/like/"
     case ScrapContent = "/user/scrap/"
+    
     
     //마이페이지
     case Mypage = "/user/mypage/"

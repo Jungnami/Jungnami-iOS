@@ -65,12 +65,14 @@ extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
                 cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
                 cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
                 cell.configure(data: data, indexPath : indexPath.row)
+                cell.reportHandler = report
                 return cell
             } else {
                 //이미지 있음
                 let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedTVCell.reuseIdentifier, for: indexPath) as! MypageFeedTVCell
                 cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
                 cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
+                cell.reportHandler = report
                 cell.configure(data: data, indexPath : indexPath.row)
                 return cell
             }
@@ -84,6 +86,7 @@ extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
                 cell.likeBtn.addTarget(self, action: #selector(sharedLike(_:)), for: .touchUpInside)
             
                 cell.delegate = self
+                cell.reportHandler = report
                 cell.configure(data: data, indexPath : indexPath.row)
                 return cell
             } else {
@@ -92,6 +95,7 @@ extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
                 cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
                 cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
                 cell.delegate = self
+                cell.reportHandler = report
                 cell.configure(data: data, indexPath : indexPath.row)
                 return cell
             }
@@ -105,6 +109,19 @@ extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
 
 
 extension MyPageFeedVC {
+    
+    func report(boardIdx : Int){
+        self.reportAction(reportId: boardIdx, reportHandler: { (reportReason) in
+            //신고 url 넣기
+            let relation = ReportCategory.content.rawValue
+            let params : [String : Any] = [
+                "relation" : relation,
+                "relation_id" : boardIdx,
+                "content" : reportReason
+            ]
+            self.reportAction(url: UrlPath.Report.getURL(), parmas: params)
+        })
+    }
     
     @objc func comment(_ sender : myCommentBtn){
         let communityStoartyboard = Storyboard.shared().communityStoryboard
@@ -269,6 +286,31 @@ extension MyPageFeedVC {
                 sender.isLike = 0
                 self.myBoardData[indexPathRow].likeCnt -= 1
                 self.myBoardData[indexPathRow].islike = 0
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    //신고
+    func reportAction(url : String, parmas : [String : Any]){
+        ReportService.shareInstance.report(url: url, params: parmas, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                self.noticeSuccess("신고 완료", autoClear: true, autoClearTime: 1)
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in

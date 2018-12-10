@@ -20,10 +20,12 @@ class CommentVC: UIViewController, APIService {
     
     var heartCount = 0
     var commentCount = 0
+    var isCommunity = true
     var selectedBoard : Int? {
         didSet {
             if let selectedBoard_ = selectedBoard {
-                getCommentList(url: UrlPath.BoardCommentList.getURL(selectedBoard_.description))
+                let url = isCommunity ? UrlPath.BoardCommentList.getURL(selectedBoard_.description) : UrlPath.ContentCommentList.getURL(selectedBoard_.description)
+                getCommentList(url: url)
             }
             
         }
@@ -35,7 +37,8 @@ class CommentVC: UIViewController, APIService {
     
     
     @IBAction func writeCommentBtn(_ sender: Any) {
-        writeComment(url : UrlPath.BoardCommentList.getURL())
+        let url = isCommunity ? UrlPath.BoardCommentList.getURL() : UrlPath.WriteContentComment.getURL()
+        writeComment(url : url)
         commentTxt.text = ""
     }
     
@@ -52,7 +55,8 @@ class CommentVC: UIViewController, APIService {
         likeCountLbl.sizeToFit()
         commentCountLbl.text = "\(commentCount)개"
         if let selectedBoard_ = selectedBoard {
-            getCommentList(url: UrlPath.BoardCommentList.getURL(selectedBoard_.description))
+            let url = isCommunity ? UrlPath.BoardCommentList.getURL(selectedBoard_.description) : UrlPath.ContentCommentList.getURL(selectedBoard_.description)
+            getCommentList(url: url)
         }
         commentTxt.layer.cornerRadius = commentTxt.frame.height/2
         commentTxt.clipsToBounds = true 
@@ -84,22 +88,29 @@ extension CommentVC : UITableViewDataSource, UITableViewDelegate {
         let selectedComment = commentData[indexPath.row]
         let deleteAction = UITableViewRowAction(style: .normal, title: "삭제") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
-            //삭제 url 넣기
+            let url = self.isCommunity ?  UrlPath.BoardCommentList.getURL(commentIdx.description) : UrlPath.ContentCommentList.getURL(commentIdx.description)
+            self.deleteComment(url: url)
             
-            
-            self.deleteComment(url: UrlPath.BoardCommentList.getURL(commentIdx.description))
-            //boardModel.deleteBoard(boardIdx : boardIdx!, userIdx : userIdx!)
         }
         deleteAction.backgroundColor = .red
         
         let reportAction = UITableViewRowAction(style: .normal, title: "신고") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
-            self.reportAction(reportId: commentIdx, reportHandler: { (reportReson) in
+            self.reportAction(reportId: commentIdx, reportHandler: { (reportReason) in
                 //신고 url 넣기
-                self.noticeSuccess(reportReson, autoClear: true, autoClearTime: 1)
-                //sendMail(selectedId: reportId, reason : reportReason)
+                //0- board/ 1 - board comment /2 - contents/3 contents comment
+                
+                let relation = self.isCommunity ? ReportCategory.communityComment.rawValue : ReportCategory.contentComment.rawValue
+                let params : [String : Any] = [
+                    "relation" : relation,
+                    
+                    "relation_id" : commentIdx,
+                    "content" : reportReason
+                ]
+                
+              
+                self.reportAction(url: UrlPath.Report.getURL(), parmas: params)
             })
-            
         }
         return [deleteAction, reportAction]
     }
@@ -114,9 +125,11 @@ extension CommentVC : UITableViewDataSource, UITableViewDelegate {
         let cell = self.detailTableView.cellForRow(at: indexPath!) as! CommentCell
         
         if sender.isLike! == 0 {
-            likeAction(url: UrlPath.LikeBoardComment.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            let url = isCommunity ? UrlPath.LikeBoardComment.getURL() : UrlPath.LikeContentComment.getURL()
+            likeAction(url: url, boardIdx : sender.boardIdx!, isLike : sender.isLike!, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         } else {
-            dislikeAction(url: UrlPath.LikeBoardComment.getURL(sender.boardIdx!.description), cell : cell, sender : sender, likeCnt: sender.likeCnt )
+            let url = isCommunity ? UrlPath.LikeBoardComment.getURL(sender.boardIdx!.description) : UrlPath.LikeContentComment.getURL(sender.boardIdx!.description)
+            dislikeAction(url: url, cell : cell, sender : sender, likeCnt: sender.likeCnt )
         }
         
     }
@@ -245,17 +258,18 @@ extension CommentVC {
     }
     
     func temp(){
-        getCommentList(url : UrlPath.BoardCommentList.getURL(gino(selectedBoard).description))
+        let url = isCommunity ? UrlPath.BoardCommentList.getURL(gino(selectedBoard).description) : UrlPath.ContentCommentList.getURL(gino(selectedBoard).description)
+        getCommentList(url : url)
     }
     
     //댓글달기
     func writeComment(url : String){
         
+        let keyForIdx = isCommunity ? "board_id" : "contents_id"
         let params : [String : Any] = [
-            "board_id" : selectedBoard ?? 0,
+             keyForIdx : selectedBoard ?? 0,
             "content" : commentTxt.text ?? ""
         ]
-        
         
         CommunityCommentWriteService.shareInstance.commentWrite(url: url, params: params, completion: { [weak self] (result) in
             guard let `self` = self else { return }
@@ -366,6 +380,32 @@ extension CommentVC {
             
         })
     }
+    
+    //신고
+    func reportAction(url : String, parmas : [String : Any]){
+        ReportService.shareInstance.report(url: url, params: parmas, completion: {  [weak self] (result) in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .networkSuccess(_):
+                 self.noticeSuccess("신고 완료", autoClear: true, autoClearTime: 1)
+                break
+            case .accessDenied :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
+            default :
+                break
+            }
+            
+        })
+    }
+    
     
 }
 
