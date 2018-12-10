@@ -19,7 +19,7 @@ class MypageFeedTVCell: UITableViewCell {
     @IBOutlet weak var likeBtn: myHeartBtn!
     @IBOutlet weak var commentBtn: myCommentBtn!
     
-    func configure(data : MyPageVODataBoard){
+    func configure(data : MyPageVODataBoard, indexPath : Int){
         if (gsno(data.uImg) == "") {
             userImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
@@ -50,6 +50,7 @@ class MypageFeedTVCell: UITableViewCell {
         likeBtn.boardIdx = data.bID
         likeBtn.isLike = data.islike
         likeBtn.cellFrom = 1
+        likeBtn.tag = indexPath
         
         if data.islike == 0 {
             likeBtn.isSelected = false

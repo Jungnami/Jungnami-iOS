@@ -27,6 +27,16 @@ class MyPageVC: UIViewController, APIService {
     }
     private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
     private lazy var viewControllers: [UIViewController] = {
+        let tableView =  myFeedVC.tableView
+        tableView.register(UINib.init(nibName: MypageFeedTVCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MypageFeedTVCell.reuseIdentifier)
+        
+        tableView.register(UINib.init(nibName: MypageFeedScrapTVCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MypageFeedScrapTVCell.reuseIdentifier)
+        
+        tableView.register(UINib.init(nibName: MypageNoImageFeedTVcell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MypageNoImageFeedTVcell.reuseIdentifier)
+        
+        tableView.register(UINib.init(nibName: MypageNoImageFeedScrapTVCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MypageNoImageFeedScrapTVCell.reuseIdentifier)
+        
+        
         return [myScrapVC, myFeedVC]
     }()
     

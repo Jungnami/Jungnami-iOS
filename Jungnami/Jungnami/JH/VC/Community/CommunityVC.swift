@@ -158,8 +158,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
   
                 cell.configure(index: indexPath.row, data: communityData[indexPath.row])
                 cell.delegate = self
-                //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
-                //cell.doubleTapdelegate = self
+                
                 let temp = communityData[indexPath.row]
                 //여기는 스크랩했냐 아니냐
                 cell.scrapBtn.tag = temp.boardid
@@ -178,8 +177,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.configure(index: indexPath.row, data: communityData[indexPath.row])
                 cell.delegate = self
-                //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
-                //cell.doubleTapdelegate = self
+               
                 let temp = communityData[indexPath.row]
                 //여기는 스크랩했냐 아니냐
                 cell.scrapBtn.tag = temp.boardid

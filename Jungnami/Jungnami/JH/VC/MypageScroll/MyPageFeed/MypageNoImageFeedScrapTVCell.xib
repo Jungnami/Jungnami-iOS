@@ -28,7 +28,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1a6-Qf-5Dp" userLabel="공유배경">
                                         <rect key="frame" x="12" y="66" width="437" height="97.5"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ADX-Rk-RaU">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ADX-Rk-RaU" customClass="myTouchImg" customModule="Jungnami" customModuleProvider="target">
                                                 <rect key="frame" x="12" y="12" width="38" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ADX-Rk-RaU" secondAttribute="height" multiplier="1:1" id="18F-9y-dTq"/>

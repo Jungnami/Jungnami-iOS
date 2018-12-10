@@ -28,7 +28,7 @@ class CommunityNoImgTVCell: UITableViewCell {
     //tapGesture-------------------------------
     var index = 0
     var delegate: TapDelegate2?
-    var doubleTapdelegate: DoubleTapDelegate?
+   
     //-----------------------------------------
     
    
@@ -139,13 +139,7 @@ class CommunityNoImgTVCell: UITableViewCell {
         delegate?.myTableDelegate(sender : sender)
     }
     
-    @objc func doubleTapped(sender : UITapGestureRecognizer) {
-        doubleTapdelegate?.myDoubleTapDelegate(sender : sender)
-    }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-    }
+    
     
 }
 

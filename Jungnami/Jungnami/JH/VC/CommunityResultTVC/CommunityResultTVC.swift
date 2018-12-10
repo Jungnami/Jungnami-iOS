@@ -71,8 +71,7 @@ extension CommunityResultTVC {
             
             cell.configure2(index: indexPath.row, data: communitySearchData[indexPath.row])
             cell.delegate = self
-            //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
-            //cell.doubleTapdelegate = self
+          
             let temp = communitySearchData[indexPath.row]
             //여기는 스크랩했냐 아니냐
             cell.scrapBtn.tag = temp.id
@@ -92,8 +91,7 @@ extension CommunityResultTVC {
             
             cell.configure2(index: indexPath.row, data: communitySearchData[indexPath.row])
             cell.delegate = self
-            //탭제스처레코그나이저 -> 두번탭 처리하면 주석 풀기
-            //cell.doubleTapdelegate = self
+            
             let temp = communitySearchData[indexPath.row]
             //여기는 스크랩했냐 아니냐
             cell.scrapBtn.tag = temp.id

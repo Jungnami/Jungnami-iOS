@@ -50,7 +50,7 @@ class CommunityTVCell: UITableViewCell {
     //tapGesture-------------------------------
     var index = 0
     var delegate: TapDelegate2?
-    var doubleTapdelegate: DoubleTapDelegate?
+    
     //-----------------------------------------
  
     func configure(index : Int, data : CommunityVODataContent){
@@ -161,24 +161,17 @@ class CommunityTVCell: UITableViewCell {
         self.nameLabel.addGestureRecognizer(lblTapGesture)
         self.profileImgView.addGestureRecognizer(imgTapGesture)
 
-        contentImgView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(sender:)))
-        tap.numberOfTapsRequired = 2
-        contentImgView.addGestureRecognizer(tap)
     
     }
     //tapGesture
     @objc func imgTap(sender: UITapGestureRecognizer) {
         delegate?.myTableDelegate(sender : sender)
-        
     }
     @objc func lblTap(sender: UITapGestureRecognizer) {
         delegate?.myTableDelegate(sender : sender)
     }
     
-    @objc func doubleTapped(sender : UITapGestureRecognizer) {
-         doubleTapdelegate?.myDoubleTapDelegate(sender : sender)
-    }
+   
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

@@ -10,29 +10,23 @@ import UIKit
 class MypageNoImageFeedScrapTVCell: UITableViewCell {
 
     @IBOutlet weak var grayBackground: UIView!
-    
     @IBOutlet weak var whiteBackground: UIView!
-    
     @IBOutlet weak var sharedBG: UIView!
-    
-    @IBOutlet weak var sharedProfileImgView: UIImageView!
-    
+    @IBOutlet weak var sharedProfileImgView: myTouchImg!
     @IBOutlet weak var sharedContentLbl: UILabel!
-    
     @IBOutlet weak var sharedTimeLbl: UILabel!
     @IBOutlet weak var sharedNameLbl: UILabel!
     @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var userProfileImg: UIImageView!
-    
     @IBOutlet weak var likeCntLbl: UILabel!
     @IBOutlet weak var chatCntLbl: UILabel!
-    
     @IBOutlet weak var likeBtn: myHeartBtn!
     @IBOutlet weak var commentBtn: myCommentBtn!
+    var delegate: TapDelegate2?
     
     
-    func configure(data : MyPageVODataBoard) {
+    func configure(data : MyPageVODataBoard, indexPath : Int) {
         if (gsno(data.uImg) == "") {
             userProfileImg.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
@@ -50,8 +44,8 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
         }
         
    
-        
-        
+        print("내용은 \(data.source[0].bContent) id는 \(data.source[0].uID)")
+        sharedProfileImgView.userId = data.source[0].uID
         commentBtn.tag = (data.bID)
         commentBtn.likeCnt = data.likeCnt
         commentBtn.commentCnt = data.commentCnt
@@ -62,6 +56,7 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
         likeBtn.boardIdx = data.bID
         likeBtn.isLike = data.islike
         likeBtn.cellFrom = 0
+        likeBtn.tag = indexPath
         
         if data.islike == 0 {
             likeBtn.isSelected = false
@@ -83,7 +78,6 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
         
     }
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         sharedBG.layer.borderWidth = 1
@@ -91,12 +85,24 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
         sharedProfileImgView.makeImageRound()
         userProfileImg.makeImageRound()
         self.selectionStyle = .none
+        addTapGestureToUser()
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func addTapGestureToUser(){
         
-        // Configure the view for the selected state
+        let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imgTap(sender:)))
+        
+        sharedProfileImgView.isUserInteractionEnabled = true
+        sharedNameLbl.isUserInteractionEnabled = true
+        sharedNameLbl.addGestureRecognizer(imgTapGesture)
+        sharedProfileImgView.addGestureRecognizer(imgTapGesture)
+        
     }
+    
+    @objc func imgTap(sender: UITapGestureRecognizer) {
+        sender.view?.tag = self.gino(Int(sharedProfileImgView.userId))
+        delegate?.myTableDelegate(sender : sender)
+    }
+
     
 }

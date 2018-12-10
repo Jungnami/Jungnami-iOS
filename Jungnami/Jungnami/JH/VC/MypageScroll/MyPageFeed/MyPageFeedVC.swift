@@ -9,42 +9,38 @@ import UIKit
 import LTScrollView
 import SnapKit
 
-class MyPageFeedVC: UIViewController, LTTableViewProtocal, APIService {
-
+class MyPageFeedVC: UIViewController, LTTableViewProtocal, APIService{
+    
     var myBoardData : [MyPageVODataBoard]  = [] {
         didSet {
-             self.tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
     private let glt_iphoneX = (UIScreen.main.bounds.height == 812.0)
     
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height - 20
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
         tableView.tableFooterView = UIView(frame : .zero)
         return tableView
     }()
     
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(UINib.init(nibName: MypageFeedTVCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MypageFeedTVCell.reuseIdentifier)
+        
+        tableView.register(UINib.init(nibName: MypageFeedScrapTVCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MypageFeedScrapTVCell.reuseIdentifier)
 
-        let mypageFeedTVCell = UINib.init(nibName: "MypageFeedTVCell", bundle: nil)
-        self.tableView.register(mypageFeedTVCell, forCellReuseIdentifier: MypageFeedTVCell.reuseIdentifier)
+         tableView.register(UINib.init(nibName: MypageNoImageFeedTVcell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MypageNoImageFeedTVcell.reuseIdentifier)
         
-         let mypageFeedScrapTVCell = UINib.init(nibName: "MypageFeedScrapTVCell", bundle: nil)
-         self.tableView.register(mypageFeedScrapTVCell, forCellReuseIdentifier: MypageFeedScrapTVCell.reuseIdentifier)
+        tableView.register(UINib.init(nibName: MypageNoImageFeedScrapTVCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MypageNoImageFeedScrapTVCell.reuseIdentifier)
         
-        let mypageNoImageFeedTVcell = UINib.init(nibName: "MypageNoImageFeedTVcell", bundle: nil)
-        self.tableView.register(mypageNoImageFeedTVcell, forCellReuseIdentifier: MypageNoImageFeedTVcell.reuseIdentifier)
-        
-        let mypageNoImageFeedScrapTVCell = UINib.init(nibName: "MypageNoImageFeedScrapTVCell", bundle: nil)
-        self.tableView.register(mypageNoImageFeedScrapTVCell, forCellReuseIdentifier: MypageNoImageFeedScrapTVCell.reuseIdentifier)
-
         view.addSubview(tableView)
         glt_scrollView = tableView
-       
+        
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         } else {
@@ -68,16 +64,14 @@ extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
                 
                 cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
                 cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-                cell.likeBtn.tag = indexPath.row
-                cell.configure(data: data)
+                cell.configure(data: data, indexPath : indexPath.row)
                 return cell
             } else {
-               //이미지 있음
+                //이미지 있음
                 let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedTVCell.reuseIdentifier, for: indexPath) as! MypageFeedTVCell
                 cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
                 cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-                cell.likeBtn.tag = indexPath.row
-                cell.configure(data: data)
+                cell.configure(data: data, indexPath : indexPath.row)
                 return cell
             }
         } else {
@@ -88,16 +82,17 @@ extension MyPageFeedVC: UITableViewDelegate, UITableViewDataSource {
                 
                 cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
                 cell.likeBtn.addTarget(self, action: #selector(sharedLike(_:)), for: .touchUpInside)
-                cell.likeBtn.tag = indexPath.row
-                cell.configure(data: data)
+            
+                cell.delegate = self
+                cell.configure(data: data, indexPath : indexPath.row)
                 return cell
             } else {
                 //이미지 있음
                 let cell = tableView.dequeueReusableCell(withIdentifier: MypageFeedScrapTVCell.reuseIdentifier, for: indexPath) as! MypageFeedScrapTVCell
                 cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
                 cell.likeBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-                cell.likeBtn.tag = indexPath.row
-                cell.configure(data: data)
+                cell.delegate = self
+                cell.configure(data: data, indexPath : indexPath.row)
                 return cell
             }
             
@@ -126,7 +121,7 @@ extension MyPageFeedVC {
     }
     
     @objc func like(_ sender : myHeartBtn){
-    
+        
         if sender.isLike! == 0 {
             likeAction(url: UrlPath.LikeBoard.getURL(), boardIdx : sender.boardIdx!, isLike : sender.isLike!, indexPathRow : sender.tag, sender : sender, likeCnt: sender.likeCnt )
         } else {
@@ -146,6 +141,27 @@ extension MyPageFeedVC {
     }
 }
 
+extension MyPageFeedVC : TapDelegate2 {
+    func myTableDelegate(sender: UITapGestureRecognizer) {
+        
+            let userId = self.gino(sender.view?.tag).description
+        
+            let myId = UserDefaults.standard.string(forKey: "userIdx") ?? "-1"
+        
+            if (myId == userId){
+                return
+            }else {
+                //남의걸로
+                if let otherUserPageVC = Storyboard.shared().subStoryboard.instantiateViewController(withIdentifier:OtherUserPageVC.reuseIdentifier) as? OtherUserPageVC {
+                    otherUserPageVC.selectedUserId = userId
+                    self.present(otherUserPageVC, animated: true, completion: nil)
+                }
+            }
+        
+    }
+}
+
+
 
 //통신
 extension MyPageFeedVC {
@@ -163,8 +179,8 @@ extension MyPageFeedVC {
             case .networkSuccess(_):
                 sender.isSelected = true
                 sender.isLike = 1
-                 self.myBoardData[indexPathRow].likeCnt += 1
-                 self.myBoardData[indexPathRow].islike = 1
+                self.myBoardData[indexPathRow].likeCnt += 1
+                self.myBoardData[indexPathRow].islike = 1
                 break
             case .accessDenied :
                 self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in

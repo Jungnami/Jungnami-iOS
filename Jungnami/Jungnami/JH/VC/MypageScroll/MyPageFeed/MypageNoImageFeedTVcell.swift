@@ -17,7 +17,7 @@ class MypageNoImageFeedTVcell: UITableViewCell {
     @IBOutlet weak var likeBtn: myHeartBtn!
     @IBOutlet weak var commentBtn: myCommentBtn!
     
-    func configure(data : MyPageVODataBoard){
+    func configure(data : MyPageVODataBoard, indexPath : Int){
         if (gsno(data.uImg) == "") {
             userImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
@@ -25,11 +25,6 @@ class MypageNoImageFeedTVcell: UITableViewCell {
                 self.userImgView.kf.setImage(with: url)
             }
         }
-    
-        
-        
-        
-        
         
         commentBtn.tag = (data.bID)
         commentBtn.likeCnt = data.likeCnt
@@ -41,6 +36,7 @@ class MypageNoImageFeedTVcell: UITableViewCell {
         likeBtn.boardIdx = data.bID
         likeBtn.isLike = data.islike
         likeBtn.cellFrom = 1
+        likeBtn.tag = indexPath
         
         if data.islike == 0 {
             likeBtn.isSelected = false
