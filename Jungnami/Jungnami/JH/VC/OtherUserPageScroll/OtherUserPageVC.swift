@@ -66,6 +66,12 @@ class OtherUserPageVC : UIViewController, APIService {
         layout.titleSelectColor = ColorChip.shared().mainColor
         layout.sliderHeight = 41.0
         layout.bottomLineHeight = 0
+        
+        layout.bottomLineHeight = 3
+        layout.sliderWidth = 84
+        layout.bottomLineColor = ColorChip.shared().mainColor
+        layout.isAverage = true
+        layout.isNeedScale = false
         return layout
     }()
     

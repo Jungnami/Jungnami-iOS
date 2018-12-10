@@ -69,9 +69,8 @@ class MyPageVC: UIViewController, APIService {
         layout.sliderHeight = 41.0
         layout.bottomLineHeight = 0
         
-        layout.sliderHeight = 50.0
-        layout.bottomLineHeight = 2
-        layout.sliderWidth = 70
+        layout.bottomLineHeight = 3
+        layout.sliderWidth = 84
         layout.bottomLineColor = ColorChip.shared().mainColor
         layout.isAverage = true
         layout.isNeedScale = false

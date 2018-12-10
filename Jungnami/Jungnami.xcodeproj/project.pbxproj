@@ -113,13 +113,10 @@
 		432BA53B20F367C600B33A36 /* ChangeCoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432BA53A20F367C600B33A36 /* ChangeCoinVC.swift */; };
 		4331B01220EFFBD500FA290C /* NoticeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331B01120EFFBD500FA290C /* NoticeVC.swift */; };
 		4348286720F6556B00663CC6 /* MyPageVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4348286620F6556B00663CC6 /* MyPageVO.swift */; };
-		4348286B20F65FD100663CC6 /* MyFeedShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4348286A20F65FD100663CC6 /* MyFeedShareCell.swift */; };
-		4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351999220EF7EE000D72AAF /* MyFeedVC.swift */; };
 		43537EF620F0AD6E0036435A /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537EF520F0AD6E0036435A /* NoticeCell.swift */; };
 		43537EFE20F0E9C50036435A /* LegislatorProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */; };
 		43537F0020F0EA070036435A /* LegislatorContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537EFF20F0EA070036435A /* LegislatorContentCell.swift */; };
 		43537F0220F0EBA50036435A /* LegislatorRelatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43537F0120F0EBA50036435A /* LegislatorRelatedCell.swift */; };
-		4353B94E20F66B2000C88214 /* MyFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353B94D20F66B2000C88214 /* MyFeedCell.swift */; };
 		4353B95020F66F0C00C88214 /* MypageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353B94F20F66F0C00C88214 /* MypageService.swift */; };
 		4353B95220F6962400C88214 /* FollowListVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353B95120F6962400C88214 /* FollowListVO.swift */; };
 		4353B95420F6965C00C88214 /* FollowingListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353B95320F6965C00C88214 /* FollowingListService.swift */; };
@@ -274,13 +271,10 @@
 		432BA53A20F367C600B33A36 /* ChangeCoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCoinVC.swift; sourceTree = "<group>"; };
 		4331B01120EFFBD500FA290C /* NoticeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeVC.swift; sourceTree = "<group>"; };
 		4348286620F6556B00663CC6 /* MyPageVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVO.swift; sourceTree = "<group>"; };
-		4348286A20F65FD100663CC6 /* MyFeedShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedShareCell.swift; sourceTree = "<group>"; };
-		4351999220EF7EE000D72AAF /* MyFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedVC.swift; sourceTree = "<group>"; };
 		43537EF520F0AD6E0036435A /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		43537EFD20F0E9C50036435A /* LegislatorProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorProfileCell.swift; sourceTree = "<group>"; };
 		43537EFF20F0EA070036435A /* LegislatorContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorContentCell.swift; sourceTree = "<group>"; };
 		43537F0120F0EBA50036435A /* LegislatorRelatedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorRelatedCell.swift; sourceTree = "<group>"; };
-		4353B94D20F66B2000C88214 /* MyFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedCell.swift; sourceTree = "<group>"; };
 		4353B94F20F66F0C00C88214 /* MypageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageService.swift; sourceTree = "<group>"; };
 		4353B95120F6962400C88214 /* FollowListVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListVO.swift; sourceTree = "<group>"; };
 		4353B95320F6965C00C88214 /* FollowingListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListService.swift; sourceTree = "<group>"; };
@@ -679,7 +673,6 @@
 				3BB4308920ECDF5B002980D9 /* PartyListDetail */,
 				3BB1A5BD20EB958E00D4929A /* SearchLegislatorResult */,
 				43E5D27820F078B60020DEBE /* LegislatorDetail */,
-				43E84BEC20EDE1F4007C6C97 /* MyFeed */,
 				439D813520EB2FE5007DAD57 /* Content */,
 				43E84BF920EE1DBD007C6C97 /* ContentDetail */,
 			);
@@ -844,16 +837,6 @@
 				43537EFF20F0EA070036435A /* LegislatorContentCell.swift */,
 			);
 			path = LegislatorDetail;
-			sourceTree = "<group>";
-		};
-		43E84BEC20EDE1F4007C6C97 /* MyFeed */ = {
-			isa = PBXGroup;
-			children = (
-				4351999220EF7EE000D72AAF /* MyFeedVC.swift */,
-				4348286A20F65FD100663CC6 /* MyFeedShareCell.swift */,
-				4353B94D20F66B2000C88214 /* MyFeedCell.swift */,
-			);
-			path = MyFeed;
 			sourceTree = "<group>";
 		};
 		43E84BF920EE1DBD007C6C97 /* ContentDetail */ = {
@@ -1111,7 +1094,6 @@
 				43E84BFD20EE2F07007C6C97 /* ContentDetailCell.swift in Sources */,
 				432BA53720F3674900B33A36 /* ChargeVC.swift in Sources */,
 				3BF603BE21188F3C007BB99F /* MypageFeedScrapTVCell.swift in Sources */,
-				4348286B20F65FD100663CC6 /* MyFeedShareCell.swift in Sources */,
 				3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */,
 				3B97B5E020F340C400020A81 /* GetPartyLegislatorLikeService.swift in Sources */,
 				3B6E6E0921BAED5000266556 /* InfoVC.swift in Sources */,
@@ -1199,11 +1181,9 @@
 				3BE415FA21B86D8A00FC4E84 /* SwiftNotice.swift in Sources */,
 				3B83165920F106E0001D2423 /* CommunityFirstSectionWriteTVCell.swift in Sources */,
 				3B87A34520F7F39A00A968B8 /* CommentDeleteService.swift in Sources */,
-				4351999320EF7EE000D72AAF /* MyFeedVC.swift in Sources */,
 				43E4B7B620F5F9C900BA68D4 /* ContentsVO.swift in Sources */,
 				3BFCE31920F5251500C21AEB /* CommentVC.swift in Sources */,
 				3B0475F320EEBD9B00D30A4D /* MainDislikeTVC.swift in Sources */,
-				4353B94E20F66B2000C88214 /* MyFeedCell.swift in Sources */,
 				3B6B031920EE530000034C9B /* ColorChip.swift in Sources */,
 				4353B95820F759DD00C88214 /* FollowerListVO.swift in Sources */,
 				3B9EE267211854CB00C21E84 /* CommunityNoImgTVCell.swift in Sources */,
