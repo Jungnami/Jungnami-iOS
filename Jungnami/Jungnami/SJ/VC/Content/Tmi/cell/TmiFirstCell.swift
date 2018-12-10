@@ -19,7 +19,7 @@ class TmiFirstCell: UICollectionViewCell {
         tmiTitleLbl.text = data.title
         tmiCategoryLbl.text = data.text
         if (gsno(data.thumbnail) == "0") {
-            tmiImgView.image = #imageLiteral(resourceName: "yunhwan")
+            tmiImgView.image = UIImage()
         } else {
             
             if let url = URL(string: gsno(data.thumbnail)){

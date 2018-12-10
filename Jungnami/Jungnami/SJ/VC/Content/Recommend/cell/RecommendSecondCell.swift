@@ -20,7 +20,7 @@ class RecommendSecondCell: UICollectionViewCell {
         contentTypeLbl.text = data.text
         
         if (gsno(data.thumbnail) == "0") {
-            contentImgView.image = #imageLiteral(resourceName: "myungsun")
+            contentImgView.image = UIImage()
         } else {
             
             if let url = URL(string: gsno(data.thumbnail)){

@@ -27,7 +27,7 @@ class NoticeCell: UITableViewCell {
    
     func configure(data: AlarmVOData, index : Int) {
        
-        if (gsno(data.imgURL) == "0") {
+        if (gsno(data.imgURL) == "") {
             noticeProfileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         } else {
             if let url = URL(string: gsno(data.imgURL)){

@@ -20,7 +20,7 @@ class TmiSecondCell: UICollectionViewCell {
         tmiCategoryLbl.text = data.text
         
         if (gsno(data.thumbnail) == "0") {
-            tmiImgView.image = #imageLiteral(resourceName: "myungsun")
+            tmiImgView.image = UIImage()
         } else {
             
             if let url = URL(string: gsno(data.thumbnail)){

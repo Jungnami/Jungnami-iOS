@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, APIService {
+class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, APIService, ReportDelegate {
     
     //투두 - 타이틀이랑 데이트 여기 밖으로 빼내서 연결
     @IBOutlet weak var likeCountLbl: UILabel!
@@ -16,7 +16,9 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
-    @IBOutlet weak var warningBtn: UIButton!
+    
+    @IBOutlet weak var reportBtn: ReportButton!
+    
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var scarpBtn: UIButton!
     var contentIdx : Int? // contentDetail
@@ -49,11 +51,10 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBAction func commentBtn(_ sender: Any) {
         let communityStoartyboard = Storyboard.shared().communityStoryboard
         if let selectedContentId_ = self.contentIdx {
-            if let commentVC = communityStoartyboard.instantiateViewController(withIdentifier:ContentCommentVC.reuseIdentifier) as? ContentCommentVC {
+            if let commentVC = communityStoartyboard.instantiateViewController(withIdentifier:CommentVC.reuseIdentifier) as? CommentVC {
                
-                commentVC.selectedContent = selectedContentId_
-                //  commentVC.heartCount = sender.likeCnt
-                //  commentVC.commentCount = sender.commentCnt
+                commentVC.selectedBoard = selectedContentId_
+                commentVC.isCommunity = false
                 
                 self.present(commentVC, animated: true)
             }
@@ -89,6 +90,8 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         super.viewDidLoad()
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
+        reportBtn.delegate = self
+        reportBtn.selectedIdx = self.gino(contentIdx)
         self.tabBarController?.tabBar.isHidden = true
         //통신
         if let contentIdx_ = contentIdx {
@@ -111,12 +114,6 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    //샘플 var data = ContentData.sharedInstance.contentDetails
     
     //-------------------collectionView-------------
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -382,8 +379,6 @@ extension ContentDetailVC {
             
         })
     }
-    
-  
 }
 
 

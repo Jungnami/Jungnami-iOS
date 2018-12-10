@@ -11,7 +11,6 @@ import SwiftyJSON
 
 //여기
 struct RecommendService2 : GettableService {
-    // let userDefault = UserDefaults.standard
     typealias NetworkData = RecommendVO //여기
     static let shareInstance = RecommendService2() //여기
     func getRecommendContent(url : String, completion : @escaping (NetworkResult<Any>) -> Void){

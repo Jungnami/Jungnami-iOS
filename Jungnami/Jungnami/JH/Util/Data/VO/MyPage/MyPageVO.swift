@@ -13,7 +13,8 @@ struct MyPageVO: Codable {
 }
 
 struct MyPageVOData: Codable {
-    let mypageID, nickname, img: String
+    let mypageID, nickname : String
+    let img: String?
     let scrapcnt, boardcnt, followingcnt, followercnt: Int
     let point : Int
     let votingcnt, pushcnt, isfollow: Int
@@ -22,16 +23,19 @@ struct MyPageVOData: Codable {
 
     enum CodingKeys: String, CodingKey {
         case mypageID = "mypage_id"
-        case nickname, img, scrapcnt, boardcnt, followingcnt, followercnt, votingcnt, pushcnt, scrap, board, isfollow
+        case nickname, scrapcnt, boardcnt, followingcnt, followercnt, votingcnt, pushcnt, scrap, board, isfollow
+        case img
         case point
     }
 }
 
 struct MyPageVODataBoard: Codable {
     let bID: Int
-    let uID, uNickname, uImg: String
+    let uID, uNickname : String
+    let uImg: String?
     let source: [MyPageVODataBoardSource]
-    let bContent, bImg: String?
+    let bContent : String?
+    let bImg: String?
     let bTime: String
     var likeCnt, commentCnt: Int
     var islike : Int
@@ -52,7 +56,8 @@ struct MyPageVODataBoard: Codable {
 }
 
 struct MyPageVODataBoardSource: Codable {
-    let uID, uNickname, uImg, bContent: String
+    let uID, uNickname, bContent: String
+    let uImg : String?
     let bImg, bTime: String
     
     enum CodingKeys: String, CodingKey {

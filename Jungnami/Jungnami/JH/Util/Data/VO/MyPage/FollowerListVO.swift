@@ -13,7 +13,8 @@ struct FollowerListVO: Codable {
 }
 
 struct FollowerListVOData: Codable {
-    let followerID, followerNickname, followerImgURL : String
+    let followerID, followerNickname: String
+    let followerImgURL : String?
     var isMyFollowing: String
     
     enum CodingKeys: String, CodingKey {

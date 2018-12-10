@@ -14,11 +14,10 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     
     
     @IBAction func dismissBtn(_ sender: Any) {
-        contentTxtView.text = "생각을 공유해 보세요"
-        contentTxtView.textColor = UIColor.lightGray
+        makeTxtViewClear()
+        removeImgView()
         doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
         doneBtn.isUserInteractionEnabled = false
-        removeImgView()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -27,7 +26,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     @IBOutlet weak var contentTxtView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     var contentImgView: UIImageView = UIImageView()
-    var imgURL : String = ""
+    var imgURL : String? = ""
     var images : [String : Data]?
     var keyboardDismissGesture: UITapGestureRecognizer?
     var delegate : TapDelegate?
@@ -69,6 +68,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
         } else {
             self.profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         }
+        makeTxtViewClear()
         profileImgView.makeImageRound()
     }
     
@@ -85,6 +85,11 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     @objc func doneOk(){
         //통신
         writeContent(url : UrlPath.Board.getURL())
+    }
+    
+    func makeTxtViewClear(){
+        contentTxtView.text = "생각을 공유해 보세요"
+        contentTxtView.textColor = UIColor.lightGray
     }
     
 }
@@ -156,8 +161,7 @@ extension CommunityWriteVC {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "생각을 공유해 보세요"
-            textView.textColor = UIColor.lightGray
+            makeTxtViewClear()
         }
     }
     
@@ -321,7 +325,8 @@ extension CommunityWriteVC {
             switch result {
             case .networkSuccess(_):
                 self.delegate?.myTableDelegate(index: -1)
-                self.dismiss(animated: true, completion: nil)
+                self.dismissBtn(0)
+                //self.dismiss(animated: true, completion: )
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "인터넷 연결상태를 확인해주세요")
             default :

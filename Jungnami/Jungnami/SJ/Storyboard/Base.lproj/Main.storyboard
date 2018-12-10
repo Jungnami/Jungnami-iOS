@@ -954,10 +954,10 @@
             </objects>
             <point key="canvasLocation" x="-849" y="806"/>
         </scene>
-        <!--TabbarVC-->
+        <!--Tab Bar Controller-->
         <scene sceneID="1rR-YC-SWW">
             <objects>
-                <tabBarController storyboardIdentifier="tabBar" automaticallyAdjustsScrollViewInsets="NO" id="Bdd-R8-IfB" customClass="TabbarVC" customModule="Jungnami" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" automaticallyAdjustsScrollViewInsets="NO" id="Bdd-R8-IfB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="ZAn-2i-iL4">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

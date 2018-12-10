@@ -19,7 +19,7 @@ class StoryFirstCell: UICollectionViewCell {
         storyCategoryLbl.text = data.text
         
         if (gsno(data.thumbnail) == "0") {
-            storyImgView.image = #imageLiteral(resourceName: "jihee")
+            storyImgView.image = UIImage()
         } else {
             
             if let url = URL(string: gsno(data.thumbnail)){

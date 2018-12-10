@@ -8,7 +8,6 @@
 import Foundation
 
 struct FollowerListService : GettableService {
-    // let userDefault = UserDefaults.standard
     typealias NetworkData = FollowerListVO //여기
     static let shareInstance = FollowerListService() //여기
     func getFollowerList(url : String, completion : @escaping (NetworkResult<Any>) -> Void){

@@ -28,7 +28,7 @@ class FollowCell: UITableViewCell {
     
   
     func configure(data : FollowListVOData, index : Int){
-        if (gsno(data.followingImgURL) == "0") {
+        if (gsno(data.followingImgURL) == "") {
             followImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
             
         } else {
@@ -56,7 +56,7 @@ class FollowCell: UITableViewCell {
     }
     
     func configure2(data : FollowerListVOData, index : Int){
-        if (gsno(data.followerImgURL) == "0") {
+        if (gsno(data.followerImgURL) == "") {
             followImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
             
         } else {

@@ -13,7 +13,8 @@ struct AlarmVO: Codable {
 
 struct AlarmVOData: Codable {
     var button : String
-    let id, imgURL, actionname: String
+    let id, actionname: String
+    let imgURL : String?
     let actionmessage, time: String
     let ischecked: Int
     
