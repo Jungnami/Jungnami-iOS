@@ -41,7 +41,7 @@ class MyPageVC: UIViewController, APIService {
     }()
     
     private lazy var titles: [String] = {
-        return ["스크랩", "내 피드"]
+        return ["스크랩", "피드"]
     }()
     
     //헤더 뷰 생성 후, 그 안에 프로퍼티들 설정

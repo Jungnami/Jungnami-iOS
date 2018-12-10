@@ -15,9 +15,9 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
     
     @IBAction func dismissBtn(_ sender: Any) {
         makeTxtViewClear()
+        removeImgView()
         doneBtn.setImage(#imageLiteral(resourceName: "writepage_complete_gray_button"), for: .normal)
         doneBtn.isUserInteractionEnabled = false
-        removeImgView()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -325,7 +325,8 @@ extension CommunityWriteVC {
             switch result {
             case .networkSuccess(_):
                 self.delegate?.myTableDelegate(index: -1)
-                self.dismiss(animated: true, completion: nil)
+                self.dismissBtn(0)
+                //self.dismiss(animated: true, completion: )
             case .networkFail :
                 self.simpleAlert(title: "오류", message: "인터넷 연결상태를 확인해주세요")
             default :

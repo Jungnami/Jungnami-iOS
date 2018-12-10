@@ -376,7 +376,6 @@
 				3B78CD3C211B71D70066B2B8 /* OtherUserPageScroll */,
 				3BF603C42118B86E007BB99F /* MyPageFeed */,
 				3BF603C52118B89B007BB99F /* MyPageScrap */,
-				3BA1F11E21BECDA6007F79DE /* ReportButton.swift */,
 			);
 			path = MypageScroll;
 			sourceTree = "<group>";
@@ -491,6 +490,14 @@
 				3BA1F11A21BEB1EE007F79DE /* ReportService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		3BA1F12021BEE588007F79DE /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				3BA1F11E21BECDA6007F79DE /* ReportButton.swift */,
+			);
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 		3BB1A5BD20EB958E00D4929A /* SearchLegislatorResult */ = {
@@ -638,6 +645,7 @@
 		439D811920EB2FE5007DAD57 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				3BA1F12021BEE588007F79DE /* CustomUI */,
 				3B6B031620EE52E200034C9B /* Data */,
 				439D811A20EB2FE5007DAD57 /* Utility */,
 			);

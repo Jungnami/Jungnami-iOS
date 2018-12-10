@@ -75,8 +75,8 @@
                                 </button>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쁜쁜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QjO-AI-tb6">
-                            <rect key="frame" x="290.5" y="160" width="24.5" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QjO-AI-tb6">
+                            <rect key="frame" x="303" y="168.5" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -169,9 +169,19 @@
                         <constraint firstItem="c8Z-lY-sHP" firstAttribute="centerX" secondItem="Idv-Nb-Kbp" secondAttribute="centerX" id="wC8-Ty-JNB"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EQj-5d-CgR" userLabel="thirdSeparator">
+                    <rect key="frame" x="0.0" y="231.5" width="649" height="0.5"/>
+                    <color key="backgroundColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="EUY-n1-oxD"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="EQj-5d-CgR" secondAttribute="trailing" id="7DN-7q-xLL"/>
+                <constraint firstItem="EQj-5d-CgR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="GN3-2I-EKZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="EQj-5d-CgR" secondAttribute="bottom" id="GRa-4E-MUo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Idv-Nb-Kbp" secondAttribute="bottom" id="OTh-Be-3tl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Idv-Nb-Kbp" secondAttribute="trailing" id="boA-pM-qNB"/>
                 <constraint firstItem="Idv-Nb-Kbp" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="im5-V1-Ffe"/>
