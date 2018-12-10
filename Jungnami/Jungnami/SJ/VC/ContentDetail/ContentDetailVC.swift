@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, APIService {
+class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, APIService, ReportDelegate {
     
     //투두 - 타이틀이랑 데이트 여기 밖으로 빼내서 연결
     @IBOutlet weak var likeCountLbl: UILabel!
@@ -16,7 +16,9 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
-   
+    
+    @IBOutlet weak var reportBtn: ReportButton!
+    
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var scarpBtn: UIButton!
     var contentIdx : Int? // contentDetail
@@ -88,6 +90,8 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         super.viewDidLoad()
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
+        reportBtn.delegate = self
+        reportBtn.selectedIdx = self.gino(contentIdx)
         self.tabBarController?.tabBar.isHidden = true
         //통신
         if let contentIdx_ = contentIdx {
@@ -110,19 +114,6 @@ class ContentDetailVC: UIViewController, UICollectionViewDataSource, UICollectio
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    
-    @IBAction func reportContentAction(_ sender: Any) {
-        self.reportAction(reportId: self.gino(contentIdx), reportHandler: { (reportReason) in
-            //신고 url 넣기
-            let relation = ReportCategory.content.rawValue
-            let params : [String : Any] = [
-                "relation" : relation,
-                "relation_id" : self.gino(self.contentIdx),
-                "content" : reportReason
-            ]
-            self.reportAction(url: UrlPath.Report.getURL(), parmas: params)
-        })
-    }
     
     //-------------------collectionView-------------
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -388,33 +379,6 @@ extension ContentDetailVC {
             
         })
     }
-    
-    //신고
-    func reportAction(url : String, parmas : [String : Any]){
-        ReportService.shareInstance.report(url: url, params: parmas, completion: {  [weak self] (result) in
-            guard let `self` = self else { return }
-            
-            switch result {
-            case .networkSuccess(_):
-                self.noticeSuccess("신고 완료", autoClear: true, autoClearTime: 1)
-                break
-            case .accessDenied :
-                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
-                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
-                        loginVC.entryPoint = 1
-                        self.present(loginVC, animated: true, completion: nil)
-                    }
-                })
-            case .networkFail :
-                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
-            default :
-                break
-            }
-            
-        })
-    }
-    
-  
 }
 
 

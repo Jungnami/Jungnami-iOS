@@ -21,10 +21,9 @@ class CommunityNoImgTVCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var heartBtn : myHeartBtn!
     @IBOutlet weak var commentBtn : myCommentBtn!
-    @IBOutlet weak var warningBtn: myHeartBtn!
+    @IBOutlet weak var warningBtn: ReportButton!
     @IBOutlet weak var scrapBtn : UIButton!
-    var reportHandler : ((_ reportIdx : Int)->Void)?
-    
+  
     //tapGesture-------------------------------
     var index = 0
     var delegate: TapDelegate2?
@@ -46,7 +45,7 @@ class CommunityNoImgTVCell: UITableViewCell {
         timeLabel.text = data.writingtime
         contentLabel.text = data.content
         contentLabel.sizeToFit()
-        warningBtn.tag = data.boardid
+        warningBtn.selectedIdx = data.boardid
         likeLabel.text = "\(data.likecnt)"
         commentLabel.text = "\(data.commentcnt)"
         if data.islike == 0 {
@@ -87,7 +86,7 @@ class CommunityNoImgTVCell: UITableViewCell {
         timeLabel.text = data.writingtime
         contentLabel.text = data.content
         contentLabel.sizeToFit()
-        warningBtn.tag = data.id
+        warningBtn.selectedIdx = data.id
         likeLabel.text = "\(data.likecnt)"
         commentLabel.text = "\(data.commentcnt)"
         if data.islike == 0 {
@@ -128,12 +127,9 @@ class CommunityNoImgTVCell: UITableViewCell {
         
         self.nameLabel.addGestureRecognizer(lblTapGesture)
         self.profileImgView.addGestureRecognizer(imgTapGesture)
-        warningBtn.addTarget(self, action: #selector(report(_:)), for: .touchUpInside)
+      
     }
-    
-    @objc func report(_ sender: UIButton){
-        reportHandler!(sender.tag)
-    }
+  
     //tapGesture
     @objc func imgTap(sender: UITapGestureRecognizer) {
         delegate?.myTableDelegate(sender : sender)

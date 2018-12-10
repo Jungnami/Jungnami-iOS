@@ -26,8 +26,8 @@ class MypageFeedScrapTVCell: UITableViewCell {
     
     @IBOutlet weak var likeBtn: myHeartBtn!
     @IBOutlet weak var commentBtn: myCommentBtn!
-     @IBOutlet weak var warningBtn: myHeartBtn!
-    var reportHandler : ((_ reportIdx : Int)->Void)?
+     @IBOutlet weak var warningBtn: ReportButton!
+   
     var delegate: TapDelegate2?
     
     func configure(data : MyPageVODataBoard, indexPath : Int) {
@@ -68,7 +68,7 @@ class MypageFeedScrapTVCell: UITableViewCell {
         likeBtn.isLike = data.islike
         likeBtn.cellFrom = 0
         likeBtn.tag = indexPath
-        warningBtn.tag = data.bID
+        warningBtn.selectedIdx = data.bID
         
         
         if data.islike == 0 {
@@ -101,13 +101,9 @@ class MypageFeedScrapTVCell: UITableViewCell {
         userProfileImg.makeImageRound()
         self.selectionStyle = .none
         addTapGestureToUser()
-         warningBtn.addTarget(self, action: #selector(report(_:)), for: .touchUpInside)
-        
+      
     }
-    @objc func report(_ sender: UIButton){
-        reportHandler!(sender.tag)
-    }
-    
+ 
     func addTapGestureToUser(){
         
         let imgTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imgTap(sender:)))

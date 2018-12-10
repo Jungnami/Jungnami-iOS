@@ -416,7 +416,7 @@
                                                     <color key="textColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqf-Oe-ABj" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqf-Oe-ABj" customClass="ReportButton" customModule="Jungnami" customModuleProvider="target">
                                                     <rect key="frame" x="92" y="555.5" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="aqf-Oe-ABj" secondAttribute="height" multiplier="1:1" id="sZE-4Q-Rdc"/>
@@ -600,7 +600,7 @@
                                                     <color key="textColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amt-Gj-6Kn" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amt-Gj-6Kn" customClass="ReportButton" customModule="Jungnami" customModuleProvider="target">
                                                     <rect key="frame" x="92" y="165" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="amt-Gj-6Kn" secondAttribute="height" multiplier="1:1" id="LaM-Uy-TxL"/>
@@ -886,7 +886,7 @@
                                             <color key="textColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJ2-nq-KFW" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJ2-nq-KFW" customClass="ReportButton" customModule="Jungnami" customModuleProvider="target">
                                             <rect key="frame" x="92" y="561.5" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="TJ2-nq-KFW" secondAttribute="height" multiplier="1:1" id="ZAx-up-EKQ"/>
@@ -1074,7 +1074,7 @@
                                             <color key="textColor" red="0.76470588240000004" green="0.76470588240000004" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2l-Qj-0Sw" customClass="myHeartBtn" customModule="Jungnami" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2l-Qj-0Sw" customClass="ReportButton" customModule="Jungnami" customModuleProvider="target">
                                             <rect key="frame" x="92" y="165.5" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="c2l-Qj-0Sw" secondAttribute="height" multiplier="1:1" id="ayz-Bk-JOv"/>

@@ -23,8 +23,8 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
     @IBOutlet weak var chatCntLbl: UILabel!
     @IBOutlet weak var likeBtn: myHeartBtn!
     @IBOutlet weak var commentBtn: myCommentBtn!
-     @IBOutlet weak var warningBtn: myHeartBtn!
-    var reportHandler : ((_ reportIdx : Int)->Void)?
+     @IBOutlet weak var warningBtn: ReportButton!
+   
     var delegate: TapDelegate2?
     
     
@@ -59,7 +59,7 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
         likeBtn.isLike = data.islike
         likeBtn.cellFrom = 0
         likeBtn.tag = indexPath
-        warningBtn.tag = data.bID
+        warningBtn.selectedIdx = data.bID
         
         if data.islike == 0 {
             likeBtn.isSelected = false
@@ -89,7 +89,7 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
         userProfileImg.makeImageRound()
         self.selectionStyle = .none
         addTapGestureToUser()
-         warningBtn.addTarget(self, action: #selector(report(_:)), for: .touchUpInside)
+        
     }
     
     func addTapGestureToUser(){
@@ -100,7 +100,6 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
         sharedNameLbl.isUserInteractionEnabled = true
         sharedNameLbl.addGestureRecognizer(imgTapGesture)
         sharedProfileImgView.addGestureRecognizer(imgTapGesture)
-        
     }
     
     @objc func imgTap(sender: UITapGestureRecognizer) {
@@ -108,7 +107,5 @@ class MypageNoImageFeedScrapTVCell: UITableViewCell {
         delegate?.myTableDelegate(sender : sender)
         
     }
-    @objc func report(_ sender: UIButton){
-        reportHandler!(sender.tag)
-    } 
+   
 }

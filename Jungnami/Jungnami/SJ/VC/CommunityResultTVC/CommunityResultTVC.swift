@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CommunityResultTVC: UITableViewController, APIService {
+class CommunityResultTVC: UITableViewController, APIService, ReportDelegate {
     
     @IBOutlet weak var searchTxtfield: UITextField!
     @IBOutlet weak var separateView: UIView!
@@ -82,8 +82,7 @@ extension CommunityResultTVC {
             cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
             cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
             cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-            cell.reportHandler = report
-            
+           cell.warningBtn.delegate = self
             return cell
             
         } else {
@@ -102,7 +101,7 @@ extension CommunityResultTVC {
             cell.scrapBtn.addTarget(self, action: #selector(scrap(_:)), for: .touchUpInside)
             cell.commentBtn.addTarget(self, action: #selector(comment(_:)), for: .touchUpInside)
             cell.heartBtn.addTarget(self, action: #selector(like(_:)), for: .touchUpInside)
-            cell.reportHandler = report
+         cell.warningBtn.delegate = self
             
             return cell
         }

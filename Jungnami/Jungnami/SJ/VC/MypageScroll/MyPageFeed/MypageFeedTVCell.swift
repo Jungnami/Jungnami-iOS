@@ -18,9 +18,8 @@ class MypageFeedTVCell: UITableViewCell {
     @IBOutlet weak var commentCntLbl: UILabel!
     @IBOutlet weak var likeBtn: myHeartBtn!
     @IBOutlet weak var commentBtn: myCommentBtn!
-    @IBOutlet weak var warningBtn: myHeartBtn!
-    var reportHandler : ((_ reportIdx : Int)->Void)?
-    
+    @IBOutlet weak var warningBtn: ReportButton!
+   
     func configure(data : MyPageVODataBoard, indexPath : Int){
         if (gsno(data.uImg) == "") {
             userImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
@@ -37,11 +36,7 @@ class MypageFeedTVCell: UITableViewCell {
                 self.contentImgView.kf.setImage(with: url)
             }
         }
-        
-        
-        
-        
-        
+
         commentBtn.tag = (data.bID)
         commentBtn.likeCnt = data.likeCnt
         commentBtn.commentCnt = data.commentCnt
@@ -53,7 +48,7 @@ class MypageFeedTVCell: UITableViewCell {
         likeBtn.isLike = data.islike
         likeBtn.cellFrom = 1
         likeBtn.tag = indexPath
-        warningBtn.tag = data.bID
+        warningBtn.selectedIdx = data.bID
         
         if data.islike == 0 {
             likeBtn.isSelected = false
@@ -73,11 +68,8 @@ class MypageFeedTVCell: UITableViewCell {
         super.awakeFromNib()
         userImgView.makeImageRound()
         self.selectionStyle = .none
-        warningBtn.addTarget(self, action: #selector(report(_:)), for: .touchUpInside)
-        // Initialization code
+       
     }
-    @objc func report(_ sender: UIButton){
-        reportHandler!(sender.tag)
-    }
+
     
 }

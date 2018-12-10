@@ -97,9 +97,7 @@ extension CommentVC : UITableViewDataSource, UITableViewDelegate {
         let reportAction = UITableViewRowAction(style: .normal, title: "신고") { (rowAction, indexPath) in
             let commentIdx = selectedComment.commentid
             self.reportAction(reportId: commentIdx, reportHandler: { (reportReason) in
-                //신고 url 넣기
-                //0- board/ 1 - board comment /2 - contents/3 contents comment
-                
+            
                 let relation = self.isCommunity ? ReportCategory.communityComment.rawValue : ReportCategory.contentComment.rawValue
                 let params : [String : Any] = [
                     "relation" : relation,
