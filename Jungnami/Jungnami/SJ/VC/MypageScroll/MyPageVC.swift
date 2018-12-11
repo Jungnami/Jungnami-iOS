@@ -107,6 +107,7 @@ class MyPageVC: UIViewController, APIService {
         if let selectedUserId_ = selectedUserId {
             getMyPage(url: UrlPath.Mypage.getURL(selectedUserId_))
         }
+       
     }
     override func viewDidLoad() {
         super.viewDidLoad()

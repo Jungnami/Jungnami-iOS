@@ -90,7 +90,8 @@
 		3BA1F12221BF5355007F79DE /* ContentDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA1F12121BF5355007F79DE /* ContentDetailService.swift */; };
 		3BA1F12421BF5361007F79DE /* RecommendService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA1F12321BF5361007F79DE /* RecommendService2.swift */; };
 		3BA1F12721BF5732007F79DE /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA1F12621BF5732007F79DE /* SplashVC.swift */; };
-		3BA1F12B21BF5E6F007F79DE /* fabulous_onboarding_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA1F12A21BF5E6F007F79DE /* fabulous_onboarding_animation.json */; };
+		3BA1F12D21BF6085007F79DE /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA1F12C21BF6085007F79DE /* data.json */; };
+		3BA1F12F21BFBE82007F79DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BA1F12E21BFBE81007F79DE /* GoogleService-Info.plist */; };
 		3BAFF97620EE845A0088F020 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAFF97520EE845A0088F020 /* Region.swift */; };
 		3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */; };
 		3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */; };
@@ -252,7 +253,8 @@
 		3BA1F12121BF5355007F79DE /* ContentDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailService.swift; sourceTree = "<group>"; };
 		3BA1F12321BF5361007F79DE /* RecommendService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendService2.swift; sourceTree = "<group>"; };
 		3BA1F12621BF5732007F79DE /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
-		3BA1F12A21BF5E6F007F79DE /* fabulous_onboarding_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fabulous_onboarding_animation.json; sourceTree = "<group>"; };
+		3BA1F12C21BF6085007F79DE /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		3BA1F12E21BFBE81007F79DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3BAFF97520EE845A0088F020 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVC.swift; sourceTree = "<group>"; };
 		3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVCell.swift; sourceTree = "<group>"; };
@@ -517,7 +519,7 @@
 		3BA1F12521BF571C007F79DE /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				3BA1F12A21BF5E6F007F79DE /* fabulous_onboarding_animation.json */,
+				3BA1F12C21BF6085007F79DE /* data.json */,
 				3BA1F12621BF5732007F79DE /* SplashVC.swift */,
 			);
 			path = Splash;
@@ -628,6 +630,7 @@
 				3B97B5B920F2006D00020A81 /* KakaoOpenSDK.framework */,
 				439D813C20EB2FE5007DAD57 /* AppDelegate.swift */,
 				439D813D20EB2FE5007DAD57 /* Info.plist */,
+				3BA1F12E21BFBE81007F79DE /* GoogleService-Info.plist */,
 			);
 			path = Jungnami;
 			sourceTree = "<group>";
@@ -933,6 +936,7 @@
 				3BF603BB21188F29007BB99F /* MypageFeedTVCell.xib in Resources */,
 				3B78CD42211B73C90066B2B8 /* OtherUserHeader.xib in Resources */,
 				3B44E9782118847B0079E9AC /* MypageHeader.xib in Resources */,
+				3BA1F12D21BF6085007F79DE /* data.json in Resources */,
 				3B83165F20F137A2001D2423 /* Community.storyboard in Resources */,
 				3B83166120F138A4001D2423 /* Rank.storyboard in Resources */,
 				3B5BD83A211C311900BFD636 /* MypageNoImageFeedScrapTVCell.xib in Resources */,
@@ -940,7 +944,6 @@
 				439D813F20EB2FE5007DAD57 /* LaunchScreen.storyboard in Resources */,
 				439D814B20EB2FE5007DAD57 /* Sub.storyboard in Resources */,
 				439D815020EB2FE5007DAD57 /* Assets.xcassets in Resources */,
-				3BA1F12B21BF5E6F007F79DE /* fabulous_onboarding_animation.json in Resources */,
 				3B87A35020F8E61200A968B8 /* CoinChangeCompletePopup.xib in Resources */,
 				4353B95620F7549F00C88214 /* Content.storyboard in Resources */,
 				3BCF933820F16B4700E9E7F7 /* CompletePopup.xib in Resources */,
@@ -950,6 +953,7 @@
 				3BCF933620F1656600E9E7F7 /* SupportPopup.xib in Resources */,
 				3B47AEB120F5EC2D0054B49A /* Mypage.storyboard in Resources */,
 				439D814020EB2FE5007DAD57 /* Main.storyboard in Resources */,
+				3BA1F12F21BFBE82007F79DE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

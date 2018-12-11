@@ -17,11 +17,11 @@ class SplashVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        boatAnimation = LOTAnimationView(name: "fabulous_onboarding_animation")
+        boatAnimation = LOTAnimationView(name: "data")
         boatAnimation!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        boatAnimation!.contentMode = .scaleAspectFill
+        boatAnimation!.contentMode = .scaleAspectFit
         boatAnimation!.frame = view.bounds
-        view.backgroundColor = #colorLiteral(red: 0, green: 0.6549019608, blue: 0.7490196078, alpha: 1)
+        view.backgroundColor = ColorChip.shared().mainColor
         view.addSubview(boatAnimation!)
        
         boatAnimation!.loopAnimation = false

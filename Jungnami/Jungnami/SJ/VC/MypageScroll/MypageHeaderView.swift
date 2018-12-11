@@ -13,6 +13,7 @@ class MypageHeaderView: UIView {
     @IBOutlet var myCoinView: UIView!
     @IBOutlet var myVoteView: UIView!
     
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var profileuserNameLbl: UILabel!
     @IBOutlet weak var profileScrapNumLbl: UILabel!
@@ -30,9 +31,9 @@ class MypageHeaderView: UIView {
     @IBOutlet weak var alarmBG: UIImageView!
     
     class func instanceFromNib() -> MypageHeaderView {
-        
-        
-        return UINib(nibName: "MypageHeader", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MypageHeaderView
+        let myHeader = UINib(nibName: "MypageHeader", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MypageHeaderView
+        myHeader.navBar.shadowImage = UIImage()
+        return myHeader
     }
 
 }
