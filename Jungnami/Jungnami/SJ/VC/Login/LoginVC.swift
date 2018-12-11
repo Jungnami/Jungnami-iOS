@@ -44,7 +44,9 @@ class LoginVC: UIViewController, APIService{
                 if session.isOpen(){
                   //  print("token : \(session.token.accessToken)")
                   //  print("refresh token : \(session.token.refreshToken)")
-                    let params : [String : Any] = ["accessToken" : session.token.accessToken]
+                    let params : [String : Any] = ["accessToken" : session.token.accessToken,
+                                                   "fcmToken" : UserDefaults.standard.string(forKey: "fcmToken") ?? "-1"]
+                    
                     self.login(url: UrlPath.KakaoLogin.getURL(), params: params)
                  
                 }else{
