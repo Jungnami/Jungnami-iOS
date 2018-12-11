@@ -13,13 +13,7 @@ class PartyListDetailDislikeTVC: UITableViewController, APIService {
     var selectedRegion : Region?
     var legislatorDislikeData : [PartyLegistorLikeVOData] = []
     var voteDelegate : VoteDelegate?
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tableView.setContentOffset(.zero, animated: true)
-        
-    }
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         let itemCount = legislatorDislikeData.count
