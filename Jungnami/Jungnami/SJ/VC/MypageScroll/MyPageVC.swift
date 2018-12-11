@@ -193,7 +193,7 @@ extension MyPageVC {
     
     
     @objc func profileImgTap(sender: UITapGestureRecognizer) {
-        openGallery()
+        checkAlbumPermission()
     }
     
     
@@ -203,25 +203,7 @@ extension MyPageVC {
 //앨범 열기 위함
 extension MyPageVC : UIImagePickerControllerDelegate,
 UINavigationControllerDelegate  {
-    // Method
-    func openGallery() {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let imagePicker : UIImagePickerController = UIImagePickerController()
-            imagePicker.sourceType = .photoLibrary
-            imagePicker.delegate = self
-            //false 로 되어있으면 이미지 자르지 않고 오리지널로 들어감
-            //이거 true로 하면 crop 가능
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-    }
-    
-    // imagePickerDelegate
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        //사용자 취소
-        self.dismiss(animated: true)
-    }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         //크롭한 이미지

@@ -1635,9 +1635,9 @@
                             <constraint firstItem="At5-gV-FXp" firstAttribute="leading" secondItem="OWF-1T-Qan" secondAttribute="leading" id="ebc-FA-AXf"/>
                             <constraint firstItem="XnA-6x-kPd" firstAttribute="leading" secondItem="OWF-1T-Qan" secondAttribute="leading" id="hMe-dG-PqM"/>
                             <constraint firstItem="OWF-1T-Qan" firstAttribute="trailing" secondItem="XnA-6x-kPd" secondAttribute="trailing" id="i2y-6Y-JNA"/>
-                            <constraint firstAttribute="bottom" secondItem="zwd-Gr-6wI" secondAttribute="bottom" id="pI3-cY-b7o"/>
+                            <constraint firstItem="OWF-1T-Qan" firstAttribute="bottom" secondItem="zwd-Gr-6wI" secondAttribute="bottom" id="pI3-cY-b7o"/>
                             <constraint firstItem="OWF-1T-Qan" firstAttribute="trailing" secondItem="zwd-Gr-6wI" secondAttribute="trailing" id="pSQ-wH-jD0"/>
-                            <constraint firstItem="zwd-Gr-6wI" firstAttribute="leading" secondItem="5MX-PH-jU6" secondAttribute="leading" id="uVm-kE-oun"/>
+                            <constraint firstItem="zwd-Gr-6wI" firstAttribute="leading" secondItem="OWF-1T-Qan" secondAttribute="leading" id="uVm-kE-oun"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OWF-1T-Qan"/>
                     </view>
@@ -1669,7 +1669,7 @@
         <image name="community_search_field" width="279" height="31"/>
         <image name="community_small_chat" width="15" height="15"/>
         <image name="community_small_heart" width="14" height="14"/>
-        <image name="community_warning" width="128" height="128"/>
+        <image name="community_warning" width="24" height="24"/>
         <image name="content_best_icon" width="29" height="13"/>
         <image name="content_chat_field" width="302" height="37"/>
         <image name="content_chat_rightarrow" width="42" height="41"/>

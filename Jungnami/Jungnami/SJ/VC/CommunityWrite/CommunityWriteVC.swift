@@ -76,7 +76,7 @@ class CommunityWriteVC: UIViewController, UITextViewDelegate, APIService {
         
     }
     @objc func clickImg(){
-        openGallery()
+        checkAlbumPermission()
     }
     @objc public func deleteImg (_sender: UIButton) {
         removeImgView()
@@ -267,24 +267,6 @@ extension CommunityWriteVC {
 extension CommunityWriteVC : UIImagePickerControllerDelegate,
 UINavigationControllerDelegate  {
     
-    
-    // Method
-    func openGallery() {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            self.imagePicker.sourceType = .photoLibrary
-            self.imagePicker.delegate = self
-            //false 로 되어있으면 이미지 자르지 않고 오리지널로 들어감
-            //이거 true로 하면 crop 가능
-            self.imagePicker.allowsEditing = true
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }
-    }
-    
-    // imagePickerDelegate
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        //사용자 취소
-        self.dismiss(animated: true)
-    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 extension UIBarButtonItem {
     class func itemWith(colorfulImage: UIImage?, target: AnyObject, action: Selector) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
@@ -112,7 +113,54 @@ extension UIViewController {
         present(alert, animated: true)
     }
 }
-
+extension UIViewController  {
+    // Gallery Method
+    func checkAlbumPermission() {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+        case .authorized:
+            openGallery()
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({
+                (newStatus) in
+                if newStatus ==  PHAuthorizationStatus.authorized {
+                    self.openGallery()
+                }
+            })
+            print("It is not determined until now")
+        case .restricted:
+            showAlbumDisableAlert()
+        case .denied:
+            showAlbumDisableAlert()
+        }
+    }
+    
+    func openGallery() {
+        let imagePicker : UIImagePickerController = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func showAlbumDisableAlert() {
+        let alertController = UIAlertController(title: "앨범 접근이 제한되었습니다.", message: "앨범 접근 권한이 필요합니다.", preferredStyle: .alert)
+        let openAction = UIAlertAction(title: "설정으로 가기", style: .default) { (action) in
+            if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        let cancelTitle = "취소"
+        let cancelAction = UIAlertAction(title: cancelTitle,style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        alertController.addAction(openAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true)
+    }
+}
 
 extension UIImageView {
     func makeImageRound(){
