@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var loginVC: UIViewController?
     var tabbarVC : UIViewController?
     
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //카카오 시작
@@ -39,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                                name: NSNotification.Name.KOSessionDidChange,
                                                object: nil)
         
+        
+       
         reloadRootViewController()
         
         
@@ -88,17 +89,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
     }
     
-    fileprivate func reloadRootViewController() {
+     func reloadRootViewController() {
+        
+        let splashVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: SplashVC.reuseIdentifier) as? SplashVC
+        
+        self.window?.rootViewController = splashVC
+        splashVC?.finishLaunchScreenHandler = {(_) in self.selectRootView()}
+    }
+    
+    func selectRootView(){
         let isOpened = KOSession.shared().isOpen()
         if !isOpened {
-            
             self.window?.rootViewController = loginVC
-        
         }
         self.window?.rootViewController = isOpened ? self.tabbarVC : self.loginVC
         self.window?.makeKeyAndVisible()
         if isOpened && !UserDefaults.standard.bool(forKey: "alreadyShownInfo"){
-                let infoVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier: InfoVC.reuseIdentifier)
+            let infoVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier: InfoVC.reuseIdentifier)
             self.window?.rootViewController?.present(infoVC, animated: true, completion: nil)
             UserDefaults.standard.set(true, forKey: "alreadyShownInfo")
         }
