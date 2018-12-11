@@ -41,3 +41,4 @@ struct ContentDetailService : GettableService {
         }
     }
 }
+

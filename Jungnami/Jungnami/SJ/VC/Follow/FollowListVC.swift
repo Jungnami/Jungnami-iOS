@@ -16,12 +16,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var followTableView: UITableView!
     @IBOutlet weak var followSearchField: UITextField!
     @IBOutlet weak var followSearchImg: UIImageView!
-    var selectedUserId : String? {
-        didSet {
-         getList()
-        }
-    }
-    
+    var selectedUserId : String?
     @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -45,11 +40,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var navTitle : String?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         getList()
-        
-        if let navTitle_ = navTitle {
-            self.myNavItem.title = navTitle_
-        }
+        self.clearAllNotice()
     }
     
     func getList(){
@@ -62,6 +53,8 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             
         }
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -73,18 +66,14 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         //keyboardDown
         setKeyboardSetting()
         getList()
+        if let navTitle_ = navTitle {
+            self.myNavItem.title = navTitle_
+        }
         
         followSearchField.delegate = self
         followTableView.tableFooterView = UIView(frame : .zero)
     }
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -319,7 +308,6 @@ extension FollowListVC {
     func followingListInit(url : String){
         FollowingListService.shareInstance.getFollowingList(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
-            
             switch result {
             case .networkSuccess(let followListData):
                 //수정
@@ -344,7 +332,6 @@ extension FollowListVC {
     func followerListInit(url : String){
         FollowerListService.shareInstance.getFollowerList(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
-            
             switch result {
             case .networkSuccess(let followListData):
                 //수정

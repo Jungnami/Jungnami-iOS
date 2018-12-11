@@ -191,6 +191,7 @@ extension MyPageVC {
             followListVC.selectedUserId = selectedUserId
             followListVC.entryPoint = 0
             followListVC.navTitle = "팔로잉"
+            self.pleaseWait()
             self.present(followListVC, animated: true, completion: nil)
         }
     }
@@ -200,6 +201,7 @@ extension MyPageVC {
             followListVC.selectedUserId = selectedUserId
             followListVC.entryPoint = 1
             followListVC.navTitle = "팔로워"
+            self.pleaseWait()
             self.present(followListVC, animated: true, completion: nil)
         }
     }
