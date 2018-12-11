@@ -16,7 +16,21 @@
                     <view key="view" contentMode="scaleToFill" id="3nm-fL-GgT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLL-0R-plG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ngf-Fr-YhB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="eda-Zb-87p" firstAttribute="trailing" secondItem="fLL-0R-plG" secondAttribute="trailing" id="BGt-dC-JpV"/>
+                            <constraint firstItem="fLL-0R-plG" firstAttribute="leading" secondItem="eda-Zb-87p" secondAttribute="leading" id="FuW-eF-rO0"/>
+                            <constraint firstItem="fLL-0R-plG" firstAttribute="top" secondItem="3nm-fL-GgT" secondAttribute="top" id="LFa-Yq-fs4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="eda-Zb-87p"/>
                     </view>
                 </viewController>

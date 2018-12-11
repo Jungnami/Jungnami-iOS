@@ -14,11 +14,7 @@ class MainLikeTVC: UITableViewController, APIService {
     var firstData : LegislatorLikeVOData?
     var secondData : LegislatorLikeVOData?
     var voteDelegate : VoteDelegate?
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tableView.setContentOffset(.zero, animated: true)
-        
-    }
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()

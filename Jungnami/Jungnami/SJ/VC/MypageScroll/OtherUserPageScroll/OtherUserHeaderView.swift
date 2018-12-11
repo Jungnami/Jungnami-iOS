@@ -10,6 +10,7 @@ import UIKit
 
 class OtherUserHeaderView: UIView {
 
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var profileuserNameLbl: UILabel!
     @IBOutlet weak var profileScrapNumLbl: UILabel!
@@ -23,8 +24,10 @@ class OtherUserHeaderView: UIView {
     
     class func instanceFromNib() -> OtherUserHeaderView {
         
+        let otherHeader = UINib(nibName: "OtherUserHeader", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! OtherUserHeaderView
+        otherHeader.navBar.shadowImage = UIImage()
         
-        return UINib(nibName: "OtherUserHeader", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! OtherUserHeaderView
+        return otherHeader
     }
     
 }

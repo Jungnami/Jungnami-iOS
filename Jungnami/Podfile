@@ -11,7 +11,9 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'Kingfisher', '~>4.7.0'
 pod 'LTScrollView'
-
+pod 'lottie-ios'
+pod 'Firebase/Core'
+pod 'Firebase/Messaging'
 
   # Pods for Jungnami
 

@@ -198,6 +198,7 @@ extension CommunityVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let section = indexPath.section
         if section == 1 {
+            guard communityData.count > 0 else {return}
             let lastItemIdx = communityData.count-1
             let itemIdx = communityData[lastItemIdx].boardid.description
             if indexPath.row == lastItemIdx {

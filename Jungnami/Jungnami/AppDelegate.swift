@@ -18,16 +18,42 @@ var loginWith : LoginType!
 
 import UIKit
 import UserNotifications
+import Firebase
+import FirebaseMessaging
+
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate  {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate  {
 
     var window: UIWindow?
     var loginVC: UIViewController?
     var tabbarVC : UIViewController?
     
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //파이어베이스 설정
+            FirebaseApp.configure()
+        // [START set_messaging_delegate]
+        Messaging.messaging().delegate = self
+        // [END set_messaging_delegate]
+        // Register for remote notifications. This shows a permission dialog on first run, to
+        // show the dialog at a more appropriate time move this registration accordingly.
+        // [START register_for_notifications]
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
         
         //카카오 시작
         setupEntryController()
@@ -39,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                                name: NSNotification.Name.KOSessionDidChange,
                                                object: nil)
         
+        
+       
         reloadRootViewController()
         
         
@@ -50,8 +78,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
        
         UITabBar.appearance().tintColor = UIColor(red: CGFloat(54/255.0), green: CGFloat(197/255.0), blue: CGFloat(241/255.0), alpha: CGFloat(1.0) )
     
-        
+  
         return true
+    }
+    
+    // fcmToken
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        UserDefaults.standard.set(fcmToken, forKey: "fcmToken")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -87,18 +121,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
         
     }
+
     
-    fileprivate func reloadRootViewController() {
+     func reloadRootViewController() {
+        
+        /*let splashVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: SplashVC.reuseIdentifier) as? SplashVC
+        
+        self.window?.rootViewController = splashVC
+        splashVC?.finishLaunchScreenHandler = {(_) in self.selectRootView()}*/
+        selectRootView()
+    }
+    
+    func selectRootView(){
         let isOpened = KOSession.shared().isOpen()
         if !isOpened {
-            
             self.window?.rootViewController = loginVC
-        
         }
         self.window?.rootViewController = isOpened ? self.tabbarVC : self.loginVC
         self.window?.makeKeyAndVisible()
         if isOpened && !UserDefaults.standard.bool(forKey: "alreadyShownInfo"){
-                let infoVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier: InfoVC.reuseIdentifier)
+            let infoVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier: InfoVC.reuseIdentifier)
             self.window?.rootViewController?.present(infoVC, animated: true, completion: nil)
             UserDefaults.standard.set(true, forKey: "alreadyShownInfo")
         }
