@@ -205,7 +205,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qyq-Eg-V6w">
                     <rect key="frame" x="0.0" y="232" width="504" height="82"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbh-GB-3Xf" userLabel="나의코인">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbh-GB-3Xf" userLabel="나의코인">
                             <rect key="frame" x="0.0" y="0.0" width="504" height="41"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ik9-VU-Yv3">
@@ -280,7 +280,7 @@
                                 <constraint firstItem="hhH-02-MeG" firstAttribute="centerY" secondItem="bbc-sZ-2rs" secondAttribute="centerY" id="ppL-Pt-eEo"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQA-1U-JR5" userLabel="firstSeparator">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQA-1U-JR5" userLabel="firstSeparator">
                             <rect key="frame" x="0.0" y="0.0" width="504" height="0.5"/>
                             <color key="backgroundColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
