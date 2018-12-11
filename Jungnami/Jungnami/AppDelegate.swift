@@ -142,10 +142,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
      func reloadRootViewController() {
         
-        let splashVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: SplashVC.reuseIdentifier) as? SplashVC
+        /*let splashVC = Storyboard.shared().mainStoryboard.instantiateViewController(withIdentifier: SplashVC.reuseIdentifier) as? SplashVC
         
         self.window?.rootViewController = splashVC
-        splashVC?.finishLaunchScreenHandler = {(_) in self.selectRootView()}
+        splashVC?.finishLaunchScreenHandler = {(_) in self.selectRootView()}*/
+        selectRootView()
     }
     
     func selectRootView(){
