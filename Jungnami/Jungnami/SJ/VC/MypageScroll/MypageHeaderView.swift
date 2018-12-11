@@ -22,9 +22,6 @@ class MypageHeaderView: UIView {
     @IBOutlet weak var profileFollowerNumLbl: UILabel!
     @IBOutlet weak var profileCoinCountLbl: myTouchLbl!
     @IBOutlet weak var profileVoteCountLbl: myTouchLbl!
-    
-    
-    
     @IBOutlet weak var alarmBtn: UIButton!
     @IBOutlet weak var dismissBtn: UIButton!
     @IBOutlet weak var alarmCountLbl: UILabel!

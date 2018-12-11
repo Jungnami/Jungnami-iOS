@@ -10,10 +10,18 @@ import LTScrollView
 
 class MyPageVC: UIViewController, APIService {
     
-   
+    
     let myScrapVC = MyPageScrapVC()
     let myFeedVC = MyPageFeedVC()
     var selectedUserId : String?
+    var imageData : Data? {
+        didSet {
+            if imageData != nil {
+                editProfileAction(url: UrlPath.EditProfile.getURL())
+            }
+        }
+        
+    }
     
     var myBoardData : [MyPageVODataBoard]  = [] {
         didSet {
@@ -45,7 +53,7 @@ class MyPageVC: UIViewController, APIService {
     }()
     
     //헤더 뷰 생성 후, 그 안에 프로퍼티들 설정
-    private lazy var headerView : UIView = {
+    private lazy var headerView : MypageHeaderView = {
         let headerView = MypageHeaderView.instanceFromNib()
         headerView.dismissBtn.addTarget(self, action: #selector(self.dismiss(_:)), for: .touchUpInside)
         headerView.alarmBtn.addTarget(self, action: #selector(self.toAlarmVC(_:)), for: .touchUpInside)
@@ -58,15 +66,18 @@ class MyPageVC: UIViewController, APIService {
         headerView.profileFollowerNumLbl.isUserInteractionEnabled = true
         headerView.profileFollowerNumLbl.addGestureRecognizer(tapFollower)
         
+        let profileImgTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.profileImgTap(sender:)))
+        headerView.profileImgView.isUserInteractionEnabled = true
+        headerView.profileImgView.addGestureRecognizer(profileImgTapGesture)
+        
+        //false -> true 로 바꾸기
         let tapAction1 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
         let tapAction2 = UITapGestureRecognizer(target: self, action: #selector(self.actionTapped(_:)))
-       
-        //false -> true 로 바꾸기
         headerView.profileCoinCountLbl?.isUserInteractionEnabled = false
         headerView.profileCoinCountLbl?.addGestureRecognizer(tapAction1)
         headerView.profileVoteCountLbl?.isUserInteractionEnabled = false
         headerView.profileVoteCountLbl?.addGestureRecognizer(tapAction2)
-
+        
         headerView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 314)
         return headerView
     }()
@@ -84,7 +95,7 @@ class MyPageVC: UIViewController, APIService {
         layout.bottomLineColor = ColorChip.shared().mainColor
         layout.isAverage = true
         layout.isNeedScale = false
-      
+        
         return layout
     }()
     
@@ -101,13 +112,13 @@ class MyPageVC: UIViewController, APIService {
         return advancedManager
     }()
     
-  
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let selectedUserId_ = selectedUserId {
             getMyPage(url: UrlPath.Mypage.getURL(selectedUserId_))
         }
-       
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,6 +162,8 @@ extension MyPageVC {
                 headerView_.profileImgView.kf.setImage(with: url)
             }
         }
+        
+        
         headerView_.profileImgView.makeImageRound()
         headerView_.profileuserNameLbl.text = myPageData.nickname
         headerView_.profileScrapNumLbl.text = "\(myPageData.scrapcnt)"
@@ -177,7 +190,49 @@ extension MyPageVC {
         } //알람 설정
         
     }//setHeaderInfo
+    
+    
+    @objc func profileImgTap(sender: UITapGestureRecognizer) {
+        openGallery()
+    }
+    
+    
+    
+}
 
+//앨범 열기 위함
+extension MyPageVC : UIImagePickerControllerDelegate,
+UINavigationControllerDelegate  {
+    // Method
+    func openGallery() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker : UIImagePickerController = UIImagePickerController()
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+            //false 로 되어있으면 이미지 자르지 않고 오리지널로 들어감
+            //이거 true로 하면 crop 가능
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    // imagePickerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        //사용자 취소
+        self.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        //크롭한 이미지
+        if let editedImage: UIImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imageData = UIImageJPEGRepresentation(editedImage, 1.0)
+        } else if let originalImage: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            imageData = UIImageJPEGRepresentation(originalImage, 1.0)
+        }
+        
+        self.dismiss(animated: true)
+    }
 }
 
 //각종 버튼/레이블 클릭했을때 관한 이벤트들
@@ -247,7 +302,7 @@ extension MyPageVC {
                 
                 let myPageData = myPageData as! MyPageVOData
                 self.setHeaderInfo(myPageData: myPageData)
-
+                
                 self.myBoardData = myPageData.board
                 self.myScrapData = myPageData.scrap
                 
@@ -260,6 +315,33 @@ extension MyPageVC {
                 break
             }
             
+        })
+    }
+    
+    //사진 변경
+    func editProfileAction(url : String){
+        
+        let params : [String : Any] = [
+            "nickname" : self.gsno(self.headerView.profileuserNameLbl.text)
+        ]
+        
+        var images : [String : Data]?
+        if let image = imageData {
+            images = [
+                "img_url" : image
+            ]
+        }
+        CommunityWriteCompleteService.shareInstance.registerBoard(url: url, params: params, image: images, completion: { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .networkSuccess(_):
+                self.headerView.profileImgView.image = UIImage(data: self.imageData!)
+                self.noticeSuccess("사진 변경 완료", autoClear: true, autoClearTime: 1)
+            case .networkFail :
+                self.simpleAlert(title: "오류", message: "인터넷 연결상태를 확인해주세요")
+            default :
+                break
+            }
         })
     }
 }
