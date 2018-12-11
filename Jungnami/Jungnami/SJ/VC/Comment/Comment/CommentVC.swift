@@ -135,10 +135,8 @@ extension CommentVC : UITableViewDataSource, UITableViewDelegate {
     
 }
 
-
+//키보드
 extension CommentVC {
-    
-    
     func setKeyboardSetting() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -148,14 +146,15 @@ extension CommentVC {
         adjustKeyboardDismissGesture(isKeyboardVisible: true)
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            var contentInset = self.detailTableView.contentInset
-            contentInset.bottom = keyboardSize.height
-            detailTableView.contentInset = contentInset
+            self.detailTableView.contentInset.bottom = keyboardSize.height
             ////////
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 위로 이동시킴 ////////
+           
+            commentSendView.snp.remakeConstraints({ (make) in
+                make.bottom.equalToSuperview().offset(-keyboardSize.height)
+            })
             
-            commentSendView.frame.origin.y -= keyboardSize.height
+           // commentSendView.frame.origin.y -= keyboardSize.height
             
             ////////
             self.view.layoutIfNeeded()
@@ -165,18 +164,15 @@ extension CommentVC {
     @objc func keyboardWillHide(_ notification: Notification) {
         adjustKeyboardDismissGesture(isKeyboardVisible: false)
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            var contentInset = self.detailTableView.contentInset
-            contentInset.bottom = 0
-            detailTableView.contentInset = contentInset
+            detailTableView.contentInset.bottom = 0
             //////// 키보드의 사이즈만큼 commentSendView의 y축을 아래로 이동시킴 ////////
             
-            commentSendView.frame.origin.y += keyboardSize.height
-            
-            
+            commentSendView.snp.remakeConstraints({ (make) in
+                make.bottom.equalToSuperview()
+            })
             ////////
             self.view.layoutIfNeeded()
-        }
+        
     }
     
     func adjustKeyboardDismissGesture(isKeyboardVisible: Bool) {
