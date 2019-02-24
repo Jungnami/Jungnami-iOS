@@ -11,21 +11,20 @@ import UIKit
 
 class PartyListDetailLikeTVC: UITableViewController,APIService {
     
-    var selectedParty : PartyName?
-    var selectedRegion : Region?
-    var legislatorLikeData : [PartyLegistorLikeVOData] = []
+    var selectedParty : PartyCode?
+    var selectedRegion : CityCode?
+    var legislatorLikeData : [CategorizedLegislator] = []
     var voteDelegate : VoteDelegate?
+    var networkProvider = NetworkManager.sharedInstance
     
-  
     override func viewDidLoad() {
         super.viewDidLoad()
-        let itemCount = legislatorLikeData.count
+        //let itemCount = legislatorLikeData.count
         if let selectedParty_ = selectedParty {
-            legislatorLikeInit(url:
-                UrlPath.PartyLegislatorList.getURL("\(selectedParty_.rawValue)/1/\(itemCount)"))
+            legislatorLikeInit(isParty: true, partyCode: selectedParty_, cityCode: nil)
         }
         if let selectedRegion_ = selectedRegion {
-          legislatorLikeInit(url:  UrlPath.RegionLegislatorList.getURL("\(selectedRegion_.rawValue)/1/\(itemCount)"))
+            legislatorLikeInit(isParty: false, partyCode: nil, cityCode: selectedRegion_)
         }
     }
 }
@@ -45,7 +44,7 @@ extension PartyListDetailLikeTVC {
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    /*override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let section = indexPath.section
         if section == 1 {
             let lastItemIdx = legislatorLikeData.count-1
@@ -60,7 +59,7 @@ extension PartyListDetailLikeTVC {
                 }
             }
         }
-    }
+    }*/
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -74,14 +73,13 @@ extension PartyListDetailLikeTVC {
             if let selectedRegion_ = selectedRegion {
                 cell.configure2(selectedRegion: selectedRegion_)
             }
-            
             return cell
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PartyListDetailTVcell.reuseIdentifier, for: indexPath) as! PartyListDetailTVcell
             
             cell.configure(index: indexPath.row, data: legislatorLikeData[indexPath.row])
-            cell.likeBtn.tag = legislatorLikeData[indexPath.row].id
+            cell.likeBtn.tag = legislatorLikeData[indexPath.row].idx
             cell.likeBtn.isUserInteractionEnabled = true
             cell.likeBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
             return cell
@@ -91,12 +89,10 @@ extension PartyListDetailLikeTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let legislatorDetailVC = self.storyboard?.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
-            
-            legislatorDetailVC.selectedLegislatorIdx = self.legislatorLikeData[indexPath.row].id
-            legislatorDetailVC.selectedLegislatorName = self.legislatorLikeData[indexPath.row].name
+            legislatorDetailVC.selectedLegislatorIdx = self.legislatorLikeData[indexPath.row].idx
+            legislatorDetailVC.selectedLegislatorName = self.legislatorLikeData[indexPath.row].legiName
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
-        
     }
     
 }
@@ -111,7 +107,34 @@ extension PartyListDetailLikeTVC {
 //통신 - 정당별,지역별 호감 국회의원 목록 불러오기
 extension PartyListDetailLikeTVC {
     //정당별,지역별 호감 국회의원 목록 불러오기
-    func legislatorLikeInit(url : String){
+    func legislatorLikeInit(isParty: Bool, partyCode : PartyCode?, cityCode : CityCode?){
+        if isParty {
+            guard let partyCode = partyCode else {return}
+            networkProvider.getPartyLegislatorList(isLike: true, party: partyCode) { [weak self] (result) in
+                guard let `self` = self else { return }
+                switch result {
+                case .Success(let legislatorList):
+                    self.legislatorLikeData = legislatorList
+                    self.tableView.reloadData()
+                case .Failure(let errorType) :
+                    self.showErrorAlert(errorType: errorType)
+                }
+            }
+        } else {
+            guard let cityCode = cityCode else {return}
+            networkProvider.getCityLegislatorList(isLike: true, city: cityCode) { [weak self] (result) in
+                guard let `self` = self else { return }
+                switch result {
+                case .Success(let legislatorList):
+                    self.legislatorLikeData = legislatorList
+                    self.tableView.reloadData()
+                case .Failure(let errorType) :
+                    self.showErrorAlert(errorType: errorType)
+                }
+            }
+        }
+    }
+    /*func legislatorLikeInit(url : String){
         GetPartyLegislatorLikeService.shareInstance.getLegislatorLike(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -131,8 +154,7 @@ extension PartyListDetailLikeTVC {
             }
             
         })
-        
-    }
+    }*/
     
     //내 포인트 불러오기
     func getMyPoint(url : String, index : Int){

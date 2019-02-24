@@ -24,8 +24,8 @@ class PartyListDetailPageMenuVC : UIViewController, APIService, VoteDelegate {
     @IBOutlet weak var dislikeBtn: UIButton!
     @IBOutlet weak var dislikeLine: UIView!
     var keyboardDismissGesture: UITapGestureRecognizer?
-    var selectedRegion : Region?
-    var selectedParty : PartyName?
+    var selectedRegion : CityCode?
+    var selectedParty : PartyCode?
     var navTitle : String = ""
     lazy var navSearchView : UIView = {
         let view = UIView()
@@ -402,8 +402,8 @@ extension PartyListDetailPageMenuVC {
             searchLegislatorResultTVC.legislatorSearchData = legislatorSearchData
             searchLegislatorResultTVC.searchString = searchString
             searchLegislatorResultTVC.viewFrom = viewFrom
-            searchLegislatorResultTVC.selectedParty = self.selectedParty
-            searchLegislatorResultTVC.selectedRegion = self.selectedRegion
+            //searchLegislatorResultTVC.selectedParty = self.selectedParty
+            //searchLegislatorResultTVC.selectedRegion = self.selectedRegion
             self.navigationController?.pushViewController(searchLegislatorResultTVC, animated: true)
         }
     }

@@ -20,27 +20,28 @@ class MainTVCell: UITableViewCell {
     @IBOutlet weak var voteBtn: UIButton!
     
     let maxWidth : Double = 240.0
-    func configure(viewType : MainViewType, index : Int, data : LegislatorLikeVOData){
+    func configure(viewType : MainViewType, index : Int, data : Legislator){
         
-        if (gsno(data.profileimg) == "0") {
-            profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        if let profileImg = data.profileImg, let imgUrl = URL(string : profileImg) {
+             self.profileImgView.kf.setImage(with: imgUrl)
+             profileImgView.contentMode = .scaleAspectFill
         } else {
-            if let url = URL(string: gsno(data.profileimg)){
-                self.profileImgView.kf.setImage(with: url)
-            }
+            profileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         }
-        nameLbl.text = data.lName
-        partyLbl.text = "_\(data.partyName.rawValue)"
-        voteCountLbl.text = "\(String(describing: data.scoretext))"
+        
+        nameLbl.text = data.legiName+"_"
+        partyLbl.text = data.partyCD?.partyName
+        voteCountLbl.text = (data.voteCnt ?? 0).description + "표"
         
         profileImgView.makeImageRound()
     
         progressBar.snp.makeConstraints { (make) in
             
-            if maxWidth*data.width < 18 {
+            // /100 고치기
+            if maxWidth*(data.ratio ?? 0.0)/100 < 18 {
                  make.width.equalTo(18)
             } else {
-                make.width.equalTo(maxWidth*data.width)
+                make.width.equalTo(maxWidth*(data.ratio ?? 00)/100)
             }
     
             make.height.equalTo(12)
@@ -50,25 +51,25 @@ class MainTVCell: UITableViewCell {
         }
         progressBar.makeRounded()
         
+        let rank = data.rank?.description
+        rankLbl.text = rank
         switch viewType {
         case .like:
-            rankLbl.text = data.ranking
-            if data.ranking == "1" {
+            if rank == "1" {
                 setMedalImg(image: #imageLiteral(resourceName: "ranking_gold_medal"))
-            } else if data.ranking == "2" {
+            } else if rank == "2" {
                 setMedalImg(image: #imageLiteral(resourceName: "ranking_silver_medal"))
-            } else if data.ranking == "3" {
+            } else if rank == "3" {
                 setMedalImg(image: #imageLiteral(resourceName: "ranking_bronze_medal"))
             } else {
                medalImgView.isHidden = true
             }
         case .dislike :
-            rankLbl.text =  data.ranking
-            if data.ranking == "1" {
+            if rank == "1" {
                 setMedalImg(image: #imageLiteral(resourceName: "ranking_red_bomb"))
-            } else if data.ranking == "2" {
+            } else if rank == "2" {
                 setMedalImg(image: #imageLiteral(resourceName: "ranking_orange_bomb"))
-            } else if data.ranking == "3" {
+            } else if rank == "3" {
                 setMedalImg(image: #imageLiteral(resourceName: "ranking_yellow_bomb"))
             } else {
                 medalImgView.isHidden = true

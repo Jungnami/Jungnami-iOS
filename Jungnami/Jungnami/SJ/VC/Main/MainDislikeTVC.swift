@@ -13,15 +13,17 @@ enum MainViewType {
 
 class MainDislikeTVC: UITableViewController, APIService {
     
-   var legislatorDislikeData : [LegislatorLikeVOData] = []
-    var firstData : LegislatorLikeVOData?
-    var secondData : LegislatorLikeVOData?
+   var legislatorDislikeData : [Legislator] = []
+    var firstData : Legislator?
+    var secondData : Legislator?
     var voteDelegate : VoteDelegate?
+    let networkProvider = NetworkManager.sharedInstance
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        let itemCount = legislatorDislikeData.count
-        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
+        //let itemCount = legislatorDislikeData.count
+        //legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
+        legislatorDislikeInit()
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
     }
@@ -65,7 +67,7 @@ extension MainDislikeTVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier, for: indexPath) as! MainTVCell
           
            cell.configure(viewType : .dislike, index: indexPath.row, data: legislatorDislikeData[indexPath.row])
-            cell.voteBtn.tag = legislatorDislikeData[indexPath.row].lID
+            cell.voteBtn.tag = legislatorDislikeData[indexPath.row].idx
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
             
             
@@ -73,21 +75,21 @@ extension MainDislikeTVC {
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+   /* override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastItemIdx = legislatorDislikeData.count-1
         let itemCount = legislatorDislikeData.count
         if indexPath.row == lastItemIdx {
             legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
         }
-    }
+    }*/
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard = Storyboard.shared().mainStoryboard
         
         if let legislatorDetailVC = mainStoryboard.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
-          legislatorDetailVC.selectedLegislatorIdx = self.legislatorDislikeData[indexPath.row].lID
-             legislatorDetailVC.selectedLegislatorName = self.legislatorDislikeData[indexPath.row].lName
+          legislatorDetailVC.selectedLegislatorIdx = self.legislatorDislikeData[indexPath.row].idx
+             legislatorDetailVC.selectedLegislatorName = self.legislatorDislikeData[indexPath.row].legiName
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
         
@@ -99,8 +101,9 @@ extension MainDislikeTVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
         legislatorDislikeData = []
-        let itemCount = legislatorDislikeData.count
-        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
+        legislatorDislikeInit()
+//        let itemCount = legislatorDislikeData.count
+//        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
         self.tableView.reloadData()
         sender.endRefreshing()
     }
@@ -109,7 +112,7 @@ extension MainDislikeTVC{
 
 extension MainDislikeTVC {
     
-    func legislatorLikeInit(url : String){
+    /*func legislatorLikeInit(url : String){
         GetLegislatorLikeService.shareInstance.getLegislatorLike(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -132,6 +135,20 @@ extension MainDislikeTVC {
             
         })
         
+    }*/
+    func legislatorDislikeInit(){
+        networkProvider.getAllLegislatorList(isLike: false) { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .Success(let legislatorListInfo):
+                self.firstData = legislatorListInfo.data[0]
+                self.secondData = legislatorListInfo.data[1]
+                self.legislatorDislikeData = legislatorListInfo.data
+                self.tableView.reloadData()
+            case .Failure(let errorType) :
+                self.showErrorAlert(errorType: errorType)
+            }
+        }
     }
     
     //내 포인트 불러오기

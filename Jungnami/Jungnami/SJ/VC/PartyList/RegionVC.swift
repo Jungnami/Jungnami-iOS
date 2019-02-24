@@ -33,44 +33,44 @@ class RegionVC: UIViewController {
      15 : 부산
      16 : 제주
      */
-    var selectedRegion : Region?
+    var selectedRegion : CityCode?
     
     @IBAction func toNext(_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            selectedRegion = .INCHEON
+            selectedRegion = .incheon
         case 1:
-            selectedRegion = .SEOUL
+            selectedRegion = .seoul
         case 2:
-            selectedRegion = .GYUNGGI
+            selectedRegion = .gyunggi
         case 3:
-            selectedRegion = .GANGWON
+            selectedRegion = .gangwon
         case 4:
-            selectedRegion = .CHUNGNAM
+            selectedRegion = .chungnam
         case 5:
-            selectedRegion = .CHUNGBUK
+            selectedRegion = .chungbuk
         case 6:
-            selectedRegion = .DAEJEON
+            selectedRegion = .daejeon
         case 7:
-            selectedRegion = .SEJONG
+            selectedRegion = .sejong
         case 8:
-            selectedRegion = .GYUNGBUK
+            selectedRegion = .gyungbuk
         case 9:
-            selectedRegion = .DAEGU
+            selectedRegion = .daegu
         case 10:
-            selectedRegion = .ULSAN
+            selectedRegion = .ulsan
         case 11:
-            selectedRegion = .JEONBUK
+            selectedRegion = .jeonbuk
         case 12:
-            selectedRegion = .GWANGJU
+            selectedRegion = .gwangju
         case 13:
-            selectedRegion = .JUNNAM
+            selectedRegion = .jeonnam
         case 14:
-            selectedRegion = .GYUNGNAM
+            selectedRegion = .gyungnam
         case 15:
-            selectedRegion = .BUSAN
+            selectedRegion = .busan
         case 16:
-            selectedRegion = .JEJU
+            selectedRegion = .jeju
             
         default:
             return

@@ -56,14 +56,14 @@ extension GettableService {
                         completion(.success(result))
                         
                     }catch{
-                        completion(.error("에러"))
+                        completion(Result.error("에러"))
                     }
                 }
                 break
             case .failure(let err) :
                 print("network~~ error")
                 print(err)
-                completion(.failure(err))
+                completion(Result.failure(err as! Error))
                 break
             }
             

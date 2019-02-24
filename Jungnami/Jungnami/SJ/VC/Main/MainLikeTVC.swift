@@ -10,16 +10,18 @@ import SnapKit
 
 class MainLikeTVC: UITableViewController, APIService {
     
-    var legislatorLikeData : [LegislatorLikeVOData] = []
-    var firstData : LegislatorLikeVOData?
-    var secondData : LegislatorLikeVOData?
+    var legislatorLikeData : [Legislator] = []
+    var firstData : Legislator?
+    var secondData : Legislator?
     var voteDelegate : VoteDelegate?
- 
+    let networkProvider = NetworkManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let itemCount = legislatorLikeData.count
-        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
+        //oldVersion
+        //let itemCount = legislatorLikeData.count
+        //legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
+        legislatorLikeInit()
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
         
@@ -70,7 +72,7 @@ extension MainLikeTVC {
             
             cell.configure(viewType : .like, index: indexPath.row, data: legislatorLikeData[indexPath.row])
             
-            cell.voteBtn.tag = legislatorLikeData[indexPath.row].lID
+            cell.voteBtn.tag = legislatorLikeData[indexPath.row].idx
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
             
             
@@ -78,13 +80,14 @@ extension MainLikeTVC {
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    //oldVersion
+   /* override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastItemIdx = legislatorLikeData.count-1
         let itemCount = legislatorLikeData.count
         if indexPath.row == lastItemIdx {
             legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
         }
-    }
+    }*/
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -93,8 +96,8 @@ extension MainLikeTVC {
         if let legislatorDetailVC = mainStoryboard.instantiateViewController(withIdentifier:LegislatorDetailVC.reuseIdentifier) as? LegislatorDetailVC {
             
             
-            legislatorDetailVC.selectedLegislatorIdx = self.legislatorLikeData[indexPath.row].lID
-            legislatorDetailVC.selectedLegislatorName = self.legislatorLikeData[indexPath.row].lName
+            legislatorDetailVC.selectedLegislatorIdx = self.legislatorLikeData[indexPath.row].idx
+            legislatorDetailVC.selectedLegislatorName = self.legislatorLikeData[indexPath.row].legiName
             
             self.navigationController?.pushViewController(legislatorDetailVC, animated: true)
         }
@@ -110,8 +113,10 @@ extension MainLikeTVC {
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
         legislatorLikeData = []
-        let itemCount = legislatorLikeData.count
-        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
+        //oldVersion
+        //let itemCount = legislatorLikeData.count
+        //legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
+        legislatorLikeInit()
         self.tableView.reloadData()
         sender.endRefreshing()
     }
@@ -119,8 +124,9 @@ extension MainLikeTVC {
 //통신
 extension MainLikeTVC{
     
-    //국회의원 리스트 불러오기 (호감)
-    func legislatorLikeInit(url : String){
+    
+    //oldVersion
+    /*func legislatorLikeInit(url : String){
         GetLegislatorLikeService.shareInstance.getLegislatorLike(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -143,6 +149,22 @@ extension MainLikeTVC{
             
         })
         
+    }*/
+    
+    //국회의원 리스트 불러오기 (호감)
+    func legislatorLikeInit(){
+        networkProvider.getAllLegislatorList(isLike: true) { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .Success(let legislatorListInfo):
+                self.firstData = legislatorListInfo.data[0]
+                self.secondData = legislatorListInfo.data[1]
+                self.legislatorLikeData = legislatorListInfo.data
+                self.tableView.reloadData()
+            case .Failure(let errorType) :
+                self.showErrorAlert(errorType: errorType)
+            }
+        }
     }
     
     //내 포인트 불러오기
@@ -177,13 +199,6 @@ extension MainLikeTVC{
             
         })
     } //getMyPoint
-    
-    
-    
-    /*func temp(){
-     let itemCount = legislatorLikeData.count
-     legislatorLikeInit(url : UrlPath.LegislatorList.getURL("1/\(itemCount)"))
-     }*/
     
     
     //내 포인트 보고 '확인'했을때 통신

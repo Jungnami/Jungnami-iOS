@@ -58,12 +58,18 @@ PODS:
   - Kingfisher (4.7.0)
   - lottie-ios (2.5.2)
   - LTScrollView (0.2.1)
+  - Moya (12.0.1):
+    - Moya/Core (= 12.0.1)
+  - Moya/Core (12.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.6.1)
+  - Result (4.1.0)
   - SnapKit (4.2.0)
   - SwiftyJSON (4.2.0)
 
@@ -74,6 +80,7 @@ DEPENDENCIES:
   - Kingfisher (~> 4.7.0)
   - lottie-ios
   - LTScrollView
+  - Moya
   - SnapKit
   - SwiftyJSON
 
@@ -91,8 +98,10 @@ SPEC REPOS:
     - Kingfisher
     - lottie-ios
     - LTScrollView
+    - Moya
     - nanopb
     - Protobuf
+    - Result
     - SnapKit
     - SwiftyJSON
 
@@ -109,11 +118,13 @@ SPEC CHECKSUMS:
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   LTScrollView: 93fff4aed9f9545f541a99b320b27808f5307c12
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: fbcf8d322a962fc32ec470131559acb648f62be4
+PODFILE CHECKSUM: e69b1541e29e2542ffeef339075e9613eff004bb
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.5.3
