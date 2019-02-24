@@ -12,19 +12,20 @@ class LegislatorDetailVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var legislatorCollectionView: UICollectionView!
     var selectedLegislatorIdx : Int = 0
-    var selectedLegislator : LegislatorDetailVOData?
+    var selectedLegislator : LegislatorDetail?
     var selectedLegislatorName : String = ""
-    var contents : [LegislatorDetailVODataContent]?
     var supportAlert : CustomAlert?
     var completeAlert : CustomAlert?
     var keyboardDismissGesture: UITapGestureRecognizer?
     let supportPopupView = SupportPopupView.instanceFromNib()
+    let networkProvider = NetworkManager.sharedInstance
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.view.backgroundColor = UIColor.white
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
-        legislatorDetailInit(url: UrlPath.LegislatorDetail.getURL(gino(selectedLegislatorIdx).description))
+        //legislatorDetailInit(url: UrlPath.LegislatorDetail.getURL(gino(selectedLegislatorIdx).description))
+        legislatorDetailInit()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,25 +68,14 @@ extension LegislatorDetailVC {
     //--------------collectionView-------------
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        }
-        if section == 1 {
-            return 1
-        }else {
-            //샘플데이터 넣고 .count넣기!
-            if let contents_ = contents {
-                return contents_.count
-            }
-            return 0
-        }
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
+        
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorProfileCell.reuseIdentifier, for: indexPath) as! LegislatorProfileCell
             if let selectedLegislator_ = selectedLegislator {
                 cell.configure(data: selectedLegislator_)
@@ -98,36 +88,7 @@ extension LegislatorDetailVC {
             cell.dislikeBtn.addTarget(self, action: #selector(dislike(_sender:)), for: .touchUpInside)
 
             return cell
-        } else if indexPath.section == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorRelatedCell.reuseIdentifier, for: indexPath) as! LegislatorRelatedCell
-            cell.fixedLbl.text = "관련된 컨텐츠"
-            return cell
-        } else  {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LegislatorContentCell.reuseIdentifier, for: indexPath) as! LegislatorContentCell
-            //투두 - 샘플데이터 만들고 configure연결하기
-            if let contents_ = contents {
-                cell.configure(data: contents_[indexPath.row])
-                cell.legislatorContentImgView.layer.cornerRadius = 10
-                cell.legislatorContentImgView.layer.masksToBounds = true
-            }
-            
-            
-            return cell
         }
-        
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
-            if let contents_ = contents {
-               let contentIdx = contents_[indexPath.row].id
-                let detailVC = Storyboard.shared().contentStoryboard.instantiateViewController(withIdentifier: ContentDetailVC.reuseIdentifier) as! ContentDetailVC
-
-                detailVC.contentIdx = contentIdx
-                self.present(detailVC, animated: true)
-            }
-        }
-    }
 }
 
 //좋아요, 싫어요, 후원하기에 대한 행동
@@ -213,10 +174,10 @@ extension LegislatorDetailVC : UITextFieldDelegate{
 }
 
 //collection View cell 레이아웃
-extension LegislatorDetailVC {
+/*extension LegislatorDetailVC {
     //layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0{
+        if indexPath.section == 0 {
             return CGSize(width: 375, height: 183)
         }
         if indexPath.section == 1 {
@@ -247,7 +208,7 @@ extension LegislatorDetailVC {
         }
     }
 }
-
+*/
 
 //키보드 반응
 extension LegislatorDetailVC{
@@ -306,7 +267,19 @@ extension LegislatorDetailVC{
 //통신 - 해당 의원 정보 가져오기, 호감/비호감 클릭, 후원하기
 extension LegislatorDetailVC {
     //해당 의원 정보 가져오기
-    func legislatorDetailInit(url : String){
+    func legislatorDetailInit(){
+        networkProvider.getLegislatorDetail(idx: selectedLegislatorIdx) { [weak self] (result) in
+            guard let `self` = self else { return }
+            switch result {
+            case .Success(let legislatorDetail):
+                self.selectedLegislator = legislatorDetail
+                self.legislatorCollectionView.reloadData()
+            case .Failure(let errorType) :
+                self.showErrorAlert(errorType: errorType)
+            }
+        }
+    }
+   /* func legislatorDetailInit(url : String){
         GetLegislatorDetailService.shareInstance.getLegislatorDetail(url: url, completion: { [weak self] (result) in
             guard let `self` = self else { return }
             
@@ -325,7 +298,7 @@ extension LegislatorDetailVC {
             
         })
         
-    }
+    }*/
     //후원하기 클릭
     func getMyCoin(url : String){
         GetCoinService.shareInstance.getCoin(url: url, completion: { [weak self] (result) in

@@ -23,57 +23,41 @@ class MainFirstSectionTVCell: UITableViewCell {
     @IBOutlet weak var secondProgressBarLbl: UILabel!
     let maxWidth : Double = 150.0
     //꽉찬게 240
-    func configure(first : LegislatorLikeVOData, second : LegislatorLikeVOData){
+    func configure(first : Legislator, second : Legislator){
 
-        setImageView(imgView: firstImgView, imgUrl: first.mainimg)
-        firstNameLbl.text = first.lName
-        firstPartyLbl.text = first.partyName.rawValue
-        firstProgressBarLbl.text = first.scoretext
-        setProgressbarColor(progressbar: firstProgressBar, partyName: first.partyName)
-        setProgresssbarWidth(progressbar: firstProgressBar, progressWidth: first.width)
+        setImageView(imgView: firstImgView, imgUrl: first.profileImg)
+        firstNameLbl.text = first.legiName
+        firstPartyLbl.text = first.partyCD?.partyName
+        firstProgressBarLbl.text = (first.voteCnt ?? 0).description + "표"
+        guard let firstPartyCd = first.partyCD, let secPartyCd = second.partyCD else {return}
+        setProgressbarColor(progressbar: firstProgressBar, partyCode: firstPartyCd)
+        setProgresssbarWidth(progressbar: firstProgressBar, progressWidth: first.ratio ?? 0.0)
 
-        setImageView(imgView: secondImgView, imgUrl: second.mainimg)
-        secondNameLbl.text = second.lName
-        secondPartyLbl.text = second.partyName.rawValue
-        secondProgressBarLbl.text = second.scoretext
-        setProgressbarColor(progressbar: secondProgressBar, partyName: second.partyName)
-        setProgresssbarWidth(progressbar: secondProgressBar, progressWidth: second.width)
+        setImageView(imgView: secondImgView, imgUrl: second.profileImg)
+        secondNameLbl.text = second.legiName
+        secondPartyLbl.text = second.partyCD?.partyName
+        secondProgressBarLbl.text = (second.voteCnt ?? 0).description + "표"
+        setProgressbarColor(progressbar: secondProgressBar, partyCode: secPartyCd)
+        setProgresssbarWidth(progressbar: secondProgressBar, progressWidth: second.ratio ?? 0.0)
     }
     
     func setImageView(imgView : UIImageView, imgUrl : String?){
-        if (gsno(imgUrl) == "0") {
-            imgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+        if let imgUrl = imgUrl , let url = URL(string : imgUrl) {
+             imgView.kf.setImage(with: url)
         } else {
-            if let url = URL(string: gsno(imgUrl)){
-                imgView.kf.setImage(with: url)
-            }
-        }
-    }
-    func setProgresssbarWidth(progressbar : UIView, progressWidth : Double){
-        progressbar.snp.makeConstraints { (make) in
-            make.width.equalTo(maxWidth*progressWidth)
+             imgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         }
     }
     
-    func setProgressbarColor(progressbar : UIView, partyName : PartyName){
-        switch partyName {
-        case .더불어민주당:
-            progressbar.backgroundColor = ColorChip.shared().partyBlue
-        case .자유한국당:
-            progressbar.backgroundColor = ColorChip.shared().partyRed
-        case .민중당:
-            progressbar.backgroundColor = ColorChip.shared().partyOrange
-        case .바른미래당:
-            progressbar.backgroundColor = ColorChip.shared().partyMint
-        case .무소속:
-            progressbar.backgroundColor = ColorChip.shared().partyGray
-        case .대한애국당:
-            progressbar.backgroundColor = ColorChip.shared().partyNavy
-        case .민주평화당:
-            progressbar.backgroundColor = ColorChip.shared().partyGreen
-        case .정의당:
-            progressbar.backgroundColor = ColorChip.shared().partyYellow
+    func setProgresssbarWidth(progressbar : UIView, progressWidth : Double){
+        progressbar.snp.makeConstraints { (make) in
+            // /100 고치기
+            make.width.equalTo(maxWidth*progressWidth/100)
         }
+    }
+    
+    func setProgressbarColor(progressbar : UIView, partyCode : PartyCode){
+        progressbar.backgroundColor = partyCode.partyColor
     }
     func setProgressBarWidth(){
         firstProgressBar.removeConstraints()

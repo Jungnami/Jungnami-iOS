@@ -35,24 +35,24 @@ class PartyListTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        let index = indexPath.row
-        var selectedParty : PartyName
+        var selectedParty : PartyCode
         switch index {
         case 0:
-            selectedParty = .더불어민주당
+            selectedParty = .dubuleo
         case 1:
-            selectedParty = .자유한국당
+            selectedParty = .jahan
         case 2:
-            selectedParty = .바른미래당
+            selectedParty = .bami
         case 3:
-            selectedParty = .정의당
+            selectedParty = .jungeui
         case 4:
-            selectedParty = .민중당
+            selectedParty = .minjung
         case 5:
-            selectedParty = .대한애국당
+            selectedParty = .daehan
         case 6:
-            selectedParty = .민주평화당
+            selectedParty = .minpyung
         case 7:
-            selectedParty = .무소속
+            selectedParty = .none
         default:
             return
         }

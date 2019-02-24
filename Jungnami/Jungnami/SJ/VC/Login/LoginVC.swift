@@ -29,6 +29,8 @@ class LoginVC: UIViewController, APIService{
     
     
     @IBAction func loginWithKakao(_ sender: Any) {
+       
+        
         let session: KOSession = KOSession.shared();
         
         if session.isOpen() {
@@ -48,6 +50,7 @@ class LoginVC: UIViewController, APIService{
                                                    "fcmToken" : UserDefaults.standard.string(forKey: "fcmToken") ?? "-1"]
                     
                     self.login(url: UrlPath.KakaoLogin.getURL(), params: params)
+                   
                  
                 }else{
                     print("Login failed")
@@ -68,6 +71,7 @@ class LoginVC: UIViewController, APIService{
                 }
             }
         })
+ 
     } //카카오톡 끝
     
     override func viewWillAppear(_ animated: Bool) {

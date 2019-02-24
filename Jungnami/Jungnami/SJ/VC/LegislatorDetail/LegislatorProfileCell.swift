@@ -17,25 +17,39 @@ class LegislatorProfileCell: UICollectionViewCell {
     @IBOutlet weak var legislatorDislikeLbl: UILabel!
     @IBOutlet weak var legislatorPartyLbl: UILabel!
     @IBOutlet weak var legislatorRegionLbl: UILabel!
+    @IBOutlet weak var reelectionLbl: UILabel!
+    @IBOutlet weak var ordinalLbl: UILabel!
+    @IBOutlet weak var crimeLbl: UILabel!
+    @IBOutlet weak var fbLbl: UILabel!
+    @IBOutlet weak var twitterLbl: UILabel!
+    @IBOutlet weak var blogLbl: UILabel!
+    @IBOutlet weak var phoneLbl: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var dislikeBtn: UIButton!
     @IBOutlet weak var voteBtn: UIButton!
  
-    func configure(data: LegislatorDetailVOData) {
-        if (gsno(data.profileimg) == "0") {
-            legislatorProfileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
+    func configure(data: LegislatorDetail) {
+        if let profileImg = data.profileImg, let url = URL(string : profileImg) {
+             self.legislatorProfileImgView.kf.setImage(with: url)
         } else {
-            if let url = URL(string: gsno(data.profileimg)){
-                self.legislatorProfileImgView.kf.setImage(with: url)
-            }
+            legislatorProfileImgView.image = #imageLiteral(resourceName: "mypage_profile_girl")
         }
-        legislatorNameLbl.text = data.lName
-        legislatorPartyLbl.text = data.partyName.rawValue
-        legislatorRegionLbl.text = data.position
+        legislatorNameLbl.text = data.legiName
+        legislatorPartyLbl.text = data.partyCD?.partyName
+        legislatorRegionLbl.text = data.region
+        reelectionLbl.text = data.reelection
+        ordinalLbl.text = (data.ordinal ?? 0).description + "대"
+        crimeLbl.text = data.crime
+        fbLbl.text = data.facebook
+        twitterLbl.text = data.twitter
+        blogLbl.text = data.blog
+        phoneLbl.text = data.phone
         
         legislatorLikeLbl.text = "호감 \(data.likerank)위"
         legislatorDislikeLbl.text = "비호감 \(data.unlikerank)위"
-       
+        
+        legislatorProfileImgView.makeImgBorder(width: 3, color: data.partyCD?.partyColor ?? .black)
+        
         switch data.likerank {
         case "1":
             medalImgView.image = #imageLiteral(resourceName: "legislator-detailpage_medal_gold")
@@ -63,26 +77,7 @@ class LegislatorProfileCell: UICollectionViewCell {
         default :
             bombImgView.isHidden = true
         }
-        
-        switch data.partyName {
-        case .더불어민주당:
-             legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyBlue)
-        case .자유한국당:
-            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyRed)
-        case .민중당:
-            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyOrange)
-        case .바른미래당:
-            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyMint)
-        case .정의당:
-            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyYellow)
-        case .무소속:
-            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyGray)
-        case .대한애국당:
-            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyNavy)
-        case .민주평화당:
-            legislatorProfileImgView.makeImgBorder(width: 3, color: ColorChip.shared().partyGreen)
-            
-        }
+      
     }
     
     override func awakeFromNib() {

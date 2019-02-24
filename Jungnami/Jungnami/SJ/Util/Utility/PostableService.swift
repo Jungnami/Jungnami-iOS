@@ -70,7 +70,7 @@ extension PostableService {
                 }
                 break
             case .failure(let err):
-                completion(.failure(err))
+                completion(Result.failure(err as! Error))
                 break
             }
         }
@@ -120,7 +120,7 @@ extension PostableService {
                 }
                 break
             case .failure(let err):
-                completion(.failure(err))
+                completion(.failure(err as! Error))
                 break
             }
         }

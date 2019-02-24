@@ -189,6 +189,15 @@ extension UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    func showErrorAlert(errorType : Error){
+        switch errorType {
+        case .networkConnectFail:
+            self.simpleAlert(title: "오류", message: "네트워크 상태를 확인해주세요")
+        case .networkError(let msg):
+            self.simpleAlert(title: "오류", message: msg)
+        }
+    }
 }
 
 
