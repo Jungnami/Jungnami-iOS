@@ -21,19 +21,15 @@ class MainDislikeTVC: UITableViewController, APIService {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let itemCount = legislatorDislikeData.count
-        //legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
         legislatorDislikeInit()
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
     }
     
     @objc func vote(_ sender : UIButton){
-        getMyPoint(url : UrlPath.GetPointToVote.getURL(), index : sender.tag)
+        getMyPoint(index: sender.tag)
     }
-    
-    
-    
+
 }
 
 
@@ -111,31 +107,6 @@ extension MainDislikeTVC{
 //통신
 
 extension MainDislikeTVC {
-    
-    /*func legislatorLikeInit(url : String){
-        GetLegislatorLikeService.shareInstance.getLegislatorLike(url: url, completion: { [weak self] (result) in
-            guard let `self` = self else { return }
-            
-            switch result {
-            case .networkSuccess(let legislatorData):
-                let legislatorData = legislatorData as! [LegislatorLikeVOData]
-                if legislatorData.count > 0 {
-                    self.legislatorDislikeData.append(contentsOf: legislatorData)
-                    self.firstData = self.legislatorDislikeData[0]
-                    self.secondData = self.legislatorDislikeData[1]
-                    self.tableView.reloadData()
-                }
-                break
-                
-            case .networkFail :
-                self.simpleAlert(title: "network", message: "check")
-            default :
-                break
-            }
-            
-        })
-        
-    }*/
     func legislatorDislikeInit(){
         networkProvider.getAllLegislatorList(isLike: false) { [weak self] (result) in
             guard let `self` = self else { return }
@@ -150,63 +121,32 @@ extension MainDislikeTVC {
             }
         }
     }
-    
     //내 포인트 불러오기
-    func getMyPoint(url : String, index : Int){
-        GetPointService.shareInstance.getPoint(url: url, completion: { [weak self] (result) in
+    func getMyPoint(index : Int){
+        networkProvider.checkBallot { [weak self] (result) in
             guard let `self` = self else { return }
-            
             switch result {
-            case .networkSuccess(let pointData):
-                let myPoint = pointData as! Int
-                self.simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권: \(myPoint)개") { (_) in
-                    //확인했을때 통신
-                    let params : [String : Any] = [
-                        "l_id" : index,
-                        "islike" : 0
-                    ]
-                
-                    self.voteOkAction(url: UrlPath.VoteLegislator.getURL(), params: params)
+            case .Success(let voteCount):
+                self.simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권: \(voteCount)개") { (_) in
+                    self.voteOkAction(legiCode: index)
                 }
-                break
-            case .accessDenied :
-                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
-                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
-                        loginVC.entryPoint = 1
-                        self.present(loginVC, animated: true, completion: nil)
-                    }
-                })
-            case .networkFail :
-                self.simpleAlert(title: "오류", message: "네트워크 연결상태를 확인해주세요")
-            default :
-                break
+            case .Failure(let errorType) :
+                self.showErrorAlert(errorType: errorType)
             }
-            
-        })
+        }
     } //getMyPoint
     
-   /* func temp(){
-     let itemCount = legislatorDislikeData.count
-     legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
-    }
-    */
+    
     //내 포인트 보고 '확인'했을때 통신
-    func voteOkAction(url : String, params : [String : Any]) {
-        VoteService.shareInstance.vote(url: url, params : params, completion: { [weak self] (result) in
+    func voteOkAction(legiCode : Int) {
+        networkProvider.vote(legiCode: legiCode, isLike: false) { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
-            case .networkSuccess(_):
-               self.voteDelegate?.myVoteDelegate(isLike: 0)
-               //self.temp()
-                break
-            case .noPoint :
-                self.simpleAlert(title: "오류", message: "포인트가 부족합니다")
-            case .networkFail :
-                self.simpleAlert(title: "오류", message: "네트워크 연결을 확인해주세요")
-            default :
-                break
+            case .Success(_):
+                self.voteDelegate?.myVoteDelegate(isLike: 0)
+            case .Failure(let errorType) :
+                self.showErrorAlert(errorType: errorType)
             }
-            
-        })
+        }
     } //voteOkAction
 }

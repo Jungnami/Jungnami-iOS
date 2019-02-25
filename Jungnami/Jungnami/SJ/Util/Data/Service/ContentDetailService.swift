@@ -8,7 +8,6 @@
 import Foundation
 
 struct ContentDetailService : GettableService {
-    // let userDefault = UserDefaults.standard
     typealias NetworkData = ContentDetailVO //여기
     static let shareInstance = ContentDetailService() //여기
     func getContentDetail(url : String, completion : @escaping (NetworkResult<Any>) -> Void){

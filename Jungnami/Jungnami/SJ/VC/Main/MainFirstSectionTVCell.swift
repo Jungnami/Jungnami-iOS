@@ -51,7 +51,6 @@ class MainFirstSectionTVCell: UITableViewCell {
     
     func setProgresssbarWidth(progressbar : UIView, progressWidth : Double){
         progressbar.snp.makeConstraints { (make) in
-            // /100 고치기
             make.width.equalTo(maxWidth*progressWidth/100)
         }
     }

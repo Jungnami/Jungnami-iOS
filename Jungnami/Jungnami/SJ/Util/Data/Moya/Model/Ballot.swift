@@ -7,10 +7,9 @@
 
 import Foundation
 
-//고치기
 struct Ballot: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data : Int
+    let data : Int?
 }

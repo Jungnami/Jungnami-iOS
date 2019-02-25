@@ -16,6 +16,7 @@ enum CityCode : Int, Codable{
     case  daegu = 10285
     case  daejeon = 10286
     case  busan = 10287
+    case  birye = 10288
     case  seoul = 10289
     case  sejong = 10290
     case  ulsan = 10291
@@ -62,6 +63,8 @@ enum CityCode : Int, Codable{
             return "충남"
         case .chungbuk:
             return "충북"
+        case .birye:
+            return "비례"
         default :
             break
         }
@@ -103,6 +106,8 @@ enum CityCode : Int, Codable{
             return #imageLiteral(resourceName: "area_chungnam_pinkbox")
         case .chungbuk:
             return  #imageLiteral(resourceName: "area_chungbuk_pinkbox")
+        case .birye :
+            return UIImage()
         default :
             break
         }

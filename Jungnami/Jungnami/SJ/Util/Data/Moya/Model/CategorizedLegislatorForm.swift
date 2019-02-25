@@ -11,24 +11,33 @@ struct CategorizedLegislatorForm: Codable {
     let status: Int
     let success: Bool
     let message: String
+    let data: CategorizedLegislatorData?
+}
+
+struct CategorizedLegislatorData: Codable {
+    let timeStamp: String
     let data: [CategorizedLegislator]?
 }
 
 struct CategorizedLegislator: Codable {
     let idx: Int
-    let legiName : String
-    let region: String?
-    let partyCD: PartyCode?
+    let legiName: String
+    let partyCD : PartyCode?
+    let cityCD: CityCode?
     let profileImg: String?
-    let likeCnt, dislikeCnt: Int?
+    let voteCnt: Int?
+    //고치기 - String "-"
+    let rank, partyRank: Int?
+    let ratio : Int?
     
     enum CodingKeys: String, CodingKey {
         case idx
         case legiName = "legi_name"
-        case region
         case partyCD = "party_cd"
+        case cityCD = "city_cd"
         case profileImg = "profile_img"
-        case likeCnt = "like_cnt"
-        case dislikeCnt = "dislike_cnt"
+        case voteCnt = "vote_cnt"
+        case rank, ratio
+        case partyRank = "party_rank"
     }
 }

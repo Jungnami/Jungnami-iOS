@@ -9,7 +9,6 @@ import Foundation
 import Moya
 
 enum JungnamiAPI  {
-    //해은
     case legislatorCityList(isLike : Bool, city : CityCode)
     case legislatorPartyList(isLike : Bool, party : PartyCode)
     case legislatorList(isLike : Bool)
@@ -19,10 +18,12 @@ enum JungnamiAPI  {
     
     case commentList(isAboutLegislator : Bool, idx : Int)
     case writeComment(isAboutLegislator : Bool, legiIdx : Int, content : String)
-//    case deleteLegislatorComment
-//    case changeLegislatorComment
-//    case reportLegislatorComment
-//    case evaluateLegislatorComment(isAboutLegislator : Bool, isLike : Bool, isForCancel : Bool)
+    case deleteComment(isAboutLegislator : Bool, commentIdx : Int, writerIdx : Int)
+    case changeComment(isAboutLegislator : Bool, commentIdx : Int, writerIdx : Int, content : String)
+    //    case reportComment(isAboutLegislator : Bool, commentIdx : Int)
+    case evaluateComment(isAboutLegislator : Bool, isLike : Bool, commentIdx : Int)
+    
+    case refreshToken(refreshToken : String)
     
 }
 
@@ -34,7 +35,6 @@ enum JungnamiAPIType  {
 }
 
 extension JungnamiAPI : TargetType{
-    
     var apiType : JungnamiAPIType {
         switch self {
         case .legislatorCityList, .legislatorPartyList, .legislatorDetail:
@@ -45,6 +45,14 @@ extension JungnamiAPI : TargetType{
             return isAboutLegislator ? .pms : .cms
         case .writeComment(let isAboutLegislator, _, _) :
             return isAboutLegislator ? .pms : .cms
+        case .deleteComment(let isAboutLegislator, _, _):
+            return isAboutLegislator ? .pms : .cms
+        case .changeComment(let isAboutLegislator, _, _, _):
+            return isAboutLegislator ? .pms : .cms
+        case .refreshToken:
+            return .auth
+        case .evaluateComment(let isAboutLegislator,_,_):
+             return isAboutLegislator ? .pms : .cms
         }
     }
     
@@ -84,10 +92,22 @@ extension JungnamiAPI : TargetType{
             return "/legislator/\(idx)"
         case .commentList(let isAboutLegislator, let idx):
             //고치기 - 뒤에 cms 일때
-            return isAboutLegislator ? "/comment/\(idx)" : ""
+            return isAboutLegislator ? "/reply/\(idx)" : ""
         case .writeComment(let isAboutLegislator, _, _):
+            //고치기 - 뒤에 cms 일때
+            return isAboutLegislator ? "/reply" : ""
+        case .deleteComment(let isAboutLegislator, _, _):
+            //고치기 - 뒤에 cms 일때
+            return isAboutLegislator ? "/reply" : ""
+        case .changeComment(let isAboutLegislator, _, _, _):
+            //고치기 - 뒤에 cms 일때
+            return isAboutLegislator ? "/reply" : ""
+        case .refreshToken(_):
+            return "/auth/refresh"
+        case .evaluateComment(let isAboutLegislator, let isLike, let commentIdx):
              //고치기 - 뒤에 cms 일때
-            return isAboutLegislator ? "/comment" : ""
+            let like = isLike ? 1: 0
+            return isAboutLegislator ? "/like/\(like)/\(commentIdx)" : ""
         }
     }
     
@@ -102,6 +122,14 @@ extension JungnamiAPI : TargetType{
         case .commentList :
             return .get
         case .writeComment :
+            return .post
+        case .deleteComment:
+            return .delete
+        case .changeComment:
+            return .put
+        case .refreshToken:
+            return .post
+        case .evaluateComment :
             return .post
         }
     }
@@ -118,22 +146,37 @@ extension JungnamiAPI : TargetType{
         switch self {
         case .legislatorCityList, .legislatorPartyList, .legislatorList, .checkBallot, .legislatorDetail:
             return .requestPlain
-        case .commentList :
-            return .requestPlain
         case .vote(let legiCode, let isLike):
             let parameters : [String : Any] = ["code" : legiCode,
                                                "isLike" : isLike]
             //고치기 - body 인지 query 인지
-            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .commentList, .evaluateComment :
+            return .requestPlain
+        case .deleteComment(let isAboutLegislator, let commentIdx, let writerIdx):
+            //고치기 - 뒤에 cms 일때
+            let parameters : [String : Any] = isAboutLegislator ? ["reply_idx" : commentIdx,
+                                                                   "writer" : writerIdx] : [:]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            
+       
         case .writeComment(let isAboutLegislator, let legiIdx, let content):
             //고치기 - 뒤에 cms 일때
             let parameters : [String : Any] = isAboutLegislator ? ["legi_id" : legiIdx,
                                                                    "content" : content] : [:]
-           // Always send parameters as JSON in request body
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            
+        case .changeComment(let isAboutLegislator, let commentIdx, let writerIdx, let content):
+            //고치기 - 뒤에 cms 일때
+            let parameters : [String : Any] = isAboutLegislator ? ["reply_idx" : commentIdx,
+                                                                   "writer" : writerIdx,
+                                                                   "content" : content] : [:]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .refreshToken(let refreshToken):
+            let parameters : [String : Any] = ["refreshToken" : refreshToken]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
-    
     var validationType : ValidationType {
         return .successAndRedirectCodes
     }
@@ -143,4 +186,5 @@ extension JungnamiAPI : TargetType{
                 "token" : NetworkManager.token]
     }
 }
+
 

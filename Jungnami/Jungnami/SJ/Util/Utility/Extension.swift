@@ -195,7 +195,30 @@ extension UIViewController {
         case .networkConnectFail:
             self.simpleAlert(title: "오류", message: "네트워크 상태를 확인해주세요")
         case .networkError(let msg):
-            self.simpleAlert(title: "오류", message: msg)
+            switch msg {
+            case TokenError.jwtWrongFormat.rawValue, TokenError.jwtIsNotInHeader.rawValue :
+                self.simpleAlertwithHandler(title: "오류", message: "로그인 해주세요", okHandler: { (_) in
+                    if let loginVC = Storyboard.shared().rankStoryboard.instantiateViewController(withIdentifier:LoginVC.reuseIdentifier) as? LoginVC {
+                        loginVC.entryPoint = 1
+                        self.present(loginVC, animated: true, completion: nil)
+                    }
+                })
+            case TokenError.jwtExpired.rawValue :
+                let networkProvider = NetworkManager.sharedInstance
+                networkProvider.refreshToken(refreshToken: NetworkManager.refreshToken){(result) in
+                    switch result {
+                    case .Success(let refreshToken):
+                        NetworkManager.token = refreshToken
+                        self.simpleAlert(title: "다시 시도해주세요.", message: "로그인 지속시간이 만료되어\n자동 재로그인 되었습니다.")
+                    case .Failure(let errorType) :
+                        self.showErrorAlert(errorType: errorType)
+                    }
+                }
+            default :
+            
+              self.simpleAlert(title: "오류", message: msg)
+            }
+            
         }
     }
 }

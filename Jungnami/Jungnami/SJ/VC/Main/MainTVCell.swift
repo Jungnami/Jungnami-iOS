@@ -37,7 +37,6 @@ class MainTVCell: UITableViewCell {
     
         progressBar.snp.makeConstraints { (make) in
             
-            // /100 고치기
             if maxWidth*(data.ratio ?? 0.0)/100 < 18 {
                  make.width.equalTo(18)
             } else {

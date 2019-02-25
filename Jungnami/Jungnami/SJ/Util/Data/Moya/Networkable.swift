@@ -18,6 +18,9 @@ protocol Networkable {
     func getLegislatorDetail(idx : Int, completion: @escaping (MoyaNetworkResult<LegislatorDetail>) -> ())
     func getCommentList(isAboutLegislator :Bool, idx : Int, completion: @escaping (MoyaNetworkResult<[Comment]>) -> ())
     func writeComment(isAboutLegislator : Bool, legiIdx : Int, content : String, completion: @escaping (MoyaNetworkResult<String>) -> ())
+    func deleteComment(isAboutLegislator : Bool, commentIdx : Int, writerIdx : Int, completion: @escaping (MoyaNetworkResult<String>) -> ())
+    func changeComment(isAboutLegislator : Bool, commentIdx : Int, writerIdx : Int, content : String, completion: @escaping (MoyaNetworkResult<String>) -> ())
+    func evaluateComment(isAboutLegislator : Bool, isLike : Bool, commentIdx : Int, completion: @escaping (MoyaNetworkResult<String>) -> ())
 
     //vote
     func vote(legiCode : Int, isLike : Bool, completion: @escaping (MoyaNetworkResult<String>) -> ())
@@ -26,7 +29,8 @@ protocol Networkable {
     //cms
     
     //auth
-    
+    func refreshToken(refreshToken : String, completion: @escaping (MoyaNetworkResult<String>) -> ())
+
     
     func fetchData<T: Codable>(api : JungnamiAPI, networkData : T.Type, completion : @escaping (MoyaNetworkResult<(resCode : Int, resResult : T)>)->Void)
 }

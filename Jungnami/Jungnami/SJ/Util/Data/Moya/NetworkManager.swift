@@ -10,26 +10,54 @@ import Moya
 struct NetworkManager : Networkable {
     
     static let sharedInstance = NetworkManager()
-    
-    static let token = ""
+    //고치기 - 회원가입할때, 재발급할때 - 빈값으로 설정
+    static var token = ""
+    //고치기 - 회원가입할때 - 빈값으로 설정
+    static var refreshToken = ""
+    //guard let userToken = UserDefaults.standard.string(forKey: "userToken") else {return}
     let provider = MoyaProvider<JungnamiAPI>()
     //(plugins : [NetworkLoggerPlugin(verbose : false)])
-
+    
 }
 
 //pms
 extension NetworkManager {
+    /*func errorCompletionHandler<T>(errorType : Error, completion: @escaping (MoyaNetworkResult<T>) -> ()){
+        switch errorType {
+        case .networkConnectFail:
+            completion(.Failure(.networkConnectFail))
+        case .networkError(let msg):
+            completion(.Failure(.networkError(msg: msg)))
+        }
+    }
+
+    //고치기
     func getPartyLegislatorList(isLike: Bool, party: PartyCode, completion: @escaping (MoyaNetworkResult<[CategorizedLegislator]>) -> ()) {
         fetchData(api: .legislatorPartyList(isLike: isLike, party: party), networkData: CategorizedLegislatorForm.self) { (result) in
             switch result {
             case .Success(let successResult):
                 if successResult.resResult.success {
-                    guard let partyLegislatorList = successResult.resResult.data else {return}
+                    guard let partyLegislatorList = successResult.resResult.data?.data else {return}
                     completion(.Success(partyLegislatorList))
                 } else {
                     completion(.Failure(.networkError(msg: successResult.resResult.message)))
                 }
-                
+            case .Failure(let errorType) :
+                self.errorCompletionHandler(errorType: errorType, completion: completion)
+            }
+        }
+    }*/
+ 
+    func getPartyLegislatorList(isLike: Bool, party: PartyCode, completion: @escaping (MoyaNetworkResult<[CategorizedLegislator]>) -> ()) {
+        fetchData(api: .legislatorPartyList(isLike: isLike, party: party), networkData: CategorizedLegislatorForm.self) { (result) in
+            switch result {
+            case .Success(let successResult):
+                if successResult.resResult.success {
+                    guard let partyLegislatorList = successResult.resResult.data?.data else {return}
+                    completion(.Success(partyLegislatorList))
+                } else {
+                    completion(.Failure(.networkError(msg: successResult.resResult.message)))
+                }
             case .Failure(let errorType) :
                 switch errorType {
                 case .networkConnectFail:
@@ -46,7 +74,7 @@ extension NetworkManager {
             switch result {
             case .Success(let successResult):
                 if successResult.resResult.success {
-                    guard let cityLegislatorList = successResult.resResult.data else {return}
+                    guard let cityLegislatorList = successResult.resResult.data?.data else {return}
                     completion(.Success(cityLegislatorList))
                 } else {
                     completion(.Failure(.networkError(msg: successResult.resResult.message)))
@@ -88,7 +116,8 @@ extension NetworkManager {
             switch result {
             case .Success(let successResult):
                 if successResult.resResult.success {
-                    completion(.Success(successResult.resResult.data))
+                    guard let commentList = successResult.resResult.data else {return}
+                    completion(.Success(commentList))
                 } else {
                     completion(.Failure(.networkError(msg: successResult.resResult.message)))
                 }
@@ -122,6 +151,66 @@ extension NetworkManager {
             }
         }
     }
+    
+    func deleteComment(isAboutLegislator: Bool, commentIdx: Int, writerIdx : Int, completion: @escaping (MoyaNetworkResult<String>) -> ()) {
+        fetchData(api: .deleteComment(isAboutLegislator: isAboutLegislator, commentIdx: commentIdx, writerIdx: writerIdx), networkData: NoDataForm.self) { (result) in
+            switch result {
+            case .Success(let successResult):
+                if successResult.resResult.success {
+                    completion(.Success(successResult.resResult.message))
+                } else {
+                    completion(.Failure(.networkError(msg: successResult.resResult.message)))
+                }
+            case .Failure(let errorType) :
+                switch errorType {
+                case .networkConnectFail:
+                    completion(.Failure(.networkConnectFail))
+                case .networkError(let msg):
+                    completion(.Failure(.networkError(msg: msg)))
+                }
+            }
+        }
+    }
+    
+    func changeComment(isAboutLegislator: Bool, commentIdx: Int, writerIdx: Int, content: String, completion: @escaping (MoyaNetworkResult<String>) -> ()) {
+        fetchData(api: .changeComment(isAboutLegislator: isAboutLegislator, commentIdx: commentIdx, writerIdx: writerIdx, content: content), networkData: NoDataForm.self) { (result) in
+            switch result {
+            case .Success(let successResult):
+                if successResult.resResult.success {
+                    completion(.Success(successResult.resResult.message))
+                } else {
+                    completion(.Failure(.networkError(msg: successResult.resResult.message)))
+                }
+            case .Failure(let errorType) :
+                switch errorType {
+                case .networkConnectFail:
+                    completion(.Failure(.networkConnectFail))
+                case .networkError(let msg):
+                    completion(.Failure(.networkError(msg: msg)))
+                }
+            }
+        }
+    }
+    
+    func evaluateComment(isAboutLegislator: Bool, isLike: Bool, commentIdx: Int, completion: @escaping (MoyaNetworkResult<String>) -> ()) {
+        fetchData(api: .evaluateComment(isAboutLegislator: isAboutLegislator, isLike: isLike, commentIdx: commentIdx), networkData: NoDataForm.self) { (result) in
+            switch result {
+            case .Success(let successResult):
+                if successResult.resResult.success {
+                    completion(.Success(successResult.resResult.message))
+                } else {
+                    completion(.Failure(.networkError(msg: successResult.resResult.message)))
+                }
+            case .Failure(let errorType) :
+                switch errorType {
+                case .networkConnectFail:
+                    completion(.Failure(.networkConnectFail))
+                case .networkError(let msg):
+                    completion(.Failure(.networkError(msg: msg)))
+                }
+            }
+        }
+    }
 }
 
 //vote
@@ -131,7 +220,9 @@ extension NetworkManager {
             switch result {
             case .Success(let successResult):
                 if successResult.resResult.success {
-                    completion(.Success(successResult.resResult.data))
+                    guard let legislatorList = successResult.resResult.data else {return}
+                    completion(.Success(legislatorList))
+                    
                 } else {
                     completion(.Failure(.networkError(msg: successResult.resResult.message)))
                 }
@@ -171,7 +262,8 @@ extension NetworkManager {
             switch result {
             case .Success(let successResult):
                 if successResult.resResult.success {
-                    completion(.Success(successResult.resResult.data))
+                    guard let voteCount = successResult.resResult.data else {return}
+                    completion(.Success(voteCount))
                 } else {
                     completion(.Failure(.networkError(msg: successResult.resResult.message)))
                 }
@@ -187,3 +279,27 @@ extension NetworkManager {
     }
 }
 
+//auth
+extension NetworkManager {
+    func refreshToken(refreshToken: String, completion: @escaping (MoyaNetworkResult<String>) -> ()) {
+        fetchData(api: .refreshToken(refreshToken: refreshToken), networkData: StringDataForm.self) { (result) in
+            switch result {
+            case .Success(let successResult):
+                if successResult.resResult.success {
+                    guard let newToken = successResult.resResult.data else {return}
+                    completion(.Success(newToken))
+                } else {
+                    completion(.Failure(.networkError(msg: successResult.resResult.message)))
+                }
+                
+            case .Failure(let errorType) :
+                switch errorType {
+                case .networkConnectFail:
+                    completion(.Failure(.networkConnectFail))
+                case .networkError(let msg):
+                    completion(.Failure(.networkError(msg: msg)))
+                }
+            }
+        }
+    }
+}

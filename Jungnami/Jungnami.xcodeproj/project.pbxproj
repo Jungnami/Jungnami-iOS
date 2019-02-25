@@ -105,6 +105,7 @@
 		3BB0DE6F221ED33500D4A934 /* Ballot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB0DE6E221ED33500D4A934 /* Ballot.swift */; };
 		3BB0DE71222249E300D4A934 /* LegislatorDetailForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB0DE70222249E300D4A934 /* LegislatorDetailForm.swift */; };
 		3BB0DE752222C3C100D4A934 /* CommentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB0DE742222C3C100D4A934 /* CommentForm.swift */; };
+		3BB0DE782223D80B00D4A934 /* StringDataForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB0DE772223D80B00D4A934 /* StringDataForm.swift */; };
 		3BB1A5BF20EB95B700D4929A /* SearchLegislatorResultTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */; };
 		3BB1A5C120EB965600D4929A /* SearchLegislatorResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */; };
 		3BB2F5C521BFE81D00D514D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BB2F5C421BFE81C00D514D6 /* GoogleService-Info.plist */; };
@@ -280,6 +281,7 @@
 		3BB0DE6E221ED33500D4A934 /* Ballot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ballot.swift; sourceTree = "<group>"; };
 		3BB0DE70222249E300D4A934 /* LegislatorDetailForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegislatorDetailForm.swift; sourceTree = "<group>"; };
 		3BB0DE742222C3C100D4A934 /* CommentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentForm.swift; sourceTree = "<group>"; };
+		3BB0DE772223D80B00D4A934 /* StringDataForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDataForm.swift; sourceTree = "<group>"; };
 		3BB1A5BE20EB95B700D4929A /* SearchLegislatorResultTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVC.swift; sourceTree = "<group>"; };
 		3BB1A5C020EB965600D4929A /* SearchLegislatorResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLegislatorResultTVCell.swift; sourceTree = "<group>"; };
 		3BB2F5C421BFE81C00D514D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 				3BB0DE6E221ED33500D4A934 /* Ballot.swift */,
 				3BB0DE70222249E300D4A934 /* LegislatorDetailForm.swift */,
 				3BB0DE742222C3C100D4A934 /* CommentForm.swift */,
+				3BB0DE772223D80B00D4A934 /* StringDataForm.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1202,6 +1205,7 @@
 				3B87A34120F7816200A968B8 /* AlarmVO.swift in Sources */,
 				3BB0DE69221E8E6200D4A934 /* CategorizedLegislatorForm.swift in Sources */,
 				43EDECBA20F1C94600E0F0E9 /* TmiFirstCell.swift in Sources */,
+				3BB0DE782223D80B00D4A934 /* StringDataForm.swift in Sources */,
 				3B97B5E420F35C1000020A81 /* GetLegislatorDetailService.swift in Sources */,
 				3B97B5D120F28CFB00020A81 /* PostableService.swift in Sources */,
 				3B94984F20F3BC6B00BFA81E /* CommunityWriteService.swift in Sources */,

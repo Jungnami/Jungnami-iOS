@@ -11,7 +11,7 @@ struct CommentForm: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: [Comment]
+    let data: [Comment]?
 }
 
 struct Comment: Codable {

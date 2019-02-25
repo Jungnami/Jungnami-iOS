@@ -37,20 +37,20 @@ class LegislatorProfileCell: UICollectionViewCell {
         legislatorNameLbl.text = data.legiName
         legislatorPartyLbl.text = data.partyCD?.partyName
         legislatorRegionLbl.text = data.region
-        reelectionLbl.text = data.reelection
+        reelectionLbl.text = (data.reelection ?? "") + "의원"
         ordinalLbl.text = (data.ordinal ?? 0).description + "대"
-        crimeLbl.text = data.crime
-        fbLbl.text = data.facebook
-        twitterLbl.text = data.twitter
-        blogLbl.text = data.blog
-        phoneLbl.text = data.phone
+        crimeLbl.text = data.crime != nil ? data.crime : "없음"
+        fbLbl.text = data.facebook != "" ? data.facebook : "없음"
+        twitterLbl.text = data.twitter != "" ? data.twitter : "없음"
+        blogLbl.text = data.blog != "" ? data.blog : "없음"
+        phoneLbl.text = data.phone != "" ? data.phone : "없음"
         
-        legislatorLikeLbl.text = "호감 \(data.likerank)위"
-        legislatorDislikeLbl.text = "비호감 \(data.unlikerank)위"
+        legislatorLikeLbl.text = "호감 \(data.likeRank ?? 0)위"
+        legislatorDislikeLbl.text = "비호감 \(data.dislkeRank ?? 0)위"
         
         legislatorProfileImgView.makeImgBorder(width: 3, color: data.partyCD?.partyColor ?? .black)
         
-        switch data.likerank {
+        switch (data.likeRank ?? 0).description {
         case "1":
             medalImgView.image = #imageLiteral(resourceName: "legislator-detailpage_medal_gold")
             medalImgView.isHidden = false
@@ -64,7 +64,7 @@ class LegislatorProfileCell: UICollectionViewCell {
             medalImgView.deactivateAllConstraints()
             medalImgView.isHidden = true
         }
-        switch data.unlikerank {
+        switch (data.dislkeRank ??  0).description {
         case "1":
             bombImgView.image = #imageLiteral(resourceName: "legislator-detailpage_red_bomb")
              bombImgView.isHidden = false
