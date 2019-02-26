@@ -12,8 +12,6 @@ import SwiftyJSON
 
 struct GetLegislatorLikeService : GettableService {
    
-    
-   // let userDefault = UserDefaults.standard
     typealias NetworkData = LegislatorLikeVO
     static let shareInstance = GetLegislatorLikeService()
     

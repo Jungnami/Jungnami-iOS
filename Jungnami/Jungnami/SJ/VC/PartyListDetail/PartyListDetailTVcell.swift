@@ -21,8 +21,7 @@ class PartyListDetailTVcell: UITableViewCell {
     @IBOutlet weak var regionLbl: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
     func configure(index : Int, data : CategorizedLegislator){
-        //고치기
-        //indexLbl.text = "\(data.rank)"
+        indexLbl.text = (data.categorizedRank ?? "")
         
         if let imgUrl = data.profileImg, let url = URL(string : imgUrl){
             self.profileImgView.kf.setImage(with: url)
@@ -31,8 +30,7 @@ class PartyListDetailTVcell: UITableViewCell {
         }
       
         nameLbl.text = data.legiName
-        //고치기
-        //rankLbl.text = data.rankInAll
+        rankLbl.text = (data.rank ?? "")+"위"
         regionLbl.text = data.region
         profileImgView.layer.borderColor = data.partyCD?.partyColor.cgColor
         

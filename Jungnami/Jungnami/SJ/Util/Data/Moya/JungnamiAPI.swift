@@ -9,7 +9,6 @@ import Foundation
 import Moya
 
 enum JungnamiAPI  {
-    //해은
     case legislatorCityList(isLike : Bool, city : CityCode)
     case legislatorPartyList(isLike : Bool, party : PartyCode)
     case legislatorList(isLike : Bool)
@@ -17,12 +16,16 @@ enum JungnamiAPI  {
     case vote(legiCode : Int, isLike : Bool)
     case checkBallot
     
-    case commentList(isAboutLegislator : Bool, idx : Int)
-    case writeComment(isAboutLegislator : Bool, legiIdx : Int, content : String)
-//    case deleteLegislatorComment
-//    case changeLegislatorComment
-//    case reportLegislatorComment
-//    case evaluateLegislatorComment(isAboutLegislator : Bool, isLike : Bool, isForCancel : Bool)
+    case legiCommentList(idx : Int)
+    case articleCommentList(idx : Int)
+    case writeComment(isAboutLegislator : Bool,  relatedIdx : Int, parentCommentIdx : Int,content : String)
+    case deleteComment(isAboutLegislator : Bool, commentIdx : Int, writerIdx : Int)
+    case changeComment(isAboutLegislator : Bool, commentIdx : Int, writerIdx : Int, content : String)
+    case reportComment(isAboutLegislator : Bool, commentIdx : Int, reason : String)
+    case evaluateComment(isAboutLegislator : Bool, isLike : Bool, commentIdx : Int)
+    
+    case refreshToken(refreshToken : String)
+    case kakaoLogin(fcmToken : String, accessToken : String)
     
 }
 
@@ -34,23 +37,35 @@ enum JungnamiAPIType  {
 }
 
 extension JungnamiAPI : TargetType{
-    
     var apiType : JungnamiAPIType {
         switch self {
         case .legislatorCityList, .legislatorPartyList, .legislatorDetail:
             return .pms
         case .legislatorList, .vote, .checkBallot :
             return .vote
-        case .commentList(let isAboutLegislator,_):
+        case .legiCommentList:
+            return .pms
+        case .articleCommentList :
+            return .cms
+        case .writeComment(let isAboutLegislator, _, _,_) :
             return isAboutLegislator ? .pms : .cms
-        case .writeComment(let isAboutLegislator, _, _) :
+        case .deleteComment(let isAboutLegislator, _, _):
+            return isAboutLegislator ? .pms : .cms
+        case .changeComment(let isAboutLegislator, _, _, _):
+            return isAboutLegislator ? .pms : .cms
+        case .refreshToken, .kakaoLogin:
+            return .auth
+        case .evaluateComment(let isAboutLegislator,_,_):
+            return isAboutLegislator ? .pms : .cms
+        case .reportComment(let isAboutLegislator, _, _):
             return isAboutLegislator ? .pms : .cms
         }
     }
     
     var baseURL: URL {
         func getUrl(portNum : Int) -> URL{
-            guard let url = URL(string: "http://localhost:\(portNum)") else { fatalError("base url could not be configured")}
+            //15.164.40.192
+            guard let url = URL(string: "http://15.164.40.192:\(portNum)") else { fatalError("base url could not be configured")}
             return url
         }
         switch self.apiType {
@@ -82,12 +97,25 @@ extension JungnamiAPI : TargetType{
             return "/vote/ballot/check"
         case .legislatorDetail(let idx):
             return "/legislator/\(idx)"
-        case .commentList(let isAboutLegislator, let idx):
-            //고치기 - 뒤에 cms 일때
-            return isAboutLegislator ? "/comment/\(idx)" : ""
-        case .writeComment(let isAboutLegislator, _, _):
-             //고치기 - 뒤에 cms 일때
-            return isAboutLegislator ? "/comment" : ""
+        case .legiCommentList(let idx):
+            return "/reply/\(idx)"
+        case .articleCommentList(let idx) :
+            return "/cms/reply/\(idx)"
+        case .writeComment(let isAboutLegislator, _, _,_):
+            return isAboutLegislator ? "/reply" : "/cms/reply"
+        case .deleteComment(let isAboutLegislator, _, _):
+            return isAboutLegislator ? "/reply" : "/cms/reply"
+        case .changeComment(let isAboutLegislator, _, _, _):
+            return isAboutLegislator ? "/reply" : "/cms/reply"
+        case .reportComment(let isAboutLegislator, _, _):
+            //고치기 - 앞에 pms 일때
+            return isAboutLegislator ? "/notify" : "/cms/reply/notify"
+        case .evaluateComment(let isAboutLegislator,_, _):
+            return isAboutLegislator ? "/like" : "/cms/like"
+        case .refreshToken(_):
+            return "/auth/refresh"
+        case .kakaoLogin:
+            return "/auth/login/kakao"
         }
     }
     
@@ -99,9 +127,21 @@ extension JungnamiAPI : TargetType{
             return .post
         case .checkBallot :
             return .get
-        case .commentList :
+        case .legiCommentList, .articleCommentList :
             return .get
         case .writeComment :
+            return .post
+        case .deleteComment:
+            return .delete
+        case .changeComment:
+            return .put
+        case .refreshToken:
+            return .post
+        case .evaluateComment :
+            return .post
+        case .reportComment:
+            return .post
+        case .kakaoLogin :
             return .post
         }
     }
@@ -118,29 +158,60 @@ extension JungnamiAPI : TargetType{
         switch self {
         case .legislatorCityList, .legislatorPartyList, .legislatorList, .checkBallot, .legislatorDetail:
             return .requestPlain
-        case .commentList :
-            return .requestPlain
         case .vote(let legiCode, let isLike):
             let parameters : [String : Any] = ["code" : legiCode,
                                                "isLike" : isLike]
-            //고치기 - body 인지 query 인지
-            return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
-        case .writeComment(let isAboutLegislator, let legiIdx, let content):
-            //고치기 - 뒤에 cms 일때
-            let parameters : [String : Any] = isAboutLegislator ? ["legi_id" : legiIdx,
-                                                                   "content" : content] : [:]
-           // Always send parameters as JSON in request body
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .legiCommentList, .articleCommentList :
+            return .requestPlain
+            
+        case .deleteComment(let isAboutLegislator, let commentIdx, let writerIdx):
+            let parameters : [String : Any] = isAboutLegislator ? ["reply_idx" : commentIdx,
+                                                                   "writer" : writerIdx] : ["reply_idx":commentIdx,
+                                                                        "writer":writerIdx]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .evaluateComment(let isAboutLegislator, let isLike, let commentIdx):
+            let like = isLike ? 1 : 0
+            let parameters : [String : Any] = isAboutLegislator ? ["isLike" : like.description,
+                                                                   "reply_idx" : commentIdx] : ["isLike" : like,
+                                                                                                "reply_idx" :commentIdx]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .writeComment(let isAboutLegislator, let relatedIdx, let parentCommentIdx, let content):
+            let parameters : [String : Any] = isAboutLegislator ? ["legi_id" : relatedIdx,
+                                                                   "content" : content] : ["articleIdx": relatedIdx,
+                                                                                           "parent" : parentCommentIdx,
+                                                                                           "content" : content]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+            
+        case .changeComment(let isAboutLegislator, let commentIdx, let writerIdx, let content):
+            let parameters : [String : Any] = isAboutLegislator ? ["reply_idx" : commentIdx,
+                                                                   "writer" : writerIdx,
+                                                                   "content" : content] : ["reply_idx" : commentIdx,
+                                                                                           "writer" : writerIdx,
+                                                                                           "content" : content]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .refreshToken(let refreshToken):
+            let parameters : [String : Any] = ["refreshToken" : refreshToken]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .reportComment(let isAboutLegislator, let commentIdx, let reason):
+            //고치기 - 앞에 pms 일때
+            let parameters : [String : Any] = isAboutLegislator ? [:] :
+                ["reply_idx" : commentIdx, "reason" : reason]
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .kakaoLogin(let fcmToken, let accessToken):
+            let parameters : [String : Any] = ["fcmToken" : fcmToken,
+                                               "accessToken" : accessToken]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
-    
     var validationType : ValidationType {
         return .successAndRedirectCodes
     }
     
     var headers: [String : String]? {
         return ["Content-type" : "application/json",
-                "token" : NetworkManager.token]
+                "token" : NetworkManager.getToken()]
     }
 }
+
 

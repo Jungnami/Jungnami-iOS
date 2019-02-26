@@ -11,7 +11,7 @@ struct LegislatorForm: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: LegislatorData
+    let data: LegislatorData?
 }
 
 struct LegislatorData: Codable {
@@ -24,7 +24,8 @@ struct Legislator: Codable {
     let legiName: String
     let partyCD: PartyCode?
     let profileImg: String?
-    let voteCnt, rank : Int?
+    var voteCnt : Int?
+    let rank : String?
     let ratio: Double?
     
     enum CodingKeys: String, CodingKey {
