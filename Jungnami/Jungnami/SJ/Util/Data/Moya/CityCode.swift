@@ -8,24 +8,24 @@
 import Foundation
 
 enum CityCode : Int, Codable{
-    case  gangwon = 10280
-    case  gyunggi = 10281
-    case  gyungnam = 10282
-    case  gyungbuk = 10283
-    case  gwangju = 10284
-    case  daegu = 10285
-    case  daejeon = 10286
-    case  busan = 10287
-    case  birye = 10288
-    case  seoul = 10289
-    case  sejong = 10290
-    case  ulsan = 10291
-    case  incheon = 10292
-    case  jeonnam = 10293
-    case  jeonbuk = 10294
-    case  jeju = 10295
-    case  chungnam = 10296
-    case  chungbuk = 10297
+    case  gangwon = 10001
+    case  gyunggi = 10002
+    case  gyungnam = 10003
+    case  gyungbuk = 10004
+    case  gwangju = 10005
+    case  daegu = 10006
+    case  daejeon = 10007
+    case  busan = 10008
+    case  birye = 10009
+    case  seoul = 10010
+    case  sejong = 10011
+    case  ulsan = 10012
+    case  incheon = 10013
+    case  jeonnam = 10014
+    case  jeonbuk = 10015
+    case  jeju = 10016
+    case  chungnam = 10017
+    case  chungbuk = 10018
 
     var cityName : String {
         switch self {

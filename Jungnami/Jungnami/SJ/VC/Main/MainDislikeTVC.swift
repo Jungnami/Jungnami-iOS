@@ -13,7 +13,12 @@ enum MainViewType {
 
 class MainDislikeTVC: UITableViewController, APIService {
     
-   var legislatorDislikeData : [Legislator] = []
+    var timeStamp = ""
+    var legislatorDislikeData : [Legislator] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var firstData : Legislator?
     var secondData : Legislator?
     var voteDelegate : VoteDelegate?
@@ -26,8 +31,8 @@ class MainDislikeTVC: UITableViewController, APIService {
         self.tableView.refreshControl?.addTarget(self, action: #selector(startReloadTableView(_:)), for: .valueChanged)
     }
     
-    @objc func vote(_ sender : UIButton){
-        getMyPoint(index: sender.tag)
+    @objc func vote(_ sender : LikeButton){
+        getMyPoint(index : sender.index, row : sender.row)
     }
 
 }
@@ -62,8 +67,7 @@ extension MainDislikeTVC {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTVCell.reuseIdentifier, for: indexPath) as! MainTVCell
           
-           cell.configure(viewType : .dislike, index: indexPath.row, data: legislatorDislikeData[indexPath.row])
-            cell.voteBtn.tag = legislatorDislikeData[indexPath.row].idx
+           cell.configure(viewType : .dislike, row: indexPath.row, data: legislatorDislikeData[indexPath.row])
             cell.voteBtn.addTarget(self, action: #selector(vote(_:)), for: .touchUpInside)
             
             
@@ -96,39 +100,46 @@ extension MainDislikeTVC {
 extension MainDislikeTVC{
     
     @objc func startReloadTableView(_ sender: UIRefreshControl){
-        legislatorDislikeData = []
-        legislatorDislikeInit()
+        //legislatorDislikeData = []
 //        let itemCount = legislatorDislikeData.count
 //        legislatorLikeInit(url : UrlPath.LegislatorList.getURL("0/\(itemCount)"))
-        self.tableView.reloadData()
-        sender.endRefreshing()
+        //self.tableView.reloadData()
+          legislatorDislikeInit(){sender.endRefreshing()}
     }
 }
 //통신
 
 extension MainDislikeTVC {
-    func legislatorDislikeInit(){
+    func legislatorDislikeInit(completion : @escaping ()->() = {}){
         networkProvider.getAllLegislatorList(isLike: false) { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
             case .Success(let legislatorListInfo):
-                self.firstData = legislatorListInfo.data[0]
-                self.secondData = legislatorListInfo.data[1]
-                self.legislatorDislikeData = legislatorListInfo.data
-                self.tableView.reloadData()
+                if legislatorListInfo.timeStamp == self.timeStamp {
+                    self.simpleAlertwithHandler(title: "알림", message: self.timeStamp+"의 결과입니다.\n투표 결과는 5분마다 갱신됩니다.", okHandler: { _ in
+                        completion()
+                    })
+                } else {
+                    self.timeStamp = legislatorListInfo.timeStamp
+                    self.firstData = legislatorListInfo.data[0]
+                    self.secondData = legislatorListInfo.data[1]
+                    self.legislatorDislikeData = legislatorListInfo.data
+                    completion()
+                }
             case .Failure(let errorType) :
                 self.showErrorAlert(errorType: errorType)
             }
+            
         }
     }
     //내 포인트 불러오기
-    func getMyPoint(index : Int){
+    func getMyPoint(index : Int, row : Int){
         networkProvider.checkBallot { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
             case .Success(let voteCount):
                 self.simpleAlertwithHandler(title: "투표하시겠습니까?", message: "나의 보유 투표권: \(voteCount)개") { (_) in
-                    self.voteOkAction(legiCode: index)
+                    self.voteOkAction(legiCode: index, row : row)
                 }
             case .Failure(let errorType) :
                 self.showErrorAlert(errorType: errorType)
@@ -138,11 +149,14 @@ extension MainDislikeTVC {
     
     
     //내 포인트 보고 '확인'했을때 통신
-    func voteOkAction(legiCode : Int) {
+    func voteOkAction(legiCode : Int, row : Int) {
         networkProvider.vote(legiCode: legiCode, isLike: false) { [weak self] (result) in
             guard let `self` = self else { return }
             switch result {
             case .Success(_):
+                if (self.legislatorDislikeData[row].voteCnt) != nil {
+                    self.legislatorDislikeData[row].voteCnt! += 1
+                }
                 self.voteDelegate?.myVoteDelegate(isLike: 0)
             case .Failure(let errorType) :
                 self.showErrorAlert(errorType: errorType)

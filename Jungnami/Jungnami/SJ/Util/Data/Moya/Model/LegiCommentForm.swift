@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct CommentForm: Codable {
+struct LegiCommentForm: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: [Comment]?
+    let data: [LegiComment]?
 }
 
-struct Comment: Codable {
+struct LegiComment: Codable {
     let idx, legiIdx, writer: Int
     let content, writetime: String
     

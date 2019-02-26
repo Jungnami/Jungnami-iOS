@@ -181,12 +181,14 @@ extension UIViewController {
         present(alert, animated: true)
     }
     
-    func simpleAlertwithHandler(title: String, message: String, okHandler : ((UIAlertAction) -> Void)?){
+    func simpleAlertwithHandler(title: String, message: String, isNeedCancelBtn : Bool = false, okHandler : ((UIAlertAction) -> Void)?){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인",style: .default, handler: okHandler)
-        let cancelAction = UIAlertAction(title: "취소",style: .cancel, handler: nil)
         alert.addAction(okAction)
-        alert.addAction(cancelAction)
+        if isNeedCancelBtn {
+            let cancelAction = UIAlertAction(title: "취소",style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+        }
         present(alert, animated: true, completion: nil)
     }
     
@@ -205,10 +207,10 @@ extension UIViewController {
                 })
             case TokenError.jwtExpired.rawValue :
                 let networkProvider = NetworkManager.sharedInstance
-                networkProvider.refreshToken(refreshToken: NetworkManager.refreshToken){(result) in
+                networkProvider.refreshToken(refreshToken: NetworkManager.getRefreshToken()){(result) in
                     switch result {
-                    case .Success(let refreshToken):
-                        NetworkManager.token = refreshToken
+                    case .Success(let newToken):
+                        NetworkManager.setToken(newToken)
                         self.simpleAlert(title: "다시 시도해주세요.", message: "로그인 지속시간이 만료되어\n자동 재로그인 되었습니다.")
                     case .Failure(let errorType) :
                         self.showErrorAlert(errorType: errorType)

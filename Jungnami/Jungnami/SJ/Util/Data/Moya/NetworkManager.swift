@@ -8,16 +8,28 @@
 import Moya
 
 struct NetworkManager : Networkable {
-    
     static let sharedInstance = NetworkManager()
-    //고치기 - 회원가입할때, 재발급할때 - 빈값으로 설정
-    static var token = ""
-    //고치기 - 회원가입할때 - 빈값으로 설정
-    static var refreshToken = ""
-    //guard let userToken = UserDefaults.standard.string(forKey: "userToken") else {return}
+
+    static private var token = ""
+    static private var refreshToken = ""
     let provider = MoyaProvider<JungnamiAPI>()
     //(plugins : [NetworkLoggerPlugin(verbose : false)])
     
+    static func setToken(_ newToken : String){
+        NetworkManager.token = newToken
+    }
+    
+    static func getToken() -> String{
+        return NetworkManager.token
+    }
+    
+    static func setRefreshToken(_ newToken : String){
+        NetworkManager.refreshToken = newToken
+    }
+    
+    static func getRefreshToken() -> String{
+        return NetworkManager.refreshToken
+    }
 }
 
 //pms
@@ -111,8 +123,8 @@ extension NetworkManager {
         }
     }
     
-    func getCommentList(isAboutLegislator: Bool, idx: Int, completion: @escaping (MoyaNetworkResult<[Comment]>) -> ()) {
-        fetchData(api: .commentList(isAboutLegislator: isAboutLegislator, idx: idx), networkData: CommentForm.self) { (result) in
+    func getLegiCommentList(idx: Int, completion: @escaping (MoyaNetworkResult<[LegiComment]>) -> ()) {
+        fetchData(api: .legiCommentList(idx: idx), networkData: LegiCommentForm.self) { (result) in
             switch result {
             case .Success(let successResult):
                 if successResult.resResult.success {
@@ -132,8 +144,29 @@ extension NetworkManager {
         }
     }
     
-    func writeComment(isAboutLegislator: Bool, legiIdx: Int, content: String, completion: @escaping (MoyaNetworkResult<String>) -> ()) {
-        fetchData(api: .writeComment(isAboutLegislator: isAboutLegislator, legiIdx: legiIdx, content: content), networkData: NoDataForm.self) { (result) in
+    func getArticleCommentList(idx: Int, completion: @escaping (MoyaNetworkResult<[ArticleComment]>) -> ()) {
+        fetchData(api: .articleCommentList(idx: idx), networkData: ArticleCommentForm.self) { (result) in
+            switch result {
+            case .Success(let successResult):
+                if successResult.resResult.success {
+                    guard let commentList = successResult.resResult.data else {return}
+                    completion(.Success(commentList))
+                } else {
+                    completion(.Failure(.networkError(msg: successResult.resResult.message)))
+                }
+            case .Failure(let errorType) :
+                switch errorType {
+                case .networkConnectFail:
+                    completion(.Failure(.networkConnectFail))
+                case .networkError(let msg):
+                    completion(.Failure(.networkError(msg: msg)))
+                }
+            }
+        }
+    }
+    
+    func writeComment(isAboutLegislator: Bool, relatedIdx: Int, parentCommentIdx : Int = 0, content: String, completion: @escaping (MoyaNetworkResult<String>) -> ()) {
+        fetchData(api: .writeComment(isAboutLegislator: isAboutLegislator, relatedIdx: relatedIdx, parentCommentIdx: parentCommentIdx, content: content), networkData: NoDataForm.self) { (result) in
             switch result {
             case .Success(let successResult):
                 if successResult.resResult.success {
@@ -211,6 +244,26 @@ extension NetworkManager {
             }
         }
     }
+    
+    func reportComment(isAboutLegislator: Bool, commentIdx: Int, reason: String, completion: @escaping (MoyaNetworkResult<String>) -> ()) {
+        fetchData(api: .reportComment(isAboutLegislator: isAboutLegislator, commentIdx: commentIdx, reason : reason), networkData: NoDataForm.self) { (result) in
+            switch result {
+            case .Success(let successResult):
+                if successResult.resResult.success {
+                    completion(.Success(successResult.resResult.message))
+                } else {
+                    completion(.Failure(.networkError(msg: successResult.resResult.message)))
+                }
+            case .Failure(let errorType) :
+                switch errorType {
+                case .networkConnectFail:
+                    completion(.Failure(.networkConnectFail))
+                case .networkError(let msg):
+                    completion(.Failure(.networkError(msg: msg)))
+                }
+            }
+        }
+    }
 }
 
 //vote
@@ -222,7 +275,6 @@ extension NetworkManager {
                 if successResult.resResult.success {
                     guard let legislatorList = successResult.resResult.data else {return}
                     completion(.Success(legislatorList))
-                    
                 } else {
                     completion(.Failure(.networkError(msg: successResult.resResult.message)))
                 }
@@ -288,6 +340,28 @@ extension NetworkManager {
                 if successResult.resResult.success {
                     guard let newToken = successResult.resResult.data else {return}
                     completion(.Success(newToken))
+                } else {
+                    completion(.Failure(.networkError(msg: successResult.resResult.message)))
+                }
+                
+            case .Failure(let errorType) :
+                switch errorType {
+                case .networkConnectFail:
+                    completion(.Failure(.networkConnectFail))
+                case .networkError(let msg):
+                    completion(.Failure(.networkError(msg: msg)))
+                }
+            }
+        }
+    }
+    
+    func kakaoLogin(fcmToken: String, accessToken: String, completion: @escaping (MoyaNetworkResult<LoginData>) -> ()) {
+        fetchData(api: .kakaoLogin(fcmToken: fcmToken, accessToken: accessToken), networkData: LoginForm.self) { (result) in
+            switch result {
+            case .Success(let successResult):
+                if successResult.resResult.success {
+                    guard let loginData = successResult.resResult.data else {return}
+                    completion(.Success(loginData))
                 } else {
                     completion(.Failure(.networkError(msg: successResult.resResult.message)))
                 }

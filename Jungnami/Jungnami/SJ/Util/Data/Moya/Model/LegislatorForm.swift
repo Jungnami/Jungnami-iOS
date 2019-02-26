@@ -24,9 +24,8 @@ struct Legislator: Codable {
     let legiName: String
     let partyCD: PartyCode?
     let profileImg: String?
-    let voteCnt : Int?
-    //고치기 - string 으로. 그리고 표시하는거 바꾸기
-    let rank : Int?
+    var voteCnt : Int?
+    let rank : String?
     let ratio: Double?
     
     enum CodingKeys: String, CodingKey {

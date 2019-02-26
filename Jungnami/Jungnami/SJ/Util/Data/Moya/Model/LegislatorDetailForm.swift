@@ -14,14 +14,14 @@ struct LegislatorDetailForm: Codable {
     let data: LegislatorDetail?
 }
 
+
 struct LegislatorDetail: Codable {
     let region, phone: String?
     let ordinal: Int?
     let reelection: String?
     let partyCD: PartyCode?
     let blog, twitter, crime, facebook: String?
-    //고치기 - String 으로 받아야함 "-"
-    let likeRank, dislkeRank: Int?
+    let likeRank, dislkeRank: String?
     let legiName: String
     let profileImg: String?
     

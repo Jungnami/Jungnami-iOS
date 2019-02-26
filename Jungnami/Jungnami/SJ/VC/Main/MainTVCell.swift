@@ -8,6 +8,11 @@
 import UIKit
 import Kingfisher
 
+class LikeButton : UIButton {
+    var index : Int = 0
+    var row : Int = 0
+}
+
 class MainTVCell: UITableViewCell {
     
     @IBOutlet weak var rankLbl: UILabel!
@@ -17,10 +22,13 @@ class MainTVCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var partyLbl: UILabel!
     @IBOutlet weak var voteCountLbl: UILabel!
-    @IBOutlet weak var voteBtn: UIButton!
-    
+    @IBOutlet weak var voteBtn: LikeButton!
+  
     let maxWidth : Double = 240.0
-    func configure(viewType : MainViewType, index : Int, data : Legislator){
+    func configure(viewType : MainViewType, row : Int, data : Legislator){
+        
+        voteBtn.index = data.idx
+        voteBtn.row = row
         
         if let profileImg = data.profileImg, let imgUrl = URL(string : profileImg) {
              self.profileImgView.kf.setImage(with: imgUrl)
@@ -50,7 +58,7 @@ class MainTVCell: UITableViewCell {
         }
         progressBar.makeRounded()
         
-        let rank = data.rank?.description
+        let rank = data.rank
         rankLbl.text = rank
         switch viewType {
         case .like:
@@ -75,7 +83,7 @@ class MainTVCell: UITableViewCell {
             }
         }
         
-        if(index % 2 == 1){
+        if(row % 2 == 1){
             self.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9843137255, alpha: 1)
         } else {
             self.backgroundColor = .white
@@ -97,15 +105,6 @@ class MainTVCell: UITableViewCell {
         super.awakeFromNib()
         profileImgView.layer.borderColor = ColorChip.shared().mainColor.cgColor
         profileImgView.layer.borderWidth = 2
-   
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-
-        // Configure the view for the selected state
-    }
-    
 }
 
